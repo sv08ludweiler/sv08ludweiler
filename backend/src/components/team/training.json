@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_teampage_trainings",
+  "info": {
+    "displayName": "Training",
+    "icon": "clock",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Start": {
+      "type": "time",
+      "required": true
+    },
+    "end": {
+      "type": "time"
+    },
+    "day": {
+      "type": "enumeration",
+      "enum": [
+        "Montag",
+        "Dienstag",
+        "Mittwoch",
+        "Donnerstag",
+        "Freitag",
+        "Samstag",
+        "Sonntag"
+      ],
+      "required": true
+    },
+    "Location": {
+      "type": "enumeration",
+      "enum": [
+        "Sportplatz",
+        "Warndtstadion",
+        "Geislautern"
+      ],
+      "default": "Sportplatz"
+    }
+  }
+}
