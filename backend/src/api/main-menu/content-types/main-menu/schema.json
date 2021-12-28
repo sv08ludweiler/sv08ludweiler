@@ -12,15 +12,13 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "divisions": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::division.division"
-    },
-    "Hygiene": {
-      "type": "component",
-      "repeatable": true,
-      "component": "teampage.page"
+    "Entries": {
+      "type": "dynamiczone",
+      "components": [
+        "menu.menu-entry-simple",
+        "menu.menu-entry-page",
+        "menu.menu-entry-rekursiv"
+      ]
     }
   }
 }

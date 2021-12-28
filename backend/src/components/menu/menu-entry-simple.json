@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_menu_menu_entry_simples",
+  "info": {
+    "displayName": "Menu-Entry-Link",
+    "icon": "list",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true,
+      "regex": "^(?!www\\.|(?:http|ftp)s?://|[A-Za-z]:\\\\|//).*"
+    },
+    "external": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

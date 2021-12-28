@@ -9,7 +9,9 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack": "5.65.0"
+  },
   "dependencies": {
     "@strapi/strapi": "4.0.2",
     "@strapi/plugin-users-permissions": "4.0.2",

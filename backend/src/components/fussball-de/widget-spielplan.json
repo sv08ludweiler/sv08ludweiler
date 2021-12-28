@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_fussball_de_widget_spielplans",
+  "info": {
+    "displayName": "Widget-Spielplan",
+    "icon": "plane-departure"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "WidgetId": {
+      "type": "string",
+      "required": true
+    },
+    "team": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::team.team"
+    }
+  }
+}

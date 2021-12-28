@@ -13,10 +13,12 @@
   "pluginOptions": {},
   "attributes": {
     "Title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "Content": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "Headerimage": {
       "type": "media",

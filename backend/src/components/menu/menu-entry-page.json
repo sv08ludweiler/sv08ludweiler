@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_menu_menu_entry_pages",
+  "info": {
+    "displayName": "Menu-Entry-Page",
+    "icon": "pager"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "page": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page.page"
+    }
+  }
+}

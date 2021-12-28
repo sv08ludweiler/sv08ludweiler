@@ -4,7 +4,8 @@
   "info": {
     "singularName": "home",
     "pluralName": "homes",
-    "displayName": "Home"
+    "displayName": "Home",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,6 +16,35 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::post.post"
+    },
+    "Headerimage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "NextGames": {
+      "type": "dynamiczone",
+      "components": [
+        "fupa.fupa-spiel-widget"
+      ]
+    },
+    "Partner": {
+      "type": "dynamiczone",
+      "components": [
+        "content.ad"
+      ]
+    },
+    "Content": {
+      "type": "dynamiczone",
+      "components": [
+        "content.news",
+        "fussball-de.widget-spielplan"
+      ]
     }
   }
 }

@@ -5,8 +5,12 @@
         "frontend",
         "backend"
     ],
+    "devDependencies": {
+        "webpack": "5.65.0"
+    },
     "scripts": {
         "dev:frontend": "npm run dev --workspace=frontend",
-        "dev:backend": "npm run dev --workspace=backend"
+        "dev:backend": "npm run dev --workspace=backend",
+        "build:backend": "npm run build --workspace=backend"
     }
 }

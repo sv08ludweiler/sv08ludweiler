@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- *  impressum controller
+ *  footer controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::impressum.impressum');
+module.exports = createCoreController('api::footer.footer');
