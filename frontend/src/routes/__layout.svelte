@@ -1,45 +1,38 @@
-<script lang="ts">
-	import Header from '$lib/header/Header.svelte';
-	import '../app.css';
+<script lang="ts" context="module">
+	import type { Load } from '@sveltejs/kit';
+
+	export const load: Load = async ({ fetch }) => {
+		const url = `/api/main-menu`;
+		const res = await fetch(url);
+		const mainMenu = await res.json();
+
+		if (res.ok) {
+			return {
+				props: {
+					mainMenu
+				}
+			};
+		}
+
+		return {
+			status: res.status,
+			error: new Error(`Could not load ${url}`)
+		};
+	};
 </script>
 
-<Header />
+<script lang="ts">
+	import Header from '$lib/header/Header.svelte';
+	import '../global.scss';
+	import type { I_SERVER_MAIN_MENU, I_SERVER_RESPONSE } from '$lib/types/strapi';
+
+	export let mainMenu: I_SERVER_RESPONSE<I_SERVER_MAIN_MENU>;
+</script>
+
+<Header entries={mainMenu.data.attributes.entries} />
 
 <main>
 	<slot />
 </main>
 
-<footer>
-	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-</footer>
-
-<style>
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 1024px;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
-
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 40px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 40px 0;
-		}
-	}
-</style>
+<footer>footer</footer>

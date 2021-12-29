@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Entries": {
+    "entries": {
       "type": "dynamiczone",
       "components": [
         "menu.menu-entry-simple",

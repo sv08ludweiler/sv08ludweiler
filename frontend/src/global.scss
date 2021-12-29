@@ -1,0 +1,11 @@
+@use './global-styles/variables';
+@use './global-styles/colors';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	background: var(--was-color-white, white);
+	color: var(--was-color-black, black);
+}

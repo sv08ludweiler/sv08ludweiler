@@ -1,0 +1,54 @@
+// :root {
+//     --was-font-size-xxxxxxxxl: 100px;
+//     --was-font-size-xxxxxxxl: 60px;
+//     --was-font-size-xxxxxxl: 50px;
+//     --was-font-size-xxxxxl: 48px;
+//     --was-font-size-xxxxl: 40px;
+//     --was-font-size-xxxl: 36px;
+//     --was-font-size-xxl: 32px;
+//     --was-font-size-xl: 28px;
+//     --was-font-size-l: 24px;
+//     --was-font-size-m: 20px;
+//     --was-font-size-s: 18px;
+//     --was-font-size-xs: 16px;
+//     --was-font-size-xxs: 14px;
+//     --was-font-size-xxxs: 12px;
+
+//     --was-font-weight-light: 300;
+//     --was-font-weight-normal: 400;
+//     --was-font-weight-bold: 600;
+// }
+
+// @mixin css-font-generator($font-name, $font-size, $font-weight) {
+//     %#{$font-name} {
+//         font-size: #{$font-size};
+//         font-weight: #{$font-weight};
+//     }
+// }
+
+// @include css-font-generator('font-light-1', var(--was-font-size-xxxxl), var(--was-font-weight-light, 300));
+// @include css-font-generator('font-light-2', var(--was-font-size-l), var(--was-font-weight-light, 300));
+// @include css-font-generator('font-light-3', var(--was-font-size-s), var(--was-font-weight-light, 300));
+// @include css-font-generator('font-light-4', var(--was-font-size-xs), var(--was-font-weight-light, 300));
+// @include css-font-generator('font-light-5', var(--was-font-size-xxs), var(--was-font-weight-light, 300));
+
+// @include css-font-generator('font-regular-1', var(--was-font-size-xxxxxxxxl), var(--was-font-weight-normal, 400));
+// @include css-font-generator('font-regular-2', var(--was-font-size-l), var(--was-font-weight-normal, 400));
+// @include css-font-generator('font-regular-3', var(--was-font-size-s), var(--was-font-weight-normal, 400));
+// @include css-font-generator('font-regular-4', var(--was-font-size-xs), var(--was-font-weight-normal, 400));
+// @include css-font-generator('font-regular-5', var(--was-font-size-xxxxl), var(--was-font-weight-normal, 400));
+// @include css-font-generator('font-regular-6', var(--was-font-size-xxxl), var(--was-font-weight-normal, 400));
+// @include css-font-generator('font-regular-7', var(--was-font-size-xxxs), var(--was-font-weight-normal, 400));
+// @include css-font-generator('font-regular-8', var(--was-font-size-m), var(--was-font-weight-normal, 400));
+// @include css-font-generator('font-regular-9', var(--was-font-size-xxl), var(--was-font-weight-normal, 400));
+// @include css-font-generator('font-regular-10', var(--was-font-size-xxxxxl), var(--was-font-weight-normal, 400));
+// @include css-font-generator('font-regular-11', var(--was-font-size-xl), var(--was-font-weight-normal, 400));
+
+// @include css-font-generator('font-bold-1', var(--was-font-size-xxxxxxxxl), var(--was-font-weight-bold, 600));
+// @include css-font-generator('font-bold-2', var(--was-font-size-xxxxxxxl), var(--was-font-weight-bold, 600));
+// @include css-font-generator('font-bold-3', var(--was-font-size-xxxxl), var(--was-font-weight-bold, 600));
+// @include css-font-generator('font-bold-4', var(--was-font-size-l), var(--was-font-weight-bold, 600));
+// @include css-font-generator('font-bold-5', var(--was-font-size-s), var(--was-font-weight-bold, 600));
+// @include css-font-generator('font-bold-6', var(--was-font-size-xs), var(--was-font-weight-bold, 600));
+// @include css-font-generator('font-bold-7', var(--was-font-size-xxs), var(--was-font-weight-bold, 600));
+// @include css-font-generator('font-bold-8', var(--was-font-size-xxxxxxl), var(--was-font-weight-bold, 600));

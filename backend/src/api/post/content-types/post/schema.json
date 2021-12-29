@@ -52,6 +52,11 @@
     },
     "published": {
       "type": "datetime"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Title",
+      "required": true
     }
   }
 }

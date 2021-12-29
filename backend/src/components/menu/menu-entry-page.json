@@ -2,12 +2,14 @@
   "collectionName": "components_menu_menu_entry_pages",
   "info": {
     "displayName": "Menu-Entry-Page",
-    "icon": "pager"
+    "icon": "pager",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "Title": {
-      "type": "string"
+    "title": {
+      "type": "string",
+      "required": true
     },
     "page": {
       "type": "relation",

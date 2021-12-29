@@ -12,15 +12,15 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string",
       "required": true
     },
-    "Content": {
+    "content": {
       "type": "richtext",
       "required": true
     },
-    "Headerimage": {
+    "headerimage": {
       "type": "media",
       "multiple": false,
       "required": false,
@@ -34,6 +34,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     }
   }
 }
