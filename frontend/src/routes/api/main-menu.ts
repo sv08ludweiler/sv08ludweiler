@@ -8,8 +8,7 @@ export async function get(): Promise<EndpointOutput> {
     let serverBase = envVariables.serverBasePath;
     let apiToken = envVariables.apiToken;
 
-    const url = new URL(`${serverBase}/api/main-menu`);
-    url.search = new URLSearchParams('populate=*').toString();
+    const url = serverBase + '/api/main-menu?populate=*';
 
     const res = await fetch(url, {
         credentials: "include",

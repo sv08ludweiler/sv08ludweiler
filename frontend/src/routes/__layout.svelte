@@ -22,7 +22,7 @@
 </script>
 
 <script lang="ts">
-	import Header from '$lib/header/Header.svelte';
+	import Header from '$lib/components/header/Header.svelte';
 	import '../global.scss';
 	import type { I_SERVER_MAIN_MENU, I_SERVER_RESPONSE } from '$lib/types/strapi';
 

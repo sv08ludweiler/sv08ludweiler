@@ -9,8 +9,10 @@
         "webpack": "5.65.0"
     },
     "scripts": {
-        "dev:frontend": "npm run dev --workspace=frontend",
-        "dev:backend": "npm run dev --workspace=backend",
-        "build:backend": "npm run build --workspace=backend"
+        "frontend:dev": "npm run dev --workspace=frontend",
+        "frontend:build": "npm run build --workspace=frontend",
+        "frontend:preview": "npm run preview --workspace=frontend",
+        "backend:dev": "npm run dev --workspace=backend",
+        "backend:build": "npm run build --workspace=backend"
     }
 }

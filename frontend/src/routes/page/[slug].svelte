@@ -1,10 +1,10 @@
 <script lang="ts" context="module">
+	// export const ssr = true;
 	export const prerender = true;
-	import { browser } from '$app/env';
-	import type { I_SERVER_PAGE } from '$lib/types/strapi';
+	import type { I_SERVER_RESPONSE } from '$lib/types/strapi';
+	import type { I_SERVER_PAGE } from '$lib/types/server/page';
 	import { envVariables } from '$lib/utils/variables';
 	import type { Load } from '@sveltejs/kit';
-	import { onMount } from 'svelte';
 
 	const serverBase = envVariables.serverBasePath;
 	const apiToken = envVariables.apiToken;
@@ -28,18 +28,18 @@
 			const error = new Error(`The post with ID ${slug} was not found`);
 			return { status: res.status, error };
 		} else {
-			const data = await res.json();
+			const data: I_SERVER_RESPONSE<I_SERVER_PAGE> = await res.json();
 
-			const page: I_SERVER_PAGE = data.data[0];
+			const page: I_SERVER_PAGE = data.data[0].attributes;
 
-			let content = page.attributes.content;
+			let content = page.content;
 
 			// TODO check if it works client/server-sided
 			// if (browser) {
 
 			const showdown = (await import('showdown')).default;
 			const converter = new showdown.Converter();
-			page.attributes.content = converter.makeHtml(content);
+			page.content = converter.makeHtml(content);
 
 			return { props: { page } };
 		}
@@ -49,11 +49,11 @@
 <script lang="ts">
 	export let page: I_SERVER_PAGE;
 
-	$: content = page.attributes.content;
+	$: content = page.content;
 </script>
 
 <svelte:head>
-	<title>{page.attributes.title}</title>
+	<title>{page.title}</title>
 </svelte:head>
 
 {@html content}

@@ -38,12 +38,3 @@ export interface I_SERVER_MENU_ENTRY_REKURSIV {
     __component: "menu.menu-entry-rekursive",
     entries: Array<I_SERVER_MENU_ENTRY_PAGE>
 }
-
-
-export interface I_SERVER_PAGE {
-    attributes: {
-        title: string,
-        headerimage: string;
-        content: string;
-    }
-}
