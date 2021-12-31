@@ -4,10 +4,13 @@
 		<meta charset="utf-8" />
 		<meta name="description" content="Svelte demo app" />
 		<link rel="icon" href="/favicon.png" />
+		<!-- SMUI Styles -->
+		<link rel="stylesheet" href="/static/smui.css" />
+
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%svelte.head%
 	</head>
 	<body>
-		<div id="svelte">%svelte.body%</div>
+		<div class="flex flex-col" id="svelte">%svelte.body%</div>
 	</body>
 </html>

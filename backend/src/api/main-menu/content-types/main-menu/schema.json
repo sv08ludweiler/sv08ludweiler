@@ -17,7 +17,8 @@
       "components": [
         "menu.menu-entry-simple",
         "menu.menu-entry-page",
-        "menu.menu-entry-rekursiv"
+        "menu.menu-entry-rekursiv",
+        "menu.menu-entry-teams"
       ]
     }
   }

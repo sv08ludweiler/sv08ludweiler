@@ -5,6 +5,7 @@
 	import type { I_SERVER_PAGE } from '$lib/types/server/page';
 	import { envVariables } from '$lib/utils/variables';
 	import type { Load } from '@sveltejs/kit';
+	import Image from '$lib/components/strapi/Image.svelte';
 
 	const serverBase = envVariables.serverBasePath;
 	const apiToken = envVariables.apiToken;
@@ -16,7 +17,7 @@
 		console.log(slug);
 
 		// Now, we'll fetch the blog post from Strapi
-		const res = await fetch(url + '?filters[slug][$eq]=' + slug, {
+		const res = await fetch(url + '?populate=*&filters[slug][$eq]=' + slug, {
 			headers: {
 				Authorization: `Bearer ${apiToken}`
 			}
@@ -47,7 +48,10 @@
 </script>
 
 <script lang="ts">
+	import Card, { Content } from '@smui/card';
 	export let page: I_SERVER_PAGE;
+
+	console.log({ page });
 
 	$: content = page.content;
 </script>
@@ -56,4 +60,35 @@
 	<title>{page.title}</title>
 </svelte:head>
 
-{@html content}
+<article>
+	<section class="header">
+		{#if page.headerimage && page.headerimage.data !== null}
+			<Image image={page.headerimage.data.attributes} />
+		{:else}
+			<div class="header-image-placeholder bg-primary h-40" />
+		{/if}
+	</section>
+
+	<section class="container mx-auto move-top">
+		<Card>
+			<Content>{@html content}</Content>
+		</Card>
+	</section>
+</article>
+
+<style lang="scss">
+	.move-top {
+		margin-top: -6vh;
+	}
+
+	section.header {
+		max-height: 35vw;
+		overflow: hidden;
+		img {
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+			object-position: 50% 10%;
+		}
+	}
+</style>

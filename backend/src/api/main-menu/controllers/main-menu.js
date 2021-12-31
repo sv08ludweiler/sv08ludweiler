@@ -46,6 +46,7 @@ module.exports = createCoreController(
                 page: {
                   fields: ["title", "slug"],
                 },
+                teams: true,
                 entries: {
                   populate: {
                     page: {

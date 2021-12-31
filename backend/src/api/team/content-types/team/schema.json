@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
+    "name": {
       "type": "string",
       "required": true
     },
@@ -21,7 +21,7 @@
       "relation": "oneToOne",
       "target": "api::division.division"
     },
-    "Description": {
+    "description": {
       "type": "richtext"
     },
     "Trainings": {
@@ -41,13 +41,17 @@
       "mappedBy": "teams"
     },
     "Teamimage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "slug": {
+      "type": "uid"
     }
   }
 }

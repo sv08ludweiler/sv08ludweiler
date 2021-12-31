@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_menu_menu_entry_teams",
+  "info": {
+    "displayName": "Menu-Entry-Teams",
+    "icon": "layer-group",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "teams": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::team.team"
+    }
+  }
+}

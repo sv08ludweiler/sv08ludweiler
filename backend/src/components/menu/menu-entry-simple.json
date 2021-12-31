@@ -13,8 +13,7 @@
     },
     "link": {
       "type": "string",
-      "required": true,
-      "regex": "^(?!www\\.|(?:http|ftp)s?://|[A-Za-z]:\\\\|//).*"
+      "required": true
     },
     "external": {
       "type": "boolean",

@@ -25,6 +25,7 @@
 	import Header from '$lib/components/header/Header.svelte';
 	import '../global.scss';
 	import type { I_SERVER_MAIN_MENU, I_SERVER_RESPONSE } from '$lib/types/strapi';
+	import Footer from '$lib/components/footer/Footer.svelte';
 
 	export let mainMenu: I_SERVER_RESPONSE<I_SERVER_MAIN_MENU>;
 </script>
@@ -35,4 +36,4 @@
 	<slot />
 </main>
 
-<footer>footer</footer>
+<Footer />
