@@ -2,15 +2,16 @@
   "collectionName": "components_fussball_de_widget_spielplans",
   "info": {
     "displayName": "Widget-Spielplan",
-    "icon": "plane-departure"
+    "icon": "plane-departure",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string",
       "required": true
     },
-    "WidgetId": {
+    "widgetId": {
       "type": "string",
       "required": true
     },

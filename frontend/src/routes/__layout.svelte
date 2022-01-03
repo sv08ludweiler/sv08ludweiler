@@ -32,7 +32,7 @@
 
 <Header entries={mainMenu.data.attributes.entries} />
 
-<main>
+<main class="flex-auto">
 	<slot />
 </main>
 

@@ -10,7 +10,7 @@
     "title": {
       "type": "string"
     },
-    "DivisionFilter": {
+    "divisionFilter": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::division.division"
@@ -20,10 +20,9 @@
       "relation": "oneToMany",
       "target": "api::team.team"
     },
-    "Beitragsanzahl": {
+    "post_count": {
       "type": "integer",
       "required": true,
-      "min": 2,
       "default": 5
     }
   }

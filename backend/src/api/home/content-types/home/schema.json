@@ -12,12 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "posts": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::post.post"
-    },
-    "Headerimage": {
+    "headerimage": {
       "type": "media",
       "multiple": false,
       "required": false,
@@ -27,19 +22,19 @@
         "videos"
       ]
     },
-    "NextGames": {
+    "nextGames": {
       "type": "dynamiczone",
       "components": [
         "fupa.fupa-spiel-widget"
       ]
     },
-    "Partner": {
+    "partner": {
       "type": "dynamiczone",
       "components": [
         "content.ad"
       ]
     },
-    "Content": {
+    "content": {
       "type": "dynamiczone",
       "components": [
         "content.news",

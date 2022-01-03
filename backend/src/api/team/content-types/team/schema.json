@@ -16,7 +16,7 @@
       "type": "string",
       "required": true
     },
-    "Division": {
+    "division": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::division.division"
@@ -24,12 +24,12 @@
     "description": {
       "type": "richtext"
     },
-    "Trainings": {
+    "trainings": {
       "type": "component",
       "repeatable": true,
       "component": "team.training"
     },
-    "Trainers": {
+    "trainers": {
       "type": "component",
       "repeatable": true,
       "component": "team.trainer"
@@ -40,7 +40,7 @@
       "target": "api::post.post",
       "mappedBy": "teams"
     },
-    "Teamimage": {
+    "teamimage": {
       "type": "media",
       "multiple": false,
       "required": false,

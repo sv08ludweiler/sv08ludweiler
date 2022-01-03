@@ -20,17 +20,19 @@
 	}
 </script>
 
-<header class="sticky top-0 left-0 right-0 z-50">
-	<nav class="bg-primaryDark text-primaryText flex flex-row h-15">
+<header class="bg-primaryDark text-primaryText  z-50 ">
+	<nav class="sticky top-0 left-0 right-0flex flex-row w-full h-16">
 		<a
-			class="flex flex-row items-center justify-items-center flex-shrink-0 p-1 text-2xl brand"
+			class="flex flex-row items-center justify-items-center flex-shrink-0 p-1 text-2xl absolute left-0 top-0 brand "
 			href="/"
 		>
-			<img class="inline-flex flex-auto brand-logo" src={`${assets}/wappen.png`} alt="wappen" />
-			<span class="p-2">SV 08 Ludweiler</span>
+			<img class="flex flex-auto brand-logo" src={`${assets}/wappen.png`} alt="wappen" />
+			<span class="p-2 hidden lg:inline">SV 08 Ludweiler</span>
 		</a>
 
-		<ul class="menu menu--level-1 flex flex-row flex-auto items-center">
+		<ul
+			class="menu menu--level-1 flex-row flex-auto items-center justify-center hidden sm:flex h-full"
+		>
 			{#each entries as entry}
 				{#if entry.__component === 'menu.menu-entry-simple'}
 					<li>
@@ -125,11 +127,11 @@
 			height: 100%;
 			padding: 1rem;
 
-			&.active {
-				background: rgba(white, 0.1);
-			}
 			&:hover {
 				background: rgba(black, 0.1);
+			}
+			&.active {
+				background: rgba(white, 0.1);
 			}
 		}
 
@@ -163,7 +165,7 @@
 				position: absolute;
 				width: 100%;
 				left: 0;
-				top: 80px;
+				top: 4rem;
 				background: var(--sv-color-primary);
 				height: auto;
 

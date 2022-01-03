@@ -12,15 +12,14 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
+    "name": {
       "type": "string"
     },
-    "Description": {
+    "description": {
       "type": "text"
     },
     "slug": {
       "type": "uid",
-      "targetField": "Name",
       "required": true
     }
   }

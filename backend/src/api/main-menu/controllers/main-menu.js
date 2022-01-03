@@ -6,7 +6,7 @@
 
 const { createCoreController } = require("@strapi/strapi").factories;
 
-function populateAttribute({ components }) {
+/* function populateAttribute({ components }) {
   if (components) {
     const populate = components.reduce((currentValue, current) => {
       return { ...currentValue, [current.split(".").pop()]: { populate: "*" } };
@@ -29,7 +29,7 @@ const getPopulateFromSchema = function (schema) {
   }, {});
 };
 
-const schema = require("../content-types/main-menu/schema.json");
+const schema = require("../content-types/main-menu/schema.json"); */
 
 module.exports = createCoreController(
   "api::main-menu.main-menu",
