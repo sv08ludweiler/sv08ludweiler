@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_teams",
+  "info": {
+    "singularName": "page-team",
+    "pluralName": "page-teams",
+    "displayName": "Page-Team"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "info": {
+      "type": "richtext"
+    },
+    "team": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::team.team"
+    }
+  }
+}

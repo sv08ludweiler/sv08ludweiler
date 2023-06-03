@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_training_trainingslots",
+  "info": {
+    "displayName": "Trainingslot"
+  },
+  "options": {},
+  "attributes": {
+    "Day": {
+      "type": "string",
+      "required": true
+    },
+    "start": {
+      "type": "time",
+      "required": true
+    },
+    "end": {
+      "type": "time"
+    },
+    "location": {
+      "type": "string"
+    }
+  }
+}

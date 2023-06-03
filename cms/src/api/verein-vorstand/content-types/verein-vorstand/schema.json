@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "verein_vorstands",
+  "info": {
+    "singularName": "verein-vorstand",
+    "pluralName": "verein-vorstands",
+    "displayName": "Page-Content",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "title"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}
