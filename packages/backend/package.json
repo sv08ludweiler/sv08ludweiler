@@ -1,0 +1,15 @@
+{
+  "name": "sv-08-ludweiler",
+  "version": "1.0.0",
+  "description": "Repo of homepage of SV 08 Ludweiler",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sv08ludweiler"
+  ],
+  "author": "Philipp Schardt",
+  "license": "ISC"
+}
