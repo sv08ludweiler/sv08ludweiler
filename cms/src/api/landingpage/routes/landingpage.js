@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * page-home router
+ * landingpage router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::page-home.page-home');
+module.exports = createCoreRouter('api::landingpage.landingpage');
