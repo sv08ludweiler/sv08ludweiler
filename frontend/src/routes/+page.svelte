@@ -5,7 +5,11 @@
 	export let data: PageData;
 </script>
 
-{JSON.stringify(data.navigation)}
-
 <h1>Welcome to SvelteKit</h1>
 <p>Read <a href="./posts">posts</a></p>
+
+<ul>
+	{#each data.navigation as navItem}
+		<li>{navItem.title}: {JSON.stringify(navItem)}</li>
+	{/each}
+</ul>

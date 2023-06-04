@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * page-team router
+ * page router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::page-team.page-team');
+module.exports = createCoreRouter('api::page.page');
