@@ -4,7 +4,8 @@
   "info": {
     "singularName": "division",
     "pluralName": "divisions",
-    "displayName": "Division"
+    "displayName": "Division",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,9 +20,14 @@
       "type": "uid",
       "targetField": "Name"
     },
-    "team": {
+    "age_groups": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToMany",
+      "target": "api::age-group.age-group"
+    },
+    "teams": {
+      "type": "relation",
+      "relation": "manyToMany",
       "target": "api::team.team",
       "inversedBy": "divisions"
     }

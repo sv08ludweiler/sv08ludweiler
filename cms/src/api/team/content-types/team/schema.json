@@ -33,12 +33,6 @@
       "type": "uid",
       "targetField": "Name"
     },
-    "divisions": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::division.division",
-      "mappedBy": "team"
-    },
     "League": {
       "pluginOptions": {
         "i18n": {
@@ -76,6 +70,17 @@
         }
       },
       "component": "widget.results-fussball-de"
+    },
+    "age_group": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::age-group.age-group"
+    },
+    "divisions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::division.division",
+      "inversedBy": "teams"
     }
   }
 }
