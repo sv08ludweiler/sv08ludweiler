@@ -9,4 +9,15 @@
 	});
 </script>
 
-{JSON.stringify(data.posts)}
+<!-- {JSON.stringify(data.posts.data)} -->
+
+<ul>
+	{#each data.posts.data as post}
+		<!-- {JSON.stringify(post)} -->
+		<li>
+			<a href="./posts/{post.id}">
+				{post.attributes.Title}
+			</a>
+		</li>
+	{/each}
+</ul>

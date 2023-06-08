@@ -4,7 +4,8 @@
   "info": {
     "singularName": "landingpage",
     "pluralName": "landingpages",
-    "displayName": "Landingpage"
+    "displayName": "Landingpage",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -38,6 +39,16 @@
         }
       },
       "type": "uid"
+    },
+    "Vereinsspielplan": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "widget.results-fussball-de"
     }
   }
 }
