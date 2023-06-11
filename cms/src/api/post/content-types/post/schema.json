@@ -12,17 +12,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string"
     },
     "slug": {
-      "type": "uid",
-      "targetField": "Title"
+      "type": "uid"
     },
-    "Content": {
+    "content": {
       "type": "richtext"
     },
-    "Headerimage": {
+    "header_image": {
       "type": "media",
       "multiple": false,
       "required": false,
@@ -40,6 +39,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::team.team"
+    },
+    "on_landingpage": {
+      "type": "boolean",
+      "default": true,
+      "required": false
     }
   }
 }

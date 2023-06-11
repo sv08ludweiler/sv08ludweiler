@@ -8,9 +8,9 @@ export const load = (async ({params}) => {
 		headers: {
 			'Authorization': `bearer ${STRAPI_API_TOKEN}`
 		}
-	})).json()
+	})).json()	
 
-	const content = await compile(post.data.attributes.Content)
+	const content = await compile(post.data.attributes.content)
 
     return {
         post,

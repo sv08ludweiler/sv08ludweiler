@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	h1 {
+		@apply text-3xl;
+		margin: 2rem 0;
+	}
+	h2 {
+		@apply text-3xl;
+		margin: 1rem 0;
+	}
+	h3 {
+		@apply text-2xl;
+		margin: 1rem 0;
+	}
+	h4 {
+		@apply text-xl;
+		margin: 1rem 0;
+	}
+
+    p {
+        margin: 1rem 0;
+    }
+	
+
+}

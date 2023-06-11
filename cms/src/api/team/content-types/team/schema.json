@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "Name": {
+    "name": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -30,10 +30,9 @@
           "localized": true
         }
       },
-      "type": "uid",
-      "targetField": "Name"
+      "type": "uid"
     },
-    "League": {
+    "league": {
       "pluginOptions": {
         "i18n": {
           "localized": true

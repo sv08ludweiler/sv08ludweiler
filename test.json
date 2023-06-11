@@ -1,107 +1,19 @@
 {
-  "id": 2,
-  "attributes": {
-    "Title": "Unentschieden 1:1 im Lokalderby gegen den FC Dorf im Warndt e.V.",
-    "slug": "unentschieden-1-1-im-lokalderby-gegen-den-fc-dorf-im-warndt-e-v",
-    "Content": "#### 1. Mannschaft\n\nAm Ende einer umkämpften Partie stand es am letzten Sonntag in Dorf im Warndt ein bißchen unglücklich unentschieden. Unsere erste Mannschaft startete konzentriert und erspielte sich von Beginn an mit Samuel Flick und Marc Desgranges im zentralen Mittelfeld ein spielerisches Übergewicht. Nach einigen gefährlichen Angriffen reagierte der stark verbesserte Calvin Ostermayer in einer unübersichtlichen Situation im gegnerischen Strafraum am schnellsten und beförderte den Ball per Kopf platziert in die Maschen. Danach wurde das Heimteam stärker, ohne unser Tor aber ernsthaft in Gefahr zu bringen. Unsere Abwehr um Manuel Vallone und Jonas Schütz stand bombensicher und Christian Ney fing sicher ab, was doch mal durchrutschte. Gleichzeitig spielten wir weiter über unsere schnellen Außen konsequent nach vorne, wo Calle Ostermayer und Rafael Malak einige gefährliche Strafraumszenen erspielten, die aber leider nicht genutzt wurden.\n\n\n\nNach der Pause verstärkte das Heimteam seine Offensivbemühungen, was uns reichlich Platz zum Kontern ließ. Gleich reihenweise ließen wir gute Möglichkeiten liegen, als wir die Aktionen nicht genau genug zu Ende spielten. Knappe Fehlschüsse, schlechte letzte Pässe und ein Lattentreffer verhinderten die Vorentscheidung. So reichte dem Gegner eine einzige gelungene Aktion, als ein Stürmer sich schön über links durchsetzte und Christian Ney zu einer schönen Parade zwang. Der Abraller fiel leider unglücklich genau vor die Füße eines Gästestürmers, der nur noch einzuschieben brauchte. Die Einwechslung von Jannik Hertel, Steven Prempeh und Stefan Inzillo brachte nochmal neuen Schwung. Aber auch sie konnten leider nicht mehr den Siegtreffer erzielen. So weiß man am Ende nicht, ob man mit dem Auswärtspunkt bei einem Spitzenteam in Dorf im Warndt zufrieden sein soll. Denn wir haben es nicht geschafft, den Sack zu zu machen. Bei vernünftiger Chancenverwertung wäre hier ein Sieg drin gewesen. So freuen wir uns über ein umkämpftes aber jederzeit faires Lokalderby, das für die Zuschauer beider Lager etwas zu bieten hatte. \n\n#### 2. Mannschaft\n\nUnsere Zweite trat am letzten Sonntag bei der Reserve der DJK Neuweiler an. Die zahlreichen A-Jugendspieler, die zum Einsatz kamen, hatten zunächst wohl einige Eingewöhnungsschwierigkeiten, und lagen zur Halbzeit bereits mit 0:4 zurück. Trainer Timo Barth hatte aber offensichtlich in der Hälfte die richtigen Worte gefunden. Nach der Pause zeigte sich da junge Team stark verbessert und konnte auf bis zu 3:5 verkürzen. Leider reichte es nicht mehr für mehr. Trainer und Spieler konnten aber mit einer engagierten Leistung sehr zufrieden sein. Besonders hervorheben muss man Doppeltorschütze Omar Tamar und die weiteren Youngster Reben Hasan (auch ein Tor) und Alessandro Carmeni mit einem engagierten Debut im Aktivenbereich. Und bedanken wollen wir uns bei Frank schygulla, Michael Guthörl und Denniz Willems von der AH für ihren Auswärtseinsatz. Am kommenden Montag geht es weiter für die Zweite in Klarentahl (13.15 Uhr) und für die Erste auf dem Heidstock um 15.00 Uhr.",
-    "createdAt": "2023-06-08T10:34:44.062Z",
-    "updatedAt": "2023-06-08T10:35:57.362Z",
-    "publishedAt": "2023-06-08T10:34:45.253Z",
-    "Headerimage": {
-      "data": {
-        "id": 1,
-        "attributes": {
-          "name": "1-mannschaft-gegen-diw-2023.jpg",
-          "alternativeText": "Kämpferisch gegen Dorf im Warndt",
-          "caption": null,
-          "width": 2325,
-          "height": 965,
-          "formats": {
-            "thumbnail": {
-              "name": "thumbnail_1-mannschaft-gegen-diw-2023.jpg",
-              "hash": "thumbnail_1_mannschaft_gegen_diw_2023_d3bc7d70c3",
-              "ext": ".jpg",
-              "mime": "image/jpeg",
-              "path": null,
-              "width": 245,
-              "height": 101,
-              "size": 8.74,
-              "url": "/uploads/thumbnail_1_mannschaft_gegen_diw_2023_d3bc7d70c3.jpg"
-            },
-            "small": {
-              "name": "small_1-mannschaft-gegen-diw-2023.jpg",
-              "hash": "small_1_mannschaft_gegen_diw_2023_d3bc7d70c3",
-              "ext": ".jpg",
-              "mime": "image/jpeg",
-              "path": null,
-              "width": 500,
-              "height": 207,
-              "size": 34.96,
-              "url": "/uploads/small_1_mannschaft_gegen_diw_2023_d3bc7d70c3.jpg"
-            },
-            "medium": {
-              "name": "medium_1-mannschaft-gegen-diw-2023.jpg",
-              "hash": "medium_1_mannschaft_gegen_diw_2023_d3bc7d70c3",
-              "ext": ".jpg",
-              "mime": "image/jpeg",
-              "path": null,
-              "width": 750,
-              "height": 311,
-              "size": 76.75,
-              "url": "/uploads/medium_1_mannschaft_gegen_diw_2023_d3bc7d70c3.jpg"
-            },
-            "large": {
-              "name": "large_1-mannschaft-gegen-diw-2023.jpg",
-              "hash": "large_1_mannschaft_gegen_diw_2023_d3bc7d70c3",
-              "ext": ".jpg",
-              "mime": "image/jpeg",
-              "path": null,
-              "width": 1000,
-              "height": 415,
-              "size": 139.91,
-              "url": "/uploads/large_1_mannschaft_gegen_diw_2023_d3bc7d70c3.jpg"
-            }
-          },
-          "hash": "1_mannschaft_gegen_diw_2023_d3bc7d70c3",
-          "ext": ".jpg",
-          "mime": "image/jpeg",
-          "size": 760.55,
-          "url": "/uploads/1_mannschaft_gegen_diw_2023_d3bc7d70c3.jpg",
-          "previewUrl": null,
-          "provider": "local",
-          "provider_metadata": null,
-          "createdAt": "2023-06-08T10:31:48.541Z",
-          "updatedAt": "2023-06-08T10:34:35.895Z"
-        }
+  "data": [
+    {
+      "id": 1,
+      "attributes": {
+        "title": "Hygienekonzept",
+        "slug": "hygiene",
+        "content": "Hygienekonzept content",
+        "createdAt": "2023-06-03T22:27:45.951Z",
+        "updatedAt": "2023-06-04T10:06:55.652Z",
+        "publishedAt": "2023-06-04T10:06:55.650Z",
+        "locale": "de"
       }
-    },
-    "teams": {
-      "data": [
-        {
-          "id": 1,
-          "attributes": {
-            "Name": "Aktive - Herren - 1. Mannschaft",
-            "slug": "1-mannschaft",
-            "createdAt": "2023-06-03T19:05:19.848Z",
-            "updatedAt": "2023-06-08T10:36:25.032Z",
-            "publishedAt": "2023-06-03T22:02:42.046Z",
-            "locale": "de",
-            "League": "Bezirksliga Köllertal/Warndt"
-          }
-        },
-        {
-          "id": 2,
-          "attributes": {
-            "Name": "Aktive - Herren - 2. Mannschaft",
-            "slug": "2-mannschaft-aktive",
-            "createdAt": "2023-06-04T18:22:33.655Z",
-            "updatedAt": "2023-06-08T10:36:34.189Z",
-            "publishedAt": "2023-06-04T18:22:34.609Z",
-            "locale": "de",
-            "League": null
-          }
-        }
-      ]
     }
+  ],
+  "meta": {
+    "pagination": { "page": 1, "pageSize": 25, "pageCount": 1, "total": 1 }
   }
 }

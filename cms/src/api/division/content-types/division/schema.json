@@ -12,13 +12,12 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
+    "name": {
       "type": "string",
       "required": true
     },
     "slug": {
-      "type": "uid",
-      "targetField": "Name"
+      "type": "uid"
     },
     "age_groups": {
       "type": "relation",
@@ -29,7 +28,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::team.team",
-      "inversedBy": "divisions"
+      "mappedBy": "divisions"
     }
   }
 }

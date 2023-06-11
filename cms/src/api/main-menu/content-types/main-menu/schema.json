@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "main_menus",
+  "info": {
+    "singularName": "main-menu",
+    "pluralName": "main-menus",
+    "displayName": "Main Menu",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "entries": {
+      "type": "dynamiczone",
+      "components": [
+        "navigation.external-navigation-item",
+        "navigation.page-navigation-item",
+        "navigation.team-navigation-item",
+        "navigation.page-nested-navigation-item"
+      ]
+    }
+  }
+}

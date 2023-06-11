@@ -16,7 +16,7 @@
 		<!-- {JSON.stringify(post)} -->
 		<li>
 			<a href="./posts/{post.id}">
-				{post.attributes.Title}
+				{post.attributes.title}
 			</a>
 		</li>
 	{/each}
