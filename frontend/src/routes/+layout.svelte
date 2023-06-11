@@ -32,7 +32,7 @@
 
 	<!-- {JSON.stringify(data.mainMenu.attributes.entries, null, '\t')} -->
 
-	<main>
+	<main class="flex-auto">
 		<slot />
 	</main>
 

@@ -26,8 +26,6 @@ export const load = (async ({ fetch, params }) => {
 		})
 	).json();
 
-
-  console.log('pages', pages);
   
 
 	if (pages.meta.total < 1) {
