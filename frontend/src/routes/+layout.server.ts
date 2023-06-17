@@ -16,9 +16,10 @@ export const load = (async ({ fetch }) => {
 									fields: ['age_groups', 'teams', 'slug'],
 									populate: {
 										teams: {
-											populate: ['age_group',]
+											populate: ['age_group']
 										},
-										age_groups: true									}
+										age_groups: true
+									}
 								}
 							}
 						},
@@ -29,7 +30,7 @@ export const load = (async ({ fetch }) => {
 								},
 								children: {
 									populate: '*'
-								},
+								}
 							}
 						},
 						'navigation.external-navigation-item': {
@@ -47,18 +48,18 @@ export const load = (async ({ fetch }) => {
 			encodeValuesOnly: true // prettify URL
 		}
 	);
+	
+	const request = await fetch(`http://0.0.0.0:1337/api/main-menu?${menuQuery}`, {
+		headers: {
+			Authorization: `bearer ${STRAPI_API_TOKEN}`
+		}
+	});
 
-	const mainMenu = await (
-		await fetch(`http://localhost:1337/api/main-menu?${menuQuery}`, {
-			headers: {
-				Authorization: `bearer ${STRAPI_API_TOKEN}`
-			}
-		})
-	).json();
+	const mainMenu = await request.json();
 
 	return {
 		// navigation: await (
-		// 	await fetch('http://localhost:1337/api/navigation/render/1?type=TREE', {
+		// 	await fetch('http://0.0.0.0:1337/api/navigation/render/1?type=TREE', {
 		// 		headers: {
 		// 			Authorization: `bearer ${STRAPI_API_TOKEN}`
 		// 		}

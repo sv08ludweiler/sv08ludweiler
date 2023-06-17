@@ -56,15 +56,21 @@
 	<li class="nav-menu inline-flex h-full items-center justify-center">
 		<button class="menu-item" on:click={openMenu}>{title}</button>
 		<ol class="nav-menu-flyout flyout -z-10">
-			{#each teams as team}
-				<li class="inline-flex min-h-[2rem] items-center">
-					<a
-						class="h-full w-full p-4 whitespace-nowrap"
-						href={`/teams/${slug}/${team.attributes.age_group.data.attributes.slug}/${team.attributes.slug}`}
-						>{team.attributes.display_name || team.attributes.name}</a
-					>
-				</li>
-			{/each}
+			{#if show_age_group}
+				{#each ageGroups as ageGroup}
+					{JSON.stringify(ageGroup)}
+				{/each}
+			{:else}
+				{#each teams as team}
+					<li class="inline-flex min-h-[2rem] items-center">
+						<a
+							class="h-full w-full whitespace-nowrap p-4"
+							href={`/teams/${slug}/${team.attributes.age_group.data.attributes.slug}/${team.attributes.slug}`}
+							>{team.attributes.display_name || team.attributes.name}</a
+						>
+					</li>
+				{/each}
+			{/if}
 		</ol>
 	</li>
 {/if}

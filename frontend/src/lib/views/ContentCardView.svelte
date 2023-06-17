@@ -57,6 +57,17 @@
 						>
 					</tr>
 				{/if}
+				{#if updatedAt}
+					<tr>
+						<td><img class="icon icon-event" alt="Updated" src={event} /></td>
+						<td class="px-2"
+							>{new Intl.DateTimeFormat('de-DE', {
+								dateStyle: 'long',
+								timeStyle: 'short'
+							}).format(new Date(updatedAt))}</td
+						>
+					</tr>
+				{/if}
 				{#if author}
 					<tr>
 						<td><img class="icon icon-autor" alt="Autor" src={person} /></td>

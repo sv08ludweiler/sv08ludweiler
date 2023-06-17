@@ -22,7 +22,7 @@ export const load = (async ({params}) => {
 	);
 
 
-	const posts = await (await fetch(`http://localhost:1337/api/posts?${query}`, {
+	const posts = await (await fetch(`http://0.0.0.0:1337/api/posts?${query}`, {
 		headers: {
 			'Authorization': `bearer ${STRAPI_API_TOKEN}`
 		}
