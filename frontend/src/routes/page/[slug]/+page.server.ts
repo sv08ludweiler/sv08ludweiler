@@ -11,7 +11,10 @@ export const load = (async ({ fetch, params }) => {
 				slug: {
 					$eq: params.slug
 				}
-			}
+			},
+      populate: {
+        header_image: true
+      }
 		},
 		{
 			encodeValuesOnly: true // prettify URL

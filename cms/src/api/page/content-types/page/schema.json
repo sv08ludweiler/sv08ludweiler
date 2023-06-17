@@ -41,6 +41,18 @@
         }
       },
       "type": "richtext"
+    },
+    "header_image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

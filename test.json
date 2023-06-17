@@ -1,19 +1,84 @@
 {
-  "data": [
-    {
+  "id": 1,
+  "__component": "navigation.team-navigation-item",
+  "title": "Herren",
+  "division": {
+    "data": {
       "id": 1,
       "attributes": {
-        "title": "Hygienekonzept",
-        "slug": "hygiene",
-        "content": "Hygienekonzept content",
-        "createdAt": "2023-06-03T22:27:45.951Z",
-        "updatedAt": "2023-06-04T10:06:55.652Z",
-        "publishedAt": "2023-06-04T10:06:55.650Z",
-        "locale": "de"
+        "slug": "herren",
+        "teams": {
+          "data": [
+            {
+              "id": 1,
+              "attributes": {
+                "name": "Aktive - Herren - 1. Mannschaft",
+                "slug": "1-mannschaft",
+                "createdAt": "2023-06-03T19:05:19.848Z",
+                "updatedAt": "2023-06-11T14:34:02.700Z",
+                "publishedAt": "2023-06-03T22:02:42.046Z",
+                "locale": "de",
+                "league": "Bezirksliga Köllertal/Warndt",
+                "display_name": "1. Mannschaft",
+                "age_group": {
+                  "data": {
+                    "id": 1,
+                    "attributes": {
+                      "name": "U32",
+                      "slug": "u32",
+                      "alternativeName": "Aktive",
+                      "createdAt": "2023-06-04T17:53:21.748Z",
+                      "updatedAt": "2023-06-04T17:55:58.362Z",
+                      "publishedAt": "2023-06-04T17:53:23.965Z"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "id": 2,
+              "attributes": {
+                "name": "Aktive - Herren - 2. Mannschaft",
+                "slug": "2-mannschaft-aktive",
+                "createdAt": "2023-06-04T18:22:33.655Z",
+                "updatedAt": "2023-06-11T14:34:13.012Z",
+                "publishedAt": "2023-06-04T18:22:34.609Z",
+                "locale": "de",
+                "league": null,
+                "display_name": "2. Mannschaft",
+                "age_group": {
+                  "data": {
+                    "id": 1,
+                    "attributes": {
+                      "name": "U32",
+                      "slug": "u32",
+                      "alternativeName": "Aktive",
+                      "createdAt": "2023-06-04T17:53:21.748Z",
+                      "updatedAt": "2023-06-04T17:55:58.362Z",
+                      "publishedAt": "2023-06-04T17:53:23.965Z"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "age_groups": {
+          "data": [
+            {
+              "id": 1,
+              "attributes": {
+                "name": "U32",
+                "slug": "u32",
+                "alternativeName": "Aktive",
+                "createdAt": "2023-06-04T17:53:21.748Z",
+                "updatedAt": "2023-06-04T17:55:58.362Z",
+                "publishedAt": "2023-06-04T17:53:23.965Z"
+              }
+            }
+          ]
+        }
       }
     }
-  ],
-  "meta": {
-    "pagination": { "page": 1, "pageSize": 25, "pageCount": 1, "total": 1 }
   }
 }

@@ -23,6 +23,39 @@
     p {
         margin: 1rem 0;
     }
-	
+
+	a,a:visited {
+		@apply text-black;
+		text-decoration: underline;
+	}
+
+	nav a,
+	nav a:visited {
+		@apply text-white;
+		text-decoration: none;
+	}
+
+	/* .nav-menu {
+		position: relative;
+	}
+	.nav-menu:hover,
+	.nav-menu:focus-within,
+	.nav-menu ul.flyout li:hover,
+	.nav-menu ul.flyout li:focus-visible {
+		background: rgba(255, 255, 255, 0.1);
+	}
+
+	.nav-menu-flyout {
+		visibility: hidden;
+		transition: all 250ms;
+		transform: translateY(-100%);
+		background: green;
+		position: absolute;
+		display: flex;
+		visibility: visible;
+		flex-direction: column;
+		top: 100%;
+		right: 0;
+	} */
 
 }

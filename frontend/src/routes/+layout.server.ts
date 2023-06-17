@@ -13,7 +13,7 @@ export const load = (async ({ fetch }) => {
 							fields: ['title'],
 							populate: {
 								division: {
-									fields: ['age_groups', 'teams'],
+									fields: ['age_groups', 'teams', 'slug'],
 									populate: {
 										teams: {
 											populate: ['age_group',]

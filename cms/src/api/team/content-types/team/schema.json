@@ -80,6 +80,15 @@
       "relation": "manyToMany",
       "target": "api::division.division",
       "inversedBy": "teams"
+    },
+    "display_name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
     }
   }
 }

@@ -4,20 +4,20 @@
   "info": {
     "singularName": "age-group",
     "pluralName": "age-groups",
-    "displayName": "Age Group"
+    "displayName": "Age Group",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
+    "name": {
       "type": "string",
       "required": true
     },
     "slug": {
-      "type": "uid",
-      "targetField": "Name"
+      "type": "uid"
     },
     "alternativeName": {
       "type": "string"
