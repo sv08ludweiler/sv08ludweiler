@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-06-17T13:27:31.825Z"
+    "x-generation-date": "2023-06-17T16:44:03.731Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1728,7 +1728,7 @@
                               "id": {
                                 "type": "number"
                               },
-                              "Day": {
+                              "day": {
                                 "type": "string"
                               },
                               "start": {
@@ -2035,6 +2035,9 @@
                               }
                             }
                           }
+                        },
+                        "content": {
+                          "type": "string"
                         },
                         "createdAt": {
                           "type": "string",
@@ -3590,7 +3593,7 @@
                                           "id": {
                                             "type": "number"
                                           },
-                                          "Day": {
+                                          "day": {
                                             "type": "string"
                                           },
                                           "start": {
@@ -3804,6 +3807,9 @@
                                           }
                                         }
                                       }
+                                    },
+                                    "content": {
+                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -6088,7 +6094,7 @@
                                                         "id": {
                                                           "type": "number"
                                                         },
-                                                        "Day": {
+                                                        "day": {
                                                           "type": "string"
                                                         },
                                                         "start": {
@@ -6451,6 +6457,9 @@
                                                         }
                                                       }
                                                     }
+                                                  },
+                                                  "content": {
+                                                    "type": "string"
                                                   },
                                                   "createdAt": {
                                                     "type": "string",
@@ -6817,6 +6826,9 @@
             ],
             "example": "string or id"
           },
+          "content": {
+            "type": "string"
+          },
           "locale": {
             "type": "string"
           }
@@ -6923,6 +6935,9 @@
                   }
                 ],
                 "example": "string or id"
+              },
+              "content": {
+                "type": "string"
               },
               "locale": {
                 "type": "string"
@@ -8002,7 +8017,7 @@
                                                           "id": {
                                                             "type": "number"
                                                           },
-                                                          "Day": {
+                                                          "day": {
                                                             "type": "string"
                                                           },
                                                           "start": {
@@ -8365,6 +8380,9 @@
                                                           }
                                                         }
                                                       }
+                                                    },
+                                                    "content": {
+                                                      "type": "string"
                                                     },
                                                     "createdAt": {
                                                       "type": "string",
@@ -8753,6 +8771,9 @@
               }
             }
           },
+          "content": {
+            "type": "string"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -8843,7 +8864,7 @@
           "id": {
             "type": "number"
           },
-          "Day": {
+          "day": {
             "type": "string"
           },
           "start": {

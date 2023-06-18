@@ -3,7 +3,7 @@
 	import type { PageData } from './$types';
 	import { PUBLIC_STRAPI_HOST } from '$env/static/public';
 
-	export let data: PageData;	
+	export let data: PageData;
 
 	let team = data.team;
 
@@ -24,7 +24,6 @@
 
 <!-- {JSON.stringify(data.team)} -->
 
-
 {#if headerImage}
 	<img
 		class="w-full"
@@ -41,10 +40,53 @@
 			><h2 class="mt-0">
 				{team.display_name}
 			</h2>
+			<div>
+				{#if ageGroup.attributes}
+					<span>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</span>
+				{/if}
+				
+				{#if divisions?.length && divisions[0].attributes.name !== ageGroup.attributes.alternativeName}
+					<span> / </span><span>{divisions[0].attributes.name}</span>
+				{/if}
+			</div>
 
-			<!-- {#if content}
-				{@html content}
-			{/if} -->
+			{#if team.league}
+				<pre>{team.league}</pre>
+			{/if}
+
+			{#if trainers?.length}
+				<h3>Trainer</h3>
+				{#each trainers as trainer}
+					<ul>
+						<li>{trainer.attributes.firstname} {trainer.attributes.name}</li>
+					</ul>
+				{/each}
+			{/if}
+
+			{#if supervisors?.length}
+				<h3>Betreuer</h3>
+				{#each supervisors as supervisor}
+					<ul>
+						<li>{supervisor.attributes.firstname} {supervisor.attributes.name}</li>
+					</ul>
+				{/each}
+			{/if}
+
+			{#if trainings?.length}
+				<h3>Training</h3>
+				<ul>
+					{#each trainings as training}
+						<li>
+							{training.day}: {training.start}
+							{#if training.end} - {training.end}{/if}
+						</li>
+					{/each}
+				</ul>
+			{/if}
+
+			{#if data.teamContent}
+				{@html data.teamContent.code}
+			{/if}
 		</Content>
 	</Card>
 </div>
