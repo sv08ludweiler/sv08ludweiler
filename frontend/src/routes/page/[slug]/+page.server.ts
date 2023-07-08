@@ -3,6 +3,7 @@ import qs from 'qs';
 import type { PageServerLoad } from './$types';
 import { compile } from 'mdsvex';
 import { error } from '@sveltejs/kit';
+import type { ApiPagePage } from 'cms/types/generated/contentTypes';
 
 export const load = (async ({ fetch, params }) => {
 	const query = qs.stringify(
@@ -21,7 +22,7 @@ export const load = (async ({ fetch, params }) => {
 		}
 	);
 
-	const pages = await (
+	const pages= await (
 		await fetch(`http://0.0.0.0:1337/api/pages?${query}`, {
 			headers: {
 				Authorization: `bearer ${STRAPI_API_TOKEN}`
@@ -35,7 +36,7 @@ export const load = (async ({ fetch, params }) => {
 		});
 	}
 
-	const page = pages.data[0];
+	const page  = pages.data[0];
 
 	console.log('page', params.slug, page);
 

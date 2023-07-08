@@ -1,5 +1,6 @@
 import { STRAPI_API_TOKEN } from '$env/static/private';
 import type { PageServerLoad } from './$types';
+import type {ApiPostPost} from 'cms/types/generated/contentTypes.d.ts';
 
 export const load = (async ({ fetch }) => {
 	return {
@@ -11,6 +12,6 @@ export const load = (async ({ fetch }) => {
 			})
 		).json(),
 
-		news: (await fetch('http://localhost:5173/posts/landing-page')).json()
+		news: (await fetch('http://localhost:5173/posts/landing-page')).json() as Promise<ApiPostPost>
 	};
 }) satisfies PageServerLoad;
