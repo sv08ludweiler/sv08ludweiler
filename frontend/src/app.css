@@ -20,11 +20,12 @@
 		margin: 1rem 0;
 	}
 
-    p {
-        margin: 1rem 0;
-    }
+	p {
+		margin: 1rem 0;
+	}
 
-	a,a:visited {
+	a,
+	a:visited {
 		@apply text-black;
 		text-decoration: underline;
 	}
@@ -57,5 +58,4 @@
 		top: 100%;
 		right: 0;
 	} */
-
 }

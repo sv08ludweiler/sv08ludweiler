@@ -1,3 +1,15 @@
+:root {
+	--green-300: #7CD982;
+	--green-600: #288B2E;
+	--primary: var(--green-600);
+	--secondary: #676778;
+}
+
+a:focus {
+	outline-color: var(--primary);
+}
+
+
 .nav-menu {
 	position: relative;
 }
@@ -38,8 +50,8 @@
 	border: 1px solid transparent;
 }
 
-.nav-menu >  button:focus-visible,
-.nav-menu >  a:focus-visible {
+.nav-menu > button:focus-visible,
+.nav-menu > a:focus-visible {
 	border: 1px solid white;
 	outline: 0;
 }

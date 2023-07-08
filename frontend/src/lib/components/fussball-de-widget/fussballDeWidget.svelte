@@ -12,6 +12,7 @@
 	export let widgetId = '02M2VM4FP8000000VUM1DNPDVS6J43VQ';
 
 	onMount(() => {
+		// es-lint-ignore @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		new fussballdeWidgetAPI().showWidget(id, widgetId);
 	});

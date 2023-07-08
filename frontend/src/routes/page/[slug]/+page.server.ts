@@ -12,9 +12,9 @@ export const load = (async ({ fetch, params }) => {
 					$eq: params.slug
 				}
 			},
-      populate: {
-        header_image: true
-      }
+			populate: {
+				header_image: true
+			}
 		},
 		{
 			encodeValuesOnly: true // prettify URL
@@ -29,15 +29,13 @@ export const load = (async ({ fetch, params }) => {
 		})
 	).json();
 
-  
-
 	if (pages.meta.total < 1) {
 		throw error(404, {
 			message: 'Page not found'
 		});
 	}
 
-  const page = pages.data[0];
+	const page = pages.data[0];
 
 	console.log('page', params.slug, page);
 

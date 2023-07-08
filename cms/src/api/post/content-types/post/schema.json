@@ -13,10 +13,13 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "slug": {
-      "type": "uid"
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     },
     "content": {
       "type": "richtext"
@@ -43,7 +46,7 @@
     "on_landingpage": {
       "type": "boolean",
       "default": true,
-      "required": false
+      "required": true
     }
   }
 }

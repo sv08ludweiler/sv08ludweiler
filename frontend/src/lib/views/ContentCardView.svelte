@@ -4,6 +4,9 @@
 	import person from '$lib/assets/icons/person.svg';
 	import event from '$lib/assets/icons/event.svg';
 
+	/**
+     * Header image of post.
+     */
 	export let headerImage:
 		| {
 				url: string;
@@ -11,14 +14,29 @@
 		  }
 		| undefined = undefined;
 
+		/**
+    * Title of post
+    */
 	export let title: string;
 
+	/**
+    * Content of post
+    */
 	export let content = '';
 
+	/**
+    * Author of post
+    */
 	export let author = '';
 
+	/**
+	 * Publish date of post.
+	 */
 	export let publishedAt = '';
 
+	/**
+	 * Update date of post.
+	 */
 	export let updatedAt = '';
 </script>
 

@@ -2,6 +2,7 @@
 	import Card, { Content } from '@smui/card';
 	import type { PageData } from './$types';
 	import { PUBLIC_STRAPI_HOST } from '$env/static/public';
+	import postcss from 'postcss';
 
 	export let data: PageData;
 
@@ -21,8 +22,6 @@
 
 	let widgetFussballDe = data.team.widgetFussballDe?.data;
 </script>
-
-<!-- {JSON.stringify(data.team)} -->
 
 {#if headerImage}
 	<img
@@ -90,5 +89,18 @@
 		</Content>
 	</Card>
 </div>
+
+<section>
+
+{#each data.posts.data as post}
+	<Card>
+		<Content>
+			<h4>{post.attributes.title}</h4>
+			<p>{@html post.attributes.previewText}</p>
+		</Content>
+	</Card>
+{/each}
+
+</section>
 
 <style></style>

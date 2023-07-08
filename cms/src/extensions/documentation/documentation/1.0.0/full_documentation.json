@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-06-17T16:44:03.731Z"
+    "x-generation-date": "2023-07-07T13:32:50.996Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -4905,6 +4905,11 @@
         ],
         "properties": {
           "data": {
+            "required": [
+              "title",
+              "slug",
+              "on_landingpage"
+            ],
             "type": "object",
             "properties": {
               "title": {
@@ -5007,6 +5012,11 @@
       },
       "Post": {
         "type": "object",
+        "required": [
+          "title",
+          "slug",
+          "on_landingpage"
+        ],
         "properties": {
           "title": {
             "type": "string"

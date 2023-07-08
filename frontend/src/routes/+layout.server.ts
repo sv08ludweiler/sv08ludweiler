@@ -48,7 +48,7 @@ export const load = (async ({ fetch }) => {
 			encodeValuesOnly: true // prettify URL
 		}
 	);
-	
+
 	const request = await fetch(`http://0.0.0.0:1337/api/main-menu?${menuQuery}`, {
 		headers: {
 			Authorization: `bearer ${STRAPI_API_TOKEN}`
