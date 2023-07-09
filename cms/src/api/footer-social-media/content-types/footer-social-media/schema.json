@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "footer_social_medias",
+  "info": {
+    "singularName": "footer-social-media",
+    "pluralName": "footer-social-medias",
+    "displayName": "Footer Social Media"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "item": {
+      "type": "component",
+      "repeatable": true,
+      "component": "social-media.social-media-item"
+    }
+  }
+}

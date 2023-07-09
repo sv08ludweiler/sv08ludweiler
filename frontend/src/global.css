@@ -1,0 +1,49 @@
+a:focus {
+	outline-color: var(--primary);
+}
+
+.nav-menu {
+	position: relative;
+}
+.nav-menu:hover,
+.nav-menu:focus-within,
+.nav-menu ul.flyout li:hover,
+.nav-menu ul.flyout li:focus-visible {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-menu:hover .flyout,
+.nav-menu:focus-within .flyout {
+	background: green;
+	position: absolute;
+	display: flex;
+	visibility: visible;
+	flex-direction: column;
+	top: 100%;
+	right: 0;
+	transform: translateY(0);
+}
+
+.nav-menu-flyout {
+	visibility: hidden;
+	transition: all 250ms;
+	transform: translateY(-100%);
+	background: green;
+	position: absolute;
+	display: flex;
+	visibility: visible;
+	flex-direction: column;
+	top: 100%;
+	right: 0;
+}
+
+.nav-menu .menu-item {
+	@apply h-full px-4 py-5 text-lg;
+	border: 1px solid transparent;
+}
+
+.nav-menu > button:focus-visible,
+.nav-menu > a:focus-visible {
+	border: 1px solid white;
+	outline: 0;
+}

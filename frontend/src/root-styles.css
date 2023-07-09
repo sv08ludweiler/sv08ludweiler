@@ -1,0 +1,6 @@
+:root {
+	--green-300: #7cd982;
+	--green-600: #288b2e;
+	--primary: var(--green-600);
+	--secondary: #676778;
+}

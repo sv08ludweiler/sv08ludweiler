@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_navigation_external_navigation_items",
+  "info": {
+    "displayName": "External Navigation Item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

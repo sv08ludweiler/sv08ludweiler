@@ -1,0 +1,98 @@
+<script lang="ts">
+	import wappen from '$lib/assets/wappen.png';
+	import DivisionNavItem from '$lib/components/nav/DivisionNavItem.svelte';
+	import DropdownNavItem from '$lib/components/nav/DropdownNavItem.svelte';
+	import SimpleNavItem from '$lib/components/nav/SimpleNavItem.svelte';
+	import '../root-styles.css';
+	import '../app.css';
+	import '../global.css';
+	import type { LayoutData } from './$types';
+	// import '/smui.css';
+
+	export let data: LayoutData;
+</script>
+
+<div class="flex h-full w-full flex-col">
+	<header class="fixed z-50 w-full bg-green-700 text-white drop-shadow-lg">
+		<nav
+			aria-label="Main Navigation"
+			class="flex h-full flex-row flex-wrap items-center justify-between bg-green-700 px-4 md:container md:mx-auto"
+		>
+			<a href="/" aria-label="Home" class="h-full text-2xl font-semibold text-white">
+				<img class="inline max-h-[50px]" alt="wappen" src={wappen} aria-hidden="true" />
+				<span>SV 08 Ludweiler</span>
+			</a>
+			<ul class="flex h-full flex-row flex-wrap justify-center">
+				{#each data.mainMenu.attributes.entries as navItem}
+					{#if navItem.__component === 'navigation.external-navigation-item'}
+						<SimpleNavItem title={navItem.title} href={navItem.link} external={true} />
+					{:else if navItem.__component === 'navigation.page-nested-navigation-item'}
+						<DropdownNavItem
+							title={navItem.page?.page?.data?.attributes?.title || navItem.page.title}
+							href={navItem.page?.page?.data?.attributes?.slug
+								? `/page/${navItem.page?.page?.data?.attributes?.slug}`
+								: ''}
+							children={navItem.children}
+						/>
+					{:else if navItem.__component === 'navigation.team-navigation-item'}
+						<DivisionNavItem
+							title={navItem.title}
+							slug={navItem.division.data.attributes.slug}
+							teams={navItem.division.data.attributes.teams.data}
+							ageGroups={navItem.division.data.attributes.age_groups.data}
+						/>
+					{:else if navItem.__component === 'navigation.page-navigation-item'}
+						<SimpleNavItem
+							title={navItem.title}
+							href={`/page/${navItem.page.data.attributes.slug}`}
+						/>
+					{/if}
+				{/each}
+			</ul>
+		</nav>
+	</header>
+
+	<!-- {JSON.stringify(data.mainMenu.attributes.entries, null, '\t')} -->
+
+	<main class="flex-auto">
+		<slot />
+	</main>
+
+	<footer class="bg-green-500 text-white">
+		<section class="wappen-section">
+			<img class="wappen ml-auto mr-auto" alt="wappen" src={wappen} />
+		</section>
+		<section class="min-h-[200px] bg-green-600">
+			<div class="p-4 md:container md:mx-auto">Partner</div>
+		</section>
+		<section class="min-h-[200px] bg-green-700">
+			<div class="p-4 md:container md:mx-auto">Social Media</div>
+		</section>
+	</footer>
+</div>
+
+<style>
+	main {
+		margin-top: 66px;
+	}
+
+	footer {
+		margin-top: clamp(75px, 15vw, 130px);
+	}
+
+	.wappen-section {
+		position: relative;
+		height: 25vw;
+		min-height: 80px;
+		max-height: 150px;
+	}
+	.wappen {
+		width: 25vw;
+		max-width: 200px;
+		min-width: 100px;
+		position: absolute;
+		left: 50%;
+		top: 0;
+		transform: translate(-50%, -50%);
+	}
+</style>
