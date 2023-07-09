@@ -1,31 +1,27 @@
-import { STRAPI_API_TOKEN } from "$env/static/private";
-import { json } from "@sveltejs/kit";
-import type { RequestHandler } from "./$types";
-import qs from "qs";
+import { json, RequestHandler } from "@sveltejs/kit";
 import { compile } from "mdsvex";
+import qs from "qs";
+import { STRAPI_API_TOKEN } from "$env/static/private";
 
-export const GET: RequestHandler = async ({ fetch, params }) => {
+export const GET: RequestHandler = async ({ fetch, url }) => {
+
+  const page = Number(url.searchParams.get('page') ?? '0');
+
   const truncate = (str: string, len: number) =>
-    str.substring(0, (str + " ").lastIndexOf(" ", len));
+    str.substring(0, (str + ' ').lastIndexOf(' ', len));
 
   const teamPostQuery = qs.stringify({
-    filters: {
-      teams: {
-        slug: {
-          $eq: params.team
-        }
-      }
-    },
     pagination: {
-      pageSize: 5
+      pageSize: 5,
+      page: page || 1
     },
     sort: ['updatedAt:desc', 'publishedAt:desc', 'createdAt:desc'],
     populate: {
       teams: {
-        populate: ["slug"]
+        populate: ['slug', 'age_group', 'divisions']
       },
       header_image: {
-        populate: "*"
+        populate: '*'
       }
     }
   });
@@ -42,9 +38,9 @@ export const GET: RequestHandler = async ({ fetch, params }) => {
       post.attributes.htmlContent = await compile(post.attributes.content);
       post.attributes.previewText =
         truncate(
-          post.attributes.htmlContent.code.replace(/<img[^>]*>/g, "").replace(/<video[^>]*>/g, ""),
+          post.attributes.htmlContent.code.replace(/<img[^>]*>/g, '').replace(/<video[^>]*>/g, ''),
           250
-        ) + "...";
+        ) + '...';
     }
   }
 

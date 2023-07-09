@@ -1,4 +1,4 @@
-// import { Strapi } from '@strapi/strapi';
+'use strict';
 
 module.exports = {
   /**
@@ -7,7 +7,7 @@ module.exports = {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }: { strapi: Strapi }*/) {},
+  register(/*{ strapi }*/) {},
 
   /**
    * An asynchronous bootstrap function that runs before
@@ -16,5 +16,5 @@ module.exports = {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/*{ strapi }: { strapi: Strapi }*/) {},
+  bootstrap(/*{ strapi }*/) {},
 };

@@ -31,23 +31,6 @@ export const load = (async ({ fetch, params }) => {
 		teamContent = await compile(team.data[0].attributes.content);
 	}
 
-	// const teamPostQuery = qs.stringify({
-	// 	filters: {
-	// 		teams: {
-	// 			slug: {
-	// 				$eq: params.team
-	// 			}
-	// 		}
-	// 	},
-	// 	populate: {
-	// 		teams: {
-	// 			populate: ['slug']
-	// 		}
-	// 	}
-	// })
-
-	console.log('TEST TEST TEST');
-
 	const postsRequest = await fetch(
 		`http://localhost:5173/teams/${params.division}/${params.age_group}/${params.team}/posts`
 	);

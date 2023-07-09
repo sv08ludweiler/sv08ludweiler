@@ -14,6 +14,7 @@ export const GET: RequestHandler = async ({ fetch, params }) => {
 				$eq: true
 			}
 		},
+		sort: ['updatedAt:desc', 'publishedAt:desc', 'createdAt:desc'],
 		pagination: {
 			pageSize: 5
 		},

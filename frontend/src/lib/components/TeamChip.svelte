@@ -15,7 +15,7 @@
 		<div class="age-group">{ageGroup}</div>
 	{/if}
 
-	<div>
+	<div class="flex flex-row flex-wrap">
 		{#each teams as team, i}
 			<div>
 				{team}{#if i < teams.length - 1},&nbsp;{/if}
