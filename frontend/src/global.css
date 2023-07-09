@@ -1,14 +1,6 @@
-:root {
-	--green-300: #7CD982;
-	--green-600: #288B2E;
-	--primary: var(--green-600);
-	--secondary: #676778;
-}
-
 a:focus {
 	outline-color: var(--primary);
 }
-
 
 .nav-menu {
 	position: relative;

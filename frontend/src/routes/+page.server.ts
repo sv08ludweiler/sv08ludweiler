@@ -1,6 +1,6 @@
 import { STRAPI_API_TOKEN } from '$env/static/private';
 import type { PageServerLoad } from './$types';
-import type {ApiPostPost} from 'cms/types/generated/contentTypes.d.ts';
+import type { ApiPostPost } from 'cms/types/generated/contentTypes.d.ts';
 
 export const load = (async ({ fetch }) => {
 	return {

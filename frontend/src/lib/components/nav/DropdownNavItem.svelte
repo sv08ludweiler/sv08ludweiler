@@ -33,12 +33,12 @@
 	on:focusout={() => (focusIn = false)}
 >
 	{#if href}
-		<a {href} class="menu-item " aria-expanded={focusIn}>{title} </a>
+		<a {href} class="menu-item" aria-expanded={focusIn}>{title} </a>
 	{:else}
 		<button class="menu-item" on:click={openMenu} aria-expanded="false">{title}</button>
 	{/if}
 
-	<ul class="-z-10 flyout nav-menu-flyout" class:open={focusIn}>
+	<ul class="flyout nav-menu-flyout -z-10" class:open={focusIn}>
 		{#each children as child}
 			<li class="inline-flex min-h-[2rem] items-center">
 				<a class="h-full w-full p-4" href={`/page/${child.page.data.attributes.slug}`}
@@ -50,6 +50,4 @@
 </li>
 
 <style>
-	
-
 </style>

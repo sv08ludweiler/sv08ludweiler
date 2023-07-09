@@ -5,8 +5,8 @@
 	import event from '$lib/assets/icons/event.svg';
 
 	/**
-     * Header image of post.
-     */
+	 * Header image of post.
+	 */
 	export let headerImage:
 		| {
 				url: string;
@@ -14,19 +14,19 @@
 		  }
 		| undefined = undefined;
 
-		/**
-    * Title of post
-    */
+	/**
+	 * Title of post
+	 */
 	export let title: string;
 
 	/**
-    * Content of post
-    */
+	 * Content of post
+	 */
 	export let content = '';
 
 	/**
-    * Author of post
-    */
+	 * Author of post
+	 */
 	export let author = '';
 
 	/**

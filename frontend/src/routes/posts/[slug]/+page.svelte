@@ -5,13 +5,14 @@
 	export let data: PageData;
 </script>
 
-
- <ContentCardView
+<ContentCardView
 	headerImage={data.post.attributes?.header_image?.data?.attributes}
 	title={data.post.attributes.title}
 	content={data.content ? data.content.code : ''}
 	author={data.post?.attributes?.author?.data
-		? data.post?.attributes?.author.data.attributes.firstname + ' ' + data.post?.attributes?.author.data.attributes.name
+		? data.post?.attributes?.author.data.attributes.firstname +
+		  ' ' +
+		  data.post?.attributes?.author.data.attributes.name
 		: ''}
 	publishedAt={data.post.attributes.publishedAt}
 />

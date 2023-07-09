@@ -5,7 +5,6 @@
 	export let data: PageData;
 </script>
 
-
 <ContentCardView
 	headerImage={data.page.attributes?.header_image?.data?.attributes}
 	title={data.page.attributes.title}

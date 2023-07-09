@@ -3,10 +3,11 @@
 	import DivisionNavItem from '$lib/components/nav/DivisionNavItem.svelte';
 	import DropdownNavItem from '$lib/components/nav/DropdownNavItem.svelte';
 	import SimpleNavItem from '$lib/components/nav/SimpleNavItem.svelte';
+	import '../root-styles.css';
 	import '../app.css';
 	import '../global.css';
 	import type { LayoutData } from './$types';
-	// import '../../static/smui.css';
+	// import '/smui.css';
 
 	export let data: LayoutData;
 </script>
@@ -17,7 +18,7 @@
 			aria-label="Main Navigation"
 			class="flex h-full flex-row flex-wrap items-center justify-between bg-green-700 px-4 md:container md:mx-auto"
 		>
-			<a href="/" aria-label="Home" class="text-white h-full text-2xl font-semibold">
+			<a href="/" aria-label="Home" class="h-full text-2xl font-semibold text-white">
 				<img class="inline max-h-[50px]" alt="wappen" src={wappen} aria-hidden="true" />
 				<span>SV 08 Ludweiler</span>
 			</a>
