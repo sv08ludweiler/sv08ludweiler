@@ -4,14 +4,15 @@
   "info": {
     "singularName": "footer-social-media",
     "pluralName": "footer-social-medias",
-    "displayName": "Footer Social Media"
+    "displayName": "Footer Social Media",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "item": {
+    "items": {
       "type": "component",
       "repeatable": true,
       "component": "social-media.social-media-item"

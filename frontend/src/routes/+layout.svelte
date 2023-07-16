@@ -7,6 +7,8 @@
 	import '../app.css';
 	import '../global.css';
 	import type { LayoutData } from './$types';
+	import SocialMediaLink from '$lib/components/SocialMediaLink.svelte';
+	import { stringify } from 'qs';
 	// import '/smui.css';
 
 	export let data: LayoutData;
@@ -62,11 +64,28 @@
 		<section class="wappen-section">
 			<img class="wappen ml-auto mr-auto" alt="wappen" src={wappen} />
 		</section>
-		<section class="min-h-[200px] bg-green-600">
-			<div class="p-4 md:container md:mx-auto">Partner</div>
+		<section class="flex min-h-[100px] items-center justify-center bg-green-600 p-8">
+			<div class="flex flex-wrap items-center justify-center gap-4" aria-label="Partner">
+				{#each data?.supporter?.attributes?.items as item}
+					<SocialMediaLink
+						title={item.name}
+						href={item?.link}
+						icon={item?.image?.data?.attributes?.url}
+					/>
+				{/each}
+			</div>
 		</section>
-		<section class="min-h-[200px] bg-green-700">
-			<div class="p-4 md:container md:mx-auto">Social Media</div>
+		<section class="flex min-h-[100px] items-center justify-center bg-green-700 py-8">
+			<!-- <div class="p-4 md:container md:mx-auto">Social Media</div> -->
+			<div class="flex items-center justify-center gap-4" aria-label="Social Media">
+				{#each data?.socialMedia?.attributes?.items as item}
+					<SocialMediaLink
+						title={item.name}
+						href={item?.link}
+						icon={item?.icon?.data?.attributes?.url}
+					/>
+				{/each}
+			</div>
 		</section>
 	</footer>
 </div>

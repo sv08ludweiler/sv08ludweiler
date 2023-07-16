@@ -1,119 +1,118 @@
 <script lang="ts">
-  import { PUBLIC_STRAPI_HOST } from "$env/static/public";
-  import Card, { Content } from "@smui/card";
-  import type { PageData } from "./$types";
-  import PostColumns from "$lib/components/PostColumns.svelte";
+	import { PUBLIC_STRAPI_HOST } from '$env/static/public';
+	import Card, { Content } from '@smui/card';
+	import type { PageData } from './$types';
+	import PostColumns from '$lib/components/PostColumns.svelte';
 
-  export let data: PageData;
+	export let data: PageData;
 
-  let team;
+	let team;
 
-  let headerImage ;
+	let headerImage;
 
-  let trainings; //Array
+	let trainings; //Array
 
-  let trainers; // Array
+	let trainers; // Array
 
-  let supervisors ; // Array
+	let supervisors; // Array
 
-  let ageGroup;
+	let ageGroup;
 
-  let divisions; // Array
+	let divisions; // Array
 
-  let widgetFussballDe;
+	let widgetFussballDe;
 
+	$: {
+		team = data.team;
 
-  $: {
-    team = data.team;
+		headerImage = data.team.header_image?.data?.attributes;
 
-    headerImage = data.team.header_image?.data?.attributes;
+		trainings = data.team.training; //Array
 
-    trainings = data.team.training; //Array
+		trainers = data.team.trainer.data; // Array
 
-    trainers = data.team.trainer.data; // Array
+		supervisors = data.team.supervisor?.data; // Array
 
-    supervisors = data.team.supervisor?.data; // Array
+		ageGroup = data.team.age_group?.data;
 
-    ageGroup = data.team.age_group?.data;
+		divisions = data.team.divisions?.data; // Array
 
-    divisions = data.team.divisions?.data; // Array
-
-    widgetFussballDe = data.team.widgetFussballDe?.data;
-  }
+		widgetFussballDe = data.team.widgetFussballDe?.data;
+	}
 </script>
 
 {#if headerImage}
-  <img
-    class="w-full"
-    src={PUBLIC_STRAPI_HOST + headerImage.url}
-    alt={headerImage.alternativeText}
-  />
+	<img
+		class="w-full"
+		src={PUBLIC_STRAPI_HOST + headerImage.url}
+		alt={headerImage.alternativeText}
+	/>
 {:else}
-  <div class="placeholder h-72 w-full bg-green-600"></div>
+	<div class="placeholder h-72 w-full bg-green-600" />
 {/if}
 
 <div class="-mt-36 flex-auto p-4 md:container md:mx-auto">
-  <Card variant="raised">
-    <Content
-    ><h2 class="mt-0">
-      {team.display_name}
-    </h2>
-      <div>
-        {#if ageGroup.attributes}
-          <span>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</span>
-        {/if}
+	<Card variant="raised">
+		<Content
+			><h2 class="mt-0">
+				{team.display_name}
+			</h2>
+			<div>
+				{#if ageGroup.attributes}
+					<span>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</span>
+				{/if}
 
-        {#if divisions?.length && divisions[0].attributes.name !== ageGroup.attributes.alternativeName}
-          <span> / </span><span>{divisions[0].attributes.name}</span>
-        {/if}
-      </div>
+				{#if divisions?.length && divisions[0].attributes.name !== ageGroup.attributes.alternativeName}
+					<span> / </span><span>{divisions[0].attributes.name}</span>
+				{/if}
+			</div>
 
-      {#if team.league}
-        <pre>{team.league}</pre>
-      {/if}
+			{#if team.league}
+				<pre>{team.league}</pre>
+			{/if}
 
-      {#if trainers?.length}
-        <h3>Trainer</h3>
-        {#each trainers as trainer}
-          <ul>
-            <li>{trainer.attributes.firstname} {trainer.attributes.name}</li>
-          </ul>
-        {/each}
-      {/if}
+			{#if trainers?.length}
+				<h3>Trainer</h3>
+				{#each trainers as trainer}
+					<ul>
+						<li>{trainer.attributes.firstname} {trainer.attributes.name}</li>
+					</ul>
+				{/each}
+			{/if}
 
-      {#if supervisors?.length}
-        <h3>Betreuer</h3>
-        {#each supervisors as supervisor}
-          <ul>
-            <li>{supervisor.attributes.firstname} {supervisor.attributes.name}</li>
-          </ul>
-        {/each}
-      {/if}
+			{#if supervisors?.length}
+				<h3>Betreuer</h3>
+				{#each supervisors as supervisor}
+					<ul>
+						<li>{supervisor.attributes.firstname} {supervisor.attributes.name}</li>
+					</ul>
+				{/each}
+			{/if}
 
-      {#if trainings?.length}
-        <h3>Training</h3>
-        <ul>
-          {#each trainings as training}
-            <li>
-              {training.day}: {training.start}
-              {#if training.end} - {training.end}{/if}
-            </li>
-          {/each}
-        </ul>
-      {/if}
+			{#if trainings?.length}
+				<h3>Training</h3>
+				<ul>
+					{#each trainings as training}
+						<li>
+							{training.day}: {training.start}
+							{#if training.end} - {training.end}{/if}
+						</li>
+					{/each}
+				</ul>
+			{/if}
 
-      {#if data.teamContent}
-        {@html data.teamContent.code}
-      {/if}
-    </Content>
-  </Card>
+			{#if data.teamContent}
+				{@html data.teamContent.code}
+			{/if}
+		</Content>
+	</Card>
 </div>
 
 {#if data.posts.data}
-  <section class="flex-auto p-4 md:container md:mx-auto">
-    <h2 id="news">News</h2>
-    <PostColumns posts={data.posts.data} meta={data.posts.meta} showTeamCategory={false}></PostColumns>
-  </section>
+	<section class="flex-auto p-4 md:container md:mx-auto">
+		<h2 id="news">News</h2>
+		<PostColumns posts={data.posts.data} meta={data.posts.meta} showTeamCategory={false} />
+	</section>
 {/if}
 
 <style></style>
