@@ -47,3 +47,10 @@ a:focus {
 	border: 1px solid white;
 	outline: 0;
 }
+
+
+a[aria-disabled="true"], button[aria-disabled="true"] {
+	opacity: 0.5;
+	cursor: default;
+	pointer-events: none;
+}
