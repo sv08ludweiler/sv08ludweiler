@@ -1,23 +1,23 @@
 {
-  "collectionName": "components_content_post_previews",
-  "info": {
-    "displayName": "Post-Preview"
-  },
-  "options": {},
-  "attributes": {
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "posts": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::post.post"
-    },
-    "limit": {
-      "type": "integer",
-      "default": 3,
-      "required": true
-    }
-  }
+	"collectionName": "components_content_post_previews",
+	"info": {
+		"displayName": "Post-Preview"
+	},
+	"options": {},
+	"attributes": {
+		"title": {
+			"type": "string",
+			"required": true
+		},
+		"posts": {
+			"type": "relation",
+			"relation": "oneToMany",
+			"target": "api::post.post"
+		},
+		"limit": {
+			"type": "integer",
+			"default": 3,
+			"required": true
+		}
+	}
 }

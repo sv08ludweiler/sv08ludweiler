@@ -11,27 +11,27 @@ export const GET: RequestHandler = async ({ fetch, params }) => {
 	const teamPostQuery = qs.stringify({
 		filters: {
 			landing_page: {
-				$eq: true
-			}
+				$eq: true,
+			},
 		},
 		sort: ['updatedAt:desc', 'publishedAt:desc', 'createdAt:desc'],
 		pagination: {
-			pageSize: 5
+			pageSize: 5,
 		},
 		populate: {
 			teams: {
-				populate: ['slug', 'age_group', 'divisions']
+				populate: ['slug', 'age_group', 'divisions'],
 			},
 			header_image: {
-				populate: '*'
-			}
-		}
+				populate: '*',
+			},
+		},
 	});
 
 	const postsRequest = await fetch(`http://0.0.0.0:1337/api/posts?${teamPostQuery}`, {
 		headers: {
-			Authorization: `bearer ${STRAPI_API_TOKEN}`
-		}
+			Authorization: `bearer ${STRAPI_API_TOKEN}`,
+		},
 	});
 	const posts = await postsRequest.json();
 

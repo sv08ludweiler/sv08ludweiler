@@ -1,26 +1,24 @@
 {
-  "collectionName": "components_social_media_social_media_items",
-  "info": {
-    "displayName": "Social Media Item",
-    "icon": "medium"
-  },
-  "options": {},
-  "attributes": {
-    "name": {
-      "type": "string",
-      "required": true
-    },
-    "icon": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
-    },
-    "link": {
-      "type": "string",
-      "required": true
-    }
-  }
+	"collectionName": "components_social_media_social_media_items",
+	"info": {
+		"displayName": "Social Media Item",
+		"icon": "medium"
+	},
+	"options": {},
+	"attributes": {
+		"name": {
+			"type": "string",
+			"required": true
+		},
+		"icon": {
+			"allowedTypes": ["images"],
+			"type": "media",
+			"multiple": false,
+			"required": true
+		},
+		"link": {
+			"type": "string",
+			"required": true
+		}
+	}
 }

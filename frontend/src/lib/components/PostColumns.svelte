@@ -28,7 +28,7 @@
 </div>
 
 {#if meta && meta.pagination.pageCount > 1}
-	<div class="flex-auto px-4 my-6 md:container md:mx-auto flex justify-center">
+	<div class="my-6 flex flex-auto justify-center px-4 md:container md:mx-auto">
 		<!-- TODO replace with anchor -->
 		<Button type="button" variant="raised" on:click={() => goto('./posts')}>Zu allen News</Button>
 	</div>

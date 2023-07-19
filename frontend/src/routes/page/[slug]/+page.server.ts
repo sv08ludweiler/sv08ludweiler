@@ -10,29 +10,29 @@ export const load = (async ({ fetch, params }) => {
 		{
 			filters: {
 				slug: {
-					$eq: params.slug
-				}
+					$eq: params.slug,
+				},
 			},
 			populate: {
-				header_image: true
-			}
+				header_image: true,
+			},
 		},
 		{
-			encodeValuesOnly: true // prettify URL
+			encodeValuesOnly: true, // prettify URL
 		}
 	);
 
 	const pages = await (
 		await fetch(`http://0.0.0.0:1337/api/pages?${query}`, {
 			headers: {
-				Authorization: `bearer ${STRAPI_API_TOKEN}`
-			}
+				Authorization: `bearer ${STRAPI_API_TOKEN}`,
+			},
 		})
 	).json();
 
 	if (pages.meta.total < 1) {
 		throw error(404, {
-			message: 'Page not found'
+			message: 'Page not found',
 		});
 	}
 
@@ -47,6 +47,6 @@ export const load = (async ({ fetch, params }) => {
 
 	return {
 		page,
-		content
+		content,
 	};
 }) satisfies PageServerLoad;

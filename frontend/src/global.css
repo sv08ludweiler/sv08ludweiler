@@ -48,8 +48,8 @@ a:focus {
 	outline: 0;
 }
 
-
-a[aria-disabled="true"], button[aria-disabled="true"] {
+a[aria-disabled='true'],
+button[aria-disabled='true'] {
 	opacity: 0.5;
 	cursor: default;
 	pointer-events: none;

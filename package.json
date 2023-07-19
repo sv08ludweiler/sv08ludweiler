@@ -1,16 +1,22 @@
 {
-    "name": "sv-08-ludweiler",
-    "version": "0.0.1",
-    "workspaces": [
-        "frontend",
-        "cms"
-    ],
-    "scripts": {
-        "frontend:dev": "npm run dev --workspace=frontend",
-        "frontend:build": "npm run build --workspace=frontend",
-        "frontend:preview": "npm run preview --workspace=frontend",
-        "backend:dev": "npm run develop --workspace=cms",
-        "backend:start": "npm run start --workspace=cms",
-        "backend:build": "npm run build --workspace=cms"
-    }
+	"name": "sv-08-ludweiler",
+	"version": "0.0.1",
+	"workspaces": [
+		"frontend",
+		"cms"
+	],
+    "devDependencies": {
+        "prettier-plugin-svelte": "3.0.0",
+        "prettier": "3.0.0",
+        "prettier-plugin-tailwindcss": "0.4.1"
+    },
+	"scripts": {
+		"frontend:dev": "npm run dev --workspace=frontend",
+		"frontend:build": "npm run build --workspace=frontend",
+		"frontend:preview": "npm run preview --workspace=frontend",
+		"backend:dev": "npm run develop --workspace=cms",
+		"backend:start": "npm run start --workspace=cms",
+		"backend:build": "npm run build --workspace=cms",
+		"prettier": "prettier --plugin-search-dir . --write ."
+	}
 }

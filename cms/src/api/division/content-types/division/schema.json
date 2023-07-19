@@ -1,34 +1,34 @@
 {
-  "kind": "collectionType",
-  "collectionName": "divisions",
-  "info": {
-    "singularName": "division",
-    "pluralName": "divisions",
-    "displayName": "Division",
-    "description": ""
-  },
-  "options": {
-    "draftAndPublish": true
-  },
-  "pluginOptions": {},
-  "attributes": {
-    "name": {
-      "type": "string",
-      "required": true
-    },
-    "slug": {
-      "type": "uid"
-    },
-    "age_groups": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::age-group.age-group"
-    },
-    "teams": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::team.team",
-      "mappedBy": "divisions"
-    }
-  }
+	"kind": "collectionType",
+	"collectionName": "divisions",
+	"info": {
+		"singularName": "division",
+		"pluralName": "divisions",
+		"displayName": "Division",
+		"description": ""
+	},
+	"options": {
+		"draftAndPublish": true
+	},
+	"pluginOptions": {},
+	"attributes": {
+		"name": {
+			"type": "string",
+			"required": true
+		},
+		"slug": {
+			"type": "uid"
+		},
+		"age_groups": {
+			"type": "relation",
+			"relation": "oneToMany",
+			"target": "api::age-group.age-group"
+		},
+		"teams": {
+			"type": "relation",
+			"relation": "manyToMany",
+			"target": "api::team.team",
+			"mappedBy": "divisions"
+		}
+	}
 }

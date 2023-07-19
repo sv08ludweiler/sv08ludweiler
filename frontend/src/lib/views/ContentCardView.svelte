@@ -70,7 +70,7 @@
 						<td class="px-2"
 							>{new Intl.DateTimeFormat('de-DE', {
 								dateStyle: 'long',
-								timeStyle: 'short'
+								timeStyle: 'short',
 							}).format(new Date(publishedAt))}</td
 						>
 					</tr>
@@ -81,7 +81,7 @@
 						<td class="px-2"
 							>{new Intl.DateTimeFormat('de-DE', {
 								dateStyle: 'long',
-								timeStyle: 'short'
+								timeStyle: 'short',
 							}).format(new Date(updatedAt))}</td
 						>
 					</tr>

@@ -22,21 +22,26 @@
 {#if data.posts.meta.pagination}
 	{@const pagination = data.posts.meta.pagination}
 
-	<div class="flex justify-center items-center gap-3 my-5">
-		<Button on:click={() => goto(`/posts/${(Number($page.params.page) || 1) - 1}`)}  
-			aria-label="Vorherige Seite" 
-			disabled={pagination.page < pagination.pageCount}>Vorherige</Button>
+	<div class="my-5 flex items-center justify-center gap-3">
+		<Button
+			on:click={() => goto(`/posts/${(Number($page.params.page) || 1) - 1}`)}
+			aria-label="Vorherige Seite"
+			disabled={pagination.page < pagination.pageCount}>Vorherige</Button
+		>
 
-			{#each Array(pagination.pageCount) as _, i }
-				{@const pageIndex = i + 1 }
-				<Button 
+		{#each Array(pagination.pageCount) as _, i}
+			{@const pageIndex = i + 1}
+			<Button
 				href={`/posts/${pageIndex}`}
-				variant={pagination.page === pageIndex ? 'raised' : 'outlined'} aria-label={`Seite ${pageIndex}`}><Label>{pageIndex}</Label></Button>
-			{/each}
+				variant={pagination.page === pageIndex ? 'raised' : 'outlined'}
+				aria-label={`Seite ${pageIndex}`}><Label>{pageIndex}</Label></Button
+			>
+		{/each}
 
-
-		<Button on:click={() => goto(`/posts/${(Number($page.params.page) || 1) + 1}`)} 
+		<Button
+			on:click={() => goto(`/posts/${(Number($page.params.page) || 1) + 1}`)}
 			aria-label="Nächste Seite"
-			 disabled={pagination.page >= pagination.pageCount}>Nächste</Button>
+			disabled={pagination.page >= pagination.pageCount}>Nächste</Button
+		>
 	</div>
 {/if}

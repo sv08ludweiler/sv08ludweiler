@@ -9,21 +9,21 @@ export const load = (async ({ params }) => {
 		{
 			filters: {
 				slug: {
-					$eq: params.slug
-				}
+					$eq: params.slug,
+				},
 			},
-			populate: '*'
+			populate: '*',
 		},
 		{
-			encodeValuesOnly: true // prettify URL
+			encodeValuesOnly: true, // prettify URL
 		}
 	);
 
 	const posts = await (
 		await fetch(`http://0.0.0.0:1337/api/posts?${query}`, {
 			headers: {
-				Authorization: `bearer ${STRAPI_API_TOKEN}`
-			}
+				Authorization: `bearer ${STRAPI_API_TOKEN}`,
+			},
 		})
 	).json();
 
@@ -31,7 +31,7 @@ export const load = (async ({ params }) => {
 
 	if (posts.meta.total < 1) {
 		throw error(404, {
-			message: 'Post not found'
+			message: 'Post not found',
 		});
 	}
 
@@ -43,6 +43,6 @@ export const load = (async ({ params }) => {
 	}
 	return {
 		post,
-		content
+		content,
 	};
 }) satisfies PageServerLoad;

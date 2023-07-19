@@ -16,72 +16,78 @@ export const load = (async ({ fetch }) => {
 									fields: ['age_groups', 'teams', 'slug'],
 									populate: {
 										teams: {
-											populate: ['age_group']
+											populate: ['age_group'],
 										},
-										age_groups: true
-									}
-								}
-							}
+										age_groups: true,
+									},
+								},
+							},
 						},
 						'navigation.page-nested-navigation-item': {
 							populate: {
 								page: {
-									populate: '*'
+									populate: '*',
 								},
 								children: {
-									populate: '*'
-								}
-							}
+									populate: '*',
+								},
+							},
 						},
 						'navigation.external-navigation-item': {
-							populate: '*'
+							populate: '*',
 						},
 						'navigation.page-navigation-item': {
-							populate: '*'
-						}
-					}
+							populate: '*',
+						},
+					},
 					// }
-				}
-			}
+				},
+			},
 		},
 		{
-			encodeValuesOnly: true // prettify URL
+			encodeValuesOnly: true, // prettify URL
 		}
 	);
 	const mainMenuPromise = fetch(`http://0.0.0.0:1337/api/main-menu?${menuQuery}`, {
 		headers: {
-			Authorization: `bearer ${STRAPI_API_TOKEN}`
-		}
+			Authorization: `bearer ${STRAPI_API_TOKEN}`,
+		},
 	});
-
 
 	const socialMediaQuery = qs.stringify({
 		populate: {
 			items: {
-				populate: ['icon']
-			}
-		}
-	})
-	const socialMediaPromise =   fetch(`http://0.0.0.0:1337/api/footer-social-media?${socialMediaQuery}`, {
-		headers: {
-			Authorization: `bearer ${STRAPI_API_TOKEN}`
-		}
+				populate: ['icon'],
+			},
+		},
 	});
+	const socialMediaPromise = fetch(
+		`http://0.0.0.0:1337/api/footer-social-media?${socialMediaQuery}`,
+		{
+			headers: {
+				Authorization: `bearer ${STRAPI_API_TOKEN}`,
+			},
+		}
+	);
 
 	const supporterQuery = qs.stringify({
 		populate: {
 			items: {
-				populate: ['image']
-			}
-		}
+				populate: ['image'],
+			},
+		},
 	});
-	const supporterPromise =   fetch(`http://0.0.0.0:1337/api/supporter?${supporterQuery}`, {
+	const supporterPromise = fetch(`http://0.0.0.0:1337/api/supporter?${supporterQuery}`, {
 		headers: {
-			Authorization: `bearer ${STRAPI_API_TOKEN}`
-		}
+			Authorization: `bearer ${STRAPI_API_TOKEN}`,
+		},
 	});
 
-	const [mainMenuRequest, socialMediaRequest, supporterRequest] = await Promise.all([mainMenuPromise, socialMediaPromise, supporterPromise]);
+	const [mainMenuRequest, socialMediaRequest, supporterRequest] = await Promise.all([
+		mainMenuPromise,
+		socialMediaPromise,
+		supporterPromise,
+	]);
 	const mainMenu = await mainMenuRequest.json();
 	const supporter = await supporterRequest.json();
 	const socialMedia = await socialMediaRequest.json();
@@ -89,6 +95,6 @@ export const load = (async ({ fetch }) => {
 	return {
 		mainMenu: mainMenu.data,
 		supporter: supporter.data,
-		socialMedia: socialMedia.data
+		socialMedia: socialMedia.data,
 	};
 }) satisfies LayoutServerLoad;

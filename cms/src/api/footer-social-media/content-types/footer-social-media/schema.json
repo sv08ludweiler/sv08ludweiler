@@ -1,21 +1,21 @@
 {
-  "kind": "singleType",
-  "collectionName": "footer_social_medias",
-  "info": {
-    "singularName": "footer-social-media",
-    "pluralName": "footer-social-medias",
-    "displayName": "Footer Social Media",
-    "description": ""
-  },
-  "options": {
-    "draftAndPublish": true
-  },
-  "pluginOptions": {},
-  "attributes": {
-    "items": {
-      "type": "component",
-      "repeatable": true,
-      "component": "social-media.social-media-item"
-    }
-  }
+	"kind": "singleType",
+	"collectionName": "footer_social_medias",
+	"info": {
+		"singularName": "footer-social-media",
+		"pluralName": "footer-social-medias",
+		"displayName": "Footer Social Media",
+		"description": ""
+	},
+	"options": {
+		"draftAndPublish": true
+	},
+	"pluginOptions": {},
+	"attributes": {
+		"items": {
+			"type": "component",
+			"repeatable": true,
+			"component": "social-media.social-media-item"
+		}
+	}
 }

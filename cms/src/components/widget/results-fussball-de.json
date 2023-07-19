@@ -1,17 +1,17 @@
 {
-  "collectionName": "components_widget_results_fussball_des",
-  "info": {
-    "displayName": "widget-fussball-de",
-    "description": ""
-  },
-  "options": {},
-  "attributes": {
-    "widgetid": {
-      "type": "string",
-      "required": true
-    },
-    "title": {
-      "type": "string"
-    }
-  }
+	"collectionName": "components_widget_results_fussball_des",
+	"info": {
+		"displayName": "widget-fussball-de",
+		"description": ""
+	},
+	"options": {},
+	"attributes": {
+		"widgetid": {
+			"type": "string",
+			"required": true
+		},
+		"title": {
+			"type": "string"
+		}
+	}
 }
