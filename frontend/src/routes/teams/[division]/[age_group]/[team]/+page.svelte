@@ -41,6 +41,11 @@
 	}
 </script>
 
+<svelte:head>
+  <title>SV 08 Ludweiler - {ageGroup ? (ageGroup.attributes.alternativeName || ageGroup.attributes.name) : ''} {divisions ? divisions[0].attributes?.name : ''} {team.display_name}</title>
+  <meta name="description" content="{ageGroup ? (ageGroup.attributes.alternativeName || ageGroup.attributes.name) : ''} {divisions ? divisions[0].attributes?.name : ''} {team.display_name} des SV 08 Ludweiler" />
+</svelte:head>
+
 {#if headerImage}
 	<img
 		class="w-full"

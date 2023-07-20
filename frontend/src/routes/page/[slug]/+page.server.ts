@@ -1,9 +1,8 @@
 import { STRAPI_API_TOKEN } from '$env/static/private';
+import { error } from '@sveltejs/kit';
+import { compile } from 'mdsvex';
 import qs from 'qs';
 import type { PageServerLoad } from './$types';
-import { compile } from 'mdsvex';
-import { error } from '@sveltejs/kit';
-import type { ApiPagePage } from 'cms/types/generated/contentTypes';
 
 export const load = (async ({ fetch, params }) => {
 	const query = qs.stringify(
@@ -19,7 +18,7 @@ export const load = (async ({ fetch, params }) => {
 		},
 		{
 			encodeValuesOnly: true, // prettify URL
-		}
+		},
 	);
 
 	const pages = await (

@@ -4,7 +4,7 @@ import type { RequestHandler } from './$types';
 import qs from 'qs';
 import { compile } from 'mdsvex';
 
-export const GET: RequestHandler = async ({ fetch, params }) => {
+export const GET: RequestHandler = async ({ fetch }) => {
 	const truncate = (str: string, len: number) =>
 		str.substring(0, (str + ' ').lastIndexOf(' ', len));
 
@@ -41,7 +41,7 @@ export const GET: RequestHandler = async ({ fetch, params }) => {
 			post.attributes.previewText =
 				truncate(
 					post.attributes.htmlContent.code.replace(/<img[^>]*>/g, '').replace(/<video[^>]*>/g, ''),
-					250
+					250,
 				) + '...';
 		}
 	}

@@ -16,7 +16,7 @@ export const load = (async ({ params }) => {
 		},
 		{
 			encodeValuesOnly: true, // prettify URL
-		}
+		},
 	);
 
 	const posts = await (

@@ -32,7 +32,7 @@ export const load = (async ({ fetch, params }) => {
 	}
 
 	const postsRequest = await fetch(
-		`http://localhost:5173/teams/${params.division}/${params.age_group}/${params.team}/posts`
+		`http://localhost:5173/teams/${params.division}/${params.age_group}/${params.team}/posts`,
 	);
 
 	console.log({ postsRequest });

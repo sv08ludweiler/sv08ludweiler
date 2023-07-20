@@ -8,6 +8,11 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+  <title>SV 08 Ludweiler</title>
+  <meta name="description" content="Homepage des Fußballverein SV 08 Ludweiler" />
+</svelte:head>
+
 <img class="w-full" alt="SV 08 Ludweiler Wandgraffiti" src={headerImage} />
 
 <section class="my-5 px-4">

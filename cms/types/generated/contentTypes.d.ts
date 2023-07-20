@@ -876,7 +876,7 @@ export interface ApiMainMenuMainMenu extends Schema.SingleType {
 				'navigation.external-navigation-item',
 				'navigation.page-navigation-item',
 				'navigation.team-navigation-item',
-				'navigation.page-nested-navigation-item'
+				'navigation.page-nested-navigation-item',
 			]
 		>;
 		createdAt: Attribute.DateTime;

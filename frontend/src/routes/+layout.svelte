@@ -1,14 +1,13 @@
 <script lang="ts">
 	import wappen from '$lib/assets/wappen.png';
+	import SocialMediaLink from '$lib/components/SocialMediaLink.svelte';
 	import DivisionNavItem from '$lib/components/nav/DivisionNavItem.svelte';
 	import DropdownNavItem from '$lib/components/nav/DropdownNavItem.svelte';
 	import SimpleNavItem from '$lib/components/nav/SimpleNavItem.svelte';
-	import '../root-styles.css';
 	import '../app.css';
 	import '../global.css';
+	import '../root-styles.css';
 	import type { LayoutData } from './$types';
-	import SocialMediaLink from '$lib/components/SocialMediaLink.svelte';
-	import { stringify } from 'qs';
 	// import '/smui.css';
 
 	export let data: LayoutData;

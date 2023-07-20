@@ -12,6 +12,11 @@
 	});
 </script>
 
+<svelte:head>
+  <title>SV 08 Ludweiler - News Übersicht</title>
+  <meta name="description" content="Übersicht über alle Newsartikel" />
+</svelte:head>
+
 {#if data.posts.data}
 	<section class="flex-auto p-4 md:container md:mx-auto">
 		<h2 id="news">News</h2>
@@ -23,7 +28,7 @@
 	{@const pagination = data.posts.meta.pagination}
 
 	<div class="my-5 flex items-center justify-center gap-3">
-		<Button
+			<Button
 			on:click={() => goto(`/posts/${(Number($page.params.page) || 1) - 1}`)}
 			aria-label="Vorherige Seite"
 			disabled={pagination.page < pagination.pageCount}>Vorherige</Button

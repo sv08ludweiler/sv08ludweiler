@@ -43,7 +43,7 @@ export const GET: RequestHandler = async ({ fetch, params }) => {
 			post.attributes.previewText =
 				truncate(
 					post.attributes.htmlContent.code.replace(/<img[^>]*>/g, '').replace(/<video[^>]*>/g, ''),
-					250
+					250,
 				) + '...';
 		}
 	}

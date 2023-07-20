@@ -9,7 +9,7 @@
 	/**
 	 * External link of social media.
 	 */
-	export let href = '';
+		export let href = '';
 
 	/**
 	 * Icon url.

@@ -5,6 +5,11 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+  <title>SV 08 Ludweiler - News: {data.post.attributes.title}</title>
+  <meta name="description" content={data.post.attributes.title} />
+</svelte:head>
+
 <ContentCardView
 	headerImage={data.post.attributes?.header_image?.data?.attributes}
 	title={data.post.attributes.title}
