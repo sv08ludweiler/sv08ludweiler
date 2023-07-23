@@ -9,21 +9,23 @@
 </script>
 
 <svelte:head>
-  <title>SV 08 Ludweiler</title>
-  <meta name="description" content="Homepage des Fußballverein SV 08 Ludweiler" />
+	<title>SV 08 Ludweiler</title>
+	<meta name="description" content="Homepage des Fußballverein SV 08 Ludweiler" />
 </svelte:head>
 
 <img class="w-full" alt="SV 08 Ludweiler Wandgraffiti" src={headerImage} />
 
 <section class="my-5 px-4">
 	<div class="flex flex-wrap items-center justify-center gap-4" aria-label="Partner">
-		{#each data?.supporter?.attributes?.items as item}
-			<SocialMediaLink
-				title={item.name}
-				href={item?.link}
-				icon={item?.image?.data?.attributes?.url}
-			/>
-		{/each}
+		{#if data?.supporter?.attributes?.items}
+			{#each data?.supporter?.attributes?.items as item}
+				<SocialMediaLink
+					title={item.name}
+					href={item?.link}
+					icon={item?.image?.data?.attributes?.url}
+				/>
+			{/each}
+		{/if}
 	</div>
 </section>
 
@@ -35,7 +37,7 @@
 {/if}
 
 <section class="flex-auto px-4 md:container md:mx-auto">
-	{#if data.landingPage.data.attributes.Vereinsspielplan}
+	{#if data?.landingPage?.data?.attributes?.Vereinsspielplan}
 		<h2>{data.landingPage.data.attributes.Vereinsspielplan.title}</h2>
 		<FussballDeWidget widgetId={data.landingPage.data.attributes.Vereinsspielplan.widgetid} />
 	{/if}

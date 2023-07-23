@@ -1,34 +1,33 @@
 {
-	"collectionName": "components_navigation_team_navigation_items",
-	"info": {
-		"displayName": "Team Navigation Item",
-		"description": ""
-	},
-	"options": {},
-	"attributes": {
-		"title": {
-			"type": "string",
-			"required": true
-		},
-		"division": {
-			"type": "relation",
-			"relation": "oneToOne",
-			"target": "api::division.division"
-		},
-		"age_groups_filter": {
-			"type": "relation",
-			"relation": "oneToMany",
-			"target": "api::age-group.age-group"
-		},
-		"teams_filter": {
-			"type": "relation",
-			"relation": "oneToMany",
-			"target": "api::team.team"
-		},
-		"show_age_group": {
-			"type": "boolean",
-			"default": true,
-			"required": false
-		}
-	}
+  "collectionName": "components_navigation_team_navigation_items",
+  "info": {
+    "displayName": "Team Navigation Item",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "division": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::division.division"
+    },
+    "teams": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::team.team"
+    },
+    "age_groups": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::age-group.age-group"
+    },
+    "show_age_group": {
+      "type": "boolean",
+      "default": true
+    }
+  }
 }

@@ -24,31 +24,33 @@
 				<span>SV 08 Ludweiler</span>
 			</a>
 			<ul class="flex h-full flex-row flex-wrap justify-center">
-				{#each data.mainMenu.attributes.entries as navItem}
-					{#if navItem.__component === 'navigation.external-navigation-item'}
-						<SimpleNavItem title={navItem.title} href={navItem.link} external={true} />
-					{:else if navItem.__component === 'navigation.page-nested-navigation-item'}
-						<DropdownNavItem
-							title={navItem.page?.page?.data?.attributes?.title || navItem.page.title}
-							href={navItem.page?.page?.data?.attributes?.slug
-								? `/page/${navItem.page?.page?.data?.attributes?.slug}`
-								: ''}
-							children={navItem.children}
-						/>
-					{:else if navItem.__component === 'navigation.team-navigation-item'}
-						<DivisionNavItem
-							title={navItem.title}
-							slug={navItem.division.data.attributes.slug}
-							teams={navItem.division.data.attributes.teams.data}
-							ageGroups={navItem.division.data.attributes.age_groups.data}
-						/>
-					{:else if navItem.__component === 'navigation.page-navigation-item'}
-						<SimpleNavItem
-							title={navItem.title}
-							href={`/page/${navItem.page.data.attributes.slug}`}
-						/>
-					{/if}
-				{/each}
+				{#if data?.mainMenu?.attributes?.entries}
+					{#each data?.mainMenu?.attributes?.entries as navItem}
+						{#if navItem.__component === 'navigation.external-navigation-item'}
+							<SimpleNavItem title={navItem.title} href={navItem.link} external={true} />
+						{:else if navItem.__component === 'navigation.page-nested-navigation-item'}
+							<DropdownNavItem
+								title={navItem.page?.page?.data?.attributes?.title || navItem.page.title}
+								href={navItem.page?.page?.data?.attributes?.slug
+									? `/page/${navItem.page?.page?.data?.attributes?.slug}`
+									: ''}
+								children={navItem.children}
+							/>
+						{:else if navItem.__component === 'navigation.team-navigation-item'}
+							<DivisionNavItem
+								title={navItem.title}
+								slug={navItem.division.data.attributes.slug}
+								teams={navItem.division.data.attributes.teams.data}
+								ageGroups={navItem.division.data.attributes.age_groups.data}
+							/>
+						{:else if navItem.__component === 'navigation.page-navigation-item'}
+							<SimpleNavItem
+								title={navItem.title}
+								href={`/page/${navItem.page.data.attributes.slug}`}
+							/>
+						{/if}
+					{/each}
+				{/if}
 			</ul>
 		</nav>
 	</header>
@@ -65,25 +67,29 @@
 		</section>
 		<section class="flex min-h-[100px] items-center justify-center bg-green-600 p-8">
 			<div class="flex flex-wrap items-center justify-center gap-4" aria-label="Partner">
-				{#each data?.supporter?.attributes?.items as item}
-					<SocialMediaLink
-						title={item.name}
-						href={item?.link}
-						icon={item?.image?.data?.attributes?.url}
-					/>
-				{/each}
+				{#if data?.supporter?.attributes?.items}
+					{#each data?.supporter?.attributes?.items as item}
+						<SocialMediaLink
+							title={item.name}
+							href={item?.link}
+							icon={item?.image?.data?.attributes?.url}
+						/>
+					{/each}
+				{/if}
 			</div>
 		</section>
 		<section class="flex min-h-[100px] items-center justify-center bg-green-700 py-8">
 			<!-- <div class="p-4 md:container md:mx-auto">Social Media</div> -->
 			<div class="flex items-center justify-center gap-4" aria-label="Social Media">
-				{#each data?.socialMedia?.attributes?.items as item}
-					<SocialMediaLink
-						title={item.name}
-						href={item?.link}
-						icon={item?.icon?.data?.attributes?.url}
-					/>
-				{/each}
+				{#if data?.socialMedia?.attributes?.items}
+					{#each data?.socialMedia?.attributes?.items as item}
+						<SocialMediaLink
+							title={item.name}
+							href={item?.link}
+							icon={item?.icon?.data?.attributes?.url}
+						/>
+					{/each}
+				{/if}
 			</div>
 		</section>
 	</footer>

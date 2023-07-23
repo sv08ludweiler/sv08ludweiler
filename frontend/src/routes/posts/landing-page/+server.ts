@@ -35,16 +35,25 @@ export const GET: RequestHandler = async ({ fetch }) => {
 	});
 	const posts = await postsRequest.json();
 
-	for (const post of posts.data) {
-		if (post?.attributes?.content) {
-			post.attributes.htmlContent = await compile(post.attributes.content);
-			post.attributes.previewText =
-				truncate(
-					post.attributes.htmlContent.code.replace(/<img[^>]*>/g, '').replace(/<video[^>]*>/g, ''),
-					250,
-				) + '...';
-		}
-	}
+	console.log({ posts });
+	
 
-	return json(posts);
+	if (posts.data) {
+		for (const post of posts.data) {
+			if (post?.attributes?.content) {
+				post.attributes.htmlContent = await compile(post.attributes.content);
+				post.attributes.previewText =
+					truncate(
+						post.attributes.htmlContent.code
+							.replace(/<img[^>]*>/g, '')
+							.replace(/<video[^>]*>/g, ''),
+						250,
+					) + '...';
+			}
+		}
+
+		return json(posts);
+	} else {
+		return json([]);
+	}
 };

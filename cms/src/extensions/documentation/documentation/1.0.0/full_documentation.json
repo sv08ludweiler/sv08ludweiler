@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-07-20T21:10:06.577Z"
+    "x-generation-date": "2023-07-23T12:35:02.190Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3502,10 +3502,10 @@
                       "$ref": "#/components/schemas/NavigationPageNavigationItemComponent"
                     },
                     {
-                      "$ref": "#/components/schemas/NavigationTeamNavigationItemComponent"
+                      "$ref": "#/components/schemas/NavigationPageNestedNavigationItemComponent"
                     },
                     {
-                      "$ref": "#/components/schemas/NavigationPageNestedNavigationItemComponent"
+                      "$ref": "#/components/schemas/NavigationTeamNavigationItemComponent"
                     }
                   ]
                 }
@@ -3574,10 +3574,10 @@
                   "$ref": "#/components/schemas/NavigationPageNavigationItemComponent"
                 },
                 {
-                  "$ref": "#/components/schemas/NavigationTeamNavigationItemComponent"
+                  "$ref": "#/components/schemas/NavigationPageNestedNavigationItemComponent"
                 },
                 {
-                  "$ref": "#/components/schemas/NavigationPageNestedNavigationItemComponent"
+                  "$ref": "#/components/schemas/NavigationTeamNavigationItemComponent"
                 }
               ]
             }
@@ -3694,6 +3694,26 @@
                 }
               }
             }
+          }
+        }
+      },
+      "NavigationPageNestedNavigationItemComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NavigationPageNavigationItemComponent"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/NavigationPageNavigationItemComponent"
           }
         }
       },
@@ -4707,7 +4727,7 @@
               }
             }
           },
-          "age_groups_filter": {
+          "teams": {
             "type": "object",
             "properties": {
               "data": {
@@ -4727,7 +4747,7 @@
               }
             }
           },
-          "teams_filter": {
+          "age_groups": {
             "type": "object",
             "properties": {
               "data": {
@@ -4749,26 +4769,6 @@
           },
           "show_age_group": {
             "type": "boolean"
-          }
-        }
-      },
-      "NavigationPageNestedNavigationItemComponent": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "__component": {
-            "type": "string"
-          },
-          "children": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NavigationPageNavigationItemComponent"
-            }
-          },
-          "page": {
-            "$ref": "#/components/schemas/NavigationPageNavigationItemComponent"
           }
         }
       },
