@@ -1,17 +1,15 @@
 <script lang="ts">
-	import { PUBLIC_STRAPI_HOST } from '$env/static/public';
-	import Card, { Content } from '@smui/card';
-	import person from '$lib/assets/icons/person.svg';
 	import event from '$lib/assets/icons/event.svg';
+	import person from '$lib/assets/icons/person.svg';
+	import PageHeader from '$lib/components/PageHeader.svelte';
+	import type { StrapiImage } from '$lib/types/strapi.types';
+	import Card, { Content } from '@smui/card';
 
 	/**
 	 * Header image of post.
 	 */
 	export let headerImage:
-		| {
-				url: string;
-				alternativeText: string;
-		  }
+		| StrapiImage
 		| undefined = undefined;
 
 	/**
@@ -40,15 +38,7 @@
 	export let updatedAt = '';
 </script>
 
-{#if headerImage}
-	<img
-		class="w-full"
-		src={PUBLIC_STRAPI_HOST + headerImage.url}
-		alt={headerImage.alternativeText}
-	/>
-{:else}
-	<div class="placeholder h-72 w-full bg-green-600" />
-{/if}
+<PageHeader image={headerImage}></PageHeader>
 
 <div class="-mt-36 flex-auto p-4 md:container md:mx-auto">
 	<Card variant="raised">

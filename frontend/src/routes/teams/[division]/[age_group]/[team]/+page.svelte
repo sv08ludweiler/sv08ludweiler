@@ -1,14 +1,15 @@
 <script lang="ts">
-	import { PUBLIC_STRAPI_HOST } from '$env/static/public';
+	import PostColumns from '$lib/components/PostColumns.svelte';
 	import Card, { Content } from '@smui/card';
 	import type { PageData } from './$types';
-	import PostColumns from '$lib/components/PostColumns.svelte';
+	import PageHeader from '$lib/components/PageHeader.svelte';
+	import type { StrapiImage } from '$lib/types/strapi.types';
 
 	export let data: PageData;
 
 	let team;
 
-	let headerImage;
+	let headerImage: StrapiImage;
 
 	let trainings; //Array
 
@@ -46,15 +47,8 @@
   <meta name="description" content="{ageGroup ? (ageGroup.attributes.alternativeName || ageGroup.attributes.name) : ''} {divisions ? divisions[0].attributes?.name : ''} {team.display_name} des SV 08 Ludweiler" />
 </svelte:head>
 
-{#if headerImage}
-	<img
-		class="w-full"
-		src={PUBLIC_STRAPI_HOST + headerImage.url}
-		alt={headerImage.alternativeText}
-	/>
-{:else}
-	<div class="placeholder h-72 w-full bg-green-600" />
-{/if}
+
+<PageHeader image={headerImage} maxHeight={false}></PageHeader>
 
 <div class="-mt-36 flex-auto p-4 md:container md:mx-auto">
 	<Card variant="raised">
