@@ -6,11 +6,13 @@
 		"cms"
 	],
 	"devDependencies": {
-		"prettier-plugin-svelte": "3.0.0",
+		"prettier-plugin-svelte": "3.0.3",
 		"prettier": "3.0.0",
 		"prettier-plugin-tailwindcss": "0.4.1"
 	},
 	"scripts": {
+		"docker:build:strapi": "docker build -t sv08ludweiler-strapi-dev:latest -f Dockerfile .",
+		"docker:compose:strapi": "docker compose -f docker-compose.dev.yml --env-file ./cms/.env.dev up",
 		"frontend:dev": "npm run dev --workspace=frontend",
 		"frontend:build": "npm run build --workspace=frontend",
 		"frontend:preview": "npm run preview --workspace=frontend",

@@ -1,0 +1,97 @@
+version: "3"
+
+services:
+  app-node:
+    container_name: svelte-node
+    image: svelte-docker-node
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend.prod
+      target: deploy-node
+    ports:
+      - 1337:1339
+    volumes:
+      - ./frontend/build-node:build-node
+    networks:
+      - ludweiler
+
+  app-static:
+    container_name: svelte-static
+    image: svelte-docker-static
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend.prod
+      target: deploy-static
+    # default port of svelte's node server 3000
+    ports:
+      - 3000:8080
+    volumes:
+      - ./frontend/build-static:build-static
+    networks:
+      - ludweiler
+
+  strapi:
+    container_name: strapi
+    build: ./cms/.
+    image: sv08ludweiler-strapi-dev:latest
+    restart: unless-stopped
+    env_file: ./cms/.env.dev
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: strapiDB
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      # JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      APP_KEYS: ${APP_KEYS}
+      NODE_ENV: ${NODE_ENV}
+    volumes:
+      - ./cms/config:/opt/app/config
+      - ./cms/src:/opt/app/src
+      - ./cms/package.json:/opt/package.json
+      - ./package-lock.json:/opt/package-lock.json
+      - ./cms/.env.dev:/opt/app/.env
+      - ./cms/public/uploads:/opt/app/public/uploads
+    ports:
+      - "1337:1337"
+    networks:
+      - ludweiler
+    depends_on:
+      - strapiDB
+
+  strapiDB:
+    container_name: strapiDB
+    restart: unless-stopped
+    env_file: ./cms/.env.dev
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - strapi-data:/var/lib/postgresql/data/ #using a volume
+      #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
+
+    ports:
+      - "5433:5432"
+    networks:
+      - ludweiler
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - ludweiler
+
+volumes:
+  strapi-data:
+
+
+networks:
+  ludweiler:
+    name: ludweiler
+    driver: bridge

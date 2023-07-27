@@ -7,5 +7,10 @@
 </script>
 
 <li class="nav-menu inline-flex h-full items-center justify-center">
-	<a class="menu-item" target={external ? '_blank' : ''} {href}>{title}</a>
+	<a
+		class="menu-item"
+		target={external ? '_blank' : ''}
+		rel={external ? 'external' : undefined}
+		{href}>{title}</a
+	>
 </li>

@@ -1,4 +1,5 @@
 import { STRAPI_API_TOKEN } from '$env/static/private';
+import { PUBLIC_STRAPI_HOST } from '$env/static/public';
 import qs from 'qs';
 import type { PageServerLoad } from '../../../../$types';
 import { error } from '@sveltejs/kit';
@@ -14,7 +15,7 @@ export const load = (async ({ fetch, params }) => {
 		populate: '*',
 	});
 
-	const request = await fetch(`http://0.0.0.0:1337/api/teams?${teamQuery}`, {
+	const request = await fetch(`${PUBLIC_STRAPI_HOST}/api/teams?${teamQuery}`, {
 		headers: {
 			Authorization: `bearer ${STRAPI_API_TOKEN}`,
 		},
@@ -32,7 +33,7 @@ export const load = (async ({ fetch, params }) => {
 	}
 
 	const postsRequest = await fetch(
-		`http://localhost:5173/teams/${params.division}/${params.age_group}/${params.team}/posts`,
+		`/teams/${params.division}/${params.age_group}/${params.team}/posts`,
 	);
 
 	console.log({ postsRequest });

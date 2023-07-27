@@ -1,7 +1,8 @@
+import { STRAPI_API_TOKEN } from '$env/static/private';
+import { PUBLIC_STRAPI_HOST } from '$env/static/public';
 import { json, RequestHandler } from '@sveltejs/kit';
 import { compile } from 'mdsvex';
 import qs from 'qs';
-import { STRAPI_API_TOKEN } from '$env/static/private';
 
 export const GET: RequestHandler = async ({ fetch, url }) => {
 	const page = Number(url.searchParams.get('page') ?? '0');
@@ -25,7 +26,7 @@ export const GET: RequestHandler = async ({ fetch, url }) => {
 		},
 	});
 
-	const postsRequest = await fetch(`http://0.0.0.0:1337/api/posts?${teamPostQuery}`, {
+	const postsRequest = await fetch(`${PUBLIC_STRAPI_HOST}/api/posts?${teamPostQuery}`, {
 		headers: {
 			Authorization: `bearer ${STRAPI_API_TOKEN}`,
 		},

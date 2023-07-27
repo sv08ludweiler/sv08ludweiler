@@ -1,4 +1,5 @@
 import { STRAPI_API_TOKEN } from '$env/static/private';
+import { PUBLIC_STRAPI_HOST } from '$env/static/public';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import qs from 'qs';
@@ -30,7 +31,7 @@ export const GET: RequestHandler = async ({ fetch, params }) => {
 		},
 	});
 
-	const postsRequest = await fetch(`http://0.0.0.0:1337/api/posts?${teamPostQuery}`, {
+	const postsRequest = await fetch(`${PUBLIC_STRAPI_HOST}/api/posts?${teamPostQuery}`, {
 		headers: {
 			Authorization: `bearer ${STRAPI_API_TOKEN}`,
 		},

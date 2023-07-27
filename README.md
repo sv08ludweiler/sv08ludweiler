@@ -14,6 +14,7 @@ Running
 
 ```shell
 docker compose -f docker-compose.dev.yml --env-file ./cms/.env.dev up
+
 ```
 
 ### Production
@@ -29,5 +30,5 @@ docker build \
 Running
 
 ```shell
-docker
+docker compose -f docker-compose.prod.yml
 ```

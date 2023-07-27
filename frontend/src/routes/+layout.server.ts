@@ -1,6 +1,11 @@
 import { STRAPI_API_TOKEN } from '$env/static/private';
+import { PUBLIC_STRAPI_HOST } from '$env/static/public';
 import qs from 'qs';
 import type { LayoutServerLoad } from './$types';
+
+// prerender all 
+
+export const prerender = 'auto';
 
 export const load = (async ({ fetch }) => {
 	const menuQuery = qs.stringify(
@@ -48,7 +53,7 @@ export const load = (async ({ fetch }) => {
 			encodeValuesOnly: true, // prettify URL
 		},
 	);
-	const mainMenuPromise = fetch(`http://0.0.0.0:1337/api/main-menu?${menuQuery}`, {
+	const mainMenuPromise = fetch(`${PUBLIC_STRAPI_HOST}/api/main-menu?${menuQuery}`, {
 		headers: {
 			Authorization: `bearer ${STRAPI_API_TOKEN}`,
 		},
@@ -62,7 +67,7 @@ export const load = (async ({ fetch }) => {
 		},
 	});
 	const socialMediaPromise = fetch(
-		`http://0.0.0.0:1337/api/footer-social-media?${socialMediaQuery}`,
+		`${PUBLIC_STRAPI_HOST}/api/footer-social-media?${socialMediaQuery}`,
 		{
 			headers: {
 				Authorization: `bearer ${STRAPI_API_TOKEN}`,
@@ -77,7 +82,7 @@ export const load = (async ({ fetch }) => {
 			},
 		},
 	});
-	const supporterPromise = fetch(`http://0.0.0.0:1337/api/supporter?${supporterQuery}`, {
+	const supporterPromise = fetch(`${PUBLIC_STRAPI_HOST}/api/supporter?${supporterQuery}`, {
 		headers: {
 			Authorization: `bearer ${STRAPI_API_TOKEN}`,
 		},

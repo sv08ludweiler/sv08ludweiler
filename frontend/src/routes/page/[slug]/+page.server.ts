@@ -1,4 +1,5 @@
 import { STRAPI_API_TOKEN } from '$env/static/private';
+import { PUBLIC_STRAPI_HOST } from '$env/static/public';
 import { error } from '@sveltejs/kit';
 import { compile } from 'mdsvex';
 import qs from 'qs';
@@ -21,8 +22,8 @@ export const load = (async ({ fetch, params }) => {
 		},
 	);
 
-	const pages = await (
-		await fetch(`http://0.0.0.0:1337/api/pages?${query}`, {
+	const pages = await(
+		await fetch(`${PUBLIC_STRAPI_HOST}/api/pages?${query}`, {
 			headers: {
 				Authorization: `bearer ${STRAPI_API_TOKEN}`,
 			},
