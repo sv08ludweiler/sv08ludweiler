@@ -1,6 +1,6 @@
 import { STRAPI_API_TOKEN } from '$env/static/private';
 import { PUBLIC_STRAPI_HOST } from '$env/static/public';
-import { json, RequestHandler } from '@sveltejs/kit';
+import { json, type RequestHandler } from '@sveltejs/kit';
 import { compile } from 'mdsvex';
 import qs from 'qs';
 

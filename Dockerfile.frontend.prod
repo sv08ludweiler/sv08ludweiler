@@ -6,33 +6,33 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /opt
 COPY ./frontend .
-RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --include=dev
 ENV PATH /opt/node_modules/.bin:$PATH
-RUN npm run build:node
-RUN npm run build:static
+#RUN npm run build:node
+# RUN npm run build:static
+
+
 
 # Creating final production image
 FROM node:20-alpine as deploy-node
-RUN apk add --no-cache vips-dev
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
-WORKDIR /opt/
-RUN rm -rf ./*
-COPY --from=build /opt/package.json .
-COPY --from=build /opt/build-node .
-COPY --from=build /opt/node_modules .
-ENV PATH /opt/node_modules/.bin:$PATH
+WORKDIR /opt
+COPY ./frontend .
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --include=dev
+# ENV PATH /opt/node_modules/.bin:$PATH
 # RUN npm install --prod
-
-RUN chown -R node:node /opt
-USER node
-EXPOSE 3000
-CMD ["node", "index.js"]
+# RUN chown -R node:node /opt
+# USER node
+# EXPOSE 3000
+# CMD ["node", "index.js"]
 
 
 FROM nginx:latest AS deploy-static
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
-COPY --from=build /opt/build-static .
+# COPY --from=build /opt/build-static .
+# RUN npm run build:static
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]

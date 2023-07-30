@@ -1,38 +1,13 @@
 version: "3"
 
 services:
-  app-node:
-    container_name: svelte-node
-    image: svelte-docker-node
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend.prod
-      target: deploy-node
-    ports:
-      - 1337:1339
-    volumes:
-      - ./frontend/build-node:build-node
-    networks:
-      - ludweiler
-
-  app-static:
-    container_name: svelte-static
-    image: svelte-docker-static
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend.prod
-      target: deploy-static
-    # default port of svelte's node server 3000
-    ports:
-      - 3000:8080
-    volumes:
-      - ./frontend/build-static:build-static
-    networks:
-      - ludweiler
 
   strapi:
     container_name: strapi
-    build: ./cms/.
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: deploy-strapi
     image: sv08ludweiler-strapi-dev:latest
     restart: unless-stopped
     env_file: ./cms/.env.dev
@@ -73,7 +48,6 @@ services:
     volumes:
       - strapi-data:/var/lib/postgresql/data/ #using a volume
       #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
-
     ports:
       - "5433:5432"
     networks:
@@ -87,8 +61,49 @@ services:
     networks:
       - ludweiler
 
+  app-node:
+    container_name: svelte-node
+    image: svelte-docker-node
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend.prod
+      target: deploy-node
+      # ports:
+      # - 3000:3000
+      # - 4173:4173
+    volumes:
+      - ./frontend/build-node:/opt/build-node
+      - sveltekit-build:/opt/build-static
+    networks:
+      - ludweiler
+    depends_on:
+      - strapi
+    # command: npm run build:node
+    # entrypoint: npm run build:node
+
+  app-static:
+    container_name: svelte-static
+    image: svelte-docker-static
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend.prod
+      target: deploy-static
+    # default port of svelte's node server 3000
+    ports:
+      - 8081:80
+    volumes:
+      - ./frontend/build-static:/usr/share/nginx/html
+      # - sveltekit-build:/usr/share/nginx/html
+    networks:
+      - ludweiler
+    depends_on:
+      - strapi
+
 volumes:
   strapi-data:
+  sveltekit-build:
 
 
 networks:

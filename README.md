@@ -30,5 +30,5 @@ docker build \
 Running
 
 ```shell
-docker compose -f docker-compose.prod.yml
+docker compose -f docker-compose.prod.yml --env-file ./cms/.env.dev up
 ```
