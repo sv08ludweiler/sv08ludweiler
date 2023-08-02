@@ -13,16 +13,16 @@
 	<meta name="description" content="Homepage des Fußballverein SV 08 Ludweiler" />
 </svelte:head>
 
-<img class="w-full" alt="SV 08 Ludweiler Wandgraffiti" src={headerImage} />
+<img class="w-full aspect-auto" alt="SV 08 Ludweiler Wandgraffiti" src={headerImage} width="988" height="300"/>
 
 <section class="my-5 px-4">
 	<div class="flex flex-wrap items-center justify-center gap-4" aria-label="Partner">
 		{#if data?.supporter?.attributes?.items}
 			{#each data?.supporter?.attributes?.items as item}
 				<SocialMediaLink
-					title={item.name}
+					title={item.title}
 					href={item?.link}
-					icon={item?.image?.data?.attributes?.url}
+					icon={item?.image?.data?.attributes}
 				/>
 			{/each}
 		{/if}

@@ -10,7 +10,7 @@ services:
       target: deploy-strapi
     image: sv08ludweiler-strapi-dev:latest
     restart: unless-stopped
-    env_file: ./cms/.env.dev
+    env_file: cms/.env.dev
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
       DATABASE_HOST: strapiDB
@@ -31,6 +31,10 @@ services:
       - ./cms/public/uploads:/opt/app/public/uploads
     ports:
       - "1337:1337"
+    labels:
+      - traefik.http.routers.app.rule=PathPrefix(`/cms`)
+      - traefik.http.services.app.loadbalancer.server.port=1337
+      - traefik.scope=${TRAEFIK_SCOPE}
     networks:
       - ludweiler
     depends_on:
@@ -65,27 +69,37 @@ services:
     container_name: svelte-node
     image: svelte-docker-node
     restart: unless-stopped
+    tty: true
     build:
       context: .
       dockerfile: Dockerfile.frontend.prod
       target: deploy-node
-      # ports:
-      # - 3000:3000
+    user: "node"
+    environment:
+      # Internal server error messages will not send stacktrace to the browser in production
+      - NODE_ENV=development
+    env_file:
+      - frontend/.env
+    ports:
+      - 3001:3000
       # - 4173:4173
     volumes:
-      - ./frontend/build-node:/opt/build-node
-      - sveltekit-build:/opt/build-static
+      - ./frontend/build-node:/opt/build-node # - sveltekit-build:/opt/build-static
+    labels:
+      - traefik.http.routers.app.rule=PathPrefix(`/node`)
+      - traefik.http.services.app.loadbalancer.server.port=3000
+      - traefik.scope=${TRAEFIK_SCOPE}
     networks:
       - ludweiler
     depends_on:
       - strapi
-    # command: npm run build:node
-    # entrypoint: npm run build:node
 
   app-static:
     container_name: svelte-static
     image: svelte-docker-static
     restart: unless-stopped
+    env_file:
+      - frontend/.env
     build:
       context: .
       dockerfile: Dockerfile.frontend.prod
@@ -96,10 +110,45 @@ services:
     volumes:
       - ./frontend/build-static:/usr/share/nginx/html
       # - sveltekit-build:/usr/share/nginx/html
+    labels:
+      - traefik.http.routers.app.rule=PathPrefix(`/`)
+      - traefik.http.services.app.loadbalancer.server.port=80
+      - traefik.scope=${TRAEFIK_SCOPE}
     networks:
       - ludweiler
     depends_on:
       - strapi
+
+  reverse-proxy:
+    image: traefik:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+      - frontend/.env
+    command:
+      # Enables the web UI and tells Traefik to listen to docker
+      - --api.insecure=true --providers.docker
+      #- "--log.level=DEBUG"
+      - "--api.insecure=false"
+      - "--providers.docker=true"
+      - "--providers.docker.constraints=Label(`traefik.scope`,`${TRAEFIK_SCOPE}`)"
+    ports:
+      - 3000:80
+      - 8083:1337
+      # The Web UI (enabled by --api.insecure=true)
+      - 8082:8080
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.reverse-proxy.rule=Host(`sv08ludweiler.de`)
+      - traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)
+      # - io.portainer.accesscontrol.teams=Live
+    depends_on:
+      - strapi
+      - app-static
+      - app-node
 
 volumes:
   strapi-data:

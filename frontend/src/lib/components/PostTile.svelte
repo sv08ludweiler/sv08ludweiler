@@ -6,6 +6,7 @@
 	import { goto } from '$app/navigation';
 	import Ripple from '@smui/ripple';
 	import TeamChip from './TeamChip.svelte';
+	import type { StrapiImage } from '$lib/types/strapi.types';
 
 	/**
 	 * Title of post
@@ -25,12 +26,9 @@
 	/**
 	 * Header image of post.
 	 */
-	export let headerImage:
-		| {
-				url: string;
-				alternativeText: string;
-		  }
-		| undefined = undefined;
+	export let headerImage: StrapiImage | undefined = undefined;
+
+	$: console.log({ headerImage });
 
 	/**
 	 * Publish date of post.
@@ -107,11 +105,23 @@
 	<Card class="flex flex-auto ">
 		{#if headerImage}
 			<div class="aspect-video">
-				<img
-					class="h-full w-full object-cover"
-					src={PUBLIC_STRAPI_HOST + headerImage.url}
-					alt={headerImage.alternativeText}
-				/>
+				{#if headerImage.formats.medium}
+					<img
+						class="h-full w-full object-cover"
+						src={PUBLIC_STRAPI_HOST + headerImage.formats.medium.url}
+						width={headerImage.formats.medium.width}
+						height={headerImage.formats.medium.height}
+						alt={headerImage.alternativeText || title}
+					/>
+				{:else}
+					<img
+						class="h-full w-full object-cover"
+						src={PUBLIC_STRAPI_HOST + headerImage.url}
+						width={headerImage.width}
+						height={headerImage.height}
+						alt={headerImage.alternativeText || title}
+					/>
+				{/if}
 			</div>
 		{/if}
 		<Content class="flex-auto">

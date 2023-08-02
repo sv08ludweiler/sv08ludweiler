@@ -1,9 +1,9 @@
 import { STRAPI_API_TOKEN } from '$env/static/private';
 import { PUBLIC_STRAPI_HOST } from '$env/static/public';
 import qs from 'qs';
-import type { PageServerLoad } from '../../../../$types';
 import { error } from '@sveltejs/kit';
 import { compile } from 'mdsvex';
+import type { PageServerLoad } from './$types';
 
 export const load = (async ({ fetch, params }) => {
 	const teamQuery = qs.stringify({

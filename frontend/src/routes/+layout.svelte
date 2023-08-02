@@ -20,7 +20,7 @@
 			class="flex h-full flex-row flex-wrap items-center justify-between bg-green-700 px-4 md:container md:mx-auto"
 		>
 			<a href="/" aria-label="Home" class="h-full text-2xl font-semibold text-white">
-				<img class="inline max-h-[50px]" alt="wappen" src={wappen} aria-hidden="true" />
+				<img class="inline max-h-[50px]" width="42" height="50" alt="wappen" src={wappen} aria-hidden="true" />
 				<span>SV 08 Ludweiler</span>
 			</a>
 			<ul class="flex h-full flex-row flex-wrap justify-center">
@@ -63,16 +63,16 @@
 
 	<footer class="bg-green-500 text-white">
 		<section class="wappen-section">
-			<img class="wappen ml-auto mr-auto" alt="wappen" src={wappen} />
+			<img class="wappen ml-auto mr-auto" alt="wappen" src={wappen} width="545" height="644"/>
 		</section>
 		<section class="flex min-h-[100px] items-center justify-center bg-green-600 p-8">
 			<div class="flex flex-wrap items-center justify-center gap-4" aria-label="Partner">
 				{#if data?.supporter?.attributes?.items}
 					{#each data?.supporter?.attributes?.items as item}
 						<SocialMediaLink
-							title={item.name}
+							title={item.title}
 							href={item?.link}
-							icon={item?.image?.data?.attributes?.url}
+							icon={item?.image?.data?.attributes}
 						/>
 					{/each}
 				{/if}
@@ -86,7 +86,7 @@
 						<SocialMediaLink
 							title={item.name}
 							href={item?.link}
-							icon={item?.icon?.data?.attributes?.url}
+							icon={item?.icon?.data?.attributes}
 						/>
 					{/each}
 				{/if}

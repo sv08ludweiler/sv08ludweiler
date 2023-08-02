@@ -17,19 +17,23 @@
 	{#if maxHeight}
 		<div class="placeholder w-full bg-green-600 overflow-hidden h-[25rem]">
 			<img
+				height={image.height}
+				width={image.width}
 				class="w-full object-cover h-[25rem]"
 				src={PUBLIC_STRAPI_HOST + image.url}
 				alt={image.alternativeText}
 			/>
 		</div>
 	{:else}
-    <div class="placeholder w-full bg-green-600 overflow-hidden">
-        <img
-            class="w-full"
-            src={PUBLIC_STRAPI_HOST + image.url}
-            alt={image.alternativeText}
-        />
-    </div>{/if}
+		<div class="placeholder w-full bg-green-600 overflow-hidden">
+			<img
+				class="w-full"
+				height={image.height}
+				width={image.width}
+				src={PUBLIC_STRAPI_HOST + image.url}
+				alt={image.alternativeText}
+			/>
+		</div>{/if}
 {:else}
 	<div class="placeholder h-72 w-full bg-green-600" />
 {/if}

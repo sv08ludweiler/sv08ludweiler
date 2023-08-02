@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-07-30T15:35:06.396Z"
+    "x-generation-date": "2023-08-02T18:21:43.690Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -94,7 +94,8 @@
         "properties": {
           "data": {
             "required": [
-              "name"
+              "name",
+              "slug"
             ],
             "type": "object",
             "properties": {
@@ -160,7 +161,8 @@
       "AgeGroup": {
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "slug"
         ],
         "properties": {
           "name": {
@@ -501,7 +503,8 @@
         "properties": {
           "data": {
             "required": [
-              "name"
+              "name",
+              "slug"
             ],
             "type": "object",
             "properties": {
@@ -592,7 +595,8 @@
       "Division": {
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "slug"
         ],
         "properties": {
           "name": {
@@ -15074,7 +15078,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successfull registration",
+            "description": "Successful registration",
             "content": {
               "application/json": {
                 "schema": {

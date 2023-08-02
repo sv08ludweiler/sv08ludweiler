@@ -3,7 +3,10 @@ version: "3"
 services:
   strapi:
     container_name: strapi
-    build: ./cms/.
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      target: deploy-strapi
     image: sv08ludweiler-strapi-dev:latest
     restart: unless-stopped
     env_file: ./cms/.env.dev
