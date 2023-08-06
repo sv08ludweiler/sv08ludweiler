@@ -19,7 +19,7 @@ const config = {
 						// assets: 'build-static',
 						// fallback: undefined,
 						precompress: true,
-						// strict: false,
+						strict: false,
 				  })
 				: process.env.ADAPTER === 'node'
 				? adapterNode({

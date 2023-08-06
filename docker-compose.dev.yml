@@ -1,26 +1,17 @@
 version: "3"
 
 services:
+
   strapi:
-    container_name: strapi
-    build: 
+    container_name: sv08ludweiler-strapi
+    build:
       context: .
-      dockerfile: Dockerfile
-      target: deploy-strapi
-    image: sv08ludweiler-strapi-dev:latest
+      dockerfile: Dockerfile.server.prod
+      target: strapi
+    image: sv08ludweiler-strapi
     restart: unless-stopped
-    env_file: ./cms/.env.dev
-    environment:
-      DATABASE_CLIENT: ${DATABASE_CLIENT}
-      DATABASE_HOST: strapiDB
-      DATABASE_PORT: ${DATABASE_PORT}
-      DATABASE_NAME: ${DATABASE_NAME}
-      DATABASE_USERNAME: ${DATABASE_USERNAME}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      # JWT_SECRET: ${JWT_SECRET}
-      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
-      APP_KEYS: ${APP_KEYS}
-      NODE_ENV: ${NODE_ENV}
+    env_file:
+      - .env
     volumes:
       - ./cms/config:/opt/app/config
       - ./cms/src:/opt/app/src
@@ -31,27 +22,69 @@ services:
     ports:
       - "1337:1337"
     networks:
-      - strapi
+      - ludweiler
     depends_on:
       - strapiDB
 
   strapiDB:
-    container_name: strapiDB
+    container_name: sv08ludweiler-strapiDB
     restart: unless-stopped
-    env_file: ./cms/.env.dev
     image: postgres:15-alpine
-    environment:
-      POSTGRES_USER: ${DATABASE_USERNAME}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-      POSTGRES_DB: ${DATABASE_NAME}
     volumes:
-      - strapi-data:/var/lib/postgresql/data/ #using a volume
-      #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
-
+      # using dev volume
+      - strapi-data:/var/lib/postgresql/data/
+      # using a volume
+      # - sv08ludweiler-strapi-data:/var/lib/postgresql/data/
     ports:
       - "5433:5432"
     networks:
+      - ludweiler
+
+  sveltekit-node:
+    container_name: sv08ludweiler-sveltekit-node
+    image: sv08ludweiler-sveltekit-node
+    restart: unless-stopped
+    tty: true
+    env_file:
+      - .env
+    environment:
+      # overwrite 1337 in env file
+      - PORT=3000
+    ports:
+      - 1338:3000
+    depends_on:
       - strapi
+    networks:
+      - ludweiler    
+    build:
+      context: .
+      dockerfile: Dockerfile.server.prod
+      target: sveltekit-node
+      args:
+        - NODE_ENV=${NODE_ENV}
+        - STRAPI_HOST=${STRAPI_HOST}
+        - PUBLIC_STRAPI_HOST=${PUBLIC_STRAPI_HOST}
+        - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
+
+  # sveltekit:
+  #   container_name: sv08ludweiler-sveltekit
+  #   image: sv08ludweiler-sveltekit
+  #   restart: unless-stopped
+  #   tty: true
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.server.prod
+  #     target: sveltekit
+  #   user: "node"
+  #   env_file:
+  #     - .env
+  #   volumes:
+  #     - ./node_modules:/opt/node_modules
+  #     - ./frontend/build-static:/opt/build-static
+  #   networks:
+  #     - ludweiler
+  #   depends_on:
+  #     - strapi
 
   adminer:
     image: adminer
@@ -59,13 +92,14 @@ services:
     ports:
       - 8080:8080
     networks:
-      - strapi
+      - ludweiler
 
 volumes:
+  sv08ludweiler-sveltekit-data:
   strapi-data:
 
 
 networks:
-  strapi:
-    name: Strapi
+  ludweiler:
+    name: ludweiler
     driver: bridge

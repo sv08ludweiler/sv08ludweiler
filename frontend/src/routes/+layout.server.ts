@@ -22,6 +22,7 @@ export const load = (async ({ fetch }) => {
 									populate: {
 										teams: {
 											populate: ['age_group'],
+											sort: ['display_name:asc', 'name:asc'],
 										},
 										age_groups: true,
 									},

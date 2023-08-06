@@ -1,0 +1,104 @@
+version: "3"
+
+services:
+
+  strapi:
+    container_name: sv08ludweiler-strapi
+    build:
+      context: .
+      dockerfile: Dockerfile.server.prod
+      target: strapi
+    image: sv08ludweiler-strapi-server
+    restart: unless-stopped
+    env_file:
+      - .env.server
+      # volumes:
+      # /var/customers/docker/ludweiler
+      # - sv08ludweiler-strapi-uploads:/opt/app/public/uploads
+    ports:
+      - "1337:1337"
+    networks:
+      - ludweiler
+    depends_on:
+      - strapiDB
+
+  strapiDB:
+    container_name: sv08ludweiler-strapiDB
+    restart: unless-stopped
+    image: postgres:15-alpine
+    env_file:
+      - .env.server
+      # volumes:
+      # - strapi-data:/var/lib/postgresql/data/ #using a volume
+      # - sv08ludweiler-strapi-database:/var/lib/postgresql/data/ #using a volume
+      # - ./database:/var/lib/postgresql/data/ # if you want to use a bind folder
+    ports:
+      - "5433:5432"
+    networks:
+      - ludweiler
+
+  sveltekit-node:
+    container_name: sv08ludweiler-sveltekit-node
+    image: sv08ludweiler-sveltekit-node-server
+    restart: unless-stopped
+    tty: true
+    env_file:
+      - .env.server
+    environment:
+      # overwrite 1337 in env file
+      - PORT=3000
+      - STRAPI_HOST=http://strapi:1337
+      - PUBLIC_STRAPI_HOST=http://localhost:1337
+    ports:
+      - 1338:3000
+    depends_on:
+      - strapi
+    networks:
+      - ludweiler
+    build:
+      context: .
+      dockerfile: Dockerfile.server.prod
+      target: sveltekit-node
+      args:
+        - NODE_ENV=${NODE_ENV}
+        - STRAPI_HOST=${STRAPI_HOST}
+        - PUBLIC_STRAPI_HOST=${PUBLIC_STRAPI_HOST}
+        - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
+
+  sveltekit:
+    container_name: sv08ludweiler-sveltekit
+    image: sv08ludweiler-sveltekit-server
+    restart: unless-stopped
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile.server.prod
+      target: sveltekit
+    user: "node"
+    env_file:
+      - .env.server
+    volumes:
+      # - ./frontend/build-node:/opt/build-node 
+      # - sv08ludweiler-sveltekit-data:/opt/build-node
+      # - sv08ludweiler-sveltekit-data:/opt/build-static
+      # - ./frontend/build-static:/opt/build-static
+      - ./node_modules:/opt/node_modules
+      - ../../ludweiler/sveltekit/build-static:/opt/build-static
+      # - ../../ludweiler/sveltekit/build-node:/opt/build-node
+      # entrypoint: ["npm", "install", "--include=dev"]
+      #   - npm run build:node
+    networks:
+      - ludweiler
+    depends_on:
+      - strapi
+
+volumes:
+  sv08ludweiler-sveltekit-data:
+  sv08ludweiler-strapi-uploads:
+  sv08ludweiler-strapi-database:
+
+
+networks:
+  ludweiler:
+    name: ludweiler
+    driver: bridge

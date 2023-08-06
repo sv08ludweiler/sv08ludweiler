@@ -1,9 +1,8 @@
-import { STRAPI_API_TOKEN } from '$env/static/private';
-import { PUBLIC_STRAPI_HOST } from '$env/static/public';
+import { STRAPI_API_TOKEN, STRAPI_HOST } from '$env/static/private';
+import { error } from '@sveltejs/kit';
+import { compile } from 'mdsvex';
 import qs from 'qs';
 import type { PageServerLoad } from './$types';
-import { compile } from 'mdsvex';
-import { error } from '@sveltejs/kit';
 
 export const load = (async ({ params }) => {
 	const query = qs.stringify(
@@ -21,7 +20,7 @@ export const load = (async ({ params }) => {
 	);
 
 	const posts = await(
-		await fetch(`${PUBLIC_STRAPI_HOST}/api/posts?${query}`, {
+		await fetch(`${STRAPI_HOST}/api/posts?${query}`, {
 			headers: {
 				Authorization: `bearer ${STRAPI_API_TOKEN}`,
 			},

@@ -10,9 +10,15 @@ docker-compose.*.yml
 public
 .svelte-kit
 build
+**/build-node/
 build-node
 build-static
+**/build-static/
+.env
+.env.*
+**.env**
+**/node_modules/**
 
-frontend/build-node
 frontend/node_modules
+frontend/build-node
 frontend/build-static
