@@ -1,5 +1,5 @@
-import { STRAPI_API_TOKEN } from '$env/static/private';
-import { PUBLIC_STRAPI_HOST } from '$env/static/public';
+import { env } from '$env/dynamic/private';
+import { env as envPublic } from '$env/dynamic/public';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import qs from 'qs';
@@ -29,15 +29,14 @@ export const GET: RequestHandler = async ({ fetch }) => {
 		},
 	});
 
-	const postsRequest = await fetch(`${PUBLIC_STRAPI_HOST}/api/posts?${teamPostQuery}`, {
+	const postsRequest = await fetch(`${envPublic.PUBLIC_STRAPI_HOST}/api/posts?${teamPostQuery}`, {
 		headers: {
-			Authorization: `bearer ${STRAPI_API_TOKEN}`,
+			Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
 		},
 	});
 	const posts = await postsRequest.json();
 
 	console.log({ posts });
-	
 
 	if (posts.data) {
 		for (const post of posts.data) {

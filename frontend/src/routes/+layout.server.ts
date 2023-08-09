@@ -1,9 +1,9 @@
-import { STRAPI_API_TOKEN } from '$env/static/private';
-import { PUBLIC_STRAPI_HOST } from '$env/static/public';
+import { env } from '$env/dynamic/private';
+import { env as envPublic } from '$env/dynamic/public';
 import qs from 'qs';
 import type { LayoutServerLoad } from './$types';
 
-// prerender all 
+// prerender all
 
 export const prerender = 'auto';
 
@@ -54,9 +54,9 @@ export const load = (async ({ fetch }) => {
 			encodeValuesOnly: true, // prettify URL
 		},
 	);
-	const mainMenuPromise = fetch(`${PUBLIC_STRAPI_HOST}/api/main-menu?${menuQuery}`, {
+	const mainMenuPromise = fetch(`${envPublic.PUBLIC_STRAPI_HOST}/api/main-menu?${menuQuery}`, {
 		headers: {
-			Authorization: `bearer ${STRAPI_API_TOKEN}`,
+			Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
 		},
 	});
 
@@ -68,10 +68,10 @@ export const load = (async ({ fetch }) => {
 		},
 	});
 	const socialMediaPromise = fetch(
-		`${PUBLIC_STRAPI_HOST}/api/footer-social-media?${socialMediaQuery}`,
+		`${envPublic.PUBLIC_STRAPI_HOST}/api/footer-social-media?${socialMediaQuery}`,
 		{
 			headers: {
-				Authorization: `bearer ${STRAPI_API_TOKEN}`,
+				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
 			},
 		},
 	);
@@ -83,11 +83,14 @@ export const load = (async ({ fetch }) => {
 			},
 		},
 	});
-	const supporterPromise = fetch(`${PUBLIC_STRAPI_HOST}/api/supporter?${supporterQuery}`, {
-		headers: {
-			Authorization: `bearer ${STRAPI_API_TOKEN}`,
+	const supporterPromise = fetch(
+		`${envPublic.PUBLIC_STRAPI_HOST}/api/supporter?${supporterQuery}`,
+		{
+			headers: {
+				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
+			},
 		},
-	});
+	);
 
 	const [mainMenuRequest, socialMediaRequest, supporterRequest] = await Promise.all([
 		mainMenuPromise,

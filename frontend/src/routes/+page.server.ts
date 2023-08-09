@@ -1,13 +1,13 @@
-import { STRAPI_API_TOKEN } from '$env/static/private';
-import { PUBLIC_STRAPI_HOST } from '$env/static/public';
+import { env } from '$env/dynamic/private';
+import { env as envPublic } from '$env/dynamic/public';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ fetch }) => {
 	return {
-		landingPage: await(
-			await fetch(`${PUBLIC_STRAPI_HOST}/api/landingpage?populate=*`, {
+		landingPage: await (
+			await fetch(`${envPublic.PUBLIC_STRAPI_HOST}/api/landingpage?populate=*`, {
 				headers: {
-					Authorization: `bearer ${STRAPI_API_TOKEN}`,
+					Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
 				},
 			})
 		).json(),

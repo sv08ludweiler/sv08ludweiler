@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_STRAPI_HOST } from '$env/static/public';
+	import { env } from '$env/dynamic/public'
 	import type { StrapiImage } from '$lib/types/strapi.types';
 
 	/**
@@ -19,7 +19,7 @@
 </script>
 
 <a {href} {title} aria-label={title} target="_blank">
-	<img width={icon.width} height={icon.height} src={PUBLIC_STRAPI_HOST + icon.url} alt={title || icon.alternativeText} aria-hidden="true" />
+	<img width={icon.width} height={icon.height} src={env.PUBLIC_STRAPI_HOST + icon.url} alt={title || icon.alternativeText} aria-hidden="true" />
 </a>
 
 <style>

@@ -11,7 +11,7 @@ services:
     image: sv08ludweiler-strapi-server
     restart: unless-stopped
     env_file:
-      - .env.server
+      - .env.server.local
       # volumes:
       # /var/customers/docker/ludweiler
       # - sv08ludweiler-strapi-uploads:/opt/app/public/uploads
@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
     image: postgres:15-alpine
     env_file:
-      - .env.server
+      - .env.server.local
       # volumes:
       # - strapi-data:/var/lib/postgresql/data/ #using a volume
       # - sv08ludweiler-strapi-database:/var/lib/postgresql/data/ #using a volume
@@ -43,12 +43,10 @@ services:
     restart: unless-stopped
     tty: true
     env_file:
-      - .env.server
+      - .env.server.local
     environment:
       # overwrite 1337 in env file
       - PORT=3000
-      - STRAPI_HOST=http://strapi:1337
-      - PUBLIC_STRAPI_HOST=http://localhost:1337
     ports:
       - 1338:3000
     depends_on:
@@ -76,7 +74,7 @@ services:
       target: sveltekit
     user: "node"
     env_file:
-      - .env.server
+      - .env.server.local
     volumes:
       # - ./frontend/build-node:/opt/build-node 
       # - sv08ludweiler-sveltekit-data:/opt/build-node

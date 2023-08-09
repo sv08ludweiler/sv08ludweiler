@@ -24,7 +24,7 @@ const config = {
 				: process.env.ADAPTER === 'node'
 				? adapterNode({
 						out: './build-node',
-						precompress: false,
+						precompress: true,
 				  })
 				: adapter(),
 

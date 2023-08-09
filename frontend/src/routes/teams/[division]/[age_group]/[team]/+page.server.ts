@@ -1,5 +1,5 @@
-import { STRAPI_API_TOKEN } from '$env/static/private';
-import { PUBLIC_STRAPI_HOST } from '$env/static/public';
+import { env } from '$env/dynamic/private';
+import { env as envPublic } from '$env/dynamic/public';
 import qs from 'qs';
 import { error } from '@sveltejs/kit';
 import { compile } from 'mdsvex';
@@ -15,9 +15,9 @@ export const load = (async ({ fetch, params }) => {
 		populate: '*',
 	});
 
-	const request = await fetch(`${PUBLIC_STRAPI_HOST}/api/teams?${teamQuery}`, {
+	const request = await fetch(`${envPublic.PUBLIC_STRAPI_HOST}/api/teams?${teamQuery}`, {
 		headers: {
-			Authorization: `bearer ${STRAPI_API_TOKEN}`,
+			Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
 		},
 	});
 

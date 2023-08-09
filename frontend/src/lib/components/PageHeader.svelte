@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_STRAPI_HOST } from '$env/static/public';
+	import { env } from '$env/dynamic/public';
 	import type { StrapiImage } from '$lib/types/strapi.types';
 
 	/**
@@ -20,7 +20,7 @@
 				height={image.height}
 				width={image.width}
 				class="w-full object-cover h-[25rem]"
-				src={PUBLIC_STRAPI_HOST + image.url}
+				src={env.PUBLIC_STRAPI_HOST + image.url}
 				alt={image.alternativeText}
 			/>
 		</div>
@@ -30,7 +30,7 @@
 				class="w-full"
 				height={image.height}
 				width={image.width}
-				src={PUBLIC_STRAPI_HOST + image.url}
+				src={env.PUBLIC_STRAPI_HOST + image.url}
 				alt={image.alternativeText}
 			/>
 		</div>{/if}

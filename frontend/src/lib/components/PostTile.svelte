@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_STRAPI_HOST } from '$env/static/public';
+	import { env } from '$env/dynamic/public';
 	import event from '$lib/assets/icons/event.svg';
 	import Card, { Content } from '@smui/card';
 	import Button, { Label } from '@smui/button';
@@ -108,7 +108,7 @@
 				{#if headerImage.formats.medium}
 					<img
 						class="h-full w-full object-cover"
-						src={PUBLIC_STRAPI_HOST + headerImage.formats.medium.url}
+						src={env.PUBLIC_STRAPI_HOST + headerImage.formats.medium.url}
 						width={headerImage.formats.medium.width}
 						height={headerImage.formats.medium.height}
 						alt={headerImage.alternativeText || title}
@@ -116,7 +116,7 @@
 				{:else}
 					<img
 						class="h-full w-full object-cover"
-						src={PUBLIC_STRAPI_HOST + headerImage.url}
+						src={env.PUBLIC_STRAPI_HOST + headerImage.url}
 						width={headerImage.width}
 						height={headerImage.height}
 						alt={headerImage.alternativeText || title}

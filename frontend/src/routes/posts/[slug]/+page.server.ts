@@ -1,4 +1,4 @@
-import { STRAPI_API_TOKEN, STRAPI_HOST } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
 import { compile } from 'mdsvex';
 import qs from 'qs';
@@ -19,10 +19,10 @@ export const load = (async ({ params }) => {
 		},
 	);
 
-	const posts = await(
-		await fetch(`${STRAPI_HOST}/api/posts?${query}`, {
+	const posts = await (
+		await fetch(`${env.STRAPI_HOST}/api/posts?${query}`, {
 			headers: {
-				Authorization: `bearer ${STRAPI_API_TOKEN}`,
+				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
 			},
 		})
 	).json();
