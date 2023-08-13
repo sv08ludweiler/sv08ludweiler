@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
-const { parsed, error } = dotenv.config({ path: '.env.server.local', debug: true });
+const { parsed, error } = dotenv.config({ /* path: '.env.server.local', */ debug: true });
+
+console.log(dotenv.config());
 
 // was there an error?
 console.error(error);

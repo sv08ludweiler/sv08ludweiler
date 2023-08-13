@@ -11,6 +11,7 @@
 	 * Header max height
 	 */
 	export let maxHeight = true;
+	
 </script>
 
 {#if image}

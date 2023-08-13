@@ -41,17 +41,19 @@ RUN npm run build:node
 
 FROM --platform=linux/amd64 node:20-alpine as sveltekit-node
 WORKDIR /opt
-COPY --from=sveltekit-build /opt/package.json ./package.json
+COPY --from=sveltekit-build /opt/package.json .
 COPY --from=sveltekit-build /opt/build-node ./build-node
-# COPY --from=sveltekit-build /opt/node_modules ./node_modules
-RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --omit dev --ignore-scripts
-ENV PATH /opt/node_modules/.bin:$PATH
 RUN chown -R node:node /opt/build-node
+# COPY --from=sveltekit-build /opt/node_modules ./node_modules
+RUN npm config set fetch-retry-maxtimeout 600000 -g
+RUN npm install --omit dev --ignore-scripts
+RUN npm install dotenv
+ENV PATH /opt/node_modules/.bin:$PATH
 USER node
 EXPOSE 3000
 ENV HOST=sveltekit
 ENV PORT=3000
-CMD ["node","build-node"]
+CMD ["node","-r", "dotenv/config", "build-node"]
 
 
 # Creating multi-stage build for production
@@ -59,12 +61,10 @@ FROM --platform=linux/amd64 node:20-alpine as sveltekit
 WORKDIR /opt
 COPY ./frontend .
 COPY --from=sveltekit-build /opt/node_modules ./node_modules
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --include=dev
+RUN npm cache verify
+ENV PATH /opt/node_modules/.bin:$PATH
 # COPY ./frontend/package.json package.json
 # RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --include=dev
-ENV PATH /opt/node_modules/.bin:$PATH
-
-# RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --include=dev
-# ENTRYPOINT [ "npm", "install", "--include=dev" ]
 # RUN npm run build:static
-# ENTRYPOINT [ "npm", "run", "build:node"]
-# CMD [ "node", "index.js" ]
+ENTRYPOINT [ "npm", "run", "build:static"]

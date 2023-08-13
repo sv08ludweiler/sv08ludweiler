@@ -43,7 +43,7 @@ services:
   sveltekit-node:
     container_name: sv08ludweiler-sveltekit-node
     image: sv08ludweiler-sveltekit-node
-    restart: unless-stopped
+    # restart: on-failure
     tty: true
     env_file:
       - .env
@@ -55,7 +55,8 @@ services:
     depends_on:
       - strapi
     networks:
-      - ludweiler    
+      - ludweiler
+    # entrypoint: [ "node", "-r", "dotenv/config", "build-node" ]
     build:
       context: .
       dockerfile: Dockerfile.server.prod
@@ -66,25 +67,30 @@ services:
         - PUBLIC_STRAPI_HOST=${PUBLIC_STRAPI_HOST}
         - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
 
-  # sveltekit:
-  #   container_name: sv08ludweiler-sveltekit
-  #   image: sv08ludweiler-sveltekit
-  #   restart: unless-stopped
-  #   tty: true
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.server.prod
-  #     target: sveltekit
-  #   user: "node"
-  #   env_file:
-  #     - .env
-  #   volumes:
-  #     - ./node_modules:/opt/node_modules
-  #     - ./frontend/build-static:/opt/build-static
-  #   networks:
-  #     - ludweiler
-  #   depends_on:
-  #     - strapi
+  sveltekit:
+    container_name: sv08ludweiler-sveltekit
+    image: sv08ludweiler-sveltekit
+    # restart: on-failure
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile.server.prod
+      target: sveltekit
+      args:
+        - NODE_ENV=${NODE_ENV}
+        - STRAPI_HOST=${STRAPI_HOST}
+        - PUBLIC_STRAPI_HOST=${PUBLIC_STRAPI_HOST}
+        - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
+    env_file:
+      - .env
+    volumes:
+      - ./test/build-static:/opt/build-static
+      # - ./node_modules:/opt/node_modules
+    networks:
+      - ludweiler
+    depends_on:
+      strapi:
+        condition: service_started
 
   adminer:
     image: adminer

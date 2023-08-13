@@ -39,7 +39,7 @@ services:
 
   sveltekit-node:
     container_name: sv08ludweiler-sveltekit-node
-    image: sv08ludweiler-sveltekit-node-server
+    image: sv08ludweiler-sveltekit-node
     restart: unless-stopped
     tty: true
     env_file:
@@ -88,7 +88,10 @@ services:
     networks:
       - ludweiler
     depends_on:
-      - strapi
+      strapi:
+        condition: service_completed_successfully
+    
+      
 
 volumes:
   sv08ludweiler-sveltekit-data:
