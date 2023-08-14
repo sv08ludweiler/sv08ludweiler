@@ -101,7 +101,7 @@
 	}
 
 	footer {
-		margin-top: clamp(75px, 15vw, 130px);
+		margin-top: clamp(10rem, 15vw, 13rem);
 	}
 
 	.wappen-section {

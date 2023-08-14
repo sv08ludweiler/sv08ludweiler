@@ -1,15 +1,11 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import PostColumns from '$lib/components/PostColumns.svelte';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import PostColumns from '$lib/components/PostColumns.svelte';
 	import Button, { Label } from '@smui/button';
 	import type { PageData } from './$types';
 	export let data: PageData;
 
-	onMount(() => {
-		console.log(data.posts);
-	});
 </script>
 
 <svelte:head>

@@ -56,7 +56,7 @@
 			<table class="border-separate border-spacing-y-2">
 				{#if publishedAt}
 					<tr>
-						<td><img class="icon icon-event" alt="Veröffentlicht" src={event} /></td>
+						<td><img class="icon icon-event" alt="Veröffentlicht" src={event} width="25" height="25"/></td>
 						<td class="px-2"
 							>{new Intl.DateTimeFormat('de-DE', {
 								dateStyle: 'long',

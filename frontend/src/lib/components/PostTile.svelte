@@ -28,8 +28,6 @@
 	 */
 	export let headerImage: StrapiImage | undefined = undefined;
 
-	$: console.log({ headerImage });
-
 	/**
 	 * Publish date of post.
 	 */
@@ -141,6 +139,8 @@
 						<td
 							><img
 								class="icon icon-event h-[0.875rem] w-[0.875rem] text-xs"
+								height="25"
+								width="25"
 								alt="Veröffentlicht"
 								src={event}
 							/></td
@@ -158,6 +158,8 @@
 						<td
 							><img
 								class="icon icon-event h-[0.875rem] w-[0.875rem]"
+								height="25"
+								width="25"
 								alt="Updated"
 								src={event}
 							/></td

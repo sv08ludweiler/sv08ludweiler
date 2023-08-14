@@ -30,10 +30,6 @@ const config = {
 
 		prerender: {
 			entries: process.env.ADAPTER === 'node' ? [] : ['*'],
-			// handleHttpError: (path, message) => {
-			// 	console.log('handleHttpError', { path, message });
-			// 	return 'warn';
-			// },
 		},
 	},
 };

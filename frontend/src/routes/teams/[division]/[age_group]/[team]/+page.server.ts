@@ -23,7 +23,7 @@ export const load = (async ({ fetch, params }) => {
 
 	const team = await request.json();
 
-	if (!team.data.length) {
+	if (!team?.data?.length) {
 		throw error(404, 'Team not found');
 	}
 
@@ -36,11 +36,7 @@ export const load = (async ({ fetch, params }) => {
 		`/teams/${params.division}/${params.age_group}/${params.team}/posts`,
 	);
 
-	console.log({ postsRequest });
-
 	const posts = await postsRequest.json();
-
-	console.log({ posts });
 
 	return {
 		team: team.data[0].attributes,

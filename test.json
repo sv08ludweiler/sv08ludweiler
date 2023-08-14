@@ -1,66 +1,19 @@
 {
 	"id": 1,
 	"attributes": {
-		"createdAt": "2023-07-09T17:49:44.002Z",
-		"updatedAt": "2023-07-09T17:50:36.323Z",
-		"publishedAt": "2023-07-09T17:50:36.322Z",
-		"item": [
-			{
-				"id": 1,
-				"name": "Instagram",
-				"link": "https://www.instagram.com/sv08ludweilerwarndt/",
-				"icon": {
-					"data": {
-						"id": 6,
-						"attributes": {
-							"name": "Instagram-logo.svg",
-							"alternativeText": null,
-							"caption": null,
-							"width": 132,
-							"height": 132,
-							"formats": null,
-							"hash": "Instagram_logo_f1e94fc2af",
-							"ext": ".svg",
-							"mime": "image/svg+xml",
-							"size": 4.33,
-							"url": "/uploads/Instagram_logo_f1e94fc2af.svg",
-							"previewUrl": null,
-							"provider": "local",
-							"provider_metadata": null,
-							"createdAt": "2023-07-09T17:50:30.446Z",
-							"updatedAt": "2023-07-09T17:50:30.446Z"
-						}
-					}
-				}
-			},
-			{
-				"id": 2,
-				"name": "Facebook",
-				"link": "https://www.facebook.com/sv08ludweiler/",
-				"icon": {
-					"data": {
-						"id": 4,
-						"attributes": {
-							"name": "facebook-logo.svg",
-							"alternativeText": null,
-							"caption": null,
-							"width": 40,
-							"height": 40,
-							"formats": null,
-							"hash": "facebook_logo_0e87c7b4fd",
-							"ext": ".svg",
-							"mime": "image/svg+xml",
-							"size": 1.08,
-							"url": "/uploads/facebook_logo_0e87c7b4fd.svg",
-							"previewUrl": null,
-							"provider": "local",
-							"provider_metadata": null,
-							"createdAt": "2023-07-09T17:49:22.990Z",
-							"updatedAt": "2023-07-09T17:49:22.990Z"
-						}
-					}
-				}
-			}
-		]
+		"Headline": "Herzlich Willkommen",
+		"Content": "auf unserer Webseite",
+		"slug": "landingpage",
+		"createdAt": "2023-06-04T10:13:43.272Z",
+		"updatedAt": "2023-08-13T21:32:27.060Z",
+		"publishedAt": "2023-06-04T10:13:52.220Z",
+		"locale": "de",
+		"Vereinsspielplan": {
+			"id": 1,
+			"widgetid": "02M2VM4FP8000000VUM1DNPDVS6J43VQ",
+			"title": "Vereinsspielplan"
+		},
+		"headline_widgets": [{ "id": 1, "name": "1. Mannschaft", "widget_id": "1127464" }],
+		"localizations": { "data": [] }
 	}
 }

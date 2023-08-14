@@ -32,7 +32,8 @@
         }
       },
       "type": "uid",
-      "required": true
+      "required": true,
+      "targetField": "name"
     },
     "league": {
       "pluginOptions": {
@@ -112,6 +113,16 @@
         }
       },
       "type": "richtext"
+    },
+    "fupa_widget_next_game": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "widget.fupa-widget"
     }
   }
 }

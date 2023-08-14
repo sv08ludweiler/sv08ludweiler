@@ -4,6 +4,8 @@
 	import type { PageData } from './$types';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import type { StrapiImage } from '$lib/types/strapi.types';
+	import FussballDeWidget from '$lib/components/fussball-de-widget/fussballDeWidget.svelte';
+	import FupaWidget from '$lib/components/fupa/FupaWidget.svelte';
 
 	export let data: PageData;
 
@@ -23,6 +25,8 @@
 
 	let widgetFussballDe;
 
+	let nextGameWidget: { widget_id: string; name: string } | null;
+
 	$: {
 		team = data.team;
 
@@ -38,38 +42,49 @@
 
 		divisions = data.team.divisions?.data; // Array
 
-		widgetFussballDe = data.team.widgetFussballDe?.data;
+		widgetFussballDe = data.team.widgetFussballDe;
+
+		nextGameWidget = data.team.fupa_widget_next_game;
 	}
 </script>
 
 <svelte:head>
-  <title>SV 08 Ludweiler - {ageGroup ? (ageGroup.attributes.alternativeName || ageGroup.attributes.name) : ''} {divisions ? divisions[0].attributes?.name : ''} {team.display_name}</title>
-  <meta name="description" content="{ageGroup ? (ageGroup.attributes.alternativeName || ageGroup.attributes.name) : ''} {divisions ? divisions[0].attributes?.name : ''} {team.display_name} des SV 08 Ludweiler" />
+	<title
+		>SV 08 Ludweiler - {ageGroup
+			? ageGroup.attributes.alternativeName || ageGroup.attributes.name
+			: ''}
+		{divisions ? divisions[0].attributes?.name : ''}
+		{team.display_name}</title
+	>
+	<meta
+		name="description"
+		content="{ageGroup
+			? ageGroup.attributes.alternativeName || ageGroup.attributes.name
+			: ''} {divisions
+			? divisions[0].attributes?.name
+			: ''} {team.display_name} des SV 08 Ludweiler"
+	/>
 </svelte:head>
-
 
 <PageHeader image={headerImage} maxHeight={false}></PageHeader>
 
-<div class="-mt-36 flex-auto p-4 md:container md:mx-auto">
-	<Card variant="raised">
-		<Content
-			><h2 class="mt-0">
-				{team.display_name}
-			</h2>
-			<div>
-				{#if ageGroup.attributes}
-					<span>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</span>
-				{/if}
+<section>
+	<div class="p-4 md:container md:mx-auto">
+		<h2 class="mt-0">
+			{team.display_name}
+		</h2>
+		<div>
+			{#if ageGroup.attributes}
+				<span>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</span>
+			{/if}
 
-				{#if divisions?.length && divisions[0].attributes.name !== ageGroup.attributes.alternativeName}
-					<span> / </span><span>{divisions[0].attributes.name}</span>
-				{/if}
-			</div>
+			{#if divisions?.length && divisions[0].attributes.name !== ageGroup.attributes.alternativeName}
+				<span> / </span><span>{divisions[0].attributes.name}</span>
+			{/if}
 
 			{#if team.league}
 				<pre>{team.league}</pre>
 			{/if}
-
 			{#if trainers?.length}
 				<h3>Trainer</h3>
 				{#each trainers as trainer}
@@ -94,7 +109,8 @@
 					{#each trainings as training}
 						<li>
 							{training.day}: {training.start}
-							{#if training.end} - {training.end}{/if}
+							{#if training.end}
+								- {training.end}{/if}
 						</li>
 					{/each}
 				</ul>
@@ -103,15 +119,36 @@
 			{#if data.teamContent}
 				{@html data.teamContent.code}
 			{/if}
-		</Content>
-	</Card>
-</div>
 
-{#if data.posts.data}
-	<section class="flex-auto p-4 md:container md:mx-auto">
-		<h2 id="news">News</h2>
-		<PostColumns posts={data.posts.data} meta={data.posts.meta} showTeamCategory={false} />
+			{#if nextGameWidget}
+				<FupaWidget widgetId={nextGameWidget.widget_id}></FupaWidget>
+			{/if}
+		</div>
+	</div>
+</section>
+
+{#if data.posts.data.length}
+	<section>
+		<div class="flex-auto p-4 md:container md:mx-auto">
+			<h2 id="news">News</h2>
+			<PostColumns posts={data.posts.data} meta={data.posts.meta} showTeamCategory={false} />
+		</div>
 	</section>
 {/if}
 
-<style></style>
+{#if widgetFussballDe}
+	{#each widgetFussballDe as widget}
+		<section>
+			<div class="flex-auto p-4 md:container md:mx-auto">
+				<h2 id={widget.title.trim().replace(' ', '-')}>{widget.title}</h2>
+				<FussballDeWidget widgetId={widget.widgetid} />
+			</div>
+		</section>
+	{/each}
+{/if}
+
+<style>
+	section:nth-child(odd) {
+		@apply bg-green-50;
+	}
+</style>

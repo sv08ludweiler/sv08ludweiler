@@ -36,8 +36,6 @@ export const GET: RequestHandler = async ({ fetch }) => {
 	});
 	const posts = await postsRequest.json();
 
-	console.log({ posts });
-
 	if (posts.data) {
 		for (const post of posts.data) {
 			if (post?.attributes?.content) {

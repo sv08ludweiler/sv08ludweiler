@@ -4,6 +4,7 @@
 	import headerImage from '$lib/assets/header.jpg';
 	import PostColumns from '$lib/components/PostColumns.svelte';
 	import SocialMediaLink from '$lib/components/SocialMediaLink.svelte';
+	import FupaWidget from '$lib/components/fupa/FupaWidget.svelte';
 
 	export let data: PageData;
 </script>
@@ -13,7 +14,21 @@
 	<meta name="description" content="Homepage des Fußballverein SV 08 Ludweiler" />
 </svelte:head>
 
-<img class="w-full aspect-auto" alt="SV 08 Ludweiler Wandgraffiti" src={headerImage} width="988" height="300"/>
+<img
+	class="w-full aspect-auto"
+	alt="SV 08 Ludweiler Wandgraffiti"
+	src={headerImage}
+	width="988"
+	height="300"
+/>
+
+{#if data.landingPage?.data?.attributes?.headline_widgets.length}
+	<section class="flex gap-5 justify-center -mt-10 mb-10 flex-wrap px-5">
+		{#each data.landingPage.data.attributes.headline_widgets as widget}
+			<FupaWidget widgetId={widget.widget_id}></FupaWidget>
+		{/each}
+	</section>
+{/if}
 
 <section class="my-5 px-4">
 	<div class="flex flex-wrap items-center justify-center gap-4" aria-label="Partner">

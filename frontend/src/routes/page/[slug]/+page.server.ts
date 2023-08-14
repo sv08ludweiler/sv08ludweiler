@@ -38,8 +38,6 @@ export const load = (async ({ fetch, params }) => {
 
 	const page = pages.data[0];
 
-	console.log('page', params.slug, page);
-
 	let content;
 	if (page?.attributes?.content) {
 		content = await compile(page.attributes.content);
