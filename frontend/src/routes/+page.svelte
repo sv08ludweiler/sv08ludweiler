@@ -23,7 +23,7 @@
 />
 
 {#if data.landingPage?.data?.attributes?.headline_widgets.length}
-	<section class="flex gap-5 justify-center -mt-10 mb-10 flex-wrap px-5">
+	<section class="flex gap-5 justify-center -mt-10 mb-10 flex-wrap px-5 max-w-screen-xl m-auto">
 		{#each data.landingPage.data.attributes.headline_widgets as widget}
 			<FupaWidget widgetId={widget.widget_id}></FupaWidget>
 		{/each}
@@ -46,7 +46,7 @@
 
 {#if data.news}
 	<section class="flex-auto px-4 md:container md:mx-auto">
-		<h2 id="news">News</h2>
+		<h2 id="news">Aktuell</h2>
 		<PostColumns posts={data.news.data} meta={data.news.meta} />
 	</section>
 {/if}

@@ -330,13 +330,14 @@
 </script>
 
 <Card class="inline-flex items-center justify-center flex-1">
-	<Content class="inline-flex items-center justify-center">
-		<div id={`widget-${id}`}>...</div>
+	<Content class="inline-flex justify-center w-full h-full">
+		<div id={`widget-${id}`} class="flex justify-center w-full h-full">...</div>
 	</Content>
 </Card>
 
 <style lang="scss">
 	:global(.fupa_widget) {
+		width: 100%;
 		:global(a) {
 			text-decoration: none;
 		}
@@ -354,10 +355,20 @@
 
 		:global(#ergebnis) {
 			color: inherit;
+			font-size: 1.5rem;
 		}
 
 		// "Noch kein Livetickermelder eingetragen. Hier kannst du dich eintragen"
 		:global(td[colspan='3'][style='text-align:center']) {
+			display: none;
+		}
+
+		:global(table) {
+			width: 100%;
+			height: 100%;
+		}
+
+		:global(br[style="clear:both;"]) {
 			display: none;
 		}
 

@@ -11,16 +11,15 @@
 	 * Header max height
 	 */
 	export let maxHeight = true;
-	
 </script>
 
 {#if image}
 	{#if maxHeight}
-		<div class="placeholder w-full bg-green-600 overflow-hidden h-[25rem]">
+		<div class="placeholder w-full bg-green-600 overflow-hidden max-height">
 			<img
 				height={image.height}
 				width={image.width}
-				class="w-full object-cover h-[25rem]"
+				class="w-full object-cover h-full"
 				src={env.PUBLIC_STRAPI_HOST + image.url}
 				alt={image.alternativeText}
 			/>
@@ -38,3 +37,9 @@
 {:else}
 	<div class="placeholder h-72 w-full bg-green-600" />
 {/if}
+
+<style lang="scss">
+	.max-height {
+		height: clamp(5rem, 52.5vw, 39.375rem);
+	}
+</style>

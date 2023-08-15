@@ -40,11 +40,18 @@
 	}> = [];
 
 	function openMenu() {}
+
+	/**
+	 * Whether mobile styling is active.
+	 */
+	export let mobile = false;
 </script>
 
 {#if teams.length === 1}
 	{#each teams as team}
-		<li class="nav-menu inline-flex h-full items-center justify-center">
+		<li
+			class={mobile ? 'flex flex-col items-start p-4' : 'nav-menu inline-flex h-full items-center justify-center'}
+		>
 			<a
 				class="menu-item"
 				href={`/teams/${slug}/${team.attributes.age_group.data.attributes.slug}/${team.attributes.slug}`}
@@ -53,9 +60,9 @@
 		</li>
 	{/each}
 {:else}
-	<li class="nav-menu inline-flex h-full items-center justify-center">
+	<li class={mobile ? 'flex flex-col  items-start p-4' : 'nav-menu inline-flex h-full items-center justify-center'}>
 		<button class="menu-item" on:click={openMenu}>{title}</button>
-		<ol class="nav-menu-flyout flyout -z-10">
+		<ol class={!mobile ? 'nav-menu-flyout flyout -z-10' : 'flex flex-col'}>
 			{#if show_age_group}
 				{#each ageGroups as ageGroup}
 					{JSON.stringify(ageGroup)}

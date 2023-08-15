@@ -66,7 +66,7 @@
 	/>
 </svelte:head>
 
-<PageHeader image={headerImage} maxHeight={false}></PageHeader>
+<PageHeader image={headerImage} maxHeight={true}></PageHeader>
 
 <section>
 	<div class="p-4 md:container md:mx-auto">

@@ -9,13 +9,13 @@
 </script>
 
 <svelte:head>
-  <title>SV 08 Ludweiler - News Übersicht</title>
+  <title>SV 08 Ludweiler - Beiträge Übersicht</title>
   <meta name="description" content="Übersicht über alle Newsartikel" />
 </svelte:head>
 
 {#if data.posts.data}
 	<section class="flex-auto p-4 md:container md:mx-auto">
-		<h2 id="news">News</h2>
+		<h2 id="news">Beiträge</h2>
 		<PostColumns posts={data.posts.data} showTeamCategory={true} />
 	</section>
 {/if}
