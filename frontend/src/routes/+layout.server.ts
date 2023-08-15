@@ -23,6 +23,7 @@ export const load = (async ({ fetch }) => {
 										teams: {
 											populate: ['age_group'],
 											sort: ['display_name:asc', 'name:asc'],
+											publicationState: 'live',
 										},
 										age_groups: true,
 									},
@@ -33,17 +34,29 @@ export const load = (async ({ fetch }) => {
 							populate: {
 								page: {
 									populate: '*',
+									publicationState: 'live',
 								},
 								children: {
 									populate: '*',
+									publicationState: 'live',
 								},
 							},
 						},
 						'navigation.external-navigation-item': {
 							populate: '*',
+							filters: {
+								publishedAt: {
+									$null: false,
+								},
+							},
 						},
 						'navigation.page-navigation-item': {
 							populate: '*',
+							filters: {
+								publishedAt: {
+									$null: false,
+								},
+							},
 						},
 					},
 					// }

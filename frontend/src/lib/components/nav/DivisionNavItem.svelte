@@ -59,7 +59,7 @@
 			>
 		</li>
 	{/each}
-{:else}
+{:else if teams.length > 1}
 	<li class={mobile ? 'flex flex-col  items-start p-4' : 'nav-menu inline-flex h-full items-center justify-center'}>
 		<button class="menu-item" on:click={openMenu}>{title}</button>
 		<ol class={!mobile ? 'nav-menu-flyout flyout -z-10' : 'flex flex-col'}>

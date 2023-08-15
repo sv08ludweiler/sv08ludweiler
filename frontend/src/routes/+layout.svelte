@@ -10,6 +10,7 @@
 	import NavBar from '$lib/components/nav/NavBar.svelte';
 
 	export let data: LayoutData;
+
 </script>
 
 <div class="flex h-full w-full flex-col">
@@ -77,5 +78,4 @@
 		top: 0;
 		transform: translate(-50%, -50%);
 	}
-
-	</style>
+</style>
