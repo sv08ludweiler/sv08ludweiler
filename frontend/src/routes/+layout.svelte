@@ -56,7 +56,7 @@
 
 <style>
 	main {
-		margin-top: 66px;
+		margin-top: var(--page-nav-bar-height, 75px);
 	}
 
 	footer {

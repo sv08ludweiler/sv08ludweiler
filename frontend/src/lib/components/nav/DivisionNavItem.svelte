@@ -69,7 +69,7 @@
 				{/each}
 			{:else}
 				{#each teams as team}
-					<li class="inline-flex min-h-[2rem] items-center">
+					<li class="inline-flex min-h-[2rem] items-center nav-menu">
 						<a
 							class="h-full w-full whitespace-nowrap p-4"
 							href={`/teams/${slug}/${team.attributes.age_group.data.attributes.slug}/${team.attributes.slug}`}

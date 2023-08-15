@@ -27,8 +27,6 @@ export const load = (async ({ params }) => {
 		})
 	).json();
 
-	// console.log('slug', params.slug, 'posts', posts);
-
 	if (posts.meta.total < 1) {
 		throw error(404, {
 			message: 'Post not found',

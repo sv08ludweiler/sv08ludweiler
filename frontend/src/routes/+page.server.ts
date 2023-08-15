@@ -26,8 +26,6 @@ export const load = (async ({ fetch }) => {
 
 	// const nextGames = await Promise.all(promises);
 
-	// console.log(nextGames[0]);
-
 	return {
 		landingPage,
 		// nextGames,

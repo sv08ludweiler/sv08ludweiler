@@ -46,6 +46,15 @@
 
 		nextGameWidget = data.team.fupa_widget_next_game;
 	}
+
+	/**
+	 * Whether there is more content than info
+	 */
+	let hasSubmenu = false;
+
+	$: {
+		hasSubmenu = data.posts.data.length || !!!widgetFussballDe;
+	}
 </script>
 
 <svelte:head>
@@ -66,89 +75,158 @@
 	/>
 </svelte:head>
 
-<PageHeader image={headerImage} maxHeight={true}></PageHeader>
-
-<section>
-	<div class="p-4 md:container md:mx-auto">
-		<h2 class="mt-0">
-			{team.display_name}
-		</h2>
-		<div>
-			{#if ageGroup.attributes}
-				<span>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</span>
+{#if hasSubmenu}
+	<div class="submenu fixed z-10 w-full bg-green-700 text-white">
+		<ul
+			class="px-4 h-full md:container md:mx-auto flex flex-row overflow-hidden overflow-x-auto gap-3 items-center"
+		>
+			<li class="h-full nav-menu"><a class="menu-item" href="#infos">Infos</a></li>
+			{#if data.posts.data.length}
+				<li class="h-full nav-menu"><a class="menu-item" href="#news">Aktuelles</a></li>
 			{/if}
-
-			{#if divisions?.length && divisions[0].attributes.name !== ageGroup.attributes.alternativeName}
-				<span> / </span><span>{divisions[0].attributes.name}</span>
-			{/if}
-
-			{#if team.league}
-				<pre>{team.league}</pre>
-			{/if}
-			{#if trainers?.length}
-				<h3>Trainer</h3>
-				{#each trainers as trainer}
-					<ul>
-						<li>{trainer.attributes.firstname} {trainer.attributes.name}</li>
-					</ul>
+			{#if widgetFussballDe}
+				{#each widgetFussballDe as widget}
+					<li class="h-full nav-menu">
+						<a class="menu-item" href={`#${widget.title.trim().replace(' ', '-')}`}
+							>{widget.title}</a
+						>
+					</li>
 				{/each}
 			{/if}
-
-			{#if supervisors?.length}
-				<h3>Betreuer</h3>
-				{#each supervisors as supervisor}
-					<ul>
-						<li>{supervisor.attributes.firstname} {supervisor.attributes.name}</li>
-					</ul>
-				{/each}
-			{/if}
-
-			{#if trainings?.length}
-				<h3>Training</h3>
-				<ul>
-					{#each trainings as training}
-						<li>
-							{training.day}: {training.start}
-							{#if training.end}
-								- {training.end}{/if}
-						</li>
-					{/each}
-				</ul>
-			{/if}
-
-			{#if data.teamContent}
-				{@html data.teamContent.code}
-			{/if}
-
-			{#if nextGameWidget}
-				<FupaWidget widgetId={nextGameWidget.widget_id}></FupaWidget>
-			{/if}
-		</div>
+		</ul>
 	</div>
-</section>
+{/if}
 
-{#if data.posts.data.length}
+<div class="team-content" class:has-submenu={hasSubmenu}>
+	<PageHeader image={headerImage} maxHeight={true}></PageHeader>
+
 	<section>
-		<div class="flex-auto p-4 md:container md:mx-auto">
-			<h2 id="news">News</h2>
-			<PostColumns posts={data.posts.data} meta={data.posts.meta} showTeamCategory={false} />
+		<div class="p-4 md:container md:mx-auto info-grid">
+			<div class="g-headline">
+				<h2 class="m-0 target" id="infos">
+					{#if ageGroup.attributes}
+						<span>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</span>
+					{/if}
+					{#if divisions?.length && divisions[0].attributes.name !== ageGroup.attributes.alternativeName}
+						<span>{divisions[0].attributes.name}</span>
+					{/if}
+					<span>{team.display_name}</span>
+				</h2>
+				{#if team.league}
+					<pre>{team.league}</pre>
+				{/if}
+			</div>
+			<div class="g-info">
+				{#if data.teamContent}
+					{@html data.teamContent.code}
+				{/if}
+				{#if trainers?.length}
+					<h3>Trainer</h3>
+					{#each trainers as trainer}
+						<ul>
+							<li>{trainer.attributes.firstname} {trainer.attributes.name}</li>
+						</ul>
+					{/each}
+				{/if}
+
+				{#if supervisors?.length}
+					<h3>Betreuer</h3>
+					{#each supervisors as supervisor}
+						<ul>
+							<li>{supervisor.attributes.firstname} {supervisor.attributes.name}</li>
+						</ul>
+					{/each}
+				{/if}
+
+				{#if trainings?.length}
+					<h3>Training</h3>
+					<ul>
+						{#each trainings as training}
+							<li>
+								{training.day}: {training.start}
+								{#if training.end}
+									- {training.end}{/if}
+							</li>
+						{/each}
+					</ul>
+				{/if}
+			</div>
+			<div class="g-nextGame">
+				{#if nextGameWidget}
+					<FupaWidget widgetId={nextGameWidget.widget_id}></FupaWidget>
+				{/if}
+			</div>
 		</div>
 	</section>
-{/if}
 
-{#if widgetFussballDe}
-	{#each widgetFussballDe as widget}
+	{#if data.posts.data.length}
 		<section>
 			<div class="flex-auto p-4 md:container md:mx-auto">
-				<h2 id={widget.title.trim().replace(' ', '-')}>{widget.title}</h2>
-				<FussballDeWidget widgetId={widget.widgetid} />
+				<h2 id="news">Aktuelles</h2>
+				<PostColumns posts={data.posts.data} meta={data.posts.meta} showTeamCategory={false} />
 			</div>
 		</section>
-	{/each}
-{/if}
+	{/if}
+
+	{#if widgetFussballDe}
+		{#each widgetFussballDe as widget}
+			<section>
+				<div class="flex-auto py-4 md:container md:mx-auto">
+					<h2 id={widget.title.trim().replace(' ', '-')}>{widget.title}</h2>
+					<FussballDeWidget widgetId={widget.widgetid} />
+				</div>
+			</section>
+		{/each}
+	{/if}
+</div>
 
 <style>
-	section:nth-child(odd) {
+	:root {
+		--submenu-height: 56px;
+	}
+
+	.submenu {
+		height: var(--submenu-height);
+	}
+
+	.team-content {
+		&.has-submenu {
+			margin-top: var(--submenu-height);
+		}
+		&.has-submenu :target:before {
+			content: '';
+			display: block;
+			height: 145px;
+			margin: -145px 0 0;
+		}
+	}
+	section:nth-child(even) {
 		@apply bg-green-50;
+	}
+
+	.info-grid {
+		display: grid;
+		grid-template-areas: 'headline' 'info' 'nextgame ';
+		column-gap: 0;
+		row-gap: 1rem;
+
+		@media (min-width: 950px) {
+			grid-template-areas: 'headline nextgame' 'info nextgame';
+			column-gap: 1rem;
+		}
+	}
+
+	.g-headline {
+		grid-area: headline;
+	}
+	.g-info {
+		grid-area: info;
+	}
+	.g-nextGame {
+		grid-area: nextgame;
+
+		@media (min-width: 950px) {
+			margin-top: -5rem;
+		}
 	}
 </style>
