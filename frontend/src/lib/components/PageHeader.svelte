@@ -20,7 +20,7 @@
 				height={image.height}
 				width={image.width}
 				class="w-full object-cover h-full"
-				src={env.PUBLIC_STRAPI_HOST + image.url}
+				src={env.PUBLIC_FRONTEND_STRAPI_HOST + image.url}
 				alt={image.alternativeText}
 			/>
 		</div>
@@ -30,7 +30,7 @@
 				class="w-full"
 				height={image.height}
 				width={image.width}
-				src={env.PUBLIC_STRAPI_HOST + image.url}
+				src={env.PUBLIC_FRONTEND_STRAPI_HOST + image.url}
 				alt={image.alternativeText}
 			/>
 		</div>{/if}

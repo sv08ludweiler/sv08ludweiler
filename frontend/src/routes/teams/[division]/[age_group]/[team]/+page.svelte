@@ -180,7 +180,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="scss">
 	:root {
 		--submenu-height: 56px;
 	}

@@ -8,13 +8,17 @@ services:
       context: .
       dockerfile: Dockerfile.server.prod
       target: strapi
-    image: sv08ludweiler-strapi-server
+      args:
+        - STRAPI_HOST=0.0.0.0
+        - STRAPI_PORT=1337
+        - STRAPI_URL=https://cms.sv08ludweiler.de
+    image: sv08ludweiler-strapi
     restart: unless-stopped
     env_file:
       - .env.server.local
-      # volumes:
+    volumes:
       # /var/customers/docker/ludweiler
-      # - sv08ludweiler-strapi-uploads:/opt/app/public/uploads
+      - sv08ludweiler-strapi-uploads:/opt/app/public/uploads
     ports:
       - "1337:1337"
     networks:
@@ -28,9 +32,9 @@ services:
     image: postgres:15-alpine
     env_file:
       - .env.server.local
-      # volumes:
+    volumes:
       # - strapi-data:/var/lib/postgresql/data/ #using a volume
-      # - sv08ludweiler-strapi-database:/var/lib/postgresql/data/ #using a volume
+      - sv08ludweiler-strapi-database:/var/lib/postgresql/data/ #using a volume
       # - ./database:/var/lib/postgresql/data/ # if you want to use a bind folder
     ports:
       - "5433:5432"
@@ -44,9 +48,12 @@ services:
     tty: true
     env_file:
       - .env.server.local
-    environment:
-      # overwrite 1337 in env file
-      - PORT=3000
+    # environment:
+    #   # overwrite 1337 in env file
+    #   - PORT=3000
+    #   - HOST=0.0.0.0
+    #   - FRONTEND_STRAPI_HOST=https://cms.sv08ludweiler.de
+    #   - PUBLIC_FRONTEND_STRAPI_HOST=https://cms.sv08ludweiler.de
     ports:
       - 1338:3000
     depends_on:
@@ -59,37 +66,37 @@ services:
       target: sveltekit-node
       args:
         - NODE_ENV=${NODE_ENV}
-        - STRAPI_HOST=${STRAPI_HOST}
-        - PUBLIC_STRAPI_HOST=${PUBLIC_STRAPI_HOST}
+        - FRONTEND_STRAPI_HOST=${FRONTEND_STRAPI_HOST}
+        - PUBLIC_FRONTEND_STRAPI_HOST=${PUBLIC_FRONTEND_STRAPI_HOST}
         - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
 
-  sveltekit:
-    container_name: sv08ludweiler-sveltekit
-    image: sv08ludweiler-sveltekit-server
-    restart: unless-stopped
-    tty: true
-    build:
-      context: .
-      dockerfile: Dockerfile.server.prod
-      target: sveltekit
-    user: "node"
-    env_file:
-      - .env.server.local
-    volumes:
-      # - ./frontend/build-node:/opt/build-node 
-      # - sv08ludweiler-sveltekit-data:/opt/build-node
-      # - sv08ludweiler-sveltekit-data:/opt/build-static
-      # - ./frontend/build-static:/opt/build-static
-      - ./node_modules:/opt/node_modules
-      - ../../ludweiler/sveltekit/build-static:/opt/build-static
-      # - ../../ludweiler/sveltekit/build-node:/opt/build-node
-      # entrypoint: ["npm", "install", "--include=dev"]
-      #   - npm run build:node
-    networks:
-      - ludweiler
-    depends_on:
-      strapi:
-        condition: service_completed_successfully
+  # sveltekit:
+  #   container_name: sv08ludweiler-sveltekit
+  #   image: sv08ludweiler-sveltekit
+  #   restart: unless-stopped
+  #   tty: true
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.server.prod
+  #     target: sveltekit
+  #   user: "node"
+  #   env_file:
+  #     - .env.server.local
+  #   volumes:
+  #     # - ./frontend/build-node:/opt/build-node 
+  #     # - sv08ludweiler-sveltekit-data:/opt/build-node
+  #     # - sv08ludweiler-sveltekit-data:/opt/build-static
+  #     # - ./frontend/build-static:/opt/build-static
+  #     - ./node_modules:/opt/node_modules
+  #     - ../../ludweiler/sveltekit/build-static:/opt/build-static
+  #     # - ../../ludweiler/sveltekit/build-node:/opt/build-node
+  #     # entrypoint: ["npm", "install", "--include=dev"]
+  #     #   - npm run build:node
+  #   networks:
+  #     - ludweiler
+  #   depends_on:
+  #     strapi:
+  #       condition: service_completed_successfully
     
       
 

@@ -4,7 +4,7 @@ import type { PageServerLoad } from './$types';
 
 export const load = (async ({ fetch }) => {
 	const landingPageResult = await fetch(
-		`${envPublic.PUBLIC_STRAPI_HOST}/api/landingpage?populate=*`,
+		`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}/api/landingpage?populate=*`,
 		{
 			headers: {
 				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,

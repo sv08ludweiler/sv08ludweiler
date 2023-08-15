@@ -1,10 +1,11 @@
 <script>
+	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 
 	/**
 	 * Unique id of element wrapper.
 	 */
-	export let id = crypto.randomUUID();
+	export let id = browser ? Math.random() : crypto.randomUUID();
 
 	/**
 	 * Fussball.de widget id.

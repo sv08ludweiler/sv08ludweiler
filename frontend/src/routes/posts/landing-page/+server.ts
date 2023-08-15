@@ -29,11 +29,14 @@ export const GET: RequestHandler = async ({ fetch }) => {
 		},
 	});
 
-	const postsRequest = await fetch(`${envPublic.PUBLIC_STRAPI_HOST}/api/posts?${teamPostQuery}`, {
-		headers: {
-			Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
+	const postsRequest = await fetch(
+		`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}/api/posts?${teamPostQuery}`,
+		{
+			headers: {
+				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
+			},
 		},
-	});
+	);
 	const posts = await postsRequest.json();
 
 	if (posts.data) {

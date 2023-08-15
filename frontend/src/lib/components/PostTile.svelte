@@ -106,7 +106,7 @@
 				{#if headerImage.formats.medium}
 					<img
 						class="h-full w-full object-cover"
-						src={env.PUBLIC_STRAPI_HOST + headerImage.formats.medium.url}
+						src={env.PUBLIC_FRONTEND_STRAPI_HOST + headerImage.formats.medium.url}
 						width={headerImage.formats.medium.width}
 						height={headerImage.formats.medium.height}
 						alt={headerImage.alternativeText || title}
@@ -114,7 +114,7 @@
 				{:else}
 					<img
 						class="h-full w-full object-cover"
-						src={env.PUBLIC_STRAPI_HOST + headerImage.url}
+						src={env.PUBLIC_FRONTEND_STRAPI_HOST + headerImage.url}
 						width={headerImage.width}
 						height={headerImage.height}
 						alt={headerImage.alternativeText || title}

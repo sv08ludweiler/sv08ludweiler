@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import FussballDeWidget from '$lib/components/fussball-de-widget/fussballDeWidget.svelte';
-	import headerImage from '$lib/assets/header.jpg';
+	import headerImage from '$lib/assets/header.webp';
 	import PostColumns from '$lib/components/PostColumns.svelte';
 	import SocialMediaLink from '$lib/components/SocialMediaLink.svelte';
 	import FupaWidget from '$lib/components/fupa/FupaWidget.svelte';

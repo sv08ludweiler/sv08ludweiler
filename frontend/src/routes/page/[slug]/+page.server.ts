@@ -22,21 +22,27 @@ export const load = (async ({ fetch, params }) => {
 		},
 	);
 
-	const pages = await (
-		await fetch(`${envPublic.PUBLIC_STRAPI_HOST}/api/pages?${query}`, {
+	const pages = await(
+		await fetch(`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}/api/pages?${query}`, {
 			headers: {
 				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
 			},
 		})
 	).json();
 
-	if (pages.meta.total < 1) {
+	if (pages?.meta?.total < 1) {
 		throw error(404, {
 			message: 'Page not found',
 		});
 	}
 
-	const page = pages.data[0];
+	if (!pages?.data?.length) {
+		throw error(404, {
+			message: 'Page not found',
+		});
+	}
+
+	const page = pages?.data[0];
 
 	let content;
 	if (page?.attributes?.content) {

@@ -15,7 +15,7 @@ export const load = (async ({ fetch, params }) => {
 		populate: '*',
 	});
 
-	const request = await fetch(`${envPublic.PUBLIC_STRAPI_HOST}/api/teams?${teamQuery}`, {
+	const request = await fetch(`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}/api/teams?${teamQuery}`, {
 		headers: {
 			Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
 		},

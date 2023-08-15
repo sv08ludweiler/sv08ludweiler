@@ -1,10 +1,11 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import Card, { Content } from '@smui/card';
 	import { onMount } from 'svelte';
 
 	export let widgetId: string;
 
-	export let id = crypto.randomUUID();
+	export let id = browser ? Math.random() : crypto.randomUUID();
 
 	onMount(() => {
 		team_widget(widgetId, {
@@ -123,7 +124,7 @@
 		return a;
 	}
 
-	function team_widget(widgetId: number, options) {
+	function team_widget(widgetId: string, options) {
 		const a = parseSettings(options);
 		const url = decodeURIComponent(window.location.hostname);
 		scriptLaden(
@@ -368,7 +369,7 @@
 			height: 100%;
 		}
 
-		:global(br[style="clear:both;"]) {
+		:global(br[style='clear:both;']) {
 			display: none;
 		}
 

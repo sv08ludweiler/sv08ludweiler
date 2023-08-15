@@ -67,11 +67,14 @@ export const load = (async ({ fetch }) => {
 			encodeValuesOnly: true, // prettify URL
 		},
 	);
-	const mainMenuPromise = fetch(`${envPublic.PUBLIC_STRAPI_HOST}/api/main-menu?${menuQuery}`, {
-		headers: {
-			Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
+	const mainMenuPromise = fetch(
+		`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}/api/main-menu?${menuQuery}`,
+		{
+			headers: {
+				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
+			},
 		},
-	});
+	);
 
 	const socialMediaQuery = qs.stringify({
 		populate: {
@@ -81,7 +84,7 @@ export const load = (async ({ fetch }) => {
 		},
 	});
 	const socialMediaPromise = fetch(
-		`${envPublic.PUBLIC_STRAPI_HOST}/api/footer-social-media?${socialMediaQuery}`,
+		`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}/api/footer-social-media?${socialMediaQuery}`,
 		{
 			headers: {
 				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
@@ -97,7 +100,7 @@ export const load = (async ({ fetch }) => {
 		},
 	});
 	const supporterPromise = fetch(
-		`${envPublic.PUBLIC_STRAPI_HOST}/api/supporter?${supporterQuery}`,
+		`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}/api/supporter?${supporterQuery}`,
 		{
 			headers: {
 				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,

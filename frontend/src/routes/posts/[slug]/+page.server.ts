@@ -19,8 +19,8 @@ export const load = (async ({ params }) => {
 		},
 	);
 
-	const posts = await (
-		await fetch(`${env.STRAPI_HOST}/api/posts?${query}`, {
+	const posts = await(
+		await fetch(`${env.FRONTEND_STRAPI_HOST}/api/posts?${query}`, {
 			headers: {
 				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
 			},

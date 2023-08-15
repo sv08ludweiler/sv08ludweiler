@@ -57,8 +57,8 @@ services:
       target: sveltekit-node
       args:
         - NODE_ENV=${NODE_ENV}
-        - STRAPI_HOST=${STRAPI_HOST}
-        - PUBLIC_STRAPI_HOST=${PUBLIC_STRAPI_HOST}
+        - FRONTEND_STRAPI_HOST=${FRONTEND_STRAPI_HOST}
+        - PUBLIC_FRONTEND_STRAPI_HOST=${PUBLIC_FRONTEND_STRAPI_HOST}
         - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
 
   sveltekit:
