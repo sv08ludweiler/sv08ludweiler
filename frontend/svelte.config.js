@@ -15,7 +15,7 @@ const config = {
 		adapter:
 			process.env.ADAPTER === 'static'
 				? adapterStatic({
-						pages: './build-static',
+						pages: './build-docker/build-static',
 						// assets: 'build-static',
 						// fallback: undefined,
 						precompress: true,

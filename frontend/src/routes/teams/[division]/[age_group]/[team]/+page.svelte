@@ -6,6 +6,7 @@
 	import type { StrapiImage } from '$lib/types/strapi.types';
 	import FussballDeWidget from '$lib/components/fussball-de-widget/fussballDeWidget.svelte';
 	import FupaWidget from '$lib/components/fupa/FupaWidget.svelte';
+	import TrainingList from '$lib/components/TrainingList.svelte';
 
 	export let data: PageData;
 
@@ -140,15 +141,8 @@
 
 				{#if trainings?.length}
 					<h3>Training</h3>
-					<ul>
-						{#each trainings as training}
-							<li>
-								{training.day}: {training.start}
-								{#if training.end}
-									- {training.end}{/if}
-							</li>
-						{/each}
-					</ul>
+					<TrainingList {trainings}></TrainingList>
+					
 				{/if}
 			</div>
 			<div class="g-nextGame">

@@ -379,5 +379,9 @@
 			align-items: center;
 			justify-content: center;
 		}
+
+		:global(.live_uhrzeit) {
+			display: none;
+		}
 	}
 </style>

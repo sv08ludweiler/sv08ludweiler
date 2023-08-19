@@ -4,7 +4,7 @@ services:
 
   strapi:
     container_name: sv08ludweiler-strapi
-    image: sv08ludweiler-strapi-server
+    image: sv08ludweiler-strapi
     restart: unless-stopped
     env_file:
       - .env
@@ -52,7 +52,7 @@ services:
 
   sveltekit:
     container_name: sv08ludweiler-sveltekit
-    image: sv08ludweiler-sveltekit-server
+    image: sv08ludweiler-sveltekit
     restart: unless-stopped
     tty: true
     user: "node"
@@ -61,13 +61,13 @@ services:
     environment:
       # overwrite 1337 in env file
       - PORT=3000
-    ports:
-      - 1338:3000
+    # ports:
+    #   - 1338:3000
     volumes:
       - ./node_modules:/opt/node_modules
       # - ../../ludweiler/sveltekit/build-node:/opt/build-node
       - ../../ludweiler/sveltekit/build-static:/opt/build-static
-    # entrypoint: ["npm", "install", "--include=dev"]
+    entrypoint: ["npm", "install", "--include=dev"]
     #   - npm run build:node
     networks:
       - ludweiler

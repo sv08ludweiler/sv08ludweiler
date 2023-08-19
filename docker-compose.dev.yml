@@ -30,6 +30,8 @@ services:
     container_name: sv08ludweiler-strapiDB
     restart: unless-stopped
     image: postgres:15-alpine
+    env_file:
+      - .env
     volumes:
       # using dev volume
       - strapi-data:/var/lib/postgresql/data/
@@ -43,7 +45,7 @@ services:
   sveltekit-node:
     container_name: sv08ludweiler-sveltekit-node
     image: sv08ludweiler-sveltekit-node
-    # restart: on-failure
+    restart: unless-stopped
     tty: true
     env_file:
       - .env
@@ -71,7 +73,7 @@ services:
     container_name: sv08ludweiler-sveltekit
     image: sv08ludweiler-sveltekit
     # restart: on-failure
-    tty: true
+    # tty: true
     build:
       context: .
       dockerfile: Dockerfile.server.prod
@@ -84,7 +86,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./test/build-static:/opt/build-static
+      - ./frontend/build-docker:/opt/build-docker/
       # - ./node_modules:/opt/node_modules
     networks:
       - ludweiler

@@ -4,8 +4,8 @@ import qs from 'qs';
 import type { LayoutServerLoad } from './$types';
 
 // prerender all
-
 export const prerender = 'auto';
+export const trailingSlash = 'always';
 
 export const load = (async ({ fetch }) => {
 	const menuQuery = qs.stringify(
@@ -113,7 +113,13 @@ export const load = (async ({ fetch }) => {
 		socialMediaPromise,
 		supporterPromise,
 	]);
+
+	console.log({ host: envPublic.PUBLIC_FRONTEND_STRAPI_HOST, mainMenuRequest });
+
 	const mainMenu = await mainMenuRequest.json();
+
+	console.log({ mainMenu });
+	
 	const supporter = await supporterRequest.json();
 	const socialMedia = await socialMediaRequest.json();
 

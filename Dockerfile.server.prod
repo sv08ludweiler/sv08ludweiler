@@ -64,7 +64,7 @@ WORKDIR /opt
 COPY ./frontend .
 COPY --from=sveltekit-build /opt/node_modules ./node_modules
 RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --include=dev
-RUN npm cache verify
+# RUN npm cache verify
 ENV PATH /opt/node_modules/.bin:$PATH
 # COPY ./frontend/package.json package.json
 # RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --include=dev
