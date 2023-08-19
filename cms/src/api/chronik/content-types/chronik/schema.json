@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "chroniks",
+  "info": {
+    "singularName": "chronik",
+    "pluralName": "chroniks",
+    "displayName": "History",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "entries": {
+      "type": "dynamiczone",
+      "components": [
+        "history.history-entry"
+      ]
+    }
+  }
+}

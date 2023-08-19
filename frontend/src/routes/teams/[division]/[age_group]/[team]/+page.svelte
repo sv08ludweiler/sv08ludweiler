@@ -98,19 +98,19 @@
 	</div>
 {/if}
 
-<div class="team-content" class:has-submenu={hasSubmenu}>
+<div class="page-content" class:has-submenu={hasSubmenu}>
 	<PageHeader image={headerImage} maxHeight={true}></PageHeader>
 
 	<section>
 		<div class="p-4 md:container md:mx-auto info-grid">
 			<div class="g-headline">
 				<h2 class="m-0 target" id="infos">
-					{#if ageGroup.attributes}
+					<!-- {#if ageGroup.attributes}
 						<span>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</span>
 					{/if}
 					{#if divisions?.length && divisions[0].attributes.name !== ageGroup.attributes.alternativeName}
 						<span>{divisions[0].attributes.name}</span>
-					{/if}
+					{/if} -->
 					<span>{team.display_name}</span>
 				</h2>
 				{#if team.league}
@@ -175,15 +175,13 @@
 </div>
 
 <style lang="scss">
-	:root {
-		--submenu-height: 56px;
-	}
+
 
 	.submenu {
 		height: var(--submenu-height);
 	}
 
-	.team-content {
+	.page-content {
 		&.has-submenu {
 			margin-top: var(--submenu-height);
 		}
