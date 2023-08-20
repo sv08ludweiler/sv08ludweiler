@@ -76,7 +76,8 @@
 							title={navItem.title}
 							slug={navItem.division.data.attributes.slug}
 							teams={navItem.division.data.attributes.teams.data}
-							ageGroups={navItem.division.data.attributes.age_groups.data}
+							ageGroups={navItem.age_groups?.data}
+							showAgeGroup={navItem.show_age_group}
 						/>
 					{:else if navItem.__component === 'navigation.page-navigation-item'}
 						<SimpleNavItem
@@ -150,7 +151,7 @@
 							title={navItem.title}
 							slug={navItem.division.data.attributes.slug}
 							teams={navItem.division.data.attributes.teams.data}
-							ageGroups={navItem.division.data.attributes.age_groups.data}
+							ageGroups={navItem.age_groups?.data}
 						/>
 					{:else if navItem.__component === 'navigation.page-navigation-item'}
 						<SimpleNavItem

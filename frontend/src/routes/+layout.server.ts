@@ -15,7 +15,7 @@ export const load = (async ({ fetch }) => {
 					on: {
 						// populate: {
 						'navigation.team-navigation-item': {
-							fields: ['title'],
+							fields: ['title', 'show_age_group'],
 							populate: {
 								division: {
 									fields: ['age_groups', 'teams', 'slug'],
@@ -24,10 +24,12 @@ export const load = (async ({ fetch }) => {
 											populate: ['age_group'],
 											sort: ['display_name:asc', 'name:asc'],
 											publicationState: 'live',
+											groupBy: 'age_group.slug',
 										},
-										age_groups: true,
+										// age_groups: true,
 									},
 								},
+								age_groups: true,
 							},
 						},
 						'navigation.page-nested-navigation-item': {
@@ -114,12 +116,8 @@ export const load = (async ({ fetch }) => {
 		supporterPromise,
 	]);
 
-	console.log({ host: envPublic.PUBLIC_FRONTEND_STRAPI_HOST, mainMenuRequest });
-
 	const mainMenu = await mainMenuRequest.json();
 
-	console.log({ mainMenu });
-	
 	const supporter = await supporterRequest.json();
 	const socialMedia = await socialMediaRequest.json();
 

@@ -5,7 +5,9 @@
 
 	export let widgetId: string;
 
-	export let id = browser ? Math.random() : crypto.randomUUID();
+	export let id = browser
+		? `fupa-id_${Date.now()}${Math.floor(Math.random() * 100)}`
+		: crypto.randomUUID();
 
 	onMount(() => {
 		team_widget(widgetId, {
@@ -330,9 +332,9 @@
 	// }
 </script>
 
-<Card class="inline-flex items-center justify-center flex-1">
-	<Content class="inline-flex justify-center w-full h-full">
-		<div id={`widget-${id}`} class="flex justify-center w-full h-full">...</div>
+<Card class="inline-flex flex-1 items-center justify-center">
+	<Content class="inline-flex h-full w-full justify-center">
+		<div id={`widget-${id}`} class="flex h-full w-full justify-center">...</div>
 	</Content>
 </Card>
 

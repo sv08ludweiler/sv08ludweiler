@@ -25,7 +25,7 @@
       "relation": "oneToMany",
       "target": "api::age-group.age-group"
     },
-    "show_age_group": {
+    "group_by_age_group": {
       "type": "boolean",
       "default": true
     }

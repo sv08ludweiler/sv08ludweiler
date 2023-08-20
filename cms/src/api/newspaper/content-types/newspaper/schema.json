@@ -4,7 +4,8 @@
   "info": {
     "singularName": "newspaper",
     "pluralName": "newspapers",
-    "displayName": "Newspaper"
+    "displayName": "Newspaper",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,18 +17,20 @@
       "required": true
     },
     "file": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "files"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "header_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }

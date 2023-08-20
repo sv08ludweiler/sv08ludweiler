@@ -1,18 +1,26 @@
 import { env } from '$env/dynamic/private';
-import { env as envPublic } from '$env/dynamic/public';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ fetch }) => {
-	const landingPageResult = await fetch(
-		`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}/api/landingpage?populate=*`,
-		{
-			headers: {
-				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
-			},
+	const landingPagePromise = fetch(`${env.FRONTEND_STRAPI_HOST}/api/landingpage?populate=*`, {
+		headers: {
+			Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
 		},
-	);
+	});
+
+	const newsPromise = fetch(`/posts/landing-page`);
+
+	const newsPaperPromise = fetch(`/newspaper/latest`);
+
+	const [landingPageResult, newsResult, newsPaperResult] = await Promise.all([
+		landingPagePromise,
+		newsPromise,
+		newsPaperPromise,
+	]);
 
 	const landingPage = await landingPageResult.json();
+	const news = newsResult.json();
+	const newspaper = newsPaperResult.json();
 
 	// const promises = [];
 	// if (landingPage?.data?.attributes?.headline_widgets.length) {
@@ -28,7 +36,8 @@ export const load = (async ({ fetch }) => {
 
 	return {
 		landingPage,
+		news,
+		newspaper,
 		// nextGames,
-		news: (await fetch('/posts/landing-page')).json(),
 	};
 }) satisfies PageServerLoad;

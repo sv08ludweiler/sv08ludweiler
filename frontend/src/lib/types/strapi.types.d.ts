@@ -26,3 +26,28 @@ export interface StrapiImage extends StrapiImageFormat {
 	createdAt: string;
 	updatedAt: string;
 }
+
+export interface AgeGroup {
+	id: number;
+	attributes: {
+		name: string;
+
+		slug: string;
+		alternativeName: string;
+		createdAt: string;
+		updatedAt: string;
+		publishedAt: string;
+	};
+}
+
+export interface Team {
+	id: number;
+	attributes: {
+		name: string;
+		display_name: string;
+		slug: string;
+		age_group: {
+			data: AgeGroup;
+		};
+	};
+}

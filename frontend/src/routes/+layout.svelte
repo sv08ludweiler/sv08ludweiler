@@ -10,6 +10,7 @@
 	import NavBar from '$lib/components/nav/NavBar.svelte';
 
 	export let data: LayoutData;
+	
 
 </script>
 

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-08-19T12:33:12.707Z"
+    "x-generation-date": "2023-08-20T14:07:19.183Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -5373,7 +5373,7 @@
               }
             }
           },
-          "show_age_group": {
+          "group_by_age_group": {
             "type": "boolean"
           }
         }
@@ -5386,7 +5386,8 @@
         "properties": {
           "data": {
             "required": [
-              "title"
+              "title",
+              "file"
             ],
             "type": "object",
             "properties": {
@@ -5468,7 +5469,8 @@
       "Newspaper": {
         "type": "object",
         "required": [
-          "title"
+          "title",
+          "file"
         ],
         "properties": {
           "title": {
