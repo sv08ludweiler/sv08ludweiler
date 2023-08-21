@@ -102,7 +102,7 @@
 >
 	<Card class="flex flex-auto ">
 		{#if headerImage}
-			<div class="aspect-video">
+			<div class="aspect-video w-full h-60 overflow-hidden">
 				{#if headerImage.formats.medium}
 					<img
 						class="h-full w-full object-cover"

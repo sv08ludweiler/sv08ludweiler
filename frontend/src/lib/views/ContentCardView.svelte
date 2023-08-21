@@ -41,7 +41,7 @@
 <PageHeader image={headerImage}></PageHeader>
 
 <div class="-mt-36 flex-auto p-4 md:container md:mx-auto">
-	<Card variant="raised">
+	<Card variant="raised" class="overflow-hidden">
 		<Content
 			><h2 class="mt-0">
 				{title}

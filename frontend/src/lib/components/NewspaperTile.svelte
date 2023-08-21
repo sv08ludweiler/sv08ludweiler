@@ -40,11 +40,12 @@
 <a
 	class="flex flex-auto p-[1px] drop-shadow-sm transition-all hover:drop-shadow-xl focus:drop-shadow-xl"
 	{href}
+	target="_blank"
 	use:Ripple={{ surface: true, color: 'primary' }}
 >
 	<Card class="flex flex-auto ">
 		{#if headerImage}
-			<div class="aspect-video">
+			<div class="aspect-video w-full h-60 overflow-hidden">
 				{#if headerImage.formats.medium}
 					<img
 						class="h-full w-full object-cover"

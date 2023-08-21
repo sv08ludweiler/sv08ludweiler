@@ -33,17 +33,17 @@
 
 		headerImage = data.team.header_image?.data?.attributes;
 
-		trainings = data.team.training; //Array
+		trainings = data.team?.training; //Array
 
-		trainers = data.team.trainer.data; // Array
+		trainers = data.team.trainers?.data; // Array
 
-		supervisors = data.team.supervisor?.data; // Array
+		supervisors = data.team.supervisors?.data; // Array
 
 		ageGroup = data.team.age_group?.data;
 
 		divisions = data.team.divisions?.data; // Array
 
-		widgetFussballDe = data.team.widgetFussballDe;
+		widgetFussballDe = data?.team?.widgetFussballDe;
 
 		nextGameWidget = data.team.fupa_widget_next_game;
 	}
@@ -125,7 +125,7 @@
 					<h3>Trainer</h3>
 					{#each trainers as trainer}
 						<ul>
-							<li>{trainer.attributes.firstname} {trainer.attributes.name}</li>
+							<li>{trainer.attributes.first_name} {trainer.attributes.last_name}</li>
 						</ul>
 					{/each}
 				{/if}
@@ -134,7 +134,7 @@
 					<h3>Betreuer</h3>
 					{#each supervisors as supervisor}
 						<ul>
-							<li>{supervisor.attributes.firstname} {supervisor.attributes.name}</li>
+							<li>{supervisor.attributes.first_name} {supervisor.attributes.last_name}</li>
 						</ul>
 					{/each}
 				{/if}

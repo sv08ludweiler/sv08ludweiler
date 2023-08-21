@@ -43,15 +43,15 @@
       },
       "type": "string"
     },
-    "people": {
+    "trainers": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::person.person"
     },
-    "supervisor": {
+    "supervisors": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "plugin::users-permissions.user"
+      "target": "api::person.person"
     },
     "training": {
       "type": "component",

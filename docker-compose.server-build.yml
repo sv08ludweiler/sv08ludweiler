@@ -70,28 +70,28 @@ services:
         - PUBLIC_FRONTEND_STRAPI_HOST=${PUBLIC_FRONTEND_STRAPI_HOST}
         - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
 
-  sveltekit:
-      container_name: sv08ludweiler-sveltekit
-      image: sv08ludweiler-sveltekit
-      build:
-        context: .
-        dockerfile: Dockerfile.server.prod
-        target: sveltekit
-        args:
-          - NODE_ENV=${NODE_ENV}
-          - FRONTEND_STRAPI_HOST=${FRONTEND_STRAPI_HOST}
-          - PUBLIC_FRONTEND_STRAPI_HOST=${PUBLIC_FRONTEND_STRAPI_HOST}
-          - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
-      env_file:
-        - .env
-      volumes:
-        - ../../webs/ludweiler/sveltekit:/opt/build-docker
-        - ./node_modules:/opt/node_modules
-      networks:
-        - ludweiler
-      depends_on:
-        strapi:
-          condition: service_started
+  # sveltekit:
+  #     container_name: sv08ludweiler-sveltekit
+  #     image: sv08ludweiler-sveltekit
+  #     build:
+  #       context: .
+  #       dockerfile: Dockerfile.server.prod
+  #       target: sveltekit
+  #       args:
+  #         - NODE_ENV=${NODE_ENV}
+  #         - FRONTEND_STRAPI_HOST=${FRONTEND_STRAPI_HOST}
+  #         - PUBLIC_FRONTEND_STRAPI_HOST=${PUBLIC_FRONTEND_STRAPI_HOST}
+  #         - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
+  #     env_file:
+  #       - .env
+  #     volumes:
+  #       - ../../webs/ludweiler/sveltekit:/opt/build-docker
+  #       - ./node_modules:/opt/node_modules
+  #     networks:
+  #       - ludweiler
+  #     depends_on:
+  #       strapi:
+  #         condition: service_started
     
       
 
