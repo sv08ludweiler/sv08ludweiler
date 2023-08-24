@@ -15,7 +15,7 @@ export const load = (async ({ fetch }) => {
 					on: {
 						// populate: {
 						'navigation.team-navigation-item': {
-							fields: ['title', 'show_age_group'],
+							fields: ['title', 'group_by_age_group'],
 							populate: {
 								division: {
 									fields: ['age_groups', 'teams', 'slug'],

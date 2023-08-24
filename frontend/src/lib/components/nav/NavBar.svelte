@@ -77,7 +77,7 @@
 							slug={navItem.division.data.attributes.slug}
 							teams={navItem.division.data.attributes.teams.data}
 							ageGroups={navItem.age_groups?.data}
-							showAgeGroup={navItem.show_age_group}
+							groupByAge={navItem.group_by_age_group}
 						/>
 					{:else if navItem.__component === 'navigation.page-navigation-item'}
 						<SimpleNavItem

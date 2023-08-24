@@ -8,7 +8,7 @@
 	/**
 	 * Whether nav items are grouped by age_group
 	 */
-	export let showAgeGroup = false;
+	export let groupByAge = false;
 
 	export let teams: Array<Team> = [];
 
@@ -34,7 +34,7 @@
 	let groupedTeamsByAge = new Map<AgeGroup['attributes']['slug'], Array<Team>>();
 	let availableAgeGroups = new Map<AgeGroup['attributes']['slug'], AgeGroup>();
 
-	$: if (showAgeGroup) {
+	$: if (groupByAge) {
 		const groups = new Map<AgeGroup['attributes']['slug'], AgeGroup>();
 		const groupedTeams = new Map<AgeGroup['attributes']['slug'], Array<Team>>();
 
@@ -83,7 +83,7 @@
 	>
 		<button class="menu-item">{title}</button>
 		<ol class={!mobile ? 'nav-menu-flyout flyout -z-10' : 'flex flex-col'}>
-			{#if showAgeGroup}
+			{#if groupByAge}
 				<!-- <div>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</div> -->
 				{#each [...groupedTeamsByAge] as [groupSlug, teams]}
 					{@const currentAgeGroup = availableAgeGroups.get(groupSlug)}
