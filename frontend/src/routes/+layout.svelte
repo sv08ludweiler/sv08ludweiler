@@ -1,6 +1,7 @@
 <script lang="ts">
 	import wappen from '$lib/assets/wappen.png';
 	import SocialMediaLink from '$lib/components/SocialMediaLink.svelte';
+	import { pwaInfo } from 'virtual:pwa-info';
 
 	import '../app.css';
 	import '../global.css';
@@ -10,9 +11,14 @@
 	import NavBar from '$lib/components/nav/NavBar.svelte';
 
 	export let data: LayoutData;
-	
 
+
+	$: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
 </script>
+
+<svelte:head> 
+ 	{@html webManifestLink} 
+</svelte:head>
 
 <div class="flex h-full w-full flex-col">
 	<NavBar mainMenu={data?.mainMenu}></NavBar>
@@ -54,6 +60,10 @@
 		</section>
 	</footer>
 </div>
+
+{#await import('$lib/components/ReloadPrompt.svelte') then { default: ReloadPrompt}}
+  <ReloadPrompt />
+{/await}
 
 <style>
 	main {
