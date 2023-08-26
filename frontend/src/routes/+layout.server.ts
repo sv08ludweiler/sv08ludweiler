@@ -4,7 +4,7 @@ import qs from 'qs';
 import type { LayoutServerLoad } from './$types';
 
 // prerender all
-export const prerender = 'auto';
+// export const prerender = 'auto';
 export const trailingSlash = 'always';
 
 export const load = (async ({ fetch }) => {
