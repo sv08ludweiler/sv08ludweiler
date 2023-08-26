@@ -8,13 +8,17 @@ services:
       context: .
       dockerfile: Dockerfile.server.prod
       target: strapi
+      args:
+        - STRAPI_HOST=0.0.0.0
+        - STRAPI_PORT=1337
     image: sv08ludweiler-strapi
     restart: unless-stopped
     env_file:
-      - .env
+      - .env.prod
     volumes:
       # /var/customers/docker/ludweiler
-      - sv08ludweiler-strapi-uploads:/opt/app/public/uploads
+      - sv08ludweiler-strapi-public:/opt/app/public
+      - ./bridge:/opt/app/bridge
     ports:
       - "1337:1337"
     networks:
@@ -27,7 +31,7 @@ services:
     restart: unless-stopped
     image: postgres:15-alpine
     env_file:
-      - .env
+      - .env.prod
     volumes:
       # - strapi-data:/var/lib/postgresql/data/ #using dev volume
       # using a volume
@@ -43,14 +47,13 @@ services:
     restart: unless-stopped
     tty: true
     env_file:
-      - .env
-    environment:
-      # overwrite 1337 in env file
-      - PORT=3000
+      - .env.prod
     ports:
       - 1338:3000
     depends_on:
       - strapi
+    networks:
+      - ludweiler
     build:
       context: .
       dockerfile: Dockerfile.server.prod
@@ -61,37 +64,37 @@ services:
         - PUBLIC_FRONTEND_STRAPI_HOST=${PUBLIC_FRONTEND_STRAPI_HOST}
         - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
 
-  sveltekit:
-    container_name: sv08ludweiler-sveltekit
-    image: sv08ludweiler-sveltekit
-    restart: unless-stopped
-    tty: true
-    build:
-      context: .
-      dockerfile: Dockerfile.server.prod
-      target: sveltekit
-    user: "node"
-    env_file:
-      - .env
-    volumes:
-      - ./node_modules:/opt/node_modules
-      - ./frontend/build-static:/opt/build-static
-    networks:
-      - ludweiler
-    depends_on:
-      - strapi
+  # sveltekit:
+  #   container_name: sv08ludweiler-sveltekit
+  #   image: sv08ludweiler-sveltekit
+  #   restart: unless-stopped
+  #   tty: true
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.server.prod
+  #     target: sveltekit
+  #   user: "node"
+  #   env_file:
+  #     - .env
+  #   volumes:
+  #     - ./node_modules:/opt/node_modules
+  #     - ./frontend/build-static:/opt/build-static
+  #   networks:
+  #     - ludweiler
+  #   depends_on:
+  #     - strapi
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-    networks:
-      - ludweiler
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
+  #   networks:
+  #     - ludweiler
 
 volumes:
   sv08ludweiler-sveltekit-data:
-  sv08ludweiler-strapi-uploads:
+  sv08ludweiler-strapi-public:
   sv08ludweiler-strapi-database:
 
 
