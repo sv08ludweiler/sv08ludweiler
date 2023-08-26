@@ -1,0 +1,72 @@
+# Creating multi-stage build for production
+FROM --platform=linux/amd64 node:20-alpine as build-strapi
+# RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
+WORKDIR /opt
+COPY ./cms/package.json .
+COPY ./cms/package-lock.json .
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --omit=dev
+ENV PATH /opt/node_modules/.bin:$PATH
+WORKDIR /opt/app
+COPY ./cms .
+ARG STRAPI_URL
+ENV STRAPI_URL $STRAPI_URL
+RUN npm run build
+
+# Creating final production image
+FROM --platform=linux/amd64 node:20-alpine as strapi
+RUN apk add --no-cache vips-dev
+WORKDIR /opt
+COPY --from=build-strapi /opt/node_modules ./node_modules
+WORKDIR /opt/app
+COPY --from=build-strapi /opt/app .
+ENV PATH /opt/node_modules/.bin:$PATH
+RUN chown -R node:node /opt/app
+USER node
+EXPOSE 1337
+CMD ["npm", "run", "start"] 
+
+
+FROM --platform=linux/amd64 node:20-alpine as sveltekit-build
+WORKDIR /opt
+COPY ./frontend .
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --include=dev
+ARG NODE_ENV
+ENV NODE_ENV $NODE_ENV
+ARG PUBLIC_FRONTEND_STRAPI_HOST
+ENV PUBLIC_FRONTEND_STRAPI_HOST $PUBLIC_FRONTEND_STRAPI_HOST
+ARG FRONTEND_STRAPI_HOST
+ENV FRONTEND_STRAPI_HOST $FRONTEND_STRAPI_HOST 
+ARG STRAPI_API_TOKEN
+ENV STRAPI_API_TOKEN $STRAPI_API_TOKEN
+RUN npm run build:node
+
+
+FROM --platform=linux/amd64 node:20-alpine as sveltekit-node
+WORKDIR /opt
+COPY --from=sveltekit-build /opt/package.json .
+COPY --from=sveltekit-build /opt/build-node ./build-node
+RUN chown -R node:node /opt/build-node
+# COPY --from=sveltekit-build /opt/node_modules ./node_modules
+RUN npm config set fetch-retry-maxtimeout 600000 -g
+RUN npm install --omit dev --ignore-scripts
+RUN npm install dotenv
+ENV PATH /opt/node_modules/.bin:$PATH
+USER node
+EXPOSE 3000
+ENV HOST=0.0.0.0
+ENV PORT=3000
+CMD ["node","-r", "dotenv/config", "build-node"]
+
+
+# Creating multi-stage build for production
+FROM --platform=linux/amd64 node:20-alpine as sveltekit
+WORKDIR /opt
+COPY ./frontend .
+COPY --from=sveltekit-build /opt/node_modules ./node_modules
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --include=dev
+# RUN npm cache verify
+ENV PATH /opt/node_modules/.bin:$PATH
+# COPY ./frontend/package.json package.json
+# RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --include=dev
+# RUN npm run build:static
+ENTRYPOINT [ "npm", "run", "build:static"]

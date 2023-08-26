@@ -24,11 +24,20 @@
 
 	let focusIn = false;
 
-	function openMenu() {}
+	function openMenu() {
+		focusIn = !focusIn;
+	}
+
+	/**
+	 * Whether mobile styling is active.
+	 */
+	export let mobile = false;
 </script>
 
 <li
-	class="nav-menu inline-flex h-full items-center justify-center"
+	class={mobile
+		? 'flex flex-col items-start p-4'
+		: 'nav-menu inline-flex h-full items-center justify-center'}
 	on:focusin={() => (focusIn = true)}
 	on:focusout={() => (focusIn = false)}
 >
@@ -38,13 +47,18 @@
 		<button class="menu-item" on:click={openMenu} aria-expanded="false">{title}</button>
 	{/if}
 
-	<ul class="flyout nav-menu-flyout -z-10" class:open={focusIn}>
+	<ul
+		class={mobile ? 'flex flex-col' : 'flyout nav-menu-flyout -z-10'}
+		class:open={focusIn || mobile}
+	>
 		{#each children as child}
-			<li class="inline-flex min-h-[2rem] items-center">
-				<a class="h-full w-full p-4" href={`/page/${child.page.data.attributes.slug}`}
-					>{child.title}</a
-				>
-			</li>
+			{#if child?.page?.data}
+				<li class="inline-flex min-h-[2rem] items-center">
+					<a class="h-full w-full p-4" href={`/page/${child.page.data.attributes.slug}`}
+						>{child.title}</a
+					>
+				</li>
+			{/if}
 		{/each}
 	</ul>
 </li>

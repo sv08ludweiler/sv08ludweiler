@@ -17,8 +17,8 @@
       "components": [
         "navigation.external-navigation-item",
         "navigation.page-navigation-item",
-        "navigation.team-navigation-item",
-        "navigation.page-nested-navigation-item"
+        "navigation.page-nested-navigation-item",
+        "navigation.team-navigation-item"
       ]
     }
   }

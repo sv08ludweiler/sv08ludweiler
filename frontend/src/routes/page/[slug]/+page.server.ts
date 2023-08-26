@@ -1,44 +1,48 @@
-import { STRAPI_API_TOKEN } from '$env/static/private';
+import { env } from '$env/dynamic/private';
+import { env as envPublic } from '$env/dynamic/public';
+import { error } from '@sveltejs/kit';
+import { compile } from 'mdsvex';
 import qs from 'qs';
 import type { PageServerLoad } from './$types';
-import { compile } from 'mdsvex';
-import { error } from '@sveltejs/kit';
-import type { ApiPagePage } from 'cms/types/generated/contentTypes';
 
 export const load = (async ({ fetch, params }) => {
 	const query = qs.stringify(
 		{
 			filters: {
 				slug: {
-					$eq: params.slug
-				}
+					$eq: params.slug,
+				},
 			},
 			populate: {
-				header_image: true
-			}
+				header_image: true,
+			},
 		},
 		{
-			encodeValuesOnly: true // prettify URL
-		}
+			encodeValuesOnly: true, // prettify URL
+		},
 	);
 
-	const pages = await (
-		await fetch(`http://0.0.0.0:1337/api/pages?${query}`, {
+	const pages = await(
+		await fetch(`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}/api/pages?${query}`, {
 			headers: {
-				Authorization: `bearer ${STRAPI_API_TOKEN}`
-			}
+				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
+			},
 		})
 	).json();
 
-	if (pages.meta.total < 1) {
+	if (pages?.meta?.total < 1) {
 		throw error(404, {
-			message: 'Page not found'
+			message: 'Page not found',
 		});
 	}
 
-	const page = pages.data[0];
+	if (!pages?.data?.length) {
+		throw error(404, {
+			message: 'Page not found',
+		});
+	}
 
-	console.log('page', params.slug, page);
+	const page = pages?.data[0];
 
 	let content;
 	if (page?.attributes?.content) {
@@ -47,6 +51,6 @@ export const load = (async ({ fetch, params }) => {
 
 	return {
 		page,
-		content
+		content,
 	};
 }) satisfies PageServerLoad;

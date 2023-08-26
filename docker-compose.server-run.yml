@@ -1,0 +1,85 @@
+version: "3"
+
+services:
+
+  strapi:
+    container_name: sv08ludweiler-strapi
+    image: sv08ludweiler-strapi
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # /var/customers/docker/ludweiler
+     - ./uploads:/opt/app/public/uploads
+    ports:
+      - "1337:1337"
+    networks:
+      - ludweiler
+    depends_on:
+      - strapiDB
+
+  strapiDB:
+    container_name: sv08ludweiler-strapiDB
+    restart: unless-stopped
+    image: postgres:15-alpine
+    env_file:
+      - .env
+    volumes:
+      # - strapi-data:/var/lib/postgresql/data/ #using a volume
+      # - sv08ludweiler-strapi-data:/var/lib/postgresql/data/ #using a volume
+      - ./database:/var/lib/postgresql/data/ # if you want to use a bind folder
+    ports:
+      - "5433:5432"
+    networks:
+      - ludweiler
+
+  sveltekit-node:
+    container_name: sv08ludweiler-sveltekit-node
+    image: sv08ludweiler-sveltekit-node
+    restart: unless-stopped
+    tty: true
+    env_file:
+      - .env
+    environment:
+      # overwrite 1337 in env file
+      - PORT=3000
+    ports:
+      - 1338:3000
+    networks:
+      - ludweiler
+    depends_on:
+      - strapi
+
+  sveltekit:
+    container_name: sv08ludweiler-sveltekit
+    image: sv08ludweiler-sveltekit
+    restart: unless-stopped
+    tty: true
+    user: "node"
+    env_file:
+      - .env
+    environment:
+      # overwrite 1337 in env file
+      - PORT=3000
+    # ports:
+    #   - 1338:3000
+    volumes:
+      - ./node_modules:/opt/node_modules
+      # - ../../ludweiler/sveltekit/build-node:/opt/build-node
+      - ../../ludweiler/sveltekit/build-static:/opt/build-static
+    entrypoint: ["npm", "install", "--include=dev"]
+    #   - npm run build:node
+    networks:
+      - ludweiler
+    depends_on:
+      - strapi
+
+volumes:
+  sv08ludweiler-sveltekit-data:
+  sv08ludweiler-strapi-data:
+
+
+networks:
+  ludweiler:
+    name: ludweiler
+    driver: bridge

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_widget_fupa_widgets",
+  "info": {
+    "displayName": "Fupa Widget"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "widget_id": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

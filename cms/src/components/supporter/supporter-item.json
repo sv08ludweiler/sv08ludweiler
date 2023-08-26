@@ -1,0 +1,28 @@
+{
+	"collectionName": "components_supporter_supporter_items",
+	"info": {
+		"displayName": "Supporter Item",
+		"description": ""
+	},
+	"options": {},
+	"attributes": {
+		"title": {
+			"type": "string",
+			"required": true
+		},
+		"link": {
+			"type": "string",
+			"required": false
+		},
+		"image": {
+			"type": "media",
+			"multiple": false,
+			"required": true,
+			"allowedTypes": ["images"]
+		},
+		"highlighted": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

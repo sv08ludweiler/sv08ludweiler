@@ -49,6 +49,16 @@
         }
       },
       "component": "widget.results-fussball-de"
+    },
+    "headline_widgets": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "widget.fupa-widget"
     }
   }
 }

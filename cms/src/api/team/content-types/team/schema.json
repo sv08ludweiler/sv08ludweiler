@@ -32,7 +32,8 @@
         }
       },
       "type": "uid",
-      "required": true
+      "required": true,
+      "targetField": "name"
     },
     "league": {
       "pluginOptions": {
@@ -42,15 +43,15 @@
       },
       "type": "string"
     },
-    "trainer": {
+    "trainers": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "plugin::users-permissions.user"
+      "target": "api::person.person"
     },
-    "supervisor": {
+    "supervisors": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "plugin::users-permissions.user"
+      "target": "api::person.person"
     },
     "training": {
       "type": "component",
@@ -112,6 +113,16 @@
         }
       },
       "type": "richtext"
+    },
+    "fupa_widget_next_game": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "widget.fupa-widget"
     }
   }
 }

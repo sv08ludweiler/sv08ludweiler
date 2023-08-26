@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "newspapers",
+  "info": {
+    "singularName": "newspaper",
+    "pluralName": "newspapers",
+    "displayName": "Newspaper",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "header_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

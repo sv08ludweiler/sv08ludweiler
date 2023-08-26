@@ -1,28 +1,29 @@
-import { STRAPI_API_TOKEN } from '$env/static/private';
+import { env } from '$env/dynamic/private';
+import { env as envPublic } from '$env/dynamic/public';
 import qs from 'qs';
-import type { PageServerLoad } from '../../../../$types';
 import { error } from '@sveltejs/kit';
 import { compile } from 'mdsvex';
+import type { PageServerLoad } from './$types';
 
 export const load = (async ({ fetch, params }) => {
 	const teamQuery = qs.stringify({
 		filters: {
 			slug: {
-				$eq: params.team
-			}
+				$eq: params.team,
+			},
 		},
-		populate: '*'
+		populate: '*',
 	});
 
-	const request = await fetch(`http://0.0.0.0:1337/api/teams?${teamQuery}`, {
+	const request = await fetch(`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}/api/teams?${teamQuery}`, {
 		headers: {
-			Authorization: `bearer ${STRAPI_API_TOKEN}`
-		}
+			Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
+		},
 	});
 
 	const team = await request.json();
 
-	if (!team.data.length) {
+	if (!team?.data?.length) {
 		throw error(404, 'Team not found');
 	}
 
@@ -32,18 +33,14 @@ export const load = (async ({ fetch, params }) => {
 	}
 
 	const postsRequest = await fetch(
-		`http://localhost:5173/teams/${params.division}/${params.age_group}/${params.team}/posts`
+		`/teams/${params.division}/${params.age_group}/${params.team}/posts`,
 	);
 
-	console.log({ postsRequest });
-
 	const posts = await postsRequest.json();
-
-	console.log({ posts });
 
 	return {
 		team: team.data[0].attributes,
 		teamContent,
-		posts
+		posts,
 	};
 }) satisfies PageServerLoad;

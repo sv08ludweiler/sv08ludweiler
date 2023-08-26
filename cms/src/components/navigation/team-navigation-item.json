@@ -15,20 +15,19 @@
       "relation": "oneToOne",
       "target": "api::division.division"
     },
-    "age_groups_filter": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::age-group.age-group"
-    },
-    "teams_filter": {
+    "teams": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::team.team"
     },
-    "show_age_group": {
+    "age_groups": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::age-group.age-group"
+    },
+    "group_by_age_group": {
       "type": "boolean",
-      "default": true,
-      "required": false
+      "default": true
     }
   }
 }

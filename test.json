@@ -1,132 +1,19 @@
 {
-  "name": "Aktive - Herren - 1. Mannschaft",
-  "slug": "1-mannschaft",
-  "createdAt": "2023-06-03T19:05:19.848Z",
-  "updatedAt": "2023-06-17T13:27:58.669Z",
-  "publishedAt": "2023-06-03T22:02:42.046Z",
-  "locale": "de",
-  "league": "Bezirksliga Köllertal/Warndt",
-  "display_name": "1. Mannschaft",
-  "trainer": { "data": [] },
-  "supervisor": { "data": [] },
-  "training": [
-    {
-      "id": 1,
-      "Day": "Dienstag",
-      "start": "19:00:00.000",
-      "end": "20:30:00.000",
-      "location": null
-    },
-    {
-      "id": 2,
-      "Day": "Donnerstag",
-      "start": "19:00:00.000",
-      "end": "20:30:00.000",
-      "location": null
-    },
-    {
-      "id": 3,
-      "Day": "Freitag",
-      "start": "19:00:00.000",
-      "end": "20:30:00.000",
-      "location": null
-    }
-  ],
-  "widgetFussballDe": [],
-  "age_group": {
-    "data": {
-      "id": 1,
-      "attributes": {
-        "name": "U32",
-        "slug": "u32",
-        "alternativeName": "Aktive",
-        "createdAt": "2023-06-04T17:53:21.748Z",
-        "updatedAt": "2023-06-04T17:55:58.362Z",
-        "publishedAt": "2023-06-04T17:53:23.965Z"
-      }
-    }
-  },
-  "divisions": {
-    "data": [
-      {
-        "id": 1,
-        "attributes": {
-          "name": "Herren",
-          "slug": "herren",
-          "createdAt": "2023-06-03T19:03:23.427Z",
-          "updatedAt": "2023-06-09T12:31:26.981Z",
-          "publishedAt": "2023-06-03T22:02:34.333Z"
-        }
-      }
-    ]
-  },
-  "header_image": {
-    "data": {
-      "id": 1,
-      "attributes": {
-        "name": "1-mannschaft-gegen-diw-2023.jpg",
-        "alternativeText": "Kämpferisch gegen Dorf im Warndt",
-        "caption": null,
-        "width": 2325,
-        "height": 965,
-        "formats": {
-          "thumbnail": {
-            "name": "thumbnail_1-mannschaft-gegen-diw-2023.jpg",
-            "hash": "thumbnail_1_mannschaft_gegen_diw_2023_d3bc7d70c3",
-            "ext": ".jpg",
-            "mime": "image/jpeg",
-            "path": null,
-            "width": 245,
-            "height": 101,
-            "size": 8.74,
-            "url": "/uploads/thumbnail_1_mannschaft_gegen_diw_2023_d3bc7d70c3.jpg"
-          },
-          "small": {
-            "name": "small_1-mannschaft-gegen-diw-2023.jpg",
-            "hash": "small_1_mannschaft_gegen_diw_2023_d3bc7d70c3",
-            "ext": ".jpg",
-            "mime": "image/jpeg",
-            "path": null,
-            "width": 500,
-            "height": 207,
-            "size": 34.96,
-            "url": "/uploads/small_1_mannschaft_gegen_diw_2023_d3bc7d70c3.jpg"
-          },
-          "medium": {
-            "name": "medium_1-mannschaft-gegen-diw-2023.jpg",
-            "hash": "medium_1_mannschaft_gegen_diw_2023_d3bc7d70c3",
-            "ext": ".jpg",
-            "mime": "image/jpeg",
-            "path": null,
-            "width": 750,
-            "height": 311,
-            "size": 76.75,
-            "url": "/uploads/medium_1_mannschaft_gegen_diw_2023_d3bc7d70c3.jpg"
-          },
-          "large": {
-            "name": "large_1-mannschaft-gegen-diw-2023.jpg",
-            "hash": "large_1_mannschaft_gegen_diw_2023_d3bc7d70c3",
-            "ext": ".jpg",
-            "mime": "image/jpeg",
-            "path": null,
-            "width": 1000,
-            "height": 415,
-            "size": 139.91,
-            "url": "/uploads/large_1_mannschaft_gegen_diw_2023_d3bc7d70c3.jpg"
-          }
-        },
-        "hash": "1_mannschaft_gegen_diw_2023_d3bc7d70c3",
-        "ext": ".jpg",
-        "mime": "image/jpeg",
-        "size": 760.55,
-        "url": "/uploads/1_mannschaft_gegen_diw_2023_d3bc7d70c3.jpg",
-        "previewUrl": null,
-        "provider": "local",
-        "provider_metadata": null,
-        "createdAt": "2023-06-08T10:31:48.541Z",
-        "updatedAt": "2023-06-11T10:40:55.313Z"
-      }
-    }
-  },
-  "localizations": { "data": [] }
+	"id": 1,
+	"attributes": {
+		"Headline": "Herzlich Willkommen",
+		"Content": "auf unserer Webseite",
+		"slug": "landingpage",
+		"createdAt": "2023-06-04T10:13:43.272Z",
+		"updatedAt": "2023-08-13T21:32:27.060Z",
+		"publishedAt": "2023-06-04T10:13:52.220Z",
+		"locale": "de",
+		"Vereinsspielplan": {
+			"id": 1,
+			"widgetid": "02M2VM4FP8000000VUM1DNPDVS6J43VQ",
+			"title": "Vereinsspielplan"
+		},
+		"headline_widgets": [{ "id": 1, "name": "1. Mannschaft", "widget_id": "1127464" }],
+		"localizations": { "data": [] }
+	}
 }

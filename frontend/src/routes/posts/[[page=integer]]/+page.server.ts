@@ -1,9 +1,10 @@
-import type { PageServerLoad } from "../../../../.svelte-kit/types/src/routes/$types";
-
+import type { PageServerLoad } from './$types';
 
 export const load = (async ({ fetch, params }) => {
+	const postResult = await fetch(`/posts/list?page=${params.page || 1}`);
+	console.log('load posts', postResult);
 
 	return {
-		posts: (await fetch(`http://localhost:5173/posts?page=${params.page || 1}`)).json(),
+		posts: postResult.json(),
 	};
 }) satisfies PageServerLoad;

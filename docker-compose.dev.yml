@@ -1,0 +1,113 @@
+version: "3"
+
+services:
+
+  strapi:
+    container_name: sv08ludweiler-strapi
+    build:
+      context: .
+      dockerfile: Dockerfile.server.prod
+      target: strapi
+    image: sv08ludweiler-strapi
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./cms/config:/opt/app/config
+      - ./cms/src:/opt/app/src
+      - ./cms/package.json:/opt/package.json
+      - ./package-lock.json:/opt/package-lock.json
+      - ./cms/.env.dev:/opt/app/.env
+      - ./cms/public/uploads:/opt/app/public/uploads
+    ports:
+      - "1337:1337"
+    networks:
+      - ludweiler
+    depends_on:
+      - strapiDB
+
+  strapiDB:
+    container_name: sv08ludweiler-strapiDB
+    restart: unless-stopped
+    image: postgres:15-alpine
+    env_file:
+      - .env
+    volumes:
+      # using dev volume
+      - strapi-data:/var/lib/postgresql/data/
+      # using a volume
+      # - sv08ludweiler-strapi-data:/var/lib/postgresql/data/
+    ports:
+      - "5433:5432"
+    networks:
+      - ludweiler
+
+  sveltekit-node:
+    container_name: sv08ludweiler-sveltekit-node
+    image: sv08ludweiler-sveltekit-node
+    restart: unless-stopped
+    tty: true
+    env_file:
+      - .env
+    environment:
+      # overwrite 1337 in env file
+      - PORT=3000
+    ports:
+      - 1338:3000
+    depends_on:
+      - strapi
+    networks:
+      - ludweiler
+    # entrypoint: [ "node", "-r", "dotenv/config", "build-node" ]
+    build:
+      context: .
+      dockerfile: Dockerfile.server.prod
+      target: sveltekit-node
+      args:
+        - NODE_ENV=${NODE_ENV}
+        - FRONTEND_STRAPI_HOST=${FRONTEND_STRAPI_HOST}
+        - PUBLIC_FRONTEND_STRAPI_HOST=${PUBLIC_FRONTEND_STRAPI_HOST}
+        - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
+
+  sveltekit:
+    container_name: sv08ludweiler-sveltekit
+    image: sv08ludweiler-sveltekit
+    # restart: on-failure
+    # tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile.server.prod
+      target: sveltekit
+      args:
+        - NODE_ENV=${NODE_ENV}
+        - FRONTEND_STRAPI_HOST=${FRONTEND_STRAPI_HOST}
+        - PUBLIC_FRONTEND_STRAPI_HOST=${PUBLIC_FRONTEND_STRAPI_HOST}
+        - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
+    env_file:
+      - .env
+    volumes:
+      - ./frontend/build-docker:/opt/build-docker/
+      # - ./node_modules:/opt/node_modules
+    networks:
+      - ludweiler
+    depends_on:
+      strapi:
+        condition: service_started
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - ludweiler
+
+volumes:
+  sv08ludweiler-sveltekit-data:
+  strapi-data:
+
+
+networks:
+  ludweiler:
+    name: ludweiler
+    driver: bridge

@@ -1,0 +1,42 @@
+# Creating multi-stage build for production
+FROM node:20-alpine as build
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /opt
+COPY ./frontend .
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --include=dev
+ENV PATH /opt/node_modules/.bin:$PATH
+#RUN npm run build:node
+# RUN npm run build:static
+
+
+
+# Creating final production image
+FROM node:20-alpine as deploy-node
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /opt
+COPY ./frontend .
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --include=dev
+ENV PATH /opt/node_modules/.bin:$PATH
+RUN npm run build:node
+# RUN npm install --prod
+# RUN chown -R node:node /opt
+# The USER instruction sets the user name to use as the default user for the remainder of the current stage
+USER node:node
+# EXPOSE 3000
+# CMD ["node", "index.js"]
+# This is the command that will be run inside the image when you tell Docker to start the container
+CMD ["node","build-node/index.js"]
+
+
+FROM nginx:latest AS deploy-static
+WORKDIR /usr/share/nginx/html
+RUN rm -rf ./*
+# COPY --from=build /opt/build-static .
+# RUN npm run build:static
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]

@@ -1,37 +1,35 @@
-import { STRAPI_API_TOKEN } from '$env/static/private';
+import { env } from '$env/dynamic/private';
+import { error } from '@sveltejs/kit';
+import { compile } from 'mdsvex';
 import qs from 'qs';
 import type { PageServerLoad } from './$types';
-import { compile } from 'mdsvex';
-import { error } from '@sveltejs/kit';
 
 export const load = (async ({ params }) => {
 	const query = qs.stringify(
 		{
 			filters: {
 				slug: {
-					$eq: params.slug
-				}
+					$eq: params.slug,
+				},
 			},
-			populate: '*'
+			populate: '*',
 		},
 		{
-			encodeValuesOnly: true // prettify URL
-		}
+			encodeValuesOnly: true, // prettify URL
+		},
 	);
 
-	const posts = await (
-		await fetch(`http://0.0.0.0:1337/api/posts?${query}`, {
+	const posts = await(
+		await fetch(`${env.FRONTEND_STRAPI_HOST}/api/posts?${query}`, {
 			headers: {
-				Authorization: `bearer ${STRAPI_API_TOKEN}`
-			}
+				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
+			},
 		})
 	).json();
 
-	// console.log('slug', params.slug, 'posts', posts);
-
 	if (posts.meta.total < 1) {
 		throw error(404, {
-			message: 'Post not found'
+			message: 'Post not found',
 		});
 	}
 
@@ -43,6 +41,6 @@ export const load = (async ({ params }) => {
 	}
 	return {
 		post,
-		content
+		content,
 	};
 }) satisfies PageServerLoad;

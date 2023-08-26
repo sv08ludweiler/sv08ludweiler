@@ -1,15 +1,18 @@
-<script>
+<script lang="ts">
+	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 
 	/**
 	 * Unique id of element wrapper.
 	 */
-	export let id = crypto.randomUUID();
+	export let id: string = browser
+		? `fussball-de-id_${Date.now()}${Math.floor(Math.random() * 100)}`
+		: crypto.randomUUID();
 
 	/**
 	 * Fussball.de widget id.
 	 */
-	export let widgetId = '02M2VM4FP8000000VUM1DNPDVS6J43VQ';
+	export let widgetId: string;
 
 	onMount(() => {
 		// es-lint-ignore @typescript-eslint/ban-ts-comment
