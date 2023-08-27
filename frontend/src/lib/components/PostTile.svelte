@@ -100,7 +100,7 @@
 	{href}
 	use:Ripple={{ surface: true, color: 'primary' }}
 >
-	<Card class="flex flex-auto ">
+	<Card class="flex flex-auto overflow-hidden">
 		{#if headerImage}
 			<div class="aspect-video w-full h-60 overflow-hidden">
 				{#if headerImage.formats.medium}
@@ -196,6 +196,7 @@
 	a {
 		text-decoration: none;
 	}
+
 
 	.icon {
 		height: 1.6rem;

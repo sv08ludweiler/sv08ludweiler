@@ -1,5 +1,6 @@
 <script lang="ts">
 	import wappen from '$lib/assets/wappen.png';
+	import wappenWebP from '$lib/assets/wappen.webp';
 	import SocialMediaLink from '$lib/components/SocialMediaLink.svelte';
 
 	import '../app.css';
@@ -23,7 +24,11 @@
 
 	<footer class="bg-green-500 text-white">
 		<section class="wappen-section">
-			<img class="wappen ml-auto mr-auto" alt="wappen" src={wappen} width="545" height="644" />
+			<picture >
+				<source srcset={wappenWebP} type="image/webp" />
+				<source srcset={wappen} type="image/png" />
+				<img class="wappen ml-auto mr-auto" srcset={wappen} alt="Wappen" width="545" height="644"/>
+			  </picture>
 		</section>
 		<section class="flex min-h-[100px] items-center justify-center bg-green-600 p-8">
 			<div class="flex flex-wrap items-center justify-center gap-4" aria-label="Partner">

@@ -84,22 +84,24 @@
 		<button class="menu-item">{title}</button>
 		<ol class={!mobile ? 'nav-menu-flyout flyout -z-10' : 'flex flex-col'}>
 			{#if groupByAge}
-				<!-- <div>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</div> -->
-				{#each [...groupedTeamsByAge] as [groupSlug, teams]}
-					{@const currentAgeGroup = availableAgeGroups.get(groupSlug)}
+				<li>
+					<!-- <div>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</div> -->
+					{#each [...groupedTeamsByAge] as [groupSlug, teams]}
+						{@const currentAgeGroup = availableAgeGroups.get(groupSlug)}
 
-					<ol class="team-age-grid grid">
-						{#each teams as team}
-							<li class="nav-menu inline-flex min-h-[2rem] w-full items-center">
-								<a
-									class="h-full w-full whitespace-nowrap p-4"
-									href={`/teams/${slug}/${team.attributes.age_group.data.attributes.slug}/${team.attributes.slug}`}
-									>{team.attributes.display_name || team.attributes.name}</a
-								>
-							</li>
-						{/each}
-					</ol>
-				{/each}
+						<ol class="team-age-grid grid">
+							{#each teams as team}
+								<li class="nav-menu inline-flex min-h-[2rem] w-full items-center">
+									<a
+										class="h-full w-full whitespace-nowrap p-4"
+										href={`/teams/${slug}/${team.attributes.age_group.data.attributes.slug}/${team.attributes.slug}`}
+										>{team.attributes.display_name || team.attributes.name}</a
+									>
+								</li>
+							{/each}
+						</ol>
+					{/each}
+				</li>
 			{:else}
 				{#each filteredTeams as team}
 					<li class="nav-menu inline-flex min-h-[2rem] items-center">

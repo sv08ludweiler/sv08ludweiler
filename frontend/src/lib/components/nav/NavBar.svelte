@@ -1,11 +1,11 @@
 <script lang="ts">
+	import { beforeNavigate } from '$app/navigation';
+	import wappen from '$lib/assets/wappen.png';
+	import wappenWebP from '$lib/assets/wappen.webp';
 	import DivisionNavItem from '$lib/components/nav/DivisionNavItem.svelte';
 	import DropdownNavItem from '$lib/components/nav/DropdownNavItem.svelte';
 	import SimpleNavItem from '$lib/components/nav/SimpleNavItem.svelte';
-	import { page } from '$app/stores';
-	import { beforeNavigate } from '$app/navigation';
 	import Ripple from '@smui/ripple';
-	import wappen from '$lib/assets/wappen.png';
 	import { onMount } from 'svelte';
 
 	/**
@@ -38,27 +38,24 @@
 	});
 </script>
 
-<header class="fixed z-50 w-full bg-green-800 text-white drop-shadow-lg h-[75px] flex items-center">
+<header class="fixed z-50 flex h-[75px] w-full items-center bg-green-800 text-white drop-shadow-lg">
 	<nav
 		aria-label="Main Navigation"
-		class="flex h-full w-full flex-row flex-wrap items-center justify-between bg-green-800 px-4 xl:container md:mx-auto pr-0"
+		class="flex h-full w-full flex-row flex-wrap items-center justify-between bg-green-800 px-4 pr-0 xl:container md:mx-auto"
 	>
 		<a
 			href="/"
-			aria-label="Home"
-			class="flex items-center h-full text-2xl font-semibold text-white gap-2"
+			aria-label="Zur Startseite"
+			class="flex h-full items-center gap-2 text-2xl font-semibold text-white"
 		>
-			<img
-				class="inline max-h-[50px]"
-				width="42"
-				height="50"
-				alt="wappen"
-				src={wappen}
-				aria-hidden="true"
-			/>
-			<span class="md:hidden lg:inline">SV 08 Ludweiler</span>
+			<picture>
+				<source srcset={wappenWebP} type="image/webp" />
+				<source srcset={wappen} type="image/png" />
+				<img class="inline max-h-[50px]" srcset={wappen} alt="Wappen" width="42" height="50" />
+			</picture>
+			<span class="md:hidden lg:inline" aria-hidden="true">SV 08 Ludweiler</span>
 		</a>
-		<ul class="h-full flex-row flex-wrap justify-center md:flex hidden">
+		<ul class="hidden h-full flex-row flex-wrap justify-center md:flex">
 			{#if mainMenu?.attributes?.entries}
 				{#each mainMenu?.attributes?.entries as navItem}
 					{#if navItem.__component === 'navigation.external-navigation-item'}
@@ -90,13 +87,13 @@
 		</ul>
 
 		<button
-			class="md:hidden h-full p-3"
+			class="h-full p-3 md:hidden"
 			on:click={toggleMenu}
 			aria-label="Menü öffnen/schließen"
 			use:Ripple={{ surface: true }}
 		>
 			<svg
-				class="text-white h-7"
+				class="h-7 text-white"
 				aria-hidden="true"
 				xmlns="http://www.w3.org/2000/svg"
 				height="48"
@@ -110,23 +107,20 @@
 </header>
 
 <dialog class="sidebar shadow-xl" bind:this={sidebarDialog}>
-	<div class="h-full w-full flex items-start flex-col">
+	<div class="flex h-full w-full flex-col items-start">
 		<a
 			href="/"
-			aria-label="Home"
-			class="flex items-center text-2xl font-semibold text-white gap-2 p-3"
+			aria-label="Zur Startseite"
+			class="flex items-center gap-2 p-3 text-2xl font-semibold text-white"
 		>
-			<img
-				class="inline max-h-[50px]"
-				width="42"
-				height="50"
-				alt="wappen"
-				src={wappen}
-				aria-hidden="true"
-			/>
-			<span class="md:hidden lg:inline">SV 08 Ludweiler</span>
+			<picture >
+				<source srcset={wappenWebP} type="image/webp" />
+				<source srcset={wappen} type="image/png" />
+				<img class="inline max-h-[50px]" srcset={wappen} alt="Wappen"  width="42" height="50"/>
+			  </picture>
+			<span class="md:hidden lg:inline" aria-hidden="true">SV 08 Ludweiler</span>
 		</a>
-		<ul class="flex flex-col w-full">
+		<ul class="flex w-full flex-col">
 			{#if mainMenu?.attributes?.entries}
 				{#each mainMenu?.attributes?.entries as navItem}
 					{#if navItem.__component === 'navigation.external-navigation-item'}

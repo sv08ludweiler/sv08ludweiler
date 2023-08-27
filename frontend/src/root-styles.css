@@ -1,7 +1,7 @@
 :root {
 	--green-300: #7cd982;
 	--green-600: #288b2e;
-	--primary: var(--green-600);
+	--primary: var(--green-700);
 	--secondary: #676778;
 	--page-nav-bar-height: 75px;
 	--submenu-height: 56px;

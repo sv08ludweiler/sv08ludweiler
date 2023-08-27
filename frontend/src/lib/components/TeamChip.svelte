@@ -5,7 +5,7 @@
 </script>
 
 <div
-	class={`my-2 inline-flex gap-4 rounded-full border border-gray-300 px-2 py-1 text-green-600 ${$$props.class}`}
+	class={`my-2 inline-flex gap-4 rounded-full border border-gray-300 px-2 py-1 text-green-700 ${$$props.class}`}
 >
 	{#if division}
 		<div class="division">{division}</div>
