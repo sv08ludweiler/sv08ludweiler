@@ -11,7 +11,7 @@ export const GET: RequestHandler = async ({ fetch }) => {
 
 	const teamPostQuery = qs.stringify({
 		filters: {
-			landing_page: {
+			on_landingpage: {
 				$eq: true,
 			},
 		},

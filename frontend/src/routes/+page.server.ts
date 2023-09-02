@@ -19,7 +19,11 @@ export const load = (async ({ fetch }) => {
 	]);
 
 	const landingPage = await landingPageResult.json();
-	const news = newsResult.json();
+	const news = await newsResult.json();
+
+	console.log({ news });
+	
+
 	const newspaper = newsPaperResult.json();
 
 	// const promises = [];
