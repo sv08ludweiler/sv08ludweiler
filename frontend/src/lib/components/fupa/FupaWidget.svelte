@@ -41,7 +41,7 @@
 		a.setAttribute('href', b);
 		var c = document.head;
 		if (c == null) {
-			c = document.getElementsByTagName('head').item(0);
+			c = document.getElementsByTagName('head').item(0)!;
 		}
 		c.appendChild(a);
 		return a;

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import PostTile from '$lib/components/PostTile.svelte';
-	import Button from '@smui/button/src/Button.svelte';
+	import Button from '@smui/button';
 
 	export let posts: Array<any> = [];
 
