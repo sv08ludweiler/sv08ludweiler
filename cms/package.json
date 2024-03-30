@@ -13,16 +13,17 @@
 		"strapi": "strapi",
 		"generate-typings": "strapi ts:generate-types --debug"
 	},
-	"devDependencies": {},
 	"dependencies": {
-		"@strapi/strapi": "4.14.0",
-		"@strapi/plugin-users-permissions": "4.14.0",
-		"@strapi/plugin-i18n": "4.14.0",
-		"better-sqlite3": "8.7.0",
-		"@strapi/plugin-documentation": "4.14.0",
+		"@strapi/plugin-documentation": "4.21.1",
+		"@strapi/plugin-i18n": "4.21.1",
+		"@strapi/plugin-users-permissions": "4.21.1",
+		"@strapi/strapi": "4.21.1",
+		"better-sqlite3": "9.4.3",
 		"pg": "8.11.3",
 		"react": "18.2.0",
-		"react-dom": "18.2.0"
+		"react-dom": "18.2.0",
+		"react-router-dom": "5.3.4",
+		"styled-components": "5.3.3"
 	},
 	"author": {
 		"name": "A Strapi developer"
