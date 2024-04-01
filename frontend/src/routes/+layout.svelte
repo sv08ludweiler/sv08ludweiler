@@ -2,6 +2,7 @@
 	import wappen from '$lib/assets/wappen.png';
 	import wappenWebP from '$lib/assets/wappen.webp';
 	import SocialMediaLink from '$lib/components/SocialMediaLink.svelte';
+	import { pwaInfo } from 'virtual:pwa-info';
 
 	import '../app.css';
 	import '../global.css';
@@ -9,11 +10,36 @@
 	import type { LayoutData } from './$types';
 
 	import NavBar from '$lib/components/nav/NavBar.svelte';
+	import { onMount } from 'svelte';
 
 	export let data: LayoutData;
-	
 
+	onMount(async () => {
+		if (pwaInfo) {
+			const { registerSW } = await import('virtual:pwa-register');
+			registerSW({
+				immediate: true,
+				onRegistered(r) {
+					// uncomment following code if you want check for updates
+					// r && setInterval(() => {
+					//    console.log('Checking for sw update')
+					//    r.update()
+					// }, 20000 /* 20s for testing purposes */)
+					console.log(`SW Registered: ${r}`);
+				},
+				onRegisterError(error) {
+					console.log('SW registration error', error);
+				},
+			});
+		}
+	});
+
+	$: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
 </script>
+
+<svelte:head>
+	{@html webManifestLink}
+</svelte:head>
 
 <div class="flex h-full w-full flex-col">
 	<NavBar mainMenu={data?.mainMenu}></NavBar>
@@ -24,11 +50,11 @@
 
 	<footer class="bg-green-500 text-white">
 		<section class="wappen-section">
-			<picture >
+			<picture>
 				<source srcset={wappenWebP} type="image/webp" />
 				<source srcset={wappen} type="image/png" />
-				<img class="wappen ml-auto mr-auto" srcset={wappen} alt="Wappen" width="545" height="644"/>
-			  </picture>
+				<img class="wappen ml-auto mr-auto" srcset={wappen} alt="Wappen" width="545" height="644" />
+			</picture>
 		</section>
 		<section class="flex min-h-[100px] items-center justify-center bg-green-600 p-8">
 			<div class="flex flex-wrap items-center justify-center gap-4" aria-label="Partner">

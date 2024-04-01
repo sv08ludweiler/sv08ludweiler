@@ -32,24 +32,27 @@ const config = {
 							// ensuring that they do not result in content being regenerated unnecessarily
 							// allowQuery: ['search'],
 						},
-				  })
+					})
 				: process.env.ADAPTER === 'static'
-				? adapterStatic({
-						pages: './build-docker/build-static',
-						// assets: 'build-static',
-						// fallback: undefined,
-						precompress: true,
-						strict: false,
-				  })
-				: process.env.ADAPTER === 'node'
-				? adapterNode({
-						out: './build-node',
-						precompress: true,
-				  })
-				: adapter(),
+					? adapterStatic({
+							pages: './build-docker/build-static',
+							// assets: 'build-static',
+							// fallback: undefined,
+							precompress: true,
+							strict: false,
+						})
+					: process.env.ADAPTER === 'node'
+						? adapterNode({
+								out: './build-node',
+								precompress: true,
+							})
+						: adapter(),
 
 		prerender: {
 			entries: process.env.ADAPTER === 'node' ? [] : ['*'],
+		},
+		serviceWorker: {
+			register: false,
 		},
 	},
 };
