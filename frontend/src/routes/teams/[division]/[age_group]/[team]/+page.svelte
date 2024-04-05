@@ -1,12 +1,12 @@
 <script lang="ts">
-	import PostColumns from '$lib/components/PostColumns.svelte';
-	import Card, { Content } from '@smui/card';
-	import type { PageData } from './$types';
 	import PageHeader from '$lib/components/PageHeader.svelte';
-	import type { StrapiImage } from '$lib/types/strapi.types';
-	import FussballDeWidget from '$lib/components/fussball-de-widget/fussballDeWidget.svelte';
-	import FupaWidget from '$lib/components/fupa/FupaWidget.svelte';
+	import PostColumns from '$lib/components/PostColumns.svelte';
 	import TrainingList from '$lib/components/TrainingList.svelte';
+	import FupaWidget from '$lib/components/fupa/FupaWidget.svelte';
+	import FussballDeWidget from '$lib/components/fussball-de-widget/fussballDeWidget.svelte';
+	import type { StrapiImage } from '$lib/types/strapi.types';
+	import type { PageData } from './$types';
+	import Trainer from '$lib/components/Trainer.svelte';
 
 	export let data: PageData;
 
@@ -79,15 +79,15 @@
 {#if hasSubmenu}
 	<div class="submenu fixed z-10 w-full bg-green-700 text-white">
 		<ul
-			class="px-4 h-full md:container md:mx-auto flex flex-row overflow-hidden overflow-x-auto gap-3 items-center"
+			class="flex h-full flex-row items-center gap-3 overflow-hidden overflow-x-auto px-4 md:container md:mx-auto"
 		>
-			<li class="h-full nav-menu"><a class="menu-item" href="#infos">Infos</a></li>
+			<li class="nav-menu h-full"><a class="menu-item" href="#infos">Infos</a></li>
 			{#if data.posts.data.length}
-				<li class="h-full nav-menu"><a class="menu-item" href="#news">Aktuelles</a></li>
+				<li class="nav-menu h-full"><a class="menu-item" href="#news">Aktuelles</a></li>
 			{/if}
 			{#if widgetFussballDe}
 				{#each widgetFussballDe as widget}
-					<li class="h-full nav-menu">
+					<li class="nav-menu h-full">
 						<a class="menu-item" href={`#${widget.title.trim().replace(' ', '-')}`}
 							>{widget.title}</a
 						>
@@ -102,9 +102,9 @@
 	<PageHeader image={headerImage} maxHeight={true}></PageHeader>
 
 	<section>
-		<div class="p-4 md:container md:mx-auto info-grid">
+		<div class="info-grid p-4 md:container md:mx-auto">
 			<div class="g-headline">
-				<h2 class="m-0 target" id="infos">
+				<h2 class="target m-0" id="infos">
 					<!-- {#if ageGroup.attributes}
 						<span>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</span>
 					{/if}
@@ -125,7 +125,14 @@
 					<h3>Trainer</h3>
 					{#each trainers as trainer}
 						<ul>
-							<li>{trainer.attributes.first_name} {trainer.attributes.last_name}</li>
+							<li>
+								<Trainer
+									firstName={trainer.attributes.first_name}
+									lastName={trainer.attributes.last_name}
+									phone={trainer.attributes.phone_public && trainer.attributes.phone}
+									email={trainer.attributes.mail_public && trainer.attributes.email}
+								></Trainer>
+							</li>
 						</ul>
 					{/each}
 				{/if}
@@ -134,7 +141,14 @@
 					<h3>Betreuer</h3>
 					{#each supervisors as supervisor}
 						<ul>
-							<li>{supervisor.attributes.first_name} {supervisor.attributes.last_name}</li>
+							<li>
+								<Trainer
+									firstName={supervisor.attributes.first_name}
+									lastName={supervisor.attributes.last_name}
+									phone={supervisor.attributes.phone}
+									email={supervisor.attributes.email}
+								></Trainer>
+							</li>
 						</ul>
 					{/each}
 				{/if}
@@ -142,7 +156,6 @@
 				{#if trainings?.length}
 					<h3>Training</h3>
 					<TrainingList {trainings}></TrainingList>
-					
 				{/if}
 			</div>
 			<div class="g-nextGame">
@@ -175,8 +188,6 @@
 </div>
 
 <style lang="scss">
-
-
 	.submenu {
 		height: var(--submenu-height);
 	}

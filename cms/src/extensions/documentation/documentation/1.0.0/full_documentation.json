@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-04-05T15:44:49.602Z"
+    "x-generation-date": "2024-04-05T15:49:01.825Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1414,6 +1414,12 @@
                                       },
                                       "phone": {
                                         "type": "string"
+                                      },
+                                      "phone_public": {
+                                        "type": "boolean"
+                                      },
+                                      "mail_public": {
+                                        "type": "boolean"
                                       },
                                       "createdAt": {
                                         "type": "string",
@@ -3916,6 +3922,12 @@
                                                   "phone": {
                                                     "type": "string"
                                                   },
+                                                  "phone_public": {
+                                                    "type": "boolean"
+                                                  },
+                                                  "mail_public": {
+                                                    "type": "boolean"
+                                                  },
                                                   "createdAt": {
                                                     "type": "string",
                                                     "format": "date-time"
@@ -6247,6 +6259,12 @@
               },
               "phone": {
                 "type": "string"
+              },
+              "phone_public": {
+                "type": "boolean"
+              },
+              "mail_public": {
+                "type": "boolean"
               }
             }
           }
@@ -6317,6 +6335,12 @@
           },
           "phone": {
             "type": "string"
+          },
+          "phone_public": {
+            "type": "boolean"
+          },
+          "mail_public": {
+            "type": "boolean"
           },
           "createdAt": {
             "type": "string",
@@ -7821,6 +7845,12 @@
                                                                 },
                                                                 "phone": {
                                                                   "type": "string"
+                                                                },
+                                                                "phone_public": {
+                                                                  "type": "boolean"
+                                                                },
+                                                                "mail_public": {
+                                                                  "type": "boolean"
                                                                 },
                                                                 "createdAt": {
                                                                   "type": "string",
@@ -9711,6 +9741,12 @@
                         },
                         "phone": {
                           "type": "string"
+                        },
+                        "phone_public": {
+                          "type": "boolean"
+                        },
+                        "mail_public": {
+                          "type": "boolean"
                         },
                         "createdAt": {
                           "type": "string",
