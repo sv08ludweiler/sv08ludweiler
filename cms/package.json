@@ -14,12 +14,12 @@
 		"generate-typings": "strapi ts:generate-types --debug"
 	},
 	"dependencies": {
-		"@strapi/plugin-documentation": "4.21.1",
-		"@strapi/plugin-i18n": "4.21.1",
-		"@strapi/plugin-users-permissions": "4.21.1",
-		"@strapi/strapi": "4.21.1",
-		"better-sqlite3": "9.4.3",
-		"pg": "8.11.3",
+		"@strapi/plugin-documentation": "4.22.1",
+		"@strapi/plugin-i18n": "4.22.1",
+		"@strapi/plugin-users-permissions": "4.22.1",
+		"@strapi/strapi": "4.22.1",
+		"better-sqlite3": "9.4.5",
+		"pg": "8.11.5",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"react-router-dom": "5.3.4",
