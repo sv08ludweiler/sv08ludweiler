@@ -13,6 +13,7 @@
 	export let data: PageData;
 
 	let submenu: HTMLDivElement;
+
 </script>
 
 <svelte:head>

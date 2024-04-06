@@ -5,6 +5,6 @@ export const load = (async ({ fetch, params }) => {
 	const newspaperResult = await newsPaperPromise;
 
 	return {
-		newspaper: newspaperResult.json(),
+		newspaper: await newspaperResult.json(),
 	};
 }) satisfies PageServerLoad;

@@ -5,10 +5,7 @@ import { compile } from 'mdsvex';
 import qs from 'qs';
 
 export const GET: RequestHandler = async ({ fetch, url }) => {
-	console.log('get posts');
 	const page = Number(url.searchParams.get('page') ?? '0');
-
-	console.log('get posts', page);
 	
 
 	const truncate = (str: string, len: number) =>

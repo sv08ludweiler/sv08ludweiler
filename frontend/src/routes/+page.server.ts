@@ -20,11 +20,7 @@ export const load = (async ({ fetch }) => {
 
 	const landingPage = await landingPageResult.json();
 	const news = await newsResult.json();
-
-	console.log({ news });
-	
-
-	const newspaper = newsPaperResult.json();
+	const newspaper = await newsPaperResult.json();
 
 	// const promises = [];
 	// if (landingPage?.data?.attributes?.headline_widgets.length) {
