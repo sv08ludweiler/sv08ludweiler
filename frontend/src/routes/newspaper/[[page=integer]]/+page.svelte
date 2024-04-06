@@ -41,7 +41,7 @@
 
 	<div class="my-5 flex items-center justify-center gap-3">
 		<Button
-			on:click={() => goto(`/posts/${(Number($page.params.page) || 1) - 1}`)}
+			on:click={() => goto(`/newspaper/${(Number($page.params.page) || 1) - 1}`)}
 			aria-label="Vorherige Seite"
 			disabled={pagination.page <= pagination.pageCount}>Vorherige</Button
 		>
@@ -49,14 +49,14 @@
 		{#each Array(pagination.pageCount) as _, i}
 			{@const pageIndex = i + 1}
 			<Button
-				href={`/posts/${pageIndex}`}
+				href={`/newspaper/${pageIndex}`}
 				variant={pagination.page === pageIndex ? 'raised' : 'outlined'}
 				aria-label={`Seite ${pageIndex}`}><Label>{pageIndex}</Label></Button
 			>
 		{/each}
 
 		<Button
-			on:click={() => goto(`/posts/${(Number($page.params.page) || 1) + 1}`)}
+			on:click={() => goto(`/newspaper/${(Number($page.params.page) || 1) + 1}`)}
 			aria-label="Nächste Seite"
 			disabled={pagination.page >= pagination.pageCount}>Nächste</Button
 		>
