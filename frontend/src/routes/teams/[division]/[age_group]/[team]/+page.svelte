@@ -54,7 +54,7 @@
 	let hasSubmenu = false;
 
 	$: {
-		hasSubmenu = data.posts.data.length || !!!widgetFussballDe;
+		hasSubmenu = data.posts.data.length || !!widgetFussballDe;
 	}
 </script>
 
