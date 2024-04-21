@@ -48,7 +48,7 @@
 	{/if}
 
 	<ul
-		class={mobile ? 'flex flex-col' : 'flyout nav-menu-flyout -z-10'}
+		class={mobile ? 'flex w-full flex-col' : 'flyout nav-menu-flyout -z-10'}
 		class:open={focusIn || mobile}
 	>
 		{#each children as child}

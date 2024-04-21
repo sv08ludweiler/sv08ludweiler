@@ -65,11 +65,11 @@
 	{#each filteredTeams as team}
 		<li
 			class={mobile
-				? 'flex flex-col items-start p-4'
+				? 'flex w-full flex-col items-start p-4'
 				: 'nav-menu inline-flex h-full items-center justify-center'}
 		>
 			<a
-				class="menu-item"
+				class="menu-item w-full"
 				href={`/teams/${slug}/${team.attributes.age_group.data.attributes.slug}/${team.attributes.slug}`}
 				>{title}</a
 			>
@@ -78,11 +78,11 @@
 {:else if filteredTeams.length > 1}
 	<li
 		class={mobile
-			? 'flex flex-col  items-start p-4'
+			? 'flex w-full flex-col items-start p-4'
 			: 'nav-menu inline-flex h-full items-center justify-center'}
 	>
 		<button class="menu-item">{title}</button>
-		<ol class={!mobile ? 'nav-menu-flyout flyout -z-10' : 'flex flex-col'}>
+		<ol class={!mobile ? 'nav-menu-flyout flyout -z-10' : 'flex w-full flex-col'}>
 			{#if groupByAge}
 				<li>
 					<!-- <div>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</div> -->
