@@ -1,6 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import { SvelteKitPWA } from '@vite-pwa/sveltekit';
+import { enhancedImages } from '@sveltejs/enhanced-img';
 
 export default defineConfig({
 	server: {
@@ -8,6 +9,7 @@ export default defineConfig({
 	},
 	plugins: [
 		sveltekit(),
+		enhancedImages(),
 		SvelteKitPWA({
 			devOptions: {
 				enabled: true,

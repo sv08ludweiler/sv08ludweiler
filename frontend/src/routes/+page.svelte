@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { env as envPublic } from '$env/dynamic/public';
-	import headerImage from '$lib/assets/header.webp';
 	import NewspaperTile from '$lib/components/NewspaperTile.svelte';
 	import PostColumns from '$lib/components/PostColumns.svelte';
 	import SocialMediaLink from '$lib/components/SocialMediaLink.svelte';
@@ -46,12 +45,11 @@
 {/if}
 
 <div class="page-content" class:has-submenu={submenu !== null}>
-	<img
+	<enhanced:img
 		class="aspect-auto w-full"
 		alt="SV 08 Ludweiler Wandgraffiti"
-		src={headerImage}
-		width="988"
-		height="300"
+		src="$lib/assets/header.webp"
+		sizes="min(1500px, 100vw)"
 	/>
 
 	{#if data.landingPage?.data?.attributes?.headline_widgets.length}
