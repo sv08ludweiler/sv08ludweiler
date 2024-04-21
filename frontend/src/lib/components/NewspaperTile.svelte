@@ -47,27 +47,16 @@
 	<Card class="flex flex-auto overflow-hidden">
 		{#if headerImage}
 			<div class="aspect-video h-60 w-full overflow-hidden">
-				{#if headerImage.formats.medium}
-					<img
-						class="h-full w-full object-cover"
-						src={env.PUBLIC_FRONTEND_STRAPI_HOST + headerImage.formats.medium.url}
-						srcset={generateImageSrcSet(headerImage)}
-						sizes={generateImageSize(headerImage)}
-						width={headerImage.formats.medium.width}
-						height={headerImage.formats.medium.height}
-						alt={headerImage.alternativeText || title}
-					/>
-				{:else}
-					<img
-						class="h-full w-full object-cover"
-						src={env.PUBLIC_FRONTEND_STRAPI_HOST + headerImage.url}
-						srcset={generateImageSrcSet(headerImage)}
-						sizes={generateImageSize(headerImage)}
-						width={headerImage.width}
-						height={headerImage.height}
-						alt={headerImage.alternativeText || title}
-					/>
-				{/if}
+				<img
+					class="h-full w-full object-cover"
+					src={env.PUBLIC_FRONTEND_STRAPI_HOST + headerImage.formats.medium.url}
+					srcset={generateImageSrcSet(headerImage)}
+					sizes={generateImageSize(headerImage)}
+					width={headerImage.formats.medium.width}
+					height={headerImage.formats.medium.height}
+					alt={headerImage.alternativeText || title}
+					loading="lazy"
+				/>
 			</div>
 		{/if}
 		<Content class="flex-auto">

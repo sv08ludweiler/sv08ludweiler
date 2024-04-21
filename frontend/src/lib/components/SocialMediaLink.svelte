@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { env } from '$env/dynamic/public'
+	import { env } from '$env/dynamic/public';
 	import type { StrapiImage } from '$lib/types/strapi.types';
 
 	/**
@@ -10,16 +10,23 @@
 	/**
 	 * External link of social media.
 	 */
-		export let href = '';
+	export let href = '';
 
 	/**
 	 * Icon url.
 	 */
-	export let icon: StrapiImage;	
+	export let icon: StrapiImage;
 </script>
 
 <a {href} {title} aria-label={title} target="_blank">
-	<img width={icon.width} height={icon.height} src={env.PUBLIC_FRONTEND_STRAPI_HOST + icon.url} alt={title || icon.alternativeText} aria-hidden="true" />
+	<img
+		width={icon.width}
+		height={icon.height}
+		src={env.PUBLIC_FRONTEND_STRAPI_HOST + icon.url}
+		alt={title || icon.alternativeText}
+		aria-hidden="true"
+		loading="lazy"
+	/>
 </a>
 
 <style>

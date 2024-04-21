@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { beforeNavigate } from '$app/navigation';
-	import wappen from '$lib/assets/wappen.png';
-	import wappenWebP from '$lib/assets/wappen.webp';
 	import DivisionNavItem from '$lib/components/nav/DivisionNavItem.svelte';
 	import DropdownNavItem from '$lib/components/nav/DropdownNavItem.svelte';
 	import SimpleNavItem from '$lib/components/nav/SimpleNavItem.svelte';
@@ -48,11 +46,13 @@
 			aria-label="Zur Startseite"
 			class="flex h-full items-center gap-2 text-2xl font-semibold text-white"
 		>
-			<picture>
-				<source srcset={wappenWebP} type="image/webp" />
-				<source srcset={wappen} type="image/png" />
-				<img class="inline max-h-[50px]" srcset={wappen} alt="Wappen" width="42" height="50" />
-			</picture>
+			<enhanced:img
+				class="inline max-h-[50px] w-auto"
+				src="$lib/assets/wappen.webp?50;100"
+				sizes="(min-width: 500px) 50px, 100px"
+				loading="eager"
+				alt="Wappen"
+			></enhanced:img>
 			<span class="md:hidden lg:inline" aria-hidden="true">SV 08 Ludweiler</span>
 		</a>
 		<ul class="hidden h-full flex-row flex-wrap justify-center md:flex">
@@ -111,13 +111,16 @@
 		<a
 			href="/"
 			aria-label="Zur Startseite"
-			class="flex items-center gap-2 p-3 text-2xl font-semibold text-white"
+			class="flex items-center gap-2 px-4 py-3 text-2xl font-semibold text-white"
 		>
-			<picture>
-				<source srcset={wappenWebP} type="image/webp" />
-				<source srcset={wappen} type="image/png" />
-				<img class="inline max-h-[50px]" srcset={wappen} alt="Wappen" width="42" height="50" />
-			</picture>
+			<enhanced:img
+				class="inline max-h-[50px] w-auto"
+				src="$lib/assets/wappen.webp?w=50;100"
+				loading="eager"
+				sizes="(min-width: 500px) 50px, 100px"
+				alt="Wappen"
+			></enhanced:img>
+
 			<span class="md:hidden lg:inline" aria-hidden="true">SV 08 Ludweiler</span>
 		</a>
 		<ul class="flex w-full flex-col">

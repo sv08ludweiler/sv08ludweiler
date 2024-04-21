@@ -53,7 +53,14 @@
 			<picture>
 				<source srcset={wappenWebP} type="image/webp" />
 				<source srcset={wappen} type="image/png" />
-				<img class="wappen ml-auto mr-auto" srcset={wappen} alt="Wappen" width="545" height="644" />
+				<img
+					class="wappen ml-auto mr-auto"
+					srcset={wappen}
+					alt="Wappen"
+					width="545"
+					height="644"
+					loading="lazy"
+				/>
 			</picture>
 		</section>
 		<section class="flex min-h-[100px] items-center justify-center bg-green-600 p-8">

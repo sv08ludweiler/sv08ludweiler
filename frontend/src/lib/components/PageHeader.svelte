@@ -9,8 +9,6 @@
 	 */
 	export let image: StrapiImage | undefined = undefined;
 
-	console.log({ image });
-
 	/**
 	 * Header max height
 	 */
@@ -52,6 +50,7 @@
 				srcset={generateImageSrcSet(image)}
 				sizes={generateImageSize(image)}
 				alt={image.alternativeText}
+				loading="eager"
 			/>
 		</button>
 	{:else}
@@ -65,6 +64,7 @@
 				sizes={generateImageSize(image)}
 				alt={image.alternativeText}
 				draggable="false"
+				loading="eager"
 			/>
 		</button>
 	{/if}
@@ -72,10 +72,10 @@
 		<div class="flex flex-col">
 			<div class="flex justify-end">
 				<Button
+					aria-label="schließen"
 					on:click={() => {
-						console.log('close dialog', dialog);
 						dialog.close();
-					}}>close</Button
+					}}>&#x2715;</Button
 				>
 			</div>
 			<div class="flex-auto">
