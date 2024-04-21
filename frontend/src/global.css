@@ -55,7 +55,6 @@ a:focus {
 	align-items: center;
 	justify-content: center;
 	text-decoration: none;
-
 }
 
 .nav-menu > button:focus-visible,
@@ -69,4 +68,9 @@ button[aria-disabled='true'] {
 	opacity: 0.5;
 	cursor: default;
 	pointer-events: none;
+}
+
+dialog::backdrop {
+	backdrop-filter: blur(3px);
+	background: rgba(0, 0, 0, 0.4);
 }

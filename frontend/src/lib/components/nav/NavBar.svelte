@@ -113,11 +113,11 @@
 			aria-label="Zur Startseite"
 			class="flex items-center gap-2 p-3 text-2xl font-semibold text-white"
 		>
-			<picture >
+			<picture>
 				<source srcset={wappenWebP} type="image/webp" />
 				<source srcset={wappen} type="image/png" />
-				<img class="inline max-h-[50px]" srcset={wappen} alt="Wappen"  width="42" height="50"/>
-			  </picture>
+				<img class="inline max-h-[50px]" srcset={wappen} alt="Wappen" width="42" height="50" />
+			</picture>
 			<span class="md:hidden lg:inline" aria-hidden="true">SV 08 Ludweiler</span>
 		</a>
 		<ul class="flex w-full flex-col">
@@ -170,22 +170,22 @@
 		left: 0;
 		margin: 0;
 		max-block-size: unset;
-	}
 
-	:global(html:has(dialog[open])) {
-		overflow: hidden;
-	}
-
-	:global(dialog[open]) {
-		animation: slide-in 250ms ease-in-out;
-	}
-
-	@keyframes slide-in {
-		0% {
-			left: -50vw;
+		:global(html:has(dialog[open])) {
+			overflow: hidden;
 		}
-		100% {
-			left: 0px;
+
+		:global(dialog[open]) {
+			animation: slide-in 250ms ease-in-out;
+		}
+
+		@keyframes slide-in {
+			0% {
+				left: -50vw;
+			}
+			100% {
+				left: 0px;
+			}
 		}
 	}
 </style>
