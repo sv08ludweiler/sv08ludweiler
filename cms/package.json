@@ -14,10 +14,10 @@
 		"generate-typings": "strapi ts:generate-types --debug"
 	},
 	"dependencies": {
-		"@strapi/plugin-documentation": "4.23.0",
-		"@strapi/plugin-i18n": "4.23.0",
-		"@strapi/plugin-users-permissions": "4.23.0",
-		"@strapi/strapi": "4.23.0",
+		"@strapi/plugin-documentation": "4.23.1",
+		"@strapi/plugin-i18n": "4.23.1",
+		"@strapi/plugin-users-permissions": "4.23.1",
+		"@strapi/strapi": "4.23.1",
 		"better-sqlite3": "9.5.0",
 		"pg": "8.11.5",
 		"react": "18.2.0",
