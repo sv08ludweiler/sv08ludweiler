@@ -195,7 +195,7 @@
 		max-block-size: unset;
 	}
 
-	:global(html:has(dialog[open].sidebar)) {
+	:global(html:has(dialog[open])) {
 		overflow: hidden;
 	}
 
