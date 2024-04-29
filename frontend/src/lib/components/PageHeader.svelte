@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { pushState } from '$app/navigation';
+	import { pushState, replaceState } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { env } from '$env/dynamic/public';
 	import type { StrapiImage } from '$lib/types/strapi.types';
@@ -52,9 +52,15 @@
 	 */
 	const closeDialog = (event: MouseEvent & { currentTarget: EventTarget & Window }) => {
 		if (dialog && dialog.hasAttribute('open') && event.target === dialog) {
-			dialog.close();
+			history.back();
 		}
 	};
+
+	function onCloseDialog(event: Event & { currentTarget: EventTarget & HTMLDialogElement }) {
+		if ($page.state.showModal) {
+			history.back();
+		}
+	}
 </script>
 
 {#if image}
@@ -86,7 +92,7 @@
 			/>
 		</button>
 	{/if}
-	<dialog bind:this={dialog}>
+	<dialog bind:this={dialog} on:close={onCloseDialog}>
 		<div class="flex flex-col">
 			<div class="flex justify-end">
 				<Button

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { beforeNavigate, pushState } from '$app/navigation';
+	import { beforeNavigate, pushState, replaceState } from '$app/navigation';
 	import { page } from '$app/stores';
 	import DivisionNavItem from '$lib/components/nav/DivisionNavItem.svelte';
 	import DropdownNavItem from '$lib/components/nav/DropdownNavItem.svelte';
@@ -48,6 +48,12 @@
 	beforeNavigate(() => {
 		sidebarDialog.close();
 	});
+
+	function onCloseDialog(event: Event & { currentTarget: EventTarget & HTMLDialogElement }) {
+		if ($page.state.showModal) {
+			history.back();
+		}
+	}
 </script>
 
 <header class="fixed z-50 flex h-[75px] w-full items-center bg-green-800 text-white drop-shadow-lg">
@@ -120,7 +126,7 @@
 	</nav>
 </header>
 
-<dialog class="sidebar shadow-xl" bind:this={sidebarDialog}>
+<dialog class="sidebar shadow-xl" bind:this={sidebarDialog} on:close={onCloseDialog}>
 	<div class="flex h-full w-full flex-col items-start">
 		<a
 			href="/"
