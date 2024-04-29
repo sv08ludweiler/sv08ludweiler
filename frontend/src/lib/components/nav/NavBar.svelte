@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { beforeNavigate } from '$app/navigation';
+	import { beforeNavigate, pushState } from '$app/navigation';
+	import { page } from '$app/stores';
 	import DivisionNavItem from '$lib/components/nav/DivisionNavItem.svelte';
 	import DropdownNavItem from '$lib/components/nav/DropdownNavItem.svelte';
 	import SimpleNavItem from '$lib/components/nav/SimpleNavItem.svelte';
 	import Ripple from '@smui/ripple';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 
 	/**
 	 * main menu cms data
@@ -18,8 +19,17 @@
 			sidebarDialog.close();
 		} else {
 			sidebarDialog.showModal();
+			pushState('', {
+				showModal: true,
+			});
 		}
 	};
+
+	const pageSubscription = page.subscribe((page) => {
+		if (!page.state.showModal) {
+			sidebarDialog && sidebarDialog.close();
+		}
+	});
 
 	onMount(() => {
 		if (sidebarDialog) {
@@ -29,6 +39,10 @@
 				}
 			});
 		}
+	});
+
+	onDestroy(() => {
+		pageSubscription();
 	});
 
 	beforeNavigate(() => {
@@ -173,22 +187,22 @@
 		left: 0;
 		margin: 0;
 		max-block-size: unset;
+	}
 
-		:global(html:has(dialog[open])) {
-			overflow: hidden;
+	:global(html:has(dialog[open].sidebar)) {
+		overflow: hidden;
+	}
+
+	:global(dialog[open].sidebar) {
+		animation: slide-in 250ms ease-in-out;
+	}
+
+	@keyframes slide-in {
+		0% {
+			left: -50vw;
 		}
-
-		:global(dialog[open]) {
-			animation: slide-in 250ms ease-in-out;
-		}
-
-		@keyframes slide-in {
-			0% {
-				left: -50vw;
-			}
-			100% {
-				left: 0px;
-			}
+		100% {
+			left: 0px;
 		}
 	}
 </style>

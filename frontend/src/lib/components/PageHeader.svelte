@@ -1,8 +1,11 @@
 <script lang="ts">
+	import { pushState } from '$app/navigation';
+	import { page } from '$app/stores';
 	import { env } from '$env/dynamic/public';
 	import type { StrapiImage } from '$lib/types/strapi.types';
 	import { generateImageSize, generateImageSrcSet } from '$lib/utils';
 	import Button from '@smui/button';
+	import { onDestroy } from 'svelte';
 
 	/**
 	 * Image of header
@@ -27,16 +30,31 @@
 	const showImage = () => {
 		dialog.showModal();
 		open = true;
+		pushState('', {
+			showModal: true,
+		});
 	};
+
+	const pageSubscription = page.subscribe((page) => {
+		console.log({ page });
+
+		if (!page.state.showModal) {
+			dialog && dialog.close();
+		}
+	});
+
+	onDestroy(() => {
+		pageSubscription();
+	});
 
 	/**
 	 * Close dialog on backdrop click;
 	 */
-	function closeDialog(event: MouseEvent & { currentTarget: EventTarget & Window }) {
+	const closeDialog = (event: MouseEvent & { currentTarget: EventTarget & Window }) => {
 		if (dialog && dialog.hasAttribute('open') && event.target === dialog) {
 			dialog.close();
 		}
-	}
+	};
 </script>
 
 {#if image}
