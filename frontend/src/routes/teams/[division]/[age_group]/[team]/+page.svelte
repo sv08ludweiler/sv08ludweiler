@@ -180,7 +180,9 @@
 			<section>
 				<div class="flex-auto py-4 md:container md:mx-auto">
 					<h2 id={widget.title.trim().replace(' ', '-')}>{widget.title}</h2>
-					<FussballDeWidget widgetId={widget.widgetid} />
+					{#key widget.widgetid}
+						<FussballDeWidget widgetId={widget.widgetid} />
+					{/key}
 				</div>
 			</section>
 		{/each}

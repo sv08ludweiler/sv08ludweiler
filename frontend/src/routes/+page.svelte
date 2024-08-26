@@ -114,7 +114,9 @@
 			<h2 id={data.landingPage.data.attributes.Vereinsspielplan.title.trim().replace(' ', '-')}>
 				{data.landingPage.data.attributes.Vereinsspielplan.title}
 			</h2>
-			<FussballDeWidget widgetId={data.landingPage.data.attributes.Vereinsspielplan.widgetid} />
+			{#key data.landingPage.data.attributes.Vereinsspielplan.widgetid}
+				<FussballDeWidget widgetId={data.landingPage.data.attributes.Vereinsspielplan.widgetid} />
+			{/key}
 		{/if}
 	</section>
 </div>
