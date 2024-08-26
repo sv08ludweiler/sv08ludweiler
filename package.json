@@ -6,9 +6,9 @@
 		"cms"
 	],
 	"devDependencies": {
-		"prettier-plugin-svelte": "3.2.3",
-		"prettier": "3.2.5",
-		"prettier-plugin-tailwindcss": "0.5.14"
+		"prettier-plugin-svelte": "3.2.6",
+		"prettier": "3.3.3",
+		"prettier-plugin-tailwindcss": "0.6.6"
 	},
 	"scripts": {
 		"docker:build:strapi": "docker build -t sv08ludweiler-strapi-dev:latest -f Dockerfile .",

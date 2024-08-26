@@ -7,6 +7,7 @@
 	import '../app.css';
 	import '../global.css';
 	import '../root-styles.css';
+	// import '../../static/smui.css'; // imported in app.html
 	import type { LayoutData } from './$types';
 
 	import NavBar from '$lib/components/nav/NavBar.svelte';

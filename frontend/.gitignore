@@ -10,3 +10,5 @@ vite.config.ts.timestamp-*
 .idea/
 /build-static
 /build-node
+/build-docker
+/dev-dist

@@ -36,8 +36,6 @@
 	};
 
 	const pageSubscription = page.subscribe((page) => {
-		console.log({ page });
-
 		if (!page.state.showModal) {
 			dialog && dialog.close();
 		}
