@@ -7,6 +7,7 @@
 	import type { StrapiImage } from '$lib/types/strapi.types';
 	import type { PageData } from './$types';
 	import Trainer from '$lib/components/Trainer.svelte';
+	import FussballDeWidget2024 from '$lib/components/fussball-de-widget/fussballDeWidget2024.svelte';
 
 	export let data: PageData;
 
@@ -180,9 +181,18 @@
 			<section>
 				<div class="flex-auto py-4 md:container md:mx-auto">
 					<h2 id={widget.title.trim().replace(' ', '-')}>{widget.title}</h2>
-					{#key widget.widgetid}
-						<FussballDeWidget widgetId={widget.widgetid} />
-					{/key}
+
+					{#if widget.type && widget.type !== 'old'}
+						<FussballDeWidget2024
+							widgetId={widget.widgetid}
+							widgetType={widget.type}
+							title={widget.title}
+						/>
+					{:else}
+						{#key widget.widgetid}
+							<FussballDeWidget widgetId={widget.widgetid} />
+						{/key}
+					{/if}
 				</div>
 			</section>
 		{/each}

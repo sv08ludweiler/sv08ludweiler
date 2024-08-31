@@ -5,7 +5,8 @@
 	import PostColumns from '$lib/components/PostColumns.svelte';
 	import SocialMediaLink from '$lib/components/SocialMediaLink.svelte';
 	import FupaWidget from '$lib/components/fupa/FupaWidget.svelte';
-	import FussballDeWidget from '$lib/components/fussball-de-widget/fussballDeWidget.svelte';
+	import FussballDeWidget2024 from '$lib/components/fussball-de-widget/fussballDeWidget2024.svelte';
+	import FussballDeWidget from '$lib/components/fussball-de-widget/FussballDeWidget.svelte';
 	import Button from '@smui/button';
 	import type { PageData } from './$types';
 
@@ -114,9 +115,18 @@
 			<h2 id={data.landingPage.data.attributes.Vereinsspielplan.title.trim().replace(' ', '-')}>
 				{data.landingPage.data.attributes.Vereinsspielplan.title}
 			</h2>
-			{#key data.landingPage.data.attributes.Vereinsspielplan.widgetid}
-				<FussballDeWidget widgetId={data.landingPage.data.attributes.Vereinsspielplan.widgetid} />
-			{/key}
+
+			{#if data.landingPage.data.attributes.Vereinsspielplan.type && data.landingPage.data.attributes.Vereinsspielplan.type !== 'old'}
+				<FussballDeWidget2024
+					widgetId={data.landingPage.data.attributes.Vereinsspielplan.widgetid}
+					widgetType={data.landingPage.data.attributes.Vereinsspielplan.type}
+					title={data.landingPage.data.attributes.Vereinsspielplan.title}
+				/>
+			{:else}
+				{#key data.landingPage.data.attributes.Vereinsspielplan.widgetid}
+					<FussballDeWidget widgetId={data.landingPage.data.attributes.Vereinsspielplan.widgetid} />
+				{/key}
+			{/if}
 		{/if}
 	</section>
 </div>

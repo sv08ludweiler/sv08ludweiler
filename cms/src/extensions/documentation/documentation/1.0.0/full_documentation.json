@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-08-26T07:03:48.241Z"
+    "x-generation-date": "2024-08-31T12:25:44.261Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1530,6 +1530,19 @@
                               },
                               "title": {
                                 "type": "string"
+                              },
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "competition",
+                                  "team-matches",
+                                  "next-match",
+                                  "club-matches",
+                                  "table",
+                                  "news",
+                                  "squad",
+                                  "old"
+                                ]
                               }
                             }
                           }
@@ -3514,6 +3527,19 @@
           },
           "title": {
             "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "competition",
+              "team-matches",
+              "next-match",
+              "club-matches",
+              "table",
+              "news",
+              "squad",
+              "old"
+            ]
           }
         }
       },
@@ -4037,6 +4063,19 @@
                                           },
                                           "title": {
                                             "type": "string"
+                                          },
+                                          "type": {
+                                            "type": "string",
+                                            "enum": [
+                                              "competition",
+                                              "team-matches",
+                                              "next-match",
+                                              "club-matches",
+                                              "table",
+                                              "news",
+                                              "squad",
+                                              "old"
+                                            ]
                                           }
                                         }
                                       }
@@ -7961,6 +8000,19 @@
                                                         },
                                                         "title": {
                                                           "type": "string"
+                                                        },
+                                                        "type": {
+                                                          "type": "string",
+                                                          "enum": [
+                                                            "competition",
+                                                            "team-matches",
+                                                            "next-match",
+                                                            "club-matches",
+                                                            "table",
+                                                            "news",
+                                                            "squad",
+                                                            "old"
+                                                          ]
                                                         }
                                                       }
                                                     }
@@ -10297,6 +10349,19 @@
                                             },
                                             "title": {
                                               "type": "string"
+                                            },
+                                            "type": {
+                                              "type": "string",
+                                              "enum": [
+                                                "competition",
+                                                "team-matches",
+                                                "next-match",
+                                                "club-matches",
+                                                "table",
+                                                "news",
+                                                "squad",
+                                                "old"
+                                              ]
                                             }
                                           }
                                         }
