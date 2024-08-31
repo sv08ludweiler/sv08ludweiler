@@ -1,10 +1,10 @@
 <script lang="ts" context="module">
 	const loadScript = async () => {
-		if (dev) {
-			import('./widget.js');
-		} else {
-			import('https://widget-api.fupa.net/vendor/widget.js?v1');
-		}
+		// if (dev) {
+		import('./widget.js');
+		// } else {
+		// import('https://widget-api.fupa.net/vendor/widget.js?v1');
+		// }
 	};
 
 	if (browser) {
