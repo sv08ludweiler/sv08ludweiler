@@ -3,11 +3,11 @@
 	import PostColumns from '$lib/components/PostColumns.svelte';
 	import TrainingList from '$lib/components/TrainingList.svelte';
 	import FupaWidget from '$lib/components/fupa/FupaWidget.svelte';
-	import FussballDeWidget from '$lib/components/fussball-de-widget/fussballDeWidget.svelte';
 	import type { StrapiImage } from '$lib/types/strapi.types';
 	import type { PageData } from './$types';
 	import Trainer from '$lib/components/Trainer.svelte';
-	import FussballDeWidget2024 from '$lib/components/fussball-de-widget/fussballDeWidget2024.svelte';
+	import FussballDeWidget2024 from '$lib/components/fussball-de-widget/FussballDeWidget2024.svelte';
+	import FussballDeWidget from '$lib/components/fussball-de-widget/FussballDeWidget.svelte';
 
 	export let data: PageData;
 

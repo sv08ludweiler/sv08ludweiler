@@ -5,7 +5,7 @@
 	import PostColumns from '$lib/components/PostColumns.svelte';
 	import SocialMediaLink from '$lib/components/SocialMediaLink.svelte';
 	import FupaWidget from '$lib/components/fupa/FupaWidget.svelte';
-	import FussballDeWidget2024 from '$lib/components/fussball-de-widget/fussballDeWidget2024.svelte';
+	import FussballDeWidget2024 from '$lib/components/fussball-de-widget/FussballDeWidget2024.svelte';
 	import FussballDeWidget from '$lib/components/fussball-de-widget/FussballDeWidget.svelte';
 	import Button from '@smui/button';
 	import type { PageData } from './$types';

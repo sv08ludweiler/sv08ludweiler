@@ -25,7 +25,8 @@
         "squad",
         "old"
       ],
-      "default": "old"
+      "default": "old",
+      "required": true
     }
   }
 }
