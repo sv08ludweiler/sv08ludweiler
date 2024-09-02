@@ -44,16 +44,26 @@
 			iframeHeight = `${event.data.height}px`;
 		}
 	};
+
+	let wait = false;
+
+	setTimeout(() => {
+		//workaround to draw iframe in correct height when reloading whole page
+		wait = true;
+	});
 </script>
 
 <svelte:window on:message={onMessage} />
 
-<iframe
-	title={title || `fussball.de Widget ${widgetId}`}
-	src={`https://next.fussball.de/widget/${widgetType}/${widgetId}`}
-	name={iframeName}
-	width="100%"
-	height={iframeHeight}
-	frameborder="0"
-	scrolling="no"
-></iframe>
+<!-- workaround to draw iframe in correct height when reloading whole page -->
+{#if wait}
+	<iframe
+		title={title || `fussball.de Widget ${widgetId}`}
+		src={`https://next.fussball.de/widget/${widgetType}/${widgetId}`}
+		name={iframeName}
+		width="100%"
+		height={iframeHeight}
+		frameborder="0"
+		scrolling="no"
+	></iframe>
+{/if}
