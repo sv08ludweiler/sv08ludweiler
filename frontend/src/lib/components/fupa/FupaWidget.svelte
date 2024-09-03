@@ -1,43 +1,30 @@
 <script lang="ts" context="module">
 	const loadScript = async () => {
-		// if (dev) {
 		import('./widget.js');
-		// } else {
-		// import('https://widget-api.fupa.net/vendor/widget.js?v1');
-		// }
 	};
-
 	if (browser) {
 		loadScript();
 	}
 </script>
 
 <script lang="ts">
-	import { browser, dev } from '$app/environment';
+	import { browser } from '$app/environment';
 	import { beforeNavigate } from '$app/navigation';
 	import Card from '@smui/card';
 
 	export let widgetId: string | undefined;
 
-	// const loadWidgetData = async (id: string) => {
-	// 	let r = await fetch('https://widget-api.fupa.net/v1/widgets/'.concat(id));
-	// 	if (!r.ok) throw new Error('widget fetch error');
-	// 	const widgetData = await r.json();
-	// 	return widgetData;
-	// };
-
 	let widgetContainer: HTMLDivElement;
 
-	beforeNavigate(() => {
-		// remove widget when navigating to trigger mutation observer
-		widgetId = undefined;
+	beforeNavigate(({ from, to }) => {
+		if (JSON.stringify(from) !== JSON.stringify(to)) {
+			// remove widget when navigating to trigger mutation observer
+			widgetId = undefined;
+		}
 	});
 </script>
 
 <Card class="hostcard inline-flex flex-1 items-center justify-center">
-	<!-- <Content class="inline-flex h-full w-full justify-center">
-		<div id={`widget-${id}`} class="flex h-full w-full justify-center">...</div>
-	</Content> -->
 	{#if widgetId}
 		<div id={`fp-widget_root-${widgetId}`} bind:this={widgetContainer}>
 			<a href="https://www.fupa.net/club/sv-ludweiler" target="_blank" rel="noopener"
