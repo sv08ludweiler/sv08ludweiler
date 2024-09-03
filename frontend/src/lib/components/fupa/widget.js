@@ -1,65 +1,65 @@
 'use strict';
 (() => {
-	var Pp = Object.create;
+	var Mp = Object.create;
 	var B = Object.defineProperty;
-	var Mp = Object.getOwnPropertyDescriptor;
-	var xp = Object.getOwnPropertyNames,
+	var xp = Object.getOwnPropertyDescriptor;
+	var Dp = Object.getOwnPropertyNames,
 		Ss = Object.getOwnPropertySymbols,
-		Dp = Object.getPrototypeOf,
+		Cp = Object.getPrototypeOf,
 		qs = Object.prototype.hasOwnProperty,
-		Cp = Object.prototype.propertyIsEnumerable;
+		wp = Object.prototype.propertyIsEnumerable;
 	var Vn = (e, r, n) =>
 			r in e ? B(e, r, { enumerable: !0, configurable: !0, writable: !0, value: n }) : (e[r] = n),
 		te = (e, r) => {
 			for (var n in r || (r = {})) qs.call(r, n) && Vn(e, n, r[n]);
 			if (Ss)
 				for (var o = Ss(r), s = 0, u = o.length, n; s < u; s++)
-					(n = o[s]), Cp.call(r, n) && Vn(e, n, r[n]);
+					(n = o[s]), wp.call(r, n) && Vn(e, n, r[n]);
 			return e;
 		};
 	var g = (e, r) => () => (e && (r = e((e = 0))), r);
 	var i = (e, r) => () => (r || e((r = { exports: {} }).exports, r), r.exports),
-		wp = (e, r) => {
+		Op = (e, r) => {
 			for (var n in r) B(e, n, { get: r[n], enumerable: !0 });
 		},
 		js = (e, r, n, o) => {
 			if ((r && typeof r == 'object') || typeof r == 'function')
-				for (var s = xp(r), u = 0, d = s.length, c; u < d; u++)
+				for (var s = Dp(r), u = 0, d = s.length, c; u < d; u++)
 					(c = s[u]),
 						!qs.call(e, c) &&
 							c !== n &&
 							B(e, c, {
-								get: ((f) => r[f]).bind(null, c),
-								enumerable: !(o = Mp(r, c)) || o.enumerable,
+								get: ((v) => r[v]).bind(null, c),
+								enumerable: !(o = xp(r, c)) || o.enumerable,
 							});
 			return e;
 		};
-	var Op = (e, r, n) => (
-			(n = e != null ? Pp(Dp(e)) : {}),
+	var Lp = (e, r, n) => (
+			(n = e != null ? Mp(Cp(e)) : {}),
 			js(r || !e || !e.__esModule ? B(n, 'default', { value: e, enumerable: !0 }) : n, e)
 		),
-		Lp = (e) => js(B({}, '__esModule', { value: !0 }), e);
+		Sp = (e) => js(B({}, '__esModule', { value: !0 }), e);
 	var a = (e, r, n) => (Vn(e, typeof r != 'symbol' ? r + '' : r, n), n);
 	var re = (e, r, n) =>
 		new Promise((o, s) => {
-			var u = (f) => {
+			var u = (v) => {
 					try {
-						c(n.next(f));
+						c(n.next(v));
 					} catch (p) {
 						s(p);
 					}
 				},
-				d = (f) => {
+				d = (v) => {
 					try {
-						c(n.throw(f));
+						c(n.throw(v));
 					} catch (p) {
 						s(p);
 					}
 				},
-				c = (f) => (f.done ? o(f.value) : Promise.resolve(f.value).then(u, d));
+				c = (v) => (v.done ? o(v.value) : Promise.resolve(v.value).then(u, d));
 			c((n = n.apply(e, r)).next());
 		});
-	var v,
+	var f,
 		Gn,
 		K_,
 		q,
@@ -81,26 +81,26 @@
 		lh,
 		L = g(() => {
 			'use strict';
-			(v = 'fp-'),
-				(Gn = ''.concat(v, 'widget_root')),
-				(K_ = ''.concat(v, 'view')),
-				(q = ''.concat(v, 'widget-view')),
+			(f = 'fp-'),
+				(Gn = ''.concat(f, 'widget_root')),
+				(K_ = ''.concat(f, 'view')),
+				(q = ''.concat(f, 'widget-view')),
 				(R = ''.concat(q, 's')),
 				(j = ''.concat(q, '-active')),
-				(Bn = ''.concat(v, 'loading')),
-				(J_ = ''.concat(v, 'caption-text')),
-				(Q_ = ''.concat(v, 'subheading-text')),
-				(X_ = ''.concat(v, 'table-body-text')),
-				(eh = ''.concat(v, 'body-text')),
-				(th = ''.concat(v, 'title-text')),
-				(rh = ''.concat(v, 'highlight-color')),
-				(nh = ''.concat(v, 'highlight-contrast-color')),
-				(oh = ''.concat(v, 'border-color')),
-				(ih = ''.concat(v, 'shadow-color')),
-				(ah = ''.concat(v, 'separator-color')),
-				(sh = ''.concat(v, 'hide')),
-				(uh = ''.concat(v, 'column-header')),
-				(lh = ''.concat(v, 'text-button'));
+				(Bn = ''.concat(f, 'loading')),
+				(J_ = ''.concat(f, 'caption-text')),
+				(Q_ = ''.concat(f, 'subheading-text')),
+				(X_ = ''.concat(f, 'table-body-text')),
+				(eh = ''.concat(f, 'body-text')),
+				(th = ''.concat(f, 'title-text')),
+				(rh = ''.concat(f, 'highlight-color')),
+				(nh = ''.concat(f, 'highlight-contrast-color')),
+				(oh = ''.concat(f, 'border-color')),
+				(ih = ''.concat(f, 'shadow-color')),
+				(ah = ''.concat(f, 'separator-color')),
+				(sh = ''.concat(f, 'hide')),
+				(uh = ''.concat(f, 'column-header')),
+				(lh = ''.concat(f, 'text-button'));
 		});
 	var Ts,
 		zn = g(() => {
@@ -114,11 +114,11 @@
 				'match-liveticker': 'Liveticker',
 			};
 		});
-	var Sp,
+	var qp,
 		Us,
 		Rs = g(() => {
 			'use strict';
-			(Sp = (e) => {
+			(qp = (e) => {
 				let r = document.getElementById(e);
 				if (!r)
 					throw new Error(
@@ -129,13 +129,13 @@
 					);
 				return r;
 			}),
-				(Us = Sp);
+				(Us = qp);
 		});
-	var qp,
+	var jp,
 		E,
 		T = g(() => {
 			'use strict';
-			(qp = (e, r) => {
+			(jp = (e, r) => {
 				let n = document.createElement(e);
 				return (
 					Object.keys(r).forEach((o) => {
@@ -144,7 +144,7 @@
 					n
 				);
 			}),
-				(E = qp);
+				(E = jp);
 		});
 	var Yn,
 		Fs,
@@ -179,11 +179,11 @@
 			}),
 				(Fs = Yn);
 		});
-	var jp,
+	var Tp,
 		C,
 		z = g(() => {
 			'use strict';
-			(jp = (e) => document.createTextNode(e)), (C = jp);
+			(Tp = (e) => document.createTextNode(e)), (C = Tp);
 		});
 	var U,
 		Zn = g(() => {
@@ -205,7 +205,7 @@
 			w = () => !!Array.from(document.styleSheets).find((r) => r.title === 'fp-widget-css');
 		});
 	var au = {};
-	wp(au, {
+	Op(au, {
 		__addDisposableResource: () => ou,
 		__assign: () => ne,
 		__asyncDelegator: () => Ks,
@@ -219,7 +219,7 @@
 		__createBinding: () => ie,
 		__decorate: () => ks,
 		__disposeResources: () => iu,
-		__esDecorate: () => Tp,
+		__esDecorate: () => Up,
 		__exportStar: () => Gs,
 		__extends: () => Ws,
 		__generator: () => Vs,
@@ -228,16 +228,16 @@
 		__makeTemplateObject: () => Qs,
 		__metadata: () => Hs,
 		__param: () => Ns,
-		__propKey: () => Rp,
+		__propKey: () => Fp,
 		__read: () => Jn,
 		__rest: () => Is,
-		__runInitializers: () => Up,
-		__setFunctionName: () => Fp,
+		__runInitializers: () => Rp,
+		__setFunctionName: () => Ap,
 		__spread: () => Bs,
 		__spreadArray: () => Ys,
 		__spreadArrays: () => zs,
 		__values: () => oe,
-		default: () => Ip,
+		default: () => kp,
 	});
 	function Ws(e, r) {
 		if (typeof r != 'function' && r !== null)
@@ -275,14 +275,14 @@
 			r(n, o, e);
 		};
 	}
-	function Tp(e, r, n, o, s, u) {
+	function Up(e, r, n, o, s, u) {
 		function d(S) {
 			if (S !== void 0 && typeof S != 'function') throw new TypeError('Function expected');
 			return S;
 		}
 		for (
 			var c = o.kind,
-				f = c === 'getter' ? 'get' : c === 'setter' ? 'set' : 'value',
+				v = c === 'getter' ? 'get' : c === 'setter' ? 'set' : 'value',
 				p = !r && e ? (o.static ? e : e.prototype) : null,
 				_ = r || (p ? Object.getOwnPropertyDescriptor(p, o.name) : {}),
 				y,
@@ -298,26 +298,26 @@
 				if (h) throw new TypeError('Cannot add initializers after decoration has completed');
 				u.push(d(S || null));
 			};
-			var O = (0, n[P])(c === 'accessor' ? { get: _.get, set: _.set } : _[f], x);
+			var O = (0, n[P])(c === 'accessor' ? { get: _.get, set: _.set } : _[v], x);
 			if (c === 'accessor') {
 				if (O === void 0) continue;
 				if (O === null || typeof O != 'object') throw new TypeError('Object expected');
 				(y = d(O.get)) && (_.get = y),
 					(y = d(O.set)) && (_.set = y),
 					(y = d(O.init)) && s.unshift(y);
-			} else (y = d(O)) && (c === 'field' ? s.unshift(y) : (_[f] = y));
+			} else (y = d(O)) && (c === 'field' ? s.unshift(y) : (_[v] = y));
 		}
 		p && Object.defineProperty(p, o.name, _), (h = !0);
 	}
-	function Up(e, r, n) {
+	function Rp(e, r, n) {
 		for (var o = arguments.length > 2, s = 0; s < r.length; s++)
 			n = o ? r[s].call(e, n) : r[s].call(e);
 		return o ? n : void 0;
 	}
-	function Rp(e) {
+	function Fp(e) {
 		return typeof e == 'symbol' ? e : ''.concat(e);
 	}
-	function Fp(e, r, n) {
+	function Ap(e, r, n) {
 		return (
 			typeof r == 'symbol' && (r = r.description ? '['.concat(r.description, ']') : ''),
 			Object.defineProperty(e, 'name', { configurable: !0, value: n ? ''.concat(n, ' ', r) : r })
@@ -343,7 +343,7 @@
 					d(y);
 				}
 			}
-			function f(_) {
+			function v(_) {
 				try {
 					p(o.throw(_));
 				} catch (y) {
@@ -351,7 +351,7 @@
 				}
 			}
 			function p(_) {
-				_.done ? u(_.value) : s(_.value).then(c, f);
+				_.done ? u(_.value) : s(_.value).then(c, v);
 			}
 			p((o = o.apply(e, r || [])).next());
 		});
@@ -380,10 +380,10 @@
 		);
 		function c(p) {
 			return function (_) {
-				return f([p, _]);
+				return v([p, _]);
 			};
 		}
-		function f(p) {
+		function v(p) {
 			if (o) throw new TypeError('Generator is already executing.');
 			for (; d && ((d = 0), p[0] && (n = 0)), n; )
 				try {
@@ -524,12 +524,12 @@
 		}
 		function c(h, P) {
 			try {
-				f(o[h](P));
+				v(o[h](P));
 			} catch (x) {
 				y(u[0][3], x);
 			}
 		}
-		function f(h) {
+		function v(h) {
 			h.value instanceof F ? Promise.resolve(h.value.v).then(p, _) : y(u[0][2], h);
 		}
 		function p(h) {
@@ -583,13 +583,13 @@
 			n[u] =
 				e[u] &&
 				function (d) {
-					return new Promise(function (c, f) {
-						(d = e[u](d)), s(c, f, d.done, d.value);
+					return new Promise(function (c, v) {
+						(d = e[u](d)), s(c, v, d.done, d.value);
 					});
 				};
 		}
-		function s(u, d, c, f) {
-			Promise.resolve(f).then(function (p) {
+		function s(u, d, c, v) {
+			Promise.resolve(v).then(function (p) {
 				u({ value: p, done: c });
 			}, d);
 		}
@@ -602,7 +602,7 @@
 		var r = {};
 		if (e != null)
 			for (var n in e) n !== 'default' && Object.prototype.hasOwnProperty.call(e, n) && ie(r, e, n);
-		return Ap(r, e), r;
+		return Wp(r, e), r;
 	}
 	function eu(e) {
 		return e && e.__esModule ? e : { default: e };
@@ -648,7 +648,7 @@
 	}
 	function iu(e) {
 		function r(o) {
-			(e.error = e.hasError ? new Wp(o, e.error, 'An error was suppressed during disposal.') : o),
+			(e.error = e.hasError ? new Ip(o, e.error, 'An error was suppressed during disposal.') : o),
 				(e.hasError = !0);
 		}
 		function n() {
@@ -671,9 +671,9 @@
 	var Kn,
 		ne,
 		ie,
-		Ap,
 		Wp,
 		Ip,
+		kp,
 		su = g(() => {
 			Kn = function (e, r) {
 				return (
@@ -719,21 +719,21 @@
 				: function (e, r, n, o) {
 						o === void 0 && (o = n), (e[o] = r[n]);
 					};
-			Ap = Object.create
+			Wp = Object.create
 				? function (e, r) {
 						Object.defineProperty(e, 'default', { enumerable: !0, value: r });
 					}
 				: function (e, r) {
 						e.default = r;
 					};
-			Wp =
+			Ip =
 				typeof SuppressedError == 'function'
 					? SuppressedError
 					: function (e, r, n) {
 							var o = new Error(n);
 							return (o.name = 'SuppressedError'), (o.error = e), (o.suppressed = r), o;
 						};
-			Ip = {
+			kp = {
 				__extends: Ws,
 				__assign: ne,
 				__rest: Is,
@@ -787,32 +787,32 @@
 		'use strict';
 		Object.defineProperty(se, '__esModule', { value: !0 });
 		se.ClubCreated = void 0;
-		var kp = l(),
-			Xn = class extends kp.DomainEvent {};
+		var Np = l(),
+			Xn = class extends Np.DomainEvent {};
 		se.ClubCreated = Xn;
 	});
 	var lu = i((ue) => {
 		'use strict';
 		Object.defineProperty(ue, '__esModule', { value: !0 });
 		ue.ClubDeleted = void 0;
-		var Np = l(),
-			eo = class extends Np.DomainEvent {};
+		var Hp = l(),
+			eo = class extends Hp.DomainEvent {};
 		ue.ClubDeleted = eo;
 	});
 	var du = i((le) => {
 		'use strict';
 		Object.defineProperty(le, '__esModule', { value: !0 });
 		le.ClubUpdated = void 0;
-		var Hp = l(),
-			to = class extends Hp.DomainEvent {};
+		var $p = l(),
+			to = class extends $p.DomainEvent {};
 		le.ClubUpdated = to;
 	});
 	var M = i((de) => {
 		'use strict';
 		Object.defineProperty(de, '__esModule', { value: !0 });
 		de.EntityExportAvailableEvent = void 0;
-		var $p = l(),
-			ro = class extends $p.DomainEvent {
+		var Vp = l(),
+			ro = class extends Vp.DomainEvent {
 				constructor(n, o, s, u, d, c) {
 					super(n, o, s, d, c);
 					a(this, 'context');
@@ -825,24 +825,24 @@
 		'use strict';
 		Object.defineProperty(ce, '__esModule', { value: !0 });
 		ce.ClubsExportAvailable = void 0;
-		var Vp = M(),
-			no = class extends Vp.EntityExportAvailableEvent {};
+		var Gp = M(),
+			no = class extends Gp.EntityExportAvailableEvent {};
 		ce.ClubsExportAvailable = no;
 	});
 	var pu = i((pe) => {
 		'use strict';
 		Object.defineProperty(pe, '__esModule', { value: !0 });
 		pe.ClubsExportRequested = void 0;
-		var Gp = l(),
-			oo = class extends Gp.DomainEvent {};
+		var Bp = l(),
+			oo = class extends Bp.DomainEvent {};
 		pe.ClubsExportRequested = oo;
 	});
 	var vu = i((A) => {
 		'use strict';
 		Object.defineProperty(A, '__esModule', { value: !0 });
 		A.RefreshCoachAdded = A.CoachAdded = void 0;
-		var Bp = l(),
-			ve = class extends Bp.DomainEvent {};
+		var zp = l(),
+			ve = class extends zp.DomainEvent {};
 		A.CoachAdded = ve;
 		var io = class extends ve {};
 		A.RefreshCoachAdded = io;
@@ -851,8 +851,8 @@
 		'use strict';
 		Object.defineProperty(W, '__esModule', { value: !0 });
 		W.RefreshCoachRemoved = W.CoachRemoved = void 0;
-		var zp = l(),
-			fe = class extends zp.DomainEvent {};
+		var Yp = l(),
+			fe = class extends Yp.DomainEvent {};
 		W.CoachRemoved = fe;
 		var ao = class extends fe {};
 		W.RefreshCoachRemoved = ao;
@@ -861,304 +861,304 @@
 		'use strict';
 		Object.defineProperty(me, '__esModule', { value: !0 });
 		me.CompetitionEvent = void 0;
-		var Yp = l(),
-			so = class extends Yp.DomainEvent {};
+		var Zp = l(),
+			so = class extends Zp.DomainEvent {};
 		me.CompetitionEvent = so;
 	});
 	var mu = i((be) => {
 		'use strict';
 		Object.defineProperty(be, '__esModule', { value: !0 });
 		be.CompetitionCreated = void 0;
-		var Zp = Z(),
-			uo = class extends Zp.CompetitionEvent {};
+		var Kp = Z(),
+			uo = class extends Kp.CompetitionEvent {};
 		be.CompetitionCreated = uo;
 	});
 	var bu = i((Ee) => {
 		'use strict';
 		Object.defineProperty(Ee, '__esModule', { value: !0 });
 		Ee.CompetitionDeleted = void 0;
-		var Kp = l(),
-			lo = class extends Kp.DomainEvent {};
+		var Jp = l(),
+			lo = class extends Jp.DomainEvent {};
 		Ee.CompetitionDeleted = lo;
 	});
 	var I = i((_e) => {
 		'use strict';
 		Object.defineProperty(_e, '__esModule', { value: !0 });
 		_e.EntityFollowedEvent = void 0;
-		var Jp = l(),
-			co = class extends Jp.DomainEvent {};
+		var Qp = l(),
+			co = class extends Qp.DomainEvent {};
 		_e.EntityFollowedEvent = co;
 	});
 	var Eu = i((he) => {
 		'use strict';
 		Object.defineProperty(he, '__esModule', { value: !0 });
 		he.CompetitionFollowed = void 0;
-		var Qp = I(),
-			po = class extends Qp.EntityFollowedEvent {};
+		var Xp = I(),
+			po = class extends Xp.EntityFollowedEvent {};
 		he.CompetitionFollowed = po;
 	});
 	var _u = i((ye) => {
 		'use strict';
 		Object.defineProperty(ye, '__esModule', { value: !0 });
 		ye.CompetitionImageUpdated = void 0;
-		var Xp = Z(),
-			vo = class extends Xp.CompetitionEvent {};
+		var ev = Z(),
+			vo = class extends ev.CompetitionEvent {};
 		ye.CompetitionImageUpdated = vo;
 	});
 	var hu = i((ge) => {
 		'use strict';
 		Object.defineProperty(ge, '__esModule', { value: !0 });
 		ge.CompetitionSeasonActivated = void 0;
-		var ev = l(),
-			fo = class extends ev.DomainEvent {};
+		var tv = l(),
+			fo = class extends tv.DomainEvent {};
 		ge.CompetitionSeasonActivated = fo;
 	});
 	var yu = i((Pe) => {
 		'use strict';
 		Object.defineProperty(Pe, '__esModule', { value: !0 });
 		Pe.CompetitionSeasonCreated = void 0;
-		var tv = l(),
-			mo = class extends tv.DomainEvent {};
+		var rv = l(),
+			mo = class extends rv.DomainEvent {};
 		Pe.CompetitionSeasonCreated = mo;
 	});
 	var gu = i((Me) => {
 		'use strict';
 		Object.defineProperty(Me, '__esModule', { value: !0 });
 		Me.CompetitionSeasonDeactivated = void 0;
-		var rv = l(),
-			bo = class extends rv.DomainEvent {};
+		var nv = l(),
+			bo = class extends nv.DomainEvent {};
 		Me.CompetitionSeasonDeactivated = bo;
 	});
 	var Pu = i((xe) => {
 		'use strict';
 		Object.defineProperty(xe, '__esModule', { value: !0 });
 		xe.CompetitionSeasonDeleted = void 0;
-		var nv = l(),
-			Eo = class extends nv.DomainEvent {};
+		var ov = l(),
+			Eo = class extends ov.DomainEvent {};
 		xe.CompetitionSeasonDeleted = Eo;
 	});
 	var Mu = i((De) => {
 		'use strict';
 		Object.defineProperty(De, '__esModule', { value: !0 });
 		De.CompetitionSeasonFormStandingsTeasered = void 0;
-		var ov = l(),
-			_o = class extends ov.DomainEvent {};
+		var iv = l(),
+			_o = class extends iv.DomainEvent {};
 		De.CompetitionSeasonFormStandingsTeasered = _o;
 	});
 	var xu = i((Ce) => {
 		'use strict';
 		Object.defineProperty(Ce, '__esModule', { value: !0 });
 		Ce.CompetitionSeasonTopScorersCreated = void 0;
-		var iv = l(),
-			ho = class extends iv.DomainEvent {};
+		var av = l(),
+			ho = class extends av.DomainEvent {};
 		Ce.CompetitionSeasonTopScorersCreated = ho;
 	});
 	var Du = i((we) => {
 		'use strict';
 		Object.defineProperty(we, '__esModule', { value: !0 });
 		we.CompetitionSeasonTopScorersDeleted = void 0;
-		var av = l(),
-			yo = class extends av.DomainEvent {};
+		var sv = l(),
+			yo = class extends sv.DomainEvent {};
 		we.CompetitionSeasonTopScorersDeleted = yo;
 	});
 	var Cu = i((Oe) => {
 		'use strict';
 		Object.defineProperty(Oe, '__esModule', { value: !0 });
 		Oe.CompetitionSeasonUpdated = void 0;
-		var sv = l(),
-			go = class extends sv.DomainEvent {};
+		var uv = l(),
+			go = class extends uv.DomainEvent {};
 		Oe.CompetitionSeasonUpdated = go;
 	});
 	var wu = i((Le) => {
 		'use strict';
 		Object.defineProperty(Le, '__esModule', { value: !0 });
 		Le.CompetitionSeasonsExportAvailable = void 0;
-		var uv = M(),
-			Po = class extends uv.EntityExportAvailableEvent {};
+		var lv = M(),
+			Po = class extends lv.EntityExportAvailableEvent {};
 		Le.CompetitionSeasonsExportAvailable = Po;
 	});
 	var Ou = i((Se) => {
 		'use strict';
 		Object.defineProperty(Se, '__esModule', { value: !0 });
 		Se.CompetitionSeasonsExportRequested = void 0;
-		var lv = l(),
-			Mo = class extends lv.DomainEvent {};
+		var dv = l(),
+			Mo = class extends dv.DomainEvent {};
 		Se.CompetitionSeasonsExportRequested = Mo;
 	});
 	var k = i((qe) => {
 		'use strict';
 		Object.defineProperty(qe, '__esModule', { value: !0 });
 		qe.EntityUnfollowedEvent = void 0;
-		var dv = l(),
-			xo = class extends dv.DomainEvent {};
+		var cv = l(),
+			xo = class extends cv.DomainEvent {};
 		qe.EntityUnfollowedEvent = xo;
 	});
 	var Lu = i((je) => {
 		'use strict';
 		Object.defineProperty(je, '__esModule', { value: !0 });
 		je.CompetitionUnfollowed = void 0;
-		var cv = k(),
-			Do = class extends cv.EntityUnfollowedEvent {};
+		var pv = k(),
+			Do = class extends pv.EntityUnfollowedEvent {};
 		je.CompetitionUnfollowed = Do;
 	});
 	var Su = i((Te) => {
 		'use strict';
 		Object.defineProperty(Te, '__esModule', { value: !0 });
 		Te.CompetitionUpdated = void 0;
-		var pv = Z(),
-			Co = class extends pv.CompetitionEvent {};
+		var vv = Z(),
+			Co = class extends vv.CompetitionEvent {};
 		Te.CompetitionUpdated = Co;
 	});
 	var qu = i((Ue) => {
 		'use strict';
 		Object.defineProperty(Ue, '__esModule', { value: !0 });
 		Ue.CupTeamSeasonCreated = void 0;
-		var vv = l(),
-			wo = class extends vv.DomainEvent {};
+		var fv = l(),
+			wo = class extends fv.DomainEvent {};
 		Ue.CupTeamSeasonCreated = wo;
 	});
 	var ju = i((Re) => {
 		'use strict';
 		Object.defineProperty(Re, '__esModule', { value: !0 });
 		Re.CupTeamSeasonDeleted = void 0;
-		var fv = l(),
-			Oo = class extends fv.DomainEvent {};
+		var mv = l(),
+			Oo = class extends mv.DomainEvent {};
 		Re.CupTeamSeasonDeleted = Oo;
 	});
 	var Tu = i((Fe) => {
 		'use strict';
 		Object.defineProperty(Fe, '__esModule', { value: !0 });
 		Fe.CupTeamSeasonsExportAvailable = void 0;
-		var mv = M(),
-			Lo = class extends mv.EntityExportAvailableEvent {};
+		var bv = M(),
+			Lo = class extends bv.EntityExportAvailableEvent {};
 		Fe.CupTeamSeasonsExportAvailable = Lo;
 	});
 	var Uu = i((Ae) => {
 		'use strict';
 		Object.defineProperty(Ae, '__esModule', { value: !0 });
 		Ae.CupTeamSeasonsExportRequested = void 0;
-		var bv = l(),
-			So = class extends bv.DomainEvent {};
+		var Ev = l(),
+			So = class extends Ev.DomainEvent {};
 		Ae.CupTeamSeasonsExportRequested = So;
 	});
 	var Ru = i((We) => {
 		'use strict';
 		Object.defineProperty(We, '__esModule', { value: !0 });
 		We.DistrictCreated = void 0;
-		var Ev = l(),
-			qo = class extends Ev.DomainEvent {};
+		var _v = l(),
+			qo = class extends _v.DomainEvent {};
 		We.DistrictCreated = qo;
 	});
 	var Fu = i((Ie) => {
 		'use strict';
 		Object.defineProperty(Ie, '__esModule', { value: !0 });
 		Ie.DistrictDeleted = void 0;
-		var _v = l(),
-			jo = class extends _v.DomainEvent {};
+		var hv = l(),
+			jo = class extends hv.DomainEvent {};
 		Ie.DistrictDeleted = jo;
 	});
 	var Au = i((ke) => {
 		'use strict';
 		Object.defineProperty(ke, '__esModule', { value: !0 });
 		ke.DistrictUpdated = void 0;
-		var hv = l(),
-			To = class extends hv.DomainEvent {};
+		var yv = l(),
+			To = class extends yv.DomainEvent {};
 		ke.DistrictUpdated = To;
 	});
 	var K = i((Ne) => {
 		'use strict';
 		Object.defineProperty(Ne, '__esModule', { value: !0 });
 		Ne.EntitiesForDistrictRequested = void 0;
-		var yv = l(),
-			Uo = class extends yv.DomainEvent {};
+		var gv = l(),
+			Uo = class extends gv.DomainEvent {};
 		Ne.EntitiesForDistrictRequested = Uo;
 	});
 	var Wu = i((He) => {
 		'use strict';
 		Object.defineProperty(He, '__esModule', { value: !0 });
 		He.FollowableTopicDeleted = void 0;
-		var gv = l(),
-			Ro = class extends gv.DomainEvent {};
+		var Pv = l(),
+			Ro = class extends Pv.DomainEvent {};
 		He.FollowableTopicDeleted = Ro;
 	});
 	var Iu = i(($e) => {
 		'use strict';
 		Object.defineProperty($e, '__esModule', { value: !0 });
 		$e.GalleriesForDistrictRequested = void 0;
-		var Pv = K(),
-			Fo = class extends Pv.EntitiesForDistrictRequested {};
+		var Mv = K(),
+			Fo = class extends Mv.EntitiesForDistrictRequested {};
 		$e.GalleriesForDistrictRequested = Fo;
 	});
 	var ku = i((Ve) => {
 		'use strict';
 		Object.defineProperty(Ve, '__esModule', { value: !0 });
 		Ve.GalleryDeleted = void 0;
-		var Mv = l(),
-			Ao = class extends Mv.DomainEvent {};
+		var xv = l(),
+			Ao = class extends xv.DomainEvent {};
 		Ve.GalleryDeleted = Ao;
 	});
 	var Nu = i((Ge) => {
 		'use strict';
 		Object.defineProperty(Ge, '__esModule', { value: !0 });
 		Ge.GalleryUpdated = void 0;
-		var xv = l(),
-			Wo = class extends xv.DomainEvent {};
+		var Dv = l(),
+			Wo = class extends Dv.DomainEvent {};
 		Ge.GalleryUpdated = Wo;
 	});
 	var Hu = i((Be) => {
 		'use strict';
 		Object.defineProperty(Be, '__esModule', { value: !0 });
 		Be.ImageCreated = void 0;
-		var Dv = l(),
-			Io = class extends Dv.DomainEvent {};
+		var Cv = l(),
+			Io = class extends Cv.DomainEvent {};
 		Be.ImageCreated = Io;
 	});
 	var $u = i((ze) => {
 		'use strict';
 		Object.defineProperty(ze, '__esModule', { value: !0 });
 		ze.ImageDeleted = void 0;
-		var Cv = l(),
-			ko = class extends Cv.DomainEvent {};
+		var wv = l(),
+			ko = class extends wv.DomainEvent {};
 		ze.ImageDeleted = ko;
 	});
 	var Vu = i((Ye) => {
 		'use strict';
 		Object.defineProperty(Ye, '__esModule', { value: !0 });
 		Ye.ImagesUploaded = void 0;
-		var wv = l(),
-			No = class extends wv.DomainEvent {};
+		var Ov = l(),
+			No = class extends Ov.DomainEvent {};
 		Ye.ImagesUploaded = No;
 	});
 	var Gu = i((Ze) => {
 		'use strict';
 		Object.defineProperty(Ze, '__esModule', { value: !0 });
 		Ze.ImportBatchUploaded = void 0;
-		var Ov = l(),
-			Ho = class extends Ov.DomainEvent {};
+		var Lv = l(),
+			Ho = class extends Lv.DomainEvent {};
 		Ze.ImportBatchUploaded = Ho;
 	});
 	var Bu = i((Ke) => {
 		'use strict';
 		Object.defineProperty(Ke, '__esModule', { value: !0 });
 		Ke.LiveTickerMatchResultUpdated = void 0;
-		var Lv = l(),
-			$o = class extends Lv.DomainEvent {};
+		var Sv = l(),
+			$o = class extends Sv.DomainEvent {};
 		Ke.LiveTickerMatchResultUpdated = $o;
 	});
 	var zu = i((Je) => {
 		'use strict';
 		Object.defineProperty(Je, '__esModule', { value: !0 });
 		Je.LiveTickerPremiumAwardReceived = void 0;
-		var Sv = l(),
-			Vo = class extends Sv.DomainEvent {};
+		var qv = l(),
+			Vo = class extends qv.DomainEvent {};
 		Je.LiveTickerPremiumAwardReceived = Vo;
 	});
 	var Yu = i((N) => {
 		'use strict';
 		Object.defineProperty(N, '__esModule', { value: !0 });
 		N.RefreshMatchAborted = N.MatchAborted = void 0;
-		var qv = l(),
-			Qe = class extends qv.DomainEvent {};
+		var jv = l(),
+			Qe = class extends jv.DomainEvent {};
 		N.MatchAborted = Qe;
 		var Go = class extends Qe {};
 		N.RefreshMatchAborted = Go;
@@ -1167,8 +1167,8 @@
 		'use strict';
 		Object.defineProperty(H, '__esModule', { value: !0 });
 		H.RefreshMatchCancelled = H.MatchCancelled = void 0;
-		var jv = l(),
-			Xe = class extends jv.DomainEvent {};
+		var Tv = l(),
+			Xe = class extends Tv.DomainEvent {};
 		H.MatchCancelled = Xe;
 		var Bo = class extends Xe {};
 		H.RefreshMatchCancelled = Bo;
@@ -1177,280 +1177,280 @@
 		'use strict';
 		Object.defineProperty(et, '__esModule', { value: !0 });
 		et.MatchCreated = void 0;
-		var Tv = l(),
-			zo = class extends Tv.DomainEvent {};
+		var Uv = l(),
+			zo = class extends Uv.DomainEvent {};
 		et.MatchCreated = zo;
 	});
 	var Ju = i((tt) => {
 		'use strict';
 		Object.defineProperty(tt, '__esModule', { value: !0 });
 		tt.MatchDeleted = void 0;
-		var Uv = l(),
-			Yo = class extends Uv.DomainEvent {};
+		var Rv = l(),
+			Yo = class extends Rv.DomainEvent {};
 		tt.MatchDeleted = Yo;
 	});
 	var nt = i((rt) => {
 		'use strict';
 		Object.defineProperty(rt, '__esModule', { value: !0 });
 		rt.MatchDistrictRelationEvent = void 0;
-		var Rv = l(),
-			Zo = class extends Rv.DomainEvent {};
+		var Fv = l(),
+			Zo = class extends Fv.DomainEvent {};
 		rt.MatchDistrictRelationEvent = Zo;
 	});
 	var Qu = i((ot) => {
 		'use strict';
 		Object.defineProperty(ot, '__esModule', { value: !0 });
 		ot.MatchDistrictRelationCreated = void 0;
-		var Fv = nt(),
-			Ko = class extends Fv.MatchDistrictRelationEvent {};
+		var Av = nt(),
+			Ko = class extends Av.MatchDistrictRelationEvent {};
 		ot.MatchDistrictRelationCreated = Ko;
 	});
 	var Xu = i((it) => {
 		'use strict';
 		Object.defineProperty(it, '__esModule', { value: !0 });
 		it.MatchDistrictRelationDeleted = void 0;
-		var Av = nt(),
-			Jo = class extends Av.MatchDistrictRelationEvent {};
+		var Wv = nt(),
+			Jo = class extends Wv.MatchDistrictRelationEvent {};
 		it.MatchDistrictRelationDeleted = Jo;
 	});
 	var el = i((at) => {
 		'use strict';
 		Object.defineProperty(at, '__esModule', { value: !0 });
 		at.MatchEventChance = void 0;
-		var Wv = l(),
-			Qo = class extends Wv.DomainEvent {};
+		var Iv = l(),
+			Qo = class extends Iv.DomainEvent {};
 		at.MatchEventChance = Qo;
 	});
 	var tl = i((st) => {
 		'use strict';
 		Object.defineProperty(st, '__esModule', { value: !0 });
 		st.MatchEventDeleted = void 0;
-		var Iv = l(),
-			Xo = class extends Iv.DomainEvent {};
+		var kv = l(),
+			Xo = class extends kv.DomainEvent {};
 		st.MatchEventDeleted = Xo;
 	});
 	var rl = i((ut) => {
 		'use strict';
 		Object.defineProperty(ut, '__esModule', { value: !0 });
 		ut.MatchEventGoalDenied = void 0;
-		var kv = l(),
-			ei = class extends kv.DomainEvent {};
+		var Nv = l(),
+			ei = class extends Nv.DomainEvent {};
 		ut.MatchEventGoalDenied = ei;
 	});
 	var nl = i((lt) => {
 		'use strict';
 		Object.defineProperty(lt, '__esModule', { value: !0 });
 		lt.MatchEventGoal = void 0;
-		var Nv = l(),
-			ti = class extends Nv.DomainEvent {};
+		var Hv = l(),
+			ti = class extends Hv.DomainEvent {};
 		lt.MatchEventGoal = ti;
 	});
 	var ol = i((dt) => {
 		'use strict';
 		Object.defineProperty(dt, '__esModule', { value: !0 });
 		dt.MatchEventInterimResult = void 0;
-		var Hv = l(),
-			ri = class extends Hv.DomainEvent {};
+		var $v = l(),
+			ri = class extends $v.DomainEvent {};
 		dt.MatchEventInterimResult = ri;
 	});
 	var il = i((ct) => {
 		'use strict';
 		Object.defineProperty(ct, '__esModule', { value: !0 });
 		ct.MatchEventLineupsCompleted = void 0;
-		var $v = l(),
-			ni = class extends $v.DomainEvent {};
+		var Vv = l(),
+			ni = class extends Vv.DomainEvent {};
 		ct.MatchEventLineupsCompleted = ni;
 	});
 	var al = i((pt) => {
 		'use strict';
 		Object.defineProperty(pt, '__esModule', { value: !0 });
 		pt.MatchEventOwnGoal = void 0;
-		var Vv = l(),
-			oi = class extends Vv.DomainEvent {};
+		var Gv = l(),
+			oi = class extends Gv.DomainEvent {};
 		pt.MatchEventOwnGoal = oi;
 	});
 	var sl = i((vt) => {
 		'use strict';
 		Object.defineProperty(vt, '__esModule', { value: !0 });
 		vt.MatchEventPenaltyFail = void 0;
-		var Gv = l(),
-			ii = class extends Gv.DomainEvent {};
+		var Bv = l(),
+			ii = class extends Bv.DomainEvent {};
 		vt.MatchEventPenaltyFail = ii;
 	});
 	var ul = i((ft) => {
 		'use strict';
 		Object.defineProperty(ft, '__esModule', { value: !0 });
 		ft.MatchEventRedCard = void 0;
-		var Bv = l(),
-			ai = class extends Bv.DomainEvent {};
+		var zv = l(),
+			ai = class extends zv.DomainEvent {};
 		ft.MatchEventRedCard = ai;
 	});
 	var ll = i((mt) => {
 		'use strict';
 		Object.defineProperty(mt, '__esModule', { value: !0 });
 		mt.MatchEventTimePenalty = void 0;
-		var zv = l(),
-			si = class extends zv.DomainEvent {};
+		var Yv = l(),
+			si = class extends Yv.DomainEvent {};
 		mt.MatchEventTimePenalty = si;
 	});
 	var dl = i((bt) => {
 		'use strict';
 		Object.defineProperty(bt, '__esModule', { value: !0 });
 		bt.MatchEventUpdated = void 0;
-		var Yv = l(),
-			ui = class extends Yv.DomainEvent {};
+		var Zv = l(),
+			ui = class extends Zv.DomainEvent {};
 		bt.MatchEventUpdated = ui;
 	});
 	var cl = i((Et) => {
 		'use strict';
 		Object.defineProperty(Et, '__esModule', { value: !0 });
 		Et.MatchEventWhistleOvertimeStartFirstHalftime = void 0;
-		var Zv = l(),
-			li = class extends Zv.DomainEvent {};
+		var Kv = l(),
+			li = class extends Kv.DomainEvent {};
 		Et.MatchEventWhistleOvertimeStartFirstHalftime = li;
 	});
 	var pl = i((_t) => {
 		'use strict';
 		Object.defineProperty(_t, '__esModule', { value: !0 });
 		_t.MatchEventWhistleOvertimeStartSecondHalftime = void 0;
-		var Kv = l(),
-			di = class extends Kv.DomainEvent {};
+		var Jv = l(),
+			di = class extends Jv.DomainEvent {};
 		_t.MatchEventWhistleOvertimeStartSecondHalftime = di;
 	});
 	var vl = i((ht) => {
 		'use strict';
 		Object.defineProperty(ht, '__esModule', { value: !0 });
 		ht.MatchEventWhistleOvertimeStopFirstHalftime = void 0;
-		var Jv = l(),
-			ci = class extends Jv.DomainEvent {};
+		var Qv = l(),
+			ci = class extends Qv.DomainEvent {};
 		ht.MatchEventWhistleOvertimeStopFirstHalftime = ci;
 	});
 	var fl = i((yt) => {
 		'use strict';
 		Object.defineProperty(yt, '__esModule', { value: !0 });
 		yt.MatchEventWhistleOvertimeStopSecondHalftime = void 0;
-		var Qv = l(),
-			pi = class extends Qv.DomainEvent {};
+		var Xv = l(),
+			pi = class extends Xv.DomainEvent {};
 		yt.MatchEventWhistleOvertimeStopSecondHalftime = pi;
 	});
 	var ml = i((gt) => {
 		'use strict';
 		Object.defineProperty(gt, '__esModule', { value: !0 });
 		gt.MatchEventWhistlePenaltyShootoutStart = void 0;
-		var Xv = l(),
-			vi = class extends Xv.DomainEvent {};
+		var ef = l(),
+			vi = class extends ef.DomainEvent {};
 		gt.MatchEventWhistlePenaltyShootoutStart = vi;
 	});
 	var bl = i((Pt) => {
 		'use strict';
 		Object.defineProperty(Pt, '__esModule', { value: !0 });
 		Pt.MatchEventWhistlePenaltyShootoutStop = void 0;
-		var ef = l(),
-			fi = class extends ef.DomainEvent {};
+		var tf = l(),
+			fi = class extends tf.DomainEvent {};
 		Pt.MatchEventWhistlePenaltyShootoutStop = fi;
 	});
 	var El = i((Mt) => {
 		'use strict';
 		Object.defineProperty(Mt, '__esModule', { value: !0 });
 		Mt.MatchEventWhistleRegularStartFirstHalftime = void 0;
-		var tf = l(),
-			mi = class extends tf.DomainEvent {};
+		var rf = l(),
+			mi = class extends rf.DomainEvent {};
 		Mt.MatchEventWhistleRegularStartFirstHalftime = mi;
 	});
 	var _l = i((xt) => {
 		'use strict';
 		Object.defineProperty(xt, '__esModule', { value: !0 });
 		xt.MatchEventWhistleRegularStartSecondHalftime = void 0;
-		var rf = l(),
-			bi = class extends rf.DomainEvent {};
+		var nf = l(),
+			bi = class extends nf.DomainEvent {};
 		xt.MatchEventWhistleRegularStartSecondHalftime = bi;
 	});
 	var hl = i((Dt) => {
 		'use strict';
 		Object.defineProperty(Dt, '__esModule', { value: !0 });
 		Dt.MatchEventWhistleRegularStopFirstHalftime = void 0;
-		var nf = l(),
-			Ei = class extends nf.DomainEvent {};
+		var of = l(),
+			Ei = class extends of.DomainEvent {};
 		Dt.MatchEventWhistleRegularStopFirstHalftime = Ei;
 	});
 	var yl = i((Ct) => {
 		'use strict';
 		Object.defineProperty(Ct, '__esModule', { value: !0 });
 		Ct.MatchEventWhistleRegularStopSecondHalftime = void 0;
-		var of = l(),
-			_i = class extends of.DomainEvent {};
+		var af = l(),
+			_i = class extends af.DomainEvent {};
 		Ct.MatchEventWhistleRegularStopSecondHalftime = _i;
 	});
 	var gl = i((wt) => {
 		'use strict';
 		Object.defineProperty(wt, '__esModule', { value: !0 });
 		wt.MatchEventYellowCard = void 0;
-		var af = l(),
-			hi = class extends af.DomainEvent {};
+		var sf = l(),
+			hi = class extends sf.DomainEvent {};
 		wt.MatchEventYellowCard = hi;
 	});
 	var Pl = i((Ot) => {
 		'use strict';
 		Object.defineProperty(Ot, '__esModule', { value: !0 });
 		Ot.MatchEventYellowRedCard = void 0;
-		var sf = l(),
-			yi = class extends sf.DomainEvent {};
+		var uf = l(),
+			yi = class extends uf.DomainEvent {};
 		Ot.MatchEventYellowRedCard = yi;
 	});
 	var Ml = i((Lt) => {
 		'use strict';
 		Object.defineProperty(Lt, '__esModule', { value: !0 });
 		Lt.MatchFollowed = void 0;
-		var uf = I(),
-			gi = class extends uf.EntityFollowedEvent {};
+		var lf = I(),
+			gi = class extends lf.EntityFollowedEvent {};
 		Lt.MatchFollowed = gi;
 	});
 	var xl = i((St) => {
 		'use strict';
 		Object.defineProperty(St, '__esModule', { value: !0 });
 		St.MatchGalleryRemoved = void 0;
-		var lf = l(),
-			Pi = class extends lf.DomainEvent {};
+		var df = l(),
+			Pi = class extends df.DomainEvent {};
 		St.MatchGalleryRemoved = Pi;
 	});
 	var Dl = i((qt) => {
 		'use strict';
 		Object.defineProperty(qt, '__esModule', { value: !0 });
 		qt.MatchGalleryUploaded = void 0;
-		var df = l(),
-			Mi = class extends df.DomainEvent {};
+		var cf = l(),
+			Mi = class extends cf.DomainEvent {};
 		qt.MatchGalleryUploaded = Mi;
 	});
 	var Cl = i((jt) => {
 		'use strict';
 		Object.defineProperty(jt, '__esModule', { value: !0 });
 		jt.MatchPlaylistDeleted = void 0;
-		var cf = l(),
-			xi = class extends cf.DomainEvent {};
+		var pf = l(),
+			xi = class extends pf.DomainEvent {};
 		jt.MatchPlaylistDeleted = xi;
 	});
 	var wl = i((Tt) => {
 		'use strict';
 		Object.defineProperty(Tt, '__esModule', { value: !0 });
 		Tt.MatchPlaylistUpdated = void 0;
-		var pf = l(),
-			Di = class extends pf.DomainEvent {};
+		var vf = l(),
+			Di = class extends vf.DomainEvent {};
 		Tt.MatchPlaylistUpdated = Di;
 	});
 	var Ol = i((Ut) => {
 		'use strict';
 		Object.defineProperty(Ut, '__esModule', { value: !0 });
 		Ut.MatchPlaylistUploaded = void 0;
-		var vf = l(),
-			Ci = class extends vf.DomainEvent {};
+		var ff = l(),
+			Ci = class extends ff.DomainEvent {};
 		Ut.MatchPlaylistUploaded = Ci;
 	});
 	var Ll = i(($) => {
 		'use strict';
 		Object.defineProperty($, '__esModule', { value: !0 });
 		$.RefreshMatchResultSaved = $.MatchResultSaved = void 0;
-		var ff = l(),
-			Rt = class extends ff.DomainEvent {};
+		var mf = l(),
+			Rt = class extends mf.DomainEvent {};
 		$.MatchResultSaved = Rt;
 		var wi = class extends Rt {};
 		$.RefreshMatchResultSaved = wi;
@@ -1459,640 +1459,640 @@
 		'use strict';
 		Object.defineProperty(Ft, '__esModule', { value: !0 });
 		Ft.MatchInterimResultSaved = void 0;
-		var mf = l(),
-			Oi = class extends mf.DomainEvent {};
+		var bf = l(),
+			Oi = class extends bf.DomainEvent {};
 		Ft.MatchInterimResultSaved = Oi;
 	});
 	var ql = i((At) => {
 		'use strict';
 		Object.defineProperty(At, '__esModule', { value: !0 });
 		At.MatchResultReset = void 0;
-		var bf = l(),
-			Li = class extends bf.DomainEvent {};
+		var Ef = l(),
+			Li = class extends Ef.DomainEvent {};
 		At.MatchResultReset = Li;
 	});
 	var jl = i((Wt) => {
 		'use strict';
 		Object.defineProperty(Wt, '__esModule', { value: !0 });
 		Wt.MatchShifted = void 0;
-		var Ef = l(),
-			Si = class extends Ef.DomainEvent {};
+		var _f = l(),
+			Si = class extends _f.DomainEvent {};
 		Wt.MatchShifted = Si;
 	});
 	var Tl = i((It) => {
 		'use strict';
 		Object.defineProperty(It, '__esModule', { value: !0 });
 		It.MatchStarted = void 0;
-		var _f = l(),
-			qi = class extends _f.DomainEvent {};
+		var hf = l(),
+			qi = class extends hf.DomainEvent {};
 		It.MatchStarted = qi;
 	});
 	var Ul = i((kt) => {
 		'use strict';
 		Object.defineProperty(kt, '__esModule', { value: !0 });
 		kt.MatchUnfollowed = void 0;
-		var hf = k(),
-			ji = class extends hf.EntityUnfollowedEvent {};
+		var yf = k(),
+			ji = class extends yf.EntityUnfollowedEvent {};
 		kt.MatchUnfollowed = ji;
 	});
 	var Rl = i((Nt) => {
 		'use strict';
 		Object.defineProperty(Nt, '__esModule', { value: !0 });
 		Nt.MatchUpdated = void 0;
-		var yf = l(),
-			Ti = class extends yf.DomainEvent {};
+		var gf = l(),
+			Ti = class extends gf.DomainEvent {};
 		Nt.MatchUpdated = Ti;
 	});
 	var Fl = i((Ht) => {
 		'use strict';
 		Object.defineProperty(Ht, '__esModule', { value: !0 });
 		Ht.MatchVideoElementCreated = void 0;
-		var gf = l(),
-			Ui = class extends gf.DomainEvent {};
+		var Pf = l(),
+			Ui = class extends Pf.DomainEvent {};
 		Ht.MatchVideoElementCreated = Ui;
 	});
 	var Vt = i(($t) => {
 		'use strict';
 		Object.defineProperty($t, '__esModule', { value: !0 });
 		$t.MatchVideoEmbeddingEvent = void 0;
-		var Pf = l(),
-			Ri = class extends Pf.DomainEvent {};
+		var Mf = l(),
+			Ri = class extends Mf.DomainEvent {};
 		$t.MatchVideoEmbeddingEvent = Ri;
 	});
 	var Al = i((Gt) => {
 		'use strict';
 		Object.defineProperty(Gt, '__esModule', { value: !0 });
 		Gt.MatchVideoEmbeddingCreated = void 0;
-		var Mf = Vt(),
-			Fi = class extends Mf.MatchVideoEmbeddingEvent {};
+		var xf = Vt(),
+			Fi = class extends xf.MatchVideoEmbeddingEvent {};
 		Gt.MatchVideoEmbeddingCreated = Fi;
 	});
 	var Wl = i((Bt) => {
 		'use strict';
 		Object.defineProperty(Bt, '__esModule', { value: !0 });
 		Bt.MatchVideoEmbeddingDeleted = void 0;
-		var xf = Vt(),
-			Ai = class extends xf.MatchVideoEmbeddingEvent {};
+		var Df = Vt(),
+			Ai = class extends Df.MatchVideoEmbeddingEvent {};
 		Bt.MatchVideoEmbeddingDeleted = Ai;
 	});
 	var Il = i((zt) => {
 		'use strict';
 		Object.defineProperty(zt, '__esModule', { value: !0 });
 		zt.MatchesExportAvailable = void 0;
-		var Df = M(),
-			Wi = class extends Df.EntityExportAvailableEvent {};
+		var Cf = M(),
+			Wi = class extends Cf.EntityExportAvailableEvent {};
 		zt.MatchesExportAvailable = Wi;
 	});
 	var kl = i((Yt) => {
 		'use strict';
 		Object.defineProperty(Yt, '__esModule', { value: !0 });
 		Yt.MatchesExportRequested = void 0;
-		var Cf = l(),
-			Ii = class extends Cf.DomainEvent {};
+		var wf = l(),
+			Ii = class extends wf.DomainEvent {};
 		Yt.MatchesExportRequested = Ii;
 	});
 	var Nl = i((Zt) => {
 		'use strict';
 		Object.defineProperty(Zt, '__esModule', { value: !0 });
 		Zt.NewsDeleted = void 0;
-		var wf = l(),
-			ki = class extends wf.DomainEvent {};
+		var Of = l(),
+			ki = class extends Of.DomainEvent {};
 		Zt.NewsDeleted = ki;
 	});
 	var Hl = i((Kt) => {
 		'use strict';
 		Object.defineProperty(Kt, '__esModule', { value: !0 });
 		Kt.NewsExportAvailable = void 0;
-		var Of = M(),
-			Ni = class extends Of.EntityExportAvailableEvent {};
+		var Lf = M(),
+			Ni = class extends Lf.EntityExportAvailableEvent {};
 		Kt.NewsExportAvailable = Ni;
 	});
 	var $l = i((Jt) => {
 		'use strict';
 		Object.defineProperty(Jt, '__esModule', { value: !0 });
 		Jt.NewsExportRequested = void 0;
-		var Lf = l(),
-			Hi = class extends Lf.DomainEvent {};
+		var Sf = l(),
+			Hi = class extends Sf.DomainEvent {};
 		Jt.NewsExportRequested = Hi;
 	});
 	var Vl = i((Qt) => {
 		'use strict';
 		Object.defineProperty(Qt, '__esModule', { value: !0 });
 		Qt.NewsForDistrictRequested = void 0;
-		var Sf = K(),
-			$i = class extends Sf.EntitiesForDistrictRequested {};
+		var qf = K(),
+			$i = class extends qf.EntitiesForDistrictRequested {};
 		Qt.NewsForDistrictRequested = $i;
 	});
 	var Gl = i((Xt) => {
 		'use strict';
 		Object.defineProperty(Xt, '__esModule', { value: !0 });
 		Xt.NewsImageUpdated = void 0;
-		var qf = l(),
-			Vi = class extends qf.DomainEvent {};
+		var jf = l(),
+			Vi = class extends jf.DomainEvent {};
 		Xt.NewsImageUpdated = Vi;
 	});
 	var Bl = i((er) => {
 		'use strict';
 		Object.defineProperty(er, '__esModule', { value: !0 });
 		er.NewsPublished = void 0;
-		var jf = l(),
-			Gi = class extends jf.DomainEvent {};
+		var Tf = l(),
+			Gi = class extends Tf.DomainEvent {};
 		er.NewsPublished = Gi;
 	});
 	var zi = i((tr) => {
 		'use strict';
 		Object.defineProperty(tr, '__esModule', { value: !0 });
 		tr.SlugRenamed = void 0;
-		var Tf = l(),
-			Bi = class extends Tf.DomainEvent {};
+		var Uf = l(),
+			Bi = class extends Uf.DomainEvent {};
 		tr.SlugRenamed = Bi;
 	});
 	var zl = i((rr) => {
 		'use strict';
 		Object.defineProperty(rr, '__esModule', { value: !0 });
 		rr.NewsSlugRenamed = void 0;
-		var Uf = zi(),
-			Yi = class extends Uf.SlugRenamed {};
+		var Rf = zi(),
+			Yi = class extends Rf.SlugRenamed {};
 		rr.NewsSlugRenamed = Yi;
 	});
 	var Yl = i((nr) => {
 		'use strict';
 		Object.defineProperty(nr, '__esModule', { value: !0 });
 		nr.NewsUnpublished = void 0;
-		var Rf = l(),
-			Zi = class extends Rf.DomainEvent {};
+		var Ff = l(),
+			Zi = class extends Ff.DomainEvent {};
 		nr.NewsUnpublished = Zi;
 	});
 	var Zl = i((or) => {
 		'use strict';
 		Object.defineProperty(or, '__esModule', { value: !0 });
 		or.NewsUpdated = void 0;
-		var Ff = l(),
-			Ki = class extends Ff.DomainEvent {};
+		var Af = l(),
+			Ki = class extends Af.DomainEvent {};
 		or.NewsUpdated = Ki;
 	});
 	var Kl = i((ir) => {
 		'use strict';
 		Object.defineProperty(ir, '__esModule', { value: !0 });
 		ir.PowerRankingCreated = void 0;
-		var Af = l(),
-			Ji = class extends Af.DomainEvent {};
+		var Wf = l(),
+			Ji = class extends Wf.DomainEvent {};
 		ir.PowerRankingCreated = Ji;
 	});
 	var Jl = i((ar) => {
 		'use strict';
 		Object.defineProperty(ar, '__esModule', { value: !0 });
 		ar.PowerRankingDeleted = void 0;
-		var Wf = l(),
-			Qi = class extends Wf.DomainEvent {};
+		var If = l(),
+			Qi = class extends If.DomainEvent {};
 		ar.PowerRankingDeleted = Qi;
 	});
 	var Ql = i((sr) => {
 		'use strict';
 		Object.defineProperty(sr, '__esModule', { value: !0 });
 		sr.PowerRankingUpdated = void 0;
-		var If = l(),
-			Xi = class extends If.DomainEvent {};
+		var kf = l(),
+			Xi = class extends kf.DomainEvent {};
 		sr.PowerRankingUpdated = Xi;
 	});
 	var Xl = i((ur) => {
 		'use strict';
 		Object.defineProperty(ur, '__esModule', { value: !0 });
 		ur.ProfileCreated = void 0;
-		var kf = l(),
-			ea = class extends kf.DomainEvent {};
+		var Nf = l(),
+			ea = class extends Nf.DomainEvent {};
 		ur.ProfileCreated = ea;
 	});
 	var ed = i((lr) => {
 		'use strict';
 		Object.defineProperty(lr, '__esModule', { value: !0 });
 		lr.ProfileDeleted = void 0;
-		var Nf = l(),
-			ta = class extends Nf.DomainEvent {};
+		var Hf = l(),
+			ta = class extends Hf.DomainEvent {};
 		lr.ProfileDeleted = ta;
 	});
 	var td = i((dr) => {
 		'use strict';
 		Object.defineProperty(dr, '__esModule', { value: !0 });
 		dr.ProfileFollowed = void 0;
-		var Hf = I(),
-			ra = class extends Hf.EntityFollowedEvent {};
+		var $f = I(),
+			ra = class extends $f.EntityFollowedEvent {};
 		dr.ProfileFollowed = ra;
 	});
 	var rd = i((cr) => {
 		'use strict';
 		Object.defineProperty(cr, '__esModule', { value: !0 });
 		cr.ProfileImageUpdated = void 0;
-		var $f = l(),
-			na = class extends $f.DomainEvent {};
+		var Vf = l(),
+			na = class extends Vf.DomainEvent {};
 		cr.ProfileImageUpdated = na;
 	});
 	var nd = i((pr) => {
 		'use strict';
 		Object.defineProperty(pr, '__esModule', { value: !0 });
 		pr.ProfileInjured = void 0;
-		var Vf = l(),
-			oa = class extends Vf.DomainEvent {};
+		var Gf = l(),
+			oa = class extends Gf.DomainEvent {};
 		pr.ProfileInjured = oa;
 	});
 	var od = i((vr) => {
 		'use strict';
 		Object.defineProperty(vr, '__esModule', { value: !0 });
 		vr.ProfileSeasonBanCreated = void 0;
-		var Gf = l(),
-			ia = class extends Gf.DomainEvent {};
+		var Bf = l(),
+			ia = class extends Bf.DomainEvent {};
 		vr.ProfileSeasonBanCreated = ia;
 	});
 	var id = i((fr) => {
 		'use strict';
 		Object.defineProperty(fr, '__esModule', { value: !0 });
 		fr.ProfileSeasonBanDeleted = void 0;
-		var Bf = l(),
-			aa = class extends Bf.DomainEvent {};
+		var zf = l(),
+			aa = class extends zf.DomainEvent {};
 		fr.ProfileSeasonBanDeleted = aa;
 	});
 	var ad = i((mr) => {
 		'use strict';
 		Object.defineProperty(mr, '__esModule', { value: !0 });
 		mr.ProfileSeasonBanUpdated = void 0;
-		var zf = l(),
-			sa = class extends zf.DomainEvent {};
+		var Yf = l(),
+			sa = class extends Yf.DomainEvent {};
 		mr.ProfileSeasonBanUpdated = sa;
 	});
 	var sd = i((br) => {
 		'use strict';
 		Object.defineProperty(br, '__esModule', { value: !0 });
 		br.ProfileSeasonInjuryDeleted = void 0;
-		var Yf = l(),
-			ua = class extends Yf.DomainEvent {};
+		var Zf = l(),
+			ua = class extends Zf.DomainEvent {};
 		br.ProfileSeasonInjuryDeleted = ua;
 	});
 	var ud = i((Er) => {
 		'use strict';
 		Object.defineProperty(Er, '__esModule', { value: !0 });
 		Er.ProfileSeasonInjuryUpdated = void 0;
-		var Zf = l(),
-			la = class extends Zf.DomainEvent {};
+		var Kf = l(),
+			la = class extends Kf.DomainEvent {};
 		Er.ProfileSeasonInjuryUpdated = la;
 	});
 	var ld = i((_r) => {
 		'use strict';
 		Object.defineProperty(_r, '__esModule', { value: !0 });
 		_r.ProfileTransferCreated = void 0;
-		var Kf = l(),
-			da = class extends Kf.DomainEvent {};
+		var Jf = l(),
+			da = class extends Jf.DomainEvent {};
 		_r.ProfileTransferCreated = da;
 	});
 	var dd = i((hr) => {
 		'use strict';
 		Object.defineProperty(hr, '__esModule', { value: !0 });
 		hr.ProfileTransferDeleted = void 0;
-		var Jf = l(),
-			ca = class extends Jf.DomainEvent {};
+		var Qf = l(),
+			ca = class extends Qf.DomainEvent {};
 		hr.ProfileTransferDeleted = ca;
 	});
 	var cd = i((yr) => {
 		'use strict';
 		Object.defineProperty(yr, '__esModule', { value: !0 });
 		yr.ProfileTransferUpdated = void 0;
-		var Qf = l(),
-			pa = class extends Qf.DomainEvent {};
+		var Xf = l(),
+			pa = class extends Xf.DomainEvent {};
 		yr.ProfileTransferUpdated = pa;
 	});
 	var pd = i((gr) => {
 		'use strict';
 		Object.defineProperty(gr, '__esModule', { value: !0 });
 		gr.ProfileTransfersForDistrictRequested = void 0;
-		var Xf = K(),
-			va = class extends Xf.EntitiesForDistrictRequested {};
+		var em = K(),
+			va = class extends em.EntitiesForDistrictRequested {};
 		gr.ProfileTransfersForDistrictRequested = va;
 	});
 	var vd = i((Pr) => {
 		'use strict';
 		Object.defineProperty(Pr, '__esModule', { value: !0 });
 		Pr.ProfileUnfollowed = void 0;
-		var em = k(),
-			fa = class extends em.EntityUnfollowedEvent {};
+		var tm = k(),
+			fa = class extends tm.EntityUnfollowedEvent {};
 		Pr.ProfileUnfollowed = fa;
 	});
 	var fd = i((Mr) => {
 		'use strict';
 		Object.defineProperty(Mr, '__esModule', { value: !0 });
 		Mr.ProfileUpdated = void 0;
-		var tm = l(),
-			ma = class extends tm.DomainEvent {};
+		var rm = l(),
+			ma = class extends rm.DomainEvent {};
 		Mr.ProfileUpdated = ma;
 	});
 	var md = i((xr) => {
 		'use strict';
 		Object.defineProperty(xr, '__esModule', { value: !0 });
 		xr.PushNotificationSubmitted = void 0;
-		var rm = l(),
-			ba = class extends rm.DomainEvent {};
+		var nm = l(),
+			ba = class extends nm.DomainEvent {};
 		xr.PushNotificationSubmitted = ba;
 	});
 	var _a = i((Dr) => {
 		'use strict';
 		Object.defineProperty(Dr, '__esModule', { value: !0 });
 		Dr.RoundEvent = void 0;
-		var nm = l(),
-			Ea = class extends nm.DomainEvent {};
+		var om = l(),
+			Ea = class extends om.DomainEvent {};
 		Dr.RoundEvent = Ea;
 	});
 	var bd = i((Cr) => {
 		'use strict';
 		Object.defineProperty(Cr, '__esModule', { value: !0 });
 		Cr.RoundUpdated = void 0;
-		var om = _a(),
-			ha = class extends om.RoundEvent {};
+		var im = _a(),
+			ha = class extends im.RoundEvent {};
 		Cr.RoundUpdated = ha;
 	});
 	var Ed = i((wr) => {
 		'use strict';
 		Object.defineProperty(wr, '__esModule', { value: !0 });
 		wr.SeasonCreated = void 0;
-		var im = l(),
-			ya = class extends im.DomainEvent {};
+		var am = l(),
+			ya = class extends am.DomainEvent {};
 		wr.SeasonCreated = ya;
 	});
 	var _d = i((Or) => {
 		'use strict';
 		Object.defineProperty(Or, '__esModule', { value: !0 });
 		Or.SeasonDeleted = void 0;
-		var am = l(),
-			ga = class extends am.DomainEvent {};
+		var sm = l(),
+			ga = class extends sm.DomainEvent {};
 		Or.SeasonDeleted = ga;
 	});
 	var hd = i((Lr) => {
 		'use strict';
 		Object.defineProperty(Lr, '__esModule', { value: !0 });
 		Lr.SeasonUpdated = void 0;
-		var sm = l(),
-			Pa = class extends sm.DomainEvent {};
+		var um = l(),
+			Pa = class extends um.DomainEvent {};
 		Lr.SeasonUpdated = Pa;
 	});
 	var yd = i((Sr) => {
 		'use strict';
 		Object.defineProperty(Sr, '__esModule', { value: !0 });
 		Sr.StreamEntryCreated = void 0;
-		var um = l(),
-			Ma = class extends um.DomainEvent {};
+		var lm = l(),
+			Ma = class extends lm.DomainEvent {};
 		Sr.StreamEntryCreated = Ma;
 	});
 	var gd = i((qr) => {
 		'use strict';
 		Object.defineProperty(qr, '__esModule', { value: !0 });
 		qr.StreamEntryDeleted = void 0;
-		var lm = l(),
-			xa = class extends lm.DomainEvent {};
+		var dm = l(),
+			xa = class extends dm.DomainEvent {};
 		qr.StreamEntryDeleted = xa;
 	});
 	var Pd = i((jr) => {
 		'use strict';
 		Object.defineProperty(jr, '__esModule', { value: !0 });
 		jr.StreamEntryUpdated = void 0;
-		var dm = l(),
-			Da = class extends dm.DomainEvent {};
+		var cm = l(),
+			Da = class extends cm.DomainEvent {};
 		jr.StreamEntryUpdated = Da;
 	});
 	var Ur = i((Tr) => {
 		'use strict';
 		Object.defineProperty(Tr, '__esModule', { value: !0 });
 		Tr.TeamEvent = void 0;
-		var cm = l(),
-			Ca = class extends cm.DomainEvent {};
+		var pm = l(),
+			Ca = class extends pm.DomainEvent {};
 		Tr.TeamEvent = Ca;
 	});
 	var Md = i((Rr) => {
 		'use strict';
 		Object.defineProperty(Rr, '__esModule', { value: !0 });
 		Rr.TeamCreated = void 0;
-		var pm = Ur(),
-			wa = class extends pm.TeamEvent {};
+		var vm = Ur(),
+			wa = class extends vm.TeamEvent {};
 		Rr.TeamCreated = wa;
 	});
 	var xd = i((Fr) => {
 		'use strict';
 		Object.defineProperty(Fr, '__esModule', { value: !0 });
 		Fr.TeamDeleted = void 0;
-		var vm = l(),
-			Oa = class extends vm.DomainEvent {};
+		var fm = l(),
+			Oa = class extends fm.DomainEvent {};
 		Fr.TeamDeleted = Oa;
 	});
 	var Dd = i((Ar) => {
 		'use strict';
 		Object.defineProperty(Ar, '__esModule', { value: !0 });
 		Ar.TeamFollowed = void 0;
-		var fm = I(),
-			La = class extends fm.EntityFollowedEvent {};
+		var mm = I(),
+			La = class extends mm.EntityFollowedEvent {};
 		Ar.TeamFollowed = La;
 	});
 	var Cd = i((Wr) => {
 		'use strict';
 		Object.defineProperty(Wr, '__esModule', { value: !0 });
 		Wr.TeamSeasonCreated = void 0;
-		var mm = l(),
-			Sa = class extends mm.DomainEvent {};
+		var bm = l(),
+			Sa = class extends bm.DomainEvent {};
 		Wr.TeamSeasonCreated = Sa;
 	});
 	var wd = i((Ir) => {
 		'use strict';
 		Object.defineProperty(Ir, '__esModule', { value: !0 });
 		Ir.TeamSeasonDeleted = void 0;
-		var bm = l(),
-			qa = class extends bm.DomainEvent {};
+		var Em = l(),
+			qa = class extends Em.DomainEvent {};
 		Ir.TeamSeasonDeleted = qa;
 	});
 	var Od = i((kr) => {
 		'use strict';
 		Object.defineProperty(kr, '__esModule', { value: !0 });
 		kr.TeamSeasonImageUpdated = void 0;
-		var Em = l(),
-			ja = class extends Em.DomainEvent {};
+		var _m = l(),
+			ja = class extends _m.DomainEvent {};
 		kr.TeamSeasonImageUpdated = ja;
 	});
 	var Ld = i((Nr) => {
 		'use strict';
 		Object.defineProperty(Nr, '__esModule', { value: !0 });
 		Nr.TeamSeasonUpdated = void 0;
-		var _m = l(),
-			Ta = class extends _m.DomainEvent {};
+		var hm = l(),
+			Ta = class extends hm.DomainEvent {};
 		Nr.TeamSeasonUpdated = Ta;
 	});
 	var Sd = i((Hr) => {
 		'use strict';
 		Object.defineProperty(Hr, '__esModule', { value: !0 });
 		Hr.TeamSeasonsExportAvailable = void 0;
-		var hm = M(),
-			Ua = class extends hm.EntityExportAvailableEvent {};
+		var ym = M(),
+			Ua = class extends ym.EntityExportAvailableEvent {};
 		Hr.TeamSeasonsExportAvailable = Ua;
 	});
 	var qd = i(($r) => {
 		'use strict';
 		Object.defineProperty($r, '__esModule', { value: !0 });
 		$r.TeamSeasonsExportRequested = void 0;
-		var ym = l(),
-			Ra = class extends ym.DomainEvent {};
+		var gm = l(),
+			Ra = class extends gm.DomainEvent {};
 		$r.TeamSeasonsExportRequested = Ra;
 	});
 	var jd = i((Vr) => {
 		'use strict';
 		Object.defineProperty(Vr, '__esModule', { value: !0 });
 		Vr.TeamUnfollowed = void 0;
-		var gm = k(),
-			Fa = class extends gm.EntityUnfollowedEvent {};
+		var Pm = k(),
+			Fa = class extends Pm.EntityUnfollowedEvent {};
 		Vr.TeamUnfollowed = Fa;
 	});
 	var Td = i((Gr) => {
 		'use strict';
 		Object.defineProperty(Gr, '__esModule', { value: !0 });
 		Gr.TeamUpdated = void 0;
-		var Pm = Ur(),
-			Aa = class extends Pm.TeamEvent {};
+		var Mm = Ur(),
+			Aa = class extends Mm.TeamEvent {};
 		Gr.TeamUpdated = Aa;
 	});
 	var Ud = i((Br) => {
 		'use strict';
 		Object.defineProperty(Br, '__esModule', { value: !0 });
 		Br.TeamsExportAvailable = void 0;
-		var Mm = M(),
-			Wa = class extends Mm.EntityExportAvailableEvent {};
+		var xm = M(),
+			Wa = class extends xm.EntityExportAvailableEvent {};
 		Br.TeamsExportAvailable = Wa;
 	});
 	var Rd = i((zr) => {
 		'use strict';
 		Object.defineProperty(zr, '__esModule', { value: !0 });
 		zr.TeamsExportRequested = void 0;
-		var xm = l(),
-			Ia = class extends xm.DomainEvent {};
+		var Dm = l(),
+			Ia = class extends Dm.DomainEvent {};
 		zr.TeamsExportRequested = Ia;
 	});
 	var Fd = i((Yr) => {
 		'use strict';
 		Object.defineProperty(Yr, '__esModule', { value: !0 });
 		Yr.TopElevenCreated = void 0;
-		var Dm = l(),
-			ka = class extends Dm.DomainEvent {};
+		var Cm = l(),
+			ka = class extends Cm.DomainEvent {};
 		Yr.TopElevenCreated = ka;
 	});
 	var Ad = i((Zr) => {
 		'use strict';
 		Object.defineProperty(Zr, '__esModule', { value: !0 });
 		Zr.TopElevenDeleted = void 0;
-		var Cm = l(),
-			Na = class extends Cm.DomainEvent {};
+		var wm = l(),
+			Na = class extends wm.DomainEvent {};
 		Zr.TopElevenDeleted = Na;
 	});
 	var Wd = i((Kr) => {
 		'use strict';
 		Object.defineProperty(Kr, '__esModule', { value: !0 });
 		Kr.TopElevenUpdated = void 0;
-		var wm = l(),
-			Ha = class extends wm.DomainEvent {};
+		var Om = l(),
+			Ha = class extends Om.DomainEvent {};
 		Kr.TopElevenUpdated = Ha;
 	});
 	var Id = i((Jr) => {
 		'use strict';
 		Object.defineProperty(Jr, '__esModule', { value: !0 });
 		Jr.TopElevensExportAvailable = void 0;
-		var Om = M(),
-			$a = class extends Om.EntityExportAvailableEvent {};
+		var Lm = M(),
+			$a = class extends Lm.EntityExportAvailableEvent {};
 		Jr.TopElevensExportAvailable = $a;
 	});
 	var kd = i((Qr) => {
 		'use strict';
 		Object.defineProperty(Qr, '__esModule', { value: !0 });
 		Qr.TopElevensExportRequested = void 0;
-		var Lm = l(),
-			Va = class extends Lm.DomainEvent {};
+		var Sm = l(),
+			Va = class extends Sm.DomainEvent {};
 		Qr.TopElevensExportRequested = Va;
 	});
 	var J = i((Xr) => {
 		'use strict';
 		Object.defineProperty(Xr, '__esModule', { value: !0 });
 		Xr.UserEvent = void 0;
-		var Sm = l(),
-			Ga = class extends Sm.DomainEvent {};
+		var qm = l(),
+			Ga = class extends qm.DomainEvent {};
 		Xr.UserEvent = Ga;
 	});
 	var Nd = i((en) => {
 		'use strict';
 		Object.defineProperty(en, '__esModule', { value: !0 });
 		en.UserCreated = void 0;
-		var qm = J(),
-			Ba = class extends qm.UserEvent {};
+		var jm = J(),
+			Ba = class extends jm.UserEvent {};
 		en.UserCreated = Ba;
 	});
 	var Hd = i((tn) => {
 		'use strict';
 		Object.defineProperty(tn, '__esModule', { value: !0 });
 		tn.UserExportAvailable = void 0;
-		var jm = M(),
-			za = class extends jm.EntityExportAvailableEvent {};
+		var Tm = M(),
+			za = class extends Tm.EntityExportAvailableEvent {};
 		tn.UserExportAvailable = za;
 	});
 	var $d = i((rn) => {
 		'use strict';
 		Object.defineProperty(rn, '__esModule', { value: !0 });
 		rn.UserExportRequested = void 0;
-		var Tm = l(),
-			Ya = class extends Tm.DomainEvent {};
+		var Um = l(),
+			Ya = class extends Um.DomainEvent {};
 		rn.UserExportRequested = Ya;
 	});
 	var Vd = i((nn) => {
 		'use strict';
 		Object.defineProperty(nn, '__esModule', { value: !0 });
 		nn.UserFlaggedAsActive = void 0;
-		var Um = J(),
-			Za = class extends Um.UserEvent {};
+		var Rm = J(),
+			Za = class extends Rm.UserEvent {};
 		nn.UserFlaggedAsActive = Za;
 	});
 	var Gd = i((on) => {
 		'use strict';
 		Object.defineProperty(on, '__esModule', { value: !0 });
 		on.UserFlaggedAsInactive = void 0;
-		var Rm = J(),
-			Ka = class extends Rm.UserEvent {};
+		var Fm = J(),
+			Ka = class extends Fm.UserEvent {};
 		on.UserFlaggedAsInactive = Ka;
 	});
 	var Bd = i((an) => {
 		'use strict';
 		Object.defineProperty(an, '__esModule', { value: !0 });
 		an.UserFollowsExportAvailable = void 0;
-		var Fm = M(),
-			Ja = class extends Fm.EntityExportAvailableEvent {};
+		var Am = M(),
+			Ja = class extends Am.EntityExportAvailableEvent {};
 		an.UserFollowsExportAvailable = Ja;
 	});
 	var zd = i((sn) => {
 		'use strict';
 		Object.defineProperty(sn, '__esModule', { value: !0 });
 		sn.UserFollowsExportRequested = void 0;
-		var Am = l(),
-			Qa = class extends Am.DomainEvent {};
+		var Wm = l(),
+			Qa = class extends Wm.DomainEvent {};
 		sn.UserFollowsExportRequested = Qa;
 	});
 	var Yd = i((un) => {
 		'use strict';
 		Object.defineProperty(un, '__esModule', { value: !0 });
 		un.UserSoftDeleted = void 0;
-		var Wm = l(),
-			Xa = class extends Wm.DomainEvent {};
+		var Im = l(),
+			Xa = class extends Im.DomainEvent {};
 		un.UserSoftDeleted = Xa;
 	});
 	var ts = i((ln) => {
 		'use strict';
 		Object.defineProperty(ln, '__esModule', { value: !0 });
 		ln.VideoEvent = void 0;
-		var Im = l(),
-			es = class extends Im.DomainEvent {};
+		var km = l(),
+			es = class extends km.DomainEvent {};
 		ln.VideoEvent = es;
 	});
 	var Zd = i((dn) => {
 		'use strict';
 		Object.defineProperty(dn, '__esModule', { value: !0 });
 		dn.VideoCreated = void 0;
-		var km = ts(),
-			rs = class extends km.VideoEvent {};
+		var Nm = ts(),
+			rs = class extends Nm.VideoEvent {};
 		dn.VideoCreated = rs;
 	});
 	var tc = i((t) => {
@@ -2270,39 +2270,39 @@
 			t.TeamsExportRequested =
 			t.TeamsExportAvailable =
 				void 0;
-		var Nm = uu();
+		var Hm = uu();
 		Object.defineProperty(t, 'ClubCreated', {
 			enumerable: !0,
 			get: function () {
-				return Nm.ClubCreated;
+				return Hm.ClubCreated;
 			},
 		});
-		var Hm = lu();
+		var $m = lu();
 		Object.defineProperty(t, 'ClubDeleted', {
 			enumerable: !0,
 			get: function () {
-				return Hm.ClubDeleted;
+				return $m.ClubDeleted;
 			},
 		});
-		var $m = du();
+		var Vm = du();
 		Object.defineProperty(t, 'ClubUpdated', {
 			enumerable: !0,
 			get: function () {
-				return $m.ClubUpdated;
+				return Vm.ClubUpdated;
 			},
 		});
-		var Vm = cu();
+		var Gm = cu();
 		Object.defineProperty(t, 'ClubsExportAvailable', {
 			enumerable: !0,
 			get: function () {
-				return Vm.ClubsExportAvailable;
+				return Gm.ClubsExportAvailable;
 			},
 		});
-		var Gm = pu();
+		var Bm = pu();
 		Object.defineProperty(t, 'ClubsExportRequested', {
 			enumerable: !0,
 			get: function () {
-				return Gm.ClubsExportRequested;
+				return Bm.ClubsExportRequested;
 			},
 		});
 		var Kd = vu();
@@ -2331,277 +2331,277 @@
 				return Jd.RefreshCoachRemoved;
 			},
 		});
-		var Bm = mu();
+		var zm = mu();
 		Object.defineProperty(t, 'CompetitionCreated', {
 			enumerable: !0,
 			get: function () {
-				return Bm.CompetitionCreated;
+				return zm.CompetitionCreated;
 			},
 		});
-		var zm = bu();
+		var Ym = bu();
 		Object.defineProperty(t, 'CompetitionDeleted', {
 			enumerable: !0,
 			get: function () {
-				return zm.CompetitionDeleted;
+				return Ym.CompetitionDeleted;
 			},
 		});
-		var Ym = Z();
+		var Zm = Z();
 		Object.defineProperty(t, 'CompetitionEvent', {
 			enumerable: !0,
 			get: function () {
-				return Ym.CompetitionEvent;
+				return Zm.CompetitionEvent;
 			},
 		});
-		var Zm = Eu();
+		var Km = Eu();
 		Object.defineProperty(t, 'CompetitionFollowed', {
 			enumerable: !0,
 			get: function () {
-				return Zm.CompetitionFollowed;
+				return Km.CompetitionFollowed;
 			},
 		});
-		var Km = _u();
+		var Jm = _u();
 		Object.defineProperty(t, 'CompetitionImageUpdated', {
 			enumerable: !0,
 			get: function () {
-				return Km.CompetitionImageUpdated;
+				return Jm.CompetitionImageUpdated;
 			},
 		});
-		var Jm = hu();
+		var Qm = hu();
 		Object.defineProperty(t, 'CompetitionSeasonActivated', {
 			enumerable: !0,
 			get: function () {
-				return Jm.CompetitionSeasonActivated;
+				return Qm.CompetitionSeasonActivated;
 			},
 		});
-		var Qm = yu();
+		var Xm = yu();
 		Object.defineProperty(t, 'CompetitionSeasonCreated', {
 			enumerable: !0,
 			get: function () {
-				return Qm.CompetitionSeasonCreated;
+				return Xm.CompetitionSeasonCreated;
 			},
 		});
-		var Xm = gu();
+		var e1 = gu();
 		Object.defineProperty(t, 'CompetitionSeasonDeactivated', {
 			enumerable: !0,
 			get: function () {
-				return Xm.CompetitionSeasonDeactivated;
+				return e1.CompetitionSeasonDeactivated;
 			},
 		});
-		var e1 = Pu();
+		var t1 = Pu();
 		Object.defineProperty(t, 'CompetitionSeasonDeleted', {
 			enumerable: !0,
 			get: function () {
-				return e1.CompetitionSeasonDeleted;
+				return t1.CompetitionSeasonDeleted;
 			},
 		});
-		var t1 = Mu();
+		var r1 = Mu();
 		Object.defineProperty(t, 'CompetitionSeasonFormStandingsTeasered', {
 			enumerable: !0,
 			get: function () {
-				return t1.CompetitionSeasonFormStandingsTeasered;
+				return r1.CompetitionSeasonFormStandingsTeasered;
 			},
 		});
-		var r1 = xu();
+		var n1 = xu();
 		Object.defineProperty(t, 'CompetitionSeasonTopScorersCreated', {
 			enumerable: !0,
 			get: function () {
-				return r1.CompetitionSeasonTopScorersCreated;
+				return n1.CompetitionSeasonTopScorersCreated;
 			},
 		});
-		var n1 = Du();
+		var o1 = Du();
 		Object.defineProperty(t, 'CompetitionSeasonTopScorersDeleted', {
 			enumerable: !0,
 			get: function () {
-				return n1.CompetitionSeasonTopScorersDeleted;
+				return o1.CompetitionSeasonTopScorersDeleted;
 			},
 		});
-		var o1 = Cu();
+		var i1 = Cu();
 		Object.defineProperty(t, 'CompetitionSeasonUpdated', {
 			enumerable: !0,
 			get: function () {
-				return o1.CompetitionSeasonUpdated;
+				return i1.CompetitionSeasonUpdated;
 			},
 		});
-		var i1 = wu();
+		var a1 = wu();
 		Object.defineProperty(t, 'CompetitionSeasonsExportAvailable', {
 			enumerable: !0,
 			get: function () {
-				return i1.CompetitionSeasonsExportAvailable;
+				return a1.CompetitionSeasonsExportAvailable;
 			},
 		});
-		var a1 = Ou();
+		var s1 = Ou();
 		Object.defineProperty(t, 'CompetitionSeasonsExportRequested', {
 			enumerable: !0,
 			get: function () {
-				return a1.CompetitionSeasonsExportRequested;
+				return s1.CompetitionSeasonsExportRequested;
 			},
 		});
-		var s1 = Lu();
+		var u1 = Lu();
 		Object.defineProperty(t, 'CompetitionUnfollowed', {
 			enumerable: !0,
 			get: function () {
-				return s1.CompetitionUnfollowed;
+				return u1.CompetitionUnfollowed;
 			},
 		});
-		var u1 = Su();
+		var l1 = Su();
 		Object.defineProperty(t, 'CompetitionUpdated', {
 			enumerable: !0,
 			get: function () {
-				return u1.CompetitionUpdated;
+				return l1.CompetitionUpdated;
 			},
 		});
-		var l1 = qu();
+		var d1 = qu();
 		Object.defineProperty(t, 'CupTeamSeasonCreated', {
 			enumerable: !0,
 			get: function () {
-				return l1.CupTeamSeasonCreated;
+				return d1.CupTeamSeasonCreated;
 			},
 		});
-		var d1 = ju();
+		var c1 = ju();
 		Object.defineProperty(t, 'CupTeamSeasonDeleted', {
 			enumerable: !0,
 			get: function () {
-				return d1.CupTeamSeasonDeleted;
+				return c1.CupTeamSeasonDeleted;
 			},
 		});
-		var c1 = Tu();
+		var p1 = Tu();
 		Object.defineProperty(t, 'CupTeamSeasonsExportAvailable', {
 			enumerable: !0,
 			get: function () {
-				return c1.CupTeamSeasonsExportAvailable;
+				return p1.CupTeamSeasonsExportAvailable;
 			},
 		});
-		var p1 = Uu();
+		var v1 = Uu();
 		Object.defineProperty(t, 'CupTeamSeasonsExportRequested', {
 			enumerable: !0,
 			get: function () {
-				return p1.CupTeamSeasonsExportRequested;
+				return v1.CupTeamSeasonsExportRequested;
 			},
 		});
-		var v1 = Ru();
+		var f1 = Ru();
 		Object.defineProperty(t, 'DistrictCreated', {
 			enumerable: !0,
 			get: function () {
-				return v1.DistrictCreated;
+				return f1.DistrictCreated;
 			},
 		});
-		var f1 = Fu();
+		var m1 = Fu();
 		Object.defineProperty(t, 'DistrictDeleted', {
 			enumerable: !0,
 			get: function () {
-				return f1.DistrictDeleted;
+				return m1.DistrictDeleted;
 			},
 		});
-		var m1 = Au();
+		var b1 = Au();
 		Object.defineProperty(t, 'DistrictUpdated', {
 			enumerable: !0,
 			get: function () {
-				return m1.DistrictUpdated;
+				return b1.DistrictUpdated;
 			},
 		});
-		var b1 = l();
+		var E1 = l();
 		Object.defineProperty(t, 'DomainEvent', {
 			enumerable: !0,
 			get: function () {
-				return b1.DomainEvent;
+				return E1.DomainEvent;
 			},
 		});
-		var E1 = K();
+		var _1 = K();
 		Object.defineProperty(t, 'EntitiesForDistrictRequested', {
 			enumerable: !0,
 			get: function () {
-				return E1.EntitiesForDistrictRequested;
+				return _1.EntitiesForDistrictRequested;
 			},
 		});
-		var _1 = M();
+		var h1 = M();
 		Object.defineProperty(t, 'EntityExportAvailableEvent', {
 			enumerable: !0,
 			get: function () {
-				return _1.EntityExportAvailableEvent;
+				return h1.EntityExportAvailableEvent;
 			},
 		});
-		var h1 = I();
+		var y1 = I();
 		Object.defineProperty(t, 'EntityFollowedEvent', {
 			enumerable: !0,
 			get: function () {
-				return h1.EntityFollowedEvent;
+				return y1.EntityFollowedEvent;
 			},
 		});
-		var y1 = k();
+		var g1 = k();
 		Object.defineProperty(t, 'EntityUnfollowedEvent', {
 			enumerable: !0,
 			get: function () {
-				return y1.EntityUnfollowedEvent;
+				return g1.EntityUnfollowedEvent;
 			},
 		});
-		var g1 = Wu();
+		var P1 = Wu();
 		Object.defineProperty(t, 'FollowableTopicDeleted', {
 			enumerable: !0,
 			get: function () {
-				return g1.FollowableTopicDeleted;
+				return P1.FollowableTopicDeleted;
 			},
 		});
-		var P1 = Iu();
+		var M1 = Iu();
 		Object.defineProperty(t, 'GalleriesForDistrictRequested', {
 			enumerable: !0,
 			get: function () {
-				return P1.GalleriesForDistrictRequested;
+				return M1.GalleriesForDistrictRequested;
 			},
 		});
-		var M1 = ku();
+		var x1 = ku();
 		Object.defineProperty(t, 'GalleryDeleted', {
 			enumerable: !0,
 			get: function () {
-				return M1.GalleryDeleted;
+				return x1.GalleryDeleted;
 			},
 		});
-		var x1 = Nu();
+		var D1 = Nu();
 		Object.defineProperty(t, 'GalleryUpdated', {
 			enumerable: !0,
 			get: function () {
-				return x1.GalleryUpdated;
+				return D1.GalleryUpdated;
 			},
 		});
-		var D1 = Hu();
+		var C1 = Hu();
 		Object.defineProperty(t, 'ImageCreated', {
 			enumerable: !0,
 			get: function () {
-				return D1.ImageCreated;
+				return C1.ImageCreated;
 			},
 		});
-		var C1 = $u();
+		var w1 = $u();
 		Object.defineProperty(t, 'ImageDeleted', {
 			enumerable: !0,
 			get: function () {
-				return C1.ImageDeleted;
+				return w1.ImageDeleted;
 			},
 		});
-		var w1 = Vu();
+		var O1 = Vu();
 		Object.defineProperty(t, 'ImagesUploaded', {
 			enumerable: !0,
 			get: function () {
-				return w1.ImagesUploaded;
+				return O1.ImagesUploaded;
 			},
 		});
-		var O1 = Gu();
+		var L1 = Gu();
 		Object.defineProperty(t, 'ImportBatchUploaded', {
 			enumerable: !0,
 			get: function () {
-				return O1.ImportBatchUploaded;
+				return L1.ImportBatchUploaded;
 			},
 		});
-		var L1 = Bu();
+		var S1 = Bu();
 		Object.defineProperty(t, 'LiveTickerMatchResultUpdated', {
 			enumerable: !0,
 			get: function () {
-				return L1.LiveTickerMatchResultUpdated;
+				return S1.LiveTickerMatchResultUpdated;
 			},
 		});
-		var S1 = zu();
+		var q1 = zu();
 		Object.defineProperty(t, 'LiveTickerPremiumAwardReceived', {
 			enumerable: !0,
 			get: function () {
-				return S1.LiveTickerPremiumAwardReceived;
+				return q1.LiveTickerPremiumAwardReceived;
 			},
 		});
 		var Qd = Yu();
@@ -2630,242 +2630,242 @@
 				return Xd.RefreshMatchCancelled;
 			},
 		});
-		var q1 = Ku();
+		var j1 = Ku();
 		Object.defineProperty(t, 'MatchCreated', {
 			enumerable: !0,
 			get: function () {
-				return q1.MatchCreated;
+				return j1.MatchCreated;
 			},
 		});
-		var j1 = Ju();
+		var T1 = Ju();
 		Object.defineProperty(t, 'MatchDeleted', {
 			enumerable: !0,
 			get: function () {
-				return j1.MatchDeleted;
+				return T1.MatchDeleted;
 			},
 		});
-		var T1 = Qu();
+		var U1 = Qu();
 		Object.defineProperty(t, 'MatchDistrictRelationCreated', {
 			enumerable: !0,
 			get: function () {
-				return T1.MatchDistrictRelationCreated;
+				return U1.MatchDistrictRelationCreated;
 			},
 		});
-		var U1 = Xu();
+		var R1 = Xu();
 		Object.defineProperty(t, 'MatchDistrictRelationDeleted', {
 			enumerable: !0,
 			get: function () {
-				return U1.MatchDistrictRelationDeleted;
+				return R1.MatchDistrictRelationDeleted;
 			},
 		});
-		var R1 = nt();
+		var F1 = nt();
 		Object.defineProperty(t, 'MatchDistrictRelationEvent', {
 			enumerable: !0,
 			get: function () {
-				return R1.MatchDistrictRelationEvent;
+				return F1.MatchDistrictRelationEvent;
 			},
 		});
-		var F1 = el();
+		var A1 = el();
 		Object.defineProperty(t, 'MatchEventChance', {
 			enumerable: !0,
 			get: function () {
-				return F1.MatchEventChance;
+				return A1.MatchEventChance;
 			},
 		});
-		var A1 = tl();
+		var W1 = tl();
 		Object.defineProperty(t, 'MatchEventDeleted', {
 			enumerable: !0,
 			get: function () {
-				return A1.MatchEventDeleted;
+				return W1.MatchEventDeleted;
 			},
 		});
-		var W1 = rl();
+		var I1 = rl();
 		Object.defineProperty(t, 'MatchEventGoalDenied', {
 			enumerable: !0,
 			get: function () {
-				return W1.MatchEventGoalDenied;
+				return I1.MatchEventGoalDenied;
 			},
 		});
-		var I1 = nl();
+		var k1 = nl();
 		Object.defineProperty(t, 'MatchEventGoal', {
 			enumerable: !0,
 			get: function () {
-				return I1.MatchEventGoal;
+				return k1.MatchEventGoal;
 			},
 		});
-		var k1 = ol();
+		var N1 = ol();
 		Object.defineProperty(t, 'MatchEventInterimResult', {
 			enumerable: !0,
 			get: function () {
-				return k1.MatchEventInterimResult;
+				return N1.MatchEventInterimResult;
 			},
 		});
-		var N1 = il();
+		var H1 = il();
 		Object.defineProperty(t, 'MatchEventLineupsCompleted', {
 			enumerable: !0,
 			get: function () {
-				return N1.MatchEventLineupsCompleted;
+				return H1.MatchEventLineupsCompleted;
 			},
 		});
-		var H1 = al();
+		var $1 = al();
 		Object.defineProperty(t, 'MatchEventOwnGoal', {
 			enumerable: !0,
 			get: function () {
-				return H1.MatchEventOwnGoal;
+				return $1.MatchEventOwnGoal;
 			},
 		});
-		var $1 = sl();
+		var V1 = sl();
 		Object.defineProperty(t, 'MatchEventPenaltyFail', {
 			enumerable: !0,
 			get: function () {
-				return $1.MatchEventPenaltyFail;
+				return V1.MatchEventPenaltyFail;
 			},
 		});
-		var V1 = ul();
+		var G1 = ul();
 		Object.defineProperty(t, 'MatchEventRedCard', {
 			enumerable: !0,
 			get: function () {
-				return V1.MatchEventRedCard;
+				return G1.MatchEventRedCard;
 			},
 		});
-		var G1 = ll();
+		var B1 = ll();
 		Object.defineProperty(t, 'MatchEventTimePenalty', {
 			enumerable: !0,
 			get: function () {
-				return G1.MatchEventTimePenalty;
+				return B1.MatchEventTimePenalty;
 			},
 		});
-		var B1 = dl();
+		var z1 = dl();
 		Object.defineProperty(t, 'MatchEventUpdated', {
 			enumerable: !0,
 			get: function () {
-				return B1.MatchEventUpdated;
+				return z1.MatchEventUpdated;
 			},
 		});
-		var z1 = cl();
+		var Y1 = cl();
 		Object.defineProperty(t, 'MatchEventWhistleOvertimeStartFirstHalftime', {
 			enumerable: !0,
 			get: function () {
-				return z1.MatchEventWhistleOvertimeStartFirstHalftime;
+				return Y1.MatchEventWhistleOvertimeStartFirstHalftime;
 			},
 		});
-		var Y1 = pl();
+		var Z1 = pl();
 		Object.defineProperty(t, 'MatchEventWhistleOvertimeStartSecondHalftime', {
 			enumerable: !0,
 			get: function () {
-				return Y1.MatchEventWhistleOvertimeStartSecondHalftime;
+				return Z1.MatchEventWhistleOvertimeStartSecondHalftime;
 			},
 		});
-		var Z1 = vl();
+		var K1 = vl();
 		Object.defineProperty(t, 'MatchEventWhistleOvertimeStopFirstHalftime', {
 			enumerable: !0,
 			get: function () {
-				return Z1.MatchEventWhistleOvertimeStopFirstHalftime;
+				return K1.MatchEventWhistleOvertimeStopFirstHalftime;
 			},
 		});
-		var K1 = fl();
+		var J1 = fl();
 		Object.defineProperty(t, 'MatchEventWhistleOvertimeStopSecondHalftime', {
 			enumerable: !0,
 			get: function () {
-				return K1.MatchEventWhistleOvertimeStopSecondHalftime;
+				return J1.MatchEventWhistleOvertimeStopSecondHalftime;
 			},
 		});
-		var J1 = ml();
+		var Q1 = ml();
 		Object.defineProperty(t, 'MatchEventWhistlePenaltyShootoutStart', {
 			enumerable: !0,
 			get: function () {
-				return J1.MatchEventWhistlePenaltyShootoutStart;
+				return Q1.MatchEventWhistlePenaltyShootoutStart;
 			},
 		});
-		var Q1 = bl();
+		var X1 = bl();
 		Object.defineProperty(t, 'MatchEventWhistlePenaltyShootoutStop', {
 			enumerable: !0,
 			get: function () {
-				return Q1.MatchEventWhistlePenaltyShootoutStop;
+				return X1.MatchEventWhistlePenaltyShootoutStop;
 			},
 		});
-		var X1 = El();
+		var eb = El();
 		Object.defineProperty(t, 'MatchEventWhistleRegularStartFirstHalftime', {
 			enumerable: !0,
 			get: function () {
-				return X1.MatchEventWhistleRegularStartFirstHalftime;
+				return eb.MatchEventWhistleRegularStartFirstHalftime;
 			},
 		});
-		var eb = _l();
+		var tb = _l();
 		Object.defineProperty(t, 'MatchEventWhistleRegularStartSecondHalftime', {
 			enumerable: !0,
 			get: function () {
-				return eb.MatchEventWhistleRegularStartSecondHalftime;
+				return tb.MatchEventWhistleRegularStartSecondHalftime;
 			},
 		});
-		var tb = hl();
+		var rb = hl();
 		Object.defineProperty(t, 'MatchEventWhistleRegularStopFirstHalftime', {
 			enumerable: !0,
 			get: function () {
-				return tb.MatchEventWhistleRegularStopFirstHalftime;
+				return rb.MatchEventWhistleRegularStopFirstHalftime;
 			},
 		});
-		var rb = yl();
+		var nb = yl();
 		Object.defineProperty(t, 'MatchEventWhistleRegularStopSecondHalftime', {
 			enumerable: !0,
 			get: function () {
-				return rb.MatchEventWhistleRegularStopSecondHalftime;
+				return nb.MatchEventWhistleRegularStopSecondHalftime;
 			},
 		});
-		var nb = gl();
+		var ob = gl();
 		Object.defineProperty(t, 'MatchEventYellowCard', {
 			enumerable: !0,
 			get: function () {
-				return nb.MatchEventYellowCard;
+				return ob.MatchEventYellowCard;
 			},
 		});
-		var ob = Pl();
+		var ib = Pl();
 		Object.defineProperty(t, 'MatchEventYellowRedCard', {
 			enumerable: !0,
 			get: function () {
-				return ob.MatchEventYellowRedCard;
+				return ib.MatchEventYellowRedCard;
 			},
 		});
-		var ib = Ml();
+		var ab = Ml();
 		Object.defineProperty(t, 'MatchFollowed', {
 			enumerable: !0,
 			get: function () {
-				return ib.MatchFollowed;
+				return ab.MatchFollowed;
 			},
 		});
-		var ab = xl();
+		var sb = xl();
 		Object.defineProperty(t, 'MatchGalleryRemoved', {
 			enumerable: !0,
 			get: function () {
-				return ab.MatchGalleryRemoved;
+				return sb.MatchGalleryRemoved;
 			},
 		});
-		var sb = Dl();
+		var ub = Dl();
 		Object.defineProperty(t, 'MatchGalleryUploaded', {
 			enumerable: !0,
 			get: function () {
-				return sb.MatchGalleryUploaded;
+				return ub.MatchGalleryUploaded;
 			},
 		});
-		var ub = Cl();
+		var lb = Cl();
 		Object.defineProperty(t, 'MatchPlaylistDeleted', {
 			enumerable: !0,
 			get: function () {
-				return ub.MatchPlaylistDeleted;
+				return lb.MatchPlaylistDeleted;
 			},
 		});
-		var lb = wl();
+		var db = wl();
 		Object.defineProperty(t, 'MatchPlaylistUpdated', {
 			enumerable: !0,
 			get: function () {
-				return lb.MatchPlaylistUpdated;
+				return db.MatchPlaylistUpdated;
 			},
 		});
-		var db = Ol();
+		var cb = Ol();
 		Object.defineProperty(t, 'MatchPlaylistUploaded', {
 			enumerable: !0,
 			get: function () {
-				return db.MatchPlaylistUploaded;
+				return cb.MatchPlaylistUploaded;
 			},
 		});
 		var ec = Ll();
@@ -2881,564 +2881,564 @@
 				return ec.RefreshMatchResultSaved;
 			},
 		});
-		var cb = Sl();
+		var pb = Sl();
 		Object.defineProperty(t, 'MatchInterimResultSaved', {
 			enumerable: !0,
 			get: function () {
-				return cb.MatchInterimResultSaved;
+				return pb.MatchInterimResultSaved;
 			},
 		});
-		var pb = ql();
+		var vb = ql();
 		Object.defineProperty(t, 'MatchResultReset', {
 			enumerable: !0,
 			get: function () {
-				return pb.MatchResultReset;
+				return vb.MatchResultReset;
 			},
 		});
-		var vb = jl();
+		var fb = jl();
 		Object.defineProperty(t, 'MatchShifted', {
 			enumerable: !0,
 			get: function () {
-				return vb.MatchShifted;
+				return fb.MatchShifted;
 			},
 		});
-		var fb = Tl();
+		var mb = Tl();
 		Object.defineProperty(t, 'MatchStarted', {
 			enumerable: !0,
 			get: function () {
-				return fb.MatchStarted;
+				return mb.MatchStarted;
 			},
 		});
-		var mb = Ul();
+		var bb = Ul();
 		Object.defineProperty(t, 'MatchUnfollowed', {
 			enumerable: !0,
 			get: function () {
-				return mb.MatchUnfollowed;
+				return bb.MatchUnfollowed;
 			},
 		});
-		var bb = Rl();
+		var Eb = Rl();
 		Object.defineProperty(t, 'MatchUpdated', {
 			enumerable: !0,
 			get: function () {
-				return bb.MatchUpdated;
+				return Eb.MatchUpdated;
 			},
 		});
-		var Eb = Fl();
+		var _b = Fl();
 		Object.defineProperty(t, 'MatchVideoElementCreated', {
 			enumerable: !0,
 			get: function () {
-				return Eb.MatchVideoElementCreated;
+				return _b.MatchVideoElementCreated;
 			},
 		});
-		var _b = Al();
+		var hb = Al();
 		Object.defineProperty(t, 'MatchVideoEmbeddingCreated', {
 			enumerable: !0,
 			get: function () {
-				return _b.MatchVideoEmbeddingCreated;
+				return hb.MatchVideoEmbeddingCreated;
 			},
 		});
-		var hb = Wl();
+		var yb = Wl();
 		Object.defineProperty(t, 'MatchVideoEmbeddingDeleted', {
 			enumerable: !0,
 			get: function () {
-				return hb.MatchVideoEmbeddingDeleted;
+				return yb.MatchVideoEmbeddingDeleted;
 			},
 		});
-		var yb = Vt();
+		var gb = Vt();
 		Object.defineProperty(t, 'MatchVideoEmbeddingEvent', {
 			enumerable: !0,
 			get: function () {
-				return yb.MatchVideoEmbeddingEvent;
+				return gb.MatchVideoEmbeddingEvent;
 			},
 		});
-		var gb = Il();
+		var Pb = Il();
 		Object.defineProperty(t, 'MatchesExportAvailable', {
 			enumerable: !0,
 			get: function () {
-				return gb.MatchesExportAvailable;
+				return Pb.MatchesExportAvailable;
 			},
 		});
-		var Pb = kl();
+		var Mb = kl();
 		Object.defineProperty(t, 'MatchesExportRequested', {
 			enumerable: !0,
 			get: function () {
-				return Pb.MatchesExportRequested;
+				return Mb.MatchesExportRequested;
 			},
 		});
-		var Mb = Nl();
+		var xb = Nl();
 		Object.defineProperty(t, 'NewsDeleted', {
 			enumerable: !0,
 			get: function () {
-				return Mb.NewsDeleted;
+				return xb.NewsDeleted;
 			},
 		});
-		var xb = Hl();
+		var Db = Hl();
 		Object.defineProperty(t, 'NewsExportAvailable', {
 			enumerable: !0,
 			get: function () {
-				return xb.NewsExportAvailable;
+				return Db.NewsExportAvailable;
 			},
 		});
-		var Db = $l();
+		var Cb = $l();
 		Object.defineProperty(t, 'NewsExportRequested', {
 			enumerable: !0,
 			get: function () {
-				return Db.NewsExportRequested;
+				return Cb.NewsExportRequested;
 			},
 		});
-		var Cb = Vl();
+		var wb = Vl();
 		Object.defineProperty(t, 'NewsForDistrictRequested', {
 			enumerable: !0,
 			get: function () {
-				return Cb.NewsForDistrictRequested;
+				return wb.NewsForDistrictRequested;
 			},
 		});
-		var wb = Gl();
+		var Ob = Gl();
 		Object.defineProperty(t, 'NewsImageUpdated', {
 			enumerable: !0,
 			get: function () {
-				return wb.NewsImageUpdated;
+				return Ob.NewsImageUpdated;
 			},
 		});
-		var Ob = Bl();
+		var Lb = Bl();
 		Object.defineProperty(t, 'NewsPublished', {
 			enumerable: !0,
 			get: function () {
-				return Ob.NewsPublished;
+				return Lb.NewsPublished;
 			},
 		});
-		var Lb = zl();
+		var Sb = zl();
 		Object.defineProperty(t, 'NewsSlugRenamed', {
 			enumerable: !0,
 			get: function () {
-				return Lb.NewsSlugRenamed;
+				return Sb.NewsSlugRenamed;
 			},
 		});
-		var Sb = Yl();
+		var qb = Yl();
 		Object.defineProperty(t, 'NewsUnpublished', {
 			enumerable: !0,
 			get: function () {
-				return Sb.NewsUnpublished;
+				return qb.NewsUnpublished;
 			},
 		});
-		var qb = Zl();
+		var jb = Zl();
 		Object.defineProperty(t, 'NewsUpdated', {
 			enumerable: !0,
 			get: function () {
-				return qb.NewsUpdated;
+				return jb.NewsUpdated;
 			},
 		});
-		var jb = Kl();
+		var Tb = Kl();
 		Object.defineProperty(t, 'PowerRankingCreated', {
 			enumerable: !0,
 			get: function () {
-				return jb.PowerRankingCreated;
+				return Tb.PowerRankingCreated;
 			},
 		});
-		var Tb = Jl();
+		var Ub = Jl();
 		Object.defineProperty(t, 'PowerRankingDeleted', {
 			enumerable: !0,
 			get: function () {
-				return Tb.PowerRankingDeleted;
+				return Ub.PowerRankingDeleted;
 			},
 		});
-		var Ub = Ql();
+		var Rb = Ql();
 		Object.defineProperty(t, 'PowerRankingUpdated', {
 			enumerable: !0,
 			get: function () {
-				return Ub.PowerRankingUpdated;
+				return Rb.PowerRankingUpdated;
 			},
 		});
-		var Rb = Xl();
+		var Fb = Xl();
 		Object.defineProperty(t, 'ProfileCreated', {
 			enumerable: !0,
 			get: function () {
-				return Rb.ProfileCreated;
+				return Fb.ProfileCreated;
 			},
 		});
-		var Fb = ed();
+		var Ab = ed();
 		Object.defineProperty(t, 'ProfileDeleted', {
 			enumerable: !0,
 			get: function () {
-				return Fb.ProfileDeleted;
+				return Ab.ProfileDeleted;
 			},
 		});
-		var Ab = td();
+		var Wb = td();
 		Object.defineProperty(t, 'ProfileFollowed', {
 			enumerable: !0,
 			get: function () {
-				return Ab.ProfileFollowed;
+				return Wb.ProfileFollowed;
 			},
 		});
-		var Wb = rd();
+		var Ib = rd();
 		Object.defineProperty(t, 'ProfileImageUpdated', {
 			enumerable: !0,
 			get: function () {
-				return Wb.ProfileImageUpdated;
+				return Ib.ProfileImageUpdated;
 			},
 		});
-		var Ib = nd();
+		var kb = nd();
 		Object.defineProperty(t, 'ProfileInjured', {
 			enumerable: !0,
 			get: function () {
-				return Ib.ProfileInjured;
+				return kb.ProfileInjured;
 			},
 		});
-		var kb = od();
+		var Nb = od();
 		Object.defineProperty(t, 'ProfileSeasonBanCreated', {
 			enumerable: !0,
 			get: function () {
-				return kb.ProfileSeasonBanCreated;
+				return Nb.ProfileSeasonBanCreated;
 			},
 		});
-		var Nb = id();
+		var Hb = id();
 		Object.defineProperty(t, 'ProfileSeasonBanDeleted', {
 			enumerable: !0,
 			get: function () {
-				return Nb.ProfileSeasonBanDeleted;
+				return Hb.ProfileSeasonBanDeleted;
 			},
 		});
-		var Hb = ad();
+		var $b = ad();
 		Object.defineProperty(t, 'ProfileSeasonBanUpdated', {
 			enumerable: !0,
 			get: function () {
-				return Hb.ProfileSeasonBanUpdated;
+				return $b.ProfileSeasonBanUpdated;
 			},
 		});
-		var $b = sd();
+		var Vb = sd();
 		Object.defineProperty(t, 'ProfileSeasonInjuryDeleted', {
 			enumerable: !0,
 			get: function () {
-				return $b.ProfileSeasonInjuryDeleted;
+				return Vb.ProfileSeasonInjuryDeleted;
 			},
 		});
-		var Vb = ud();
+		var Gb = ud();
 		Object.defineProperty(t, 'ProfileSeasonInjuryUpdated', {
 			enumerable: !0,
 			get: function () {
-				return Vb.ProfileSeasonInjuryUpdated;
+				return Gb.ProfileSeasonInjuryUpdated;
 			},
 		});
-		var Gb = ld();
+		var Bb = ld();
 		Object.defineProperty(t, 'ProfileTransferCreated', {
 			enumerable: !0,
 			get: function () {
-				return Gb.ProfileTransferCreated;
+				return Bb.ProfileTransferCreated;
 			},
 		});
-		var Bb = dd();
+		var zb = dd();
 		Object.defineProperty(t, 'ProfileTransferDeleted', {
 			enumerable: !0,
 			get: function () {
-				return Bb.ProfileTransferDeleted;
+				return zb.ProfileTransferDeleted;
 			},
 		});
-		var zb = cd();
+		var Yb = cd();
 		Object.defineProperty(t, 'ProfileTransferUpdated', {
 			enumerable: !0,
 			get: function () {
-				return zb.ProfileTransferUpdated;
+				return Yb.ProfileTransferUpdated;
 			},
 		});
-		var Yb = pd();
+		var Zb = pd();
 		Object.defineProperty(t, 'ProfileTransfersForDistrictRequested', {
 			enumerable: !0,
 			get: function () {
-				return Yb.ProfileTransfersForDistrictRequested;
+				return Zb.ProfileTransfersForDistrictRequested;
 			},
 		});
-		var Zb = vd();
+		var Kb = vd();
 		Object.defineProperty(t, 'ProfileUnfollowed', {
 			enumerable: !0,
 			get: function () {
-				return Zb.ProfileUnfollowed;
+				return Kb.ProfileUnfollowed;
 			},
 		});
-		var Kb = fd();
+		var Jb = fd();
 		Object.defineProperty(t, 'ProfileUpdated', {
 			enumerable: !0,
 			get: function () {
-				return Kb.ProfileUpdated;
+				return Jb.ProfileUpdated;
 			},
 		});
-		var Jb = md();
+		var Qb = md();
 		Object.defineProperty(t, 'PushNotificationSubmitted', {
 			enumerable: !0,
 			get: function () {
-				return Jb.PushNotificationSubmitted;
+				return Qb.PushNotificationSubmitted;
 			},
 		});
-		var Qb = _a();
+		var Xb = _a();
 		Object.defineProperty(t, 'RoundEvent', {
 			enumerable: !0,
 			get: function () {
-				return Qb.RoundEvent;
+				return Xb.RoundEvent;
 			},
 		});
-		var Xb = bd();
+		var eE = bd();
 		Object.defineProperty(t, 'RoundUpdated', {
 			enumerable: !0,
 			get: function () {
-				return Xb.RoundUpdated;
+				return eE.RoundUpdated;
 			},
 		});
-		var eE = Ed();
+		var tE = Ed();
 		Object.defineProperty(t, 'SeasonCreated', {
 			enumerable: !0,
 			get: function () {
-				return eE.SeasonCreated;
+				return tE.SeasonCreated;
 			},
 		});
-		var tE = _d();
+		var rE = _d();
 		Object.defineProperty(t, 'SeasonDeleted', {
 			enumerable: !0,
 			get: function () {
-				return tE.SeasonDeleted;
+				return rE.SeasonDeleted;
 			},
 		});
-		var rE = hd();
+		var nE = hd();
 		Object.defineProperty(t, 'SeasonUpdated', {
 			enumerable: !0,
 			get: function () {
-				return rE.SeasonUpdated;
+				return nE.SeasonUpdated;
 			},
 		});
-		var nE = zi();
+		var oE = zi();
 		Object.defineProperty(t, 'SlugRenamed', {
 			enumerable: !0,
 			get: function () {
-				return nE.SlugRenamed;
+				return oE.SlugRenamed;
 			},
 		});
-		var oE = yd();
+		var iE = yd();
 		Object.defineProperty(t, 'StreamEntryCreated', {
 			enumerable: !0,
 			get: function () {
-				return oE.StreamEntryCreated;
+				return iE.StreamEntryCreated;
 			},
 		});
-		var iE = gd();
+		var aE = gd();
 		Object.defineProperty(t, 'StreamEntryDeleted', {
 			enumerable: !0,
 			get: function () {
-				return iE.StreamEntryDeleted;
+				return aE.StreamEntryDeleted;
 			},
 		});
-		var aE = Pd();
+		var sE = Pd();
 		Object.defineProperty(t, 'StreamEntryUpdated', {
 			enumerable: !0,
 			get: function () {
-				return aE.StreamEntryUpdated;
+				return sE.StreamEntryUpdated;
 			},
 		});
-		var sE = Md();
+		var uE = Md();
 		Object.defineProperty(t, 'TeamCreated', {
 			enumerable: !0,
 			get: function () {
-				return sE.TeamCreated;
+				return uE.TeamCreated;
 			},
 		});
-		var uE = xd();
+		var lE = xd();
 		Object.defineProperty(t, 'TeamDeleted', {
 			enumerable: !0,
 			get: function () {
-				return uE.TeamDeleted;
+				return lE.TeamDeleted;
 			},
 		});
-		var lE = Ur();
+		var dE = Ur();
 		Object.defineProperty(t, 'TeamEvent', {
 			enumerable: !0,
 			get: function () {
-				return lE.TeamEvent;
+				return dE.TeamEvent;
 			},
 		});
-		var dE = Dd();
+		var cE = Dd();
 		Object.defineProperty(t, 'TeamFollowed', {
 			enumerable: !0,
 			get: function () {
-				return dE.TeamFollowed;
+				return cE.TeamFollowed;
 			},
 		});
-		var cE = Cd();
+		var pE = Cd();
 		Object.defineProperty(t, 'TeamSeasonCreated', {
 			enumerable: !0,
 			get: function () {
-				return cE.TeamSeasonCreated;
+				return pE.TeamSeasonCreated;
 			},
 		});
-		var pE = wd();
+		var vE = wd();
 		Object.defineProperty(t, 'TeamSeasonDeleted', {
 			enumerable: !0,
 			get: function () {
-				return pE.TeamSeasonDeleted;
+				return vE.TeamSeasonDeleted;
 			},
 		});
-		var vE = Od();
+		var fE = Od();
 		Object.defineProperty(t, 'TeamSeasonImageUpdated', {
 			enumerable: !0,
 			get: function () {
-				return vE.TeamSeasonImageUpdated;
+				return fE.TeamSeasonImageUpdated;
 			},
 		});
-		var fE = Ld();
+		var mE = Ld();
 		Object.defineProperty(t, 'TeamSeasonUpdated', {
 			enumerable: !0,
 			get: function () {
-				return fE.TeamSeasonUpdated;
+				return mE.TeamSeasonUpdated;
 			},
 		});
-		var mE = Sd();
+		var bE = Sd();
 		Object.defineProperty(t, 'TeamSeasonsExportAvailable', {
 			enumerable: !0,
 			get: function () {
-				return mE.TeamSeasonsExportAvailable;
+				return bE.TeamSeasonsExportAvailable;
 			},
 		});
-		var bE = qd();
+		var EE = qd();
 		Object.defineProperty(t, 'TeamSeasonsExportRequested', {
 			enumerable: !0,
 			get: function () {
-				return bE.TeamSeasonsExportRequested;
+				return EE.TeamSeasonsExportRequested;
 			},
 		});
-		var EE = jd();
+		var _E = jd();
 		Object.defineProperty(t, 'TeamUnfollowed', {
 			enumerable: !0,
 			get: function () {
-				return EE.TeamUnfollowed;
+				return _E.TeamUnfollowed;
 			},
 		});
-		var _E = Td();
+		var hE = Td();
 		Object.defineProperty(t, 'TeamUpdated', {
 			enumerable: !0,
 			get: function () {
-				return _E.TeamUpdated;
+				return hE.TeamUpdated;
 			},
 		});
-		var hE = Ud();
+		var yE = Ud();
 		Object.defineProperty(t, 'TeamsExportAvailable', {
 			enumerable: !0,
 			get: function () {
-				return hE.TeamsExportAvailable;
+				return yE.TeamsExportAvailable;
 			},
 		});
-		var yE = Rd();
+		var gE = Rd();
 		Object.defineProperty(t, 'TeamsExportRequested', {
 			enumerable: !0,
 			get: function () {
-				return yE.TeamsExportRequested;
+				return gE.TeamsExportRequested;
 			},
 		});
-		var gE = Fd();
+		var PE = Fd();
 		Object.defineProperty(t, 'TopElevenCreated', {
 			enumerable: !0,
 			get: function () {
-				return gE.TopElevenCreated;
+				return PE.TopElevenCreated;
 			},
 		});
-		var PE = Ad();
+		var ME = Ad();
 		Object.defineProperty(t, 'TopElevenDeleted', {
 			enumerable: !0,
 			get: function () {
-				return PE.TopElevenDeleted;
+				return ME.TopElevenDeleted;
 			},
 		});
-		var ME = Wd();
+		var xE = Wd();
 		Object.defineProperty(t, 'TopElevenUpdated', {
 			enumerable: !0,
 			get: function () {
-				return ME.TopElevenUpdated;
+				return xE.TopElevenUpdated;
 			},
 		});
-		var xE = Id();
+		var DE = Id();
 		Object.defineProperty(t, 'TopElevensExportAvailable', {
 			enumerable: !0,
 			get: function () {
-				return xE.TopElevensExportAvailable;
+				return DE.TopElevensExportAvailable;
 			},
 		});
-		var DE = kd();
+		var CE = kd();
 		Object.defineProperty(t, 'TopElevensExportRequested', {
 			enumerable: !0,
 			get: function () {
-				return DE.TopElevensExportRequested;
+				return CE.TopElevensExportRequested;
 			},
 		});
-		var CE = Nd();
+		var wE = Nd();
 		Object.defineProperty(t, 'UserCreated', {
 			enumerable: !0,
 			get: function () {
-				return CE.UserCreated;
+				return wE.UserCreated;
 			},
 		});
-		var wE = J();
+		var OE = J();
 		Object.defineProperty(t, 'UserEvent', {
 			enumerable: !0,
 			get: function () {
-				return wE.UserEvent;
+				return OE.UserEvent;
 			},
 		});
-		var OE = Hd();
+		var LE = Hd();
 		Object.defineProperty(t, 'UserExportAvailable', {
 			enumerable: !0,
 			get: function () {
-				return OE.UserExportAvailable;
+				return LE.UserExportAvailable;
 			},
 		});
-		var LE = $d();
+		var SE = $d();
 		Object.defineProperty(t, 'UserExportRequested', {
 			enumerable: !0,
 			get: function () {
-				return LE.UserExportRequested;
+				return SE.UserExportRequested;
 			},
 		});
-		var SE = Vd();
+		var qE = Vd();
 		Object.defineProperty(t, 'UserFlaggedAsActive', {
 			enumerable: !0,
 			get: function () {
-				return SE.UserFlaggedAsActive;
+				return qE.UserFlaggedAsActive;
 			},
 		});
-		var qE = Gd();
+		var jE = Gd();
 		Object.defineProperty(t, 'UserFlaggedAsInactive', {
 			enumerable: !0,
 			get: function () {
-				return qE.UserFlaggedAsInactive;
+				return jE.UserFlaggedAsInactive;
 			},
 		});
-		var jE = Bd();
+		var TE = Bd();
 		Object.defineProperty(t, 'UserFollowsExportAvailable', {
 			enumerable: !0,
 			get: function () {
-				return jE.UserFollowsExportAvailable;
+				return TE.UserFollowsExportAvailable;
 			},
 		});
-		var TE = zd();
+		var UE = zd();
 		Object.defineProperty(t, 'UserFollowsExportRequested', {
 			enumerable: !0,
 			get: function () {
-				return TE.UserFollowsExportRequested;
+				return UE.UserFollowsExportRequested;
 			},
 		});
-		var UE = Yd();
+		var RE = Yd();
 		Object.defineProperty(t, 'UserSoftDeleted', {
 			enumerable: !0,
 			get: function () {
-				return UE.UserSoftDeleted;
+				return RE.UserSoftDeleted;
 			},
 		});
-		var RE = Zd();
+		var FE = Zd();
 		Object.defineProperty(t, 'VideoCreated', {
 			enumerable: !0,
 			get: function () {
-				return RE.VideoCreated;
+				return FE.VideoCreated;
 			},
 		});
-		var FE = ts();
+		var AE = ts();
 		Object.defineProperty(t, 'VideoEvent', {
 			enumerable: !0,
 			get: function () {
-				return FE.VideoEvent;
+				return AE.VideoEvent;
 			},
 		});
 	});
@@ -3699,8 +3699,8 @@
 		'use strict';
 		Object.defineProperty(Mn, '__esModule', { value: !0 });
 		Mn.User = void 0;
-		var AE = ps(),
-			Es = class extends AE.ShortUser {
+		var WE = ps(),
+			Es = class extends WE.ShortUser {
 				constructor() {
 					super(...arguments);
 					a(this, 'status');
@@ -3735,18 +3735,18 @@
 			m.CompetitionSeasonTopScorers =
 			m.Coach =
 				void 0;
-		var WE = rc();
+		var IE = rc();
 		Object.defineProperty(m, 'Coach', {
 			enumerable: !0,
 			get: function () {
-				return WE.Coach;
+				return IE.Coach;
 			},
 		});
-		var IE = nc();
+		var kE = nc();
 		Object.defineProperty(m, 'CompetitionSeasonTopScorers', {
 			enumerable: !0,
 			get: function () {
-				return IE.CompetitionSeasonTopScorers;
+				return kE.CompetitionSeasonTopScorers;
 			},
 		});
 		var bc = oc();
@@ -3762,81 +3762,81 @@
 				return bc.RelatedGallery;
 			},
 		});
-		var kE = ic();
+		var NE = ic();
 		Object.defineProperty(m, 'MatchPlaylist', {
 			enumerable: !0,
 			get: function () {
-				return kE.MatchPlaylist;
+				return NE.MatchPlaylist;
 			},
 		});
-		var NE = ac();
+		var HE = ac();
 		Object.defineProperty(m, 'NewsCategory', {
 			enumerable: !0,
 			get: function () {
-				return NE.NewsCategory;
+				return HE.NewsCategory;
 			},
 		});
-		var HE = sc();
+		var $E = sc();
 		Object.defineProperty(m, 'News', {
 			enumerable: !0,
 			get: function () {
-				return HE.News;
+				return $E.News;
 			},
 		});
-		var $E = uc();
+		var VE = uc();
 		Object.defineProperty(m, 'RequestUser', {
 			enumerable: !0,
 			get: function () {
-				return $E.RequestUser;
+				return VE.RequestUser;
 			},
 		});
-		var VE = ps();
+		var GE = ps();
 		Object.defineProperty(m, 'ShortUser', {
 			enumerable: !0,
 			get: function () {
-				return VE.ShortUser;
+				return GE.ShortUser;
 			},
 		});
-		var GE = lc();
+		var BE = lc();
 		Object.defineProperty(m, 'TeamEventData', {
 			enumerable: !0,
 			get: function () {
-				return GE.TeamEventData;
+				return BE.TeamEventData;
 			},
 		});
-		var BE = dc();
+		var zE = dc();
 		Object.defineProperty(m, 'TeamSeason', {
 			enumerable: !0,
 			get: function () {
-				return BE.TeamSeason;
+				return zE.TeamSeason;
 			},
 		});
-		var zE = cc();
+		var YE = cc();
 		Object.defineProperty(m, 'Team', {
 			enumerable: !0,
 			get: function () {
-				return zE.Team;
+				return YE.Team;
 			},
 		});
-		var YE = vc();
+		var ZE = vc();
 		Object.defineProperty(m, 'TopElevenType', {
 			enumerable: !0,
 			get: function () {
-				return YE.TopElevenType;
+				return ZE.TopElevenType;
 			},
 		});
-		var ZE = fc();
+		var KE = fc();
 		Object.defineProperty(m, 'UploadedImages', {
 			enumerable: !0,
 			get: function () {
-				return ZE.UploadedImages;
+				return KE.UploadedImages;
 			},
 		});
-		var KE = mc();
+		var JE = mc();
 		Object.defineProperty(m, 'User', {
 			enumerable: !0,
 			get: function () {
-				return KE.User;
+				return JE.User;
 			},
 		});
 	});
@@ -4034,10 +4034,10 @@
 		Object.defineProperty(Fn, '__esModule', { value: !0 });
 		Fn.TypeMappings = void 0;
 		var Rc = Cn(),
-			JE = hs(),
+			QE = hs(),
 			Rn = class Rn {
 				static imageTypeToEntityType(r) {
-					if (r === JE.ImageType.Player) return Rc.EntityType.Profile;
+					if (r === QE.ImageType.Player) return Rc.EntityType.Profile;
 					if (Rn.VALID_ENTITY_TYPES.includes(r)) return r;
 				}
 			};
@@ -4113,116 +4113,116 @@
 			b.EntityType =
 			b.CompetitionCategoryType =
 				void 0;
-		var QE = hc();
+		var XE = hc();
 		Object.defineProperty(b, 'CompetitionCategoryType', {
 			enumerable: !0,
 			get: function () {
-				return QE.CompetitionCategoryType;
+				return XE.CompetitionCategoryType;
 			},
 		});
-		var XE = Cn();
+		var e_ = Cn();
 		Object.defineProperty(b, 'EntityType', {
 			enumerable: !0,
 			get: function () {
-				return XE.EntityType;
+				return e_.EntityType;
 			},
 		});
-		var e_ = hs();
+		var t_ = hs();
 		Object.defineProperty(b, 'ImageType', {
 			enumerable: !0,
 			get: function () {
-				return e_.ImageType;
+				return t_.ImageType;
 			},
 		});
-		var t_ = Pc();
+		var r_ = Pc();
 		Object.defineProperty(b, 'MatchEventSubType', {
 			enumerable: !0,
 			get: function () {
-				return t_.MatchEventSubType;
+				return r_.MatchEventSubType;
 			},
 		});
-		var r_ = xc();
+		var n_ = xc();
 		Object.defineProperty(b, 'MatchEventType', {
 			enumerable: !0,
 			get: function () {
-				return r_.MatchEventType;
+				return n_.MatchEventType;
 			},
 		});
-		var n_ = Cc();
+		var o_ = Cc();
 		Object.defineProperty(b, 'MatchFlag', {
 			enumerable: !0,
 			get: function () {
-				return n_.MatchFlag;
+				return o_.MatchFlag;
 			},
 		});
-		var o_ = Oc();
+		var i_ = Oc();
 		Object.defineProperty(b, 'MatchTeamSeasonOutcome', {
 			enumerable: !0,
 			get: function () {
-				return o_.MatchTeamSeasonOutcome;
+				return i_.MatchTeamSeasonOutcome;
 			},
 		});
-		var i_ = Sc();
+		var a_ = Sc();
 		Object.defineProperty(b, 'ProfilePlayerSeasonFlag', {
 			enumerable: !0,
 			get: function () {
-				return i_.ProfilePlayerSeasonFlag;
+				return a_.ProfilePlayerSeasonFlag;
 			},
 		});
-		var a_ = jc();
+		var s_ = jc();
 		Object.defineProperty(b, 'PushNotificationDeviceType', {
 			enumerable: !0,
 			get: function () {
-				return a_.PushNotificationDeviceType;
+				return s_.PushNotificationDeviceType;
 			},
 		});
-		var s_ = Uc();
+		var u_ = Uc();
 		Object.defineProperty(b, 'RoundType', {
 			enumerable: !0,
 			get: function () {
-				return s_.RoundType;
+				return u_.RoundType;
 			},
 		});
-		var u_ = Fc();
+		var l_ = Fc();
 		Object.defineProperty(b, 'TypeMappings', {
 			enumerable: !0,
 			get: function () {
-				return u_.TypeMappings;
+				return l_.TypeMappings;
 			},
 		});
-		var l_ = Wc();
+		var d_ = Wc();
 		Object.defineProperty(b, 'UserStatusType', {
 			enumerable: !0,
 			get: function () {
-				return l_.UserStatusType;
+				return d_.UserStatusType;
 			},
 		});
-		var d_ = kc();
+		var c_ = kc();
 		Object.defineProperty(b, 'VideoActionType', {
 			enumerable: !0,
 			get: function () {
-				return d_.VideoActionType;
+				return c_.VideoActionType;
 			},
 		});
-		var c_ = Hc();
+		var p_ = Hc();
 		Object.defineProperty(b, 'UserRole', {
 			enumerable: !0,
 			get: function () {
-				return c_.UserRole;
+				return p_.UserRole;
 			},
 		});
-		var p_ = Vc();
+		var v_ = Vc();
 		Object.defineProperty(b, 'MatchTickerType', {
 			enumerable: !0,
 			get: function () {
-				return p_.MatchTickerType;
+				return v_.MatchTickerType;
 			},
 		});
 	});
 	var Bc = i((X) => {
 		'use strict';
 		Object.defineProperty(X, '__esModule', { value: !0 });
-		var gs = (su(), Lp(au));
+		var gs = (su(), Sp(au));
 		gs.__exportStar(tc(), X);
 		gs.__exportStar(Ec(), X);
 		gs.__exportStar(Gc(), X);
@@ -4231,13 +4231,13 @@
 		G,
 		Ps,
 		Yc,
-		v_,
 		f_,
 		m_,
 		b_,
 		E_,
 		__,
 		h_,
+		y_,
 		Zc,
 		Kc,
 		Ms = g(() => {
@@ -4247,8 +4247,8 @@
 			L();
 			Zn();
 			Y();
-			(zc = Op(Bc())),
-				(G = ''.concat(v, 'widget-footer')),
+			(zc = Lp(Bc())),
+				(G = ''.concat(f, 'widget-footer')),
 				(Ps = ''.concat(G, ' ').concat(G, '-link')),
 				(Yc = () => {
 					let e = w()
@@ -4265,16 +4265,16 @@
 						o = E('span', { class: Ps });
 					return o.appendChild(C('© FuPa Widget')), n.appendChild(o), r.appendChild(n), r;
 				}),
-				(v_ = (e) => /(testspiele|uebergangsliga|ohne-liga-teams)/.test(e)),
-				(f_ = (e) => (e.names ? !e.clubSlug : !1)),
-				(m_ = {
-					team: (e) => f_(e),
+				(f_ = (e) => /(testspiele|uebergangsliga|ohne-liga-teams)/.test(e)),
+				(m_ = (e) => (e.names ? !e.clubSlug : !1)),
+				(b_ = {
+					team: (e) => m_(e),
 					match: (e) => {
 						var r;
-						return v_((r = e.competition) == null ? void 0 : r.slug);
+						return f_((r = e.competition) == null ? void 0 : r.slug);
 					},
 				}),
-				(b_ = (e, r) => {
+				(E_ = (e, r) => {
 					switch (r) {
 						case 'team':
 							let n = e;
@@ -4290,23 +4290,23 @@
 							throw new Error('Unknown entity type '.concat(r));
 					}
 				}),
-				(E_ = (e, r) => {
-					let n = b_(e, r),
+				(__ = (e, r) => {
+					let n = E_(e, r),
 						o = E('a', { href: n.url, target: '_blank' }),
 						s = E('span', { class: Ps });
 					return s.appendChild(C(''.concat(n.name, ' auf FuPa'))), o.appendChild(s), o;
 				}),
-				(__ = (e) => {
+				(h_ = (e) => {
 					let r = e.querySelector(':scope > blockquote');
 					return r ? r.querySelector(':scope > a') : null;
 				}),
-				(h_ = (e) => {
+				(y_ = (e) => {
 					let r = e.querySelector(':scope > a');
-					return r || __(e);
+					return r || h_(e);
 				}),
 				(Zc = (e, r, n, o, s) => {
-					let u = s ? h_(e) : E_(n, o);
-					if ((m_[o](n) && (u = E('div', {})), !u))
+					let u = s ? y_(e) : __(n, o);
+					if ((b_[o](n) && (u = E('div', {})), !u))
 						throw new U(
 							'Der Widget-Code wurde nicht korrekt übernommen und das Widget kann deshalb nicht gerendert werden. Bitte übernimm den Widget-Code 1:1 aus dem Konfigurator.',
 						);
@@ -4322,44 +4322,44 @@
 			'use strict';
 			Nn = { team: 'Team', match: 'Spiel' };
 		});
-	var y_,
+	var g_,
 		Qc,
 		Xc = g(() => {
 			'use strict';
 			L();
-			(y_ = (e, r) => {
+			(g_ = (e, r) => {
 				var p, _, y, h, P;
 				let n = (p = r == null ? void 0 : r.width) != null ? p : '16',
 					o = (_ = r == null ? void 0 : r.height) != null ? _ : '16',
 					s = (y = r == null ? void 0 : r.viewBox) != null ? y : '0 0 24 24',
 					u = (h = r == null ? void 0 : r.fill) != null ? h : 'currentColor',
 					d = ''
-						.concat(v, 'svg-icon ')
+						.concat(f, 'svg-icon ')
 						.concat((P = r == null ? void 0 : r.classNames) != null ? P : ''),
 					c = 'http://www.w3.org/2000/svg',
-					f = document.createElementNS(c, 'svg');
+					v = document.createElementNS(c, 'svg');
 				return (
-					f.setAttribute('viewBox', s),
-					f.setAttribute('width', n),
-					f.setAttribute('height', o),
-					f.setAttribute('fill', u),
-					f.setAttribute('class', d),
+					v.setAttribute('viewBox', s),
+					v.setAttribute('width', n),
+					v.setAttribute('height', o),
+					v.setAttribute('fill', u),
+					v.setAttribute('class', d),
 					Object.entries(e).forEach((x) => {
 						let D = x[0];
 						x[1].forEach((S) => {
 							let Os = document.createElementNS(c, D);
 							Object.entries(S).forEach((Ls) => {
-								let yp = Ls[0],
-									gp = Ls[1];
-								Os.setAttribute(yp, gp);
+								let gp = Ls[0],
+									Pp = Ls[1];
+								Os.setAttribute(gp, Pp);
 							}),
-								f.appendChild(Os);
+								v.appendChild(Os);
 						});
 					}),
-					f
+					v
 				);
 			}),
-				(Qc = y_);
+				(Qc = g_);
 		});
 	var ep,
 		tp = g(() => {
@@ -4375,7 +4375,7 @@
 			};
 		});
 	var xs,
-		g_,
+		P_,
 		rp,
 		np,
 		Ds = g(() => {
@@ -4386,19 +4386,19 @@
 			Xc();
 			tp();
 			Y();
-			(xs = ''.concat(v, 'widget-placeholder-message')),
-				(g_ = (e = 'Widget wird geladen...') => {
+			(xs = ''.concat(f, 'widget-placeholder-message')),
+				(P_ = (e = 'Widget wird geladen...') => {
 					let r = E('div', {
 							id: Bn,
-							class: ''.concat(v, 'widget-placeholder-container'),
+							class: ''.concat(f, 'widget-placeholder-container'),
 							style: w()
 								? ''
 								: 'box-sizing: border-box; width: 100%; min-height: 200px; display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: inherit; padding: 32px 16px; color: #616672;',
 						}),
-						n = E('div', { class: ''.concat(v, 'animation-bounce') }),
-						o = E('div', { class: ''.concat(v, 'animation-rotate') });
+						n = E('div', { class: ''.concat(f, 'animation-bounce') }),
+						o = E('div', { class: ''.concat(f, 'animation-rotate') });
 					o.appendChild(
-						Qc(ep, { width: '24px', height: '24px', classNames: ''.concat(v, 'svg-football') }),
+						Qc(ep, { width: '24px', height: '24px', classNames: ''.concat(f, 'svg-football') }),
 					),
 						n.appendChild(o),
 						r.appendChild(n);
@@ -4417,13 +4417,13 @@
 					let n = e.querySelector('#'.concat(xs));
 					n && n.removeAttribute('style');
 				}),
-				(np = g_);
+				(np = P_);
 		});
 	var ee,
 		Cs,
 		Hn,
-		P_,
 		M_,
+		x_,
 		op,
 		ip,
 		ws = g(() => {
@@ -4433,32 +4433,32 @@
 			zn();
 			L();
 			Y();
-			(ee = ''.concat(v, 'widget-tab')),
+			(ee = ''.concat(f, 'widget-tab')),
 				(Cs = ''.concat(ee, 's')),
 				(Hn = ''.concat(ee, '-active')),
-				(P_ = (e, r, n) => {
+				(M_ = (e, r, n) => {
 					var c;
 					let o = r.querySelector('.'.concat(ee, '.').concat(Hn));
 					o && o.classList.remove(Hn), e.currentTarget.classList.add(Hn);
 					let u = r.querySelector('#'.concat(q, '-').concat(n));
 					if (u && u.children.length === 0) {
-						let f = r.querySelector('#'.concat(R));
-						if (f) {
-							let p = f.clientHeight;
-							f.setAttribute('style', 'min-height: '.concat(p, 'px;'));
+						let v = r.querySelector('#'.concat(R));
+						if (v) {
+							let p = v.clientHeight;
+							v.setAttribute('style', 'min-height: '.concat(p, 'px;'));
 						}
 					}
 					let d =
 						(c = r.querySelector('.'.concat(R))) == null ? void 0 : c.getElementsByClassName(j)[0];
 					d && d.classList.remove(j), u && u.classList.add(j);
 				}),
-				(M_ = (e, r, n) => {
+				(x_ = (e, r, n) => {
 					let o = E('div', { class: ''.concat(ee, ' ').concat(r === 0 ? Hn : '') }),
 						s = E('div', { class: ''.concat(ee, '-label') });
 					return (
 						s.appendChild(C(Ts[e])),
 						o.appendChild(s),
-						o.addEventListener('click', (u) => P_(u, n, r)),
+						o.addEventListener('click', (u) => M_(u, n, r)),
 						o
 					);
 				}),
@@ -4471,7 +4471,7 @@
 					});
 					return (
 						e.views.forEach((o, s) => {
-							let u = M_(o, s, r);
+							let u = x_(o, s, r);
 							n.appendChild(u);
 						}),
 						n
@@ -4482,8 +4482,7 @@
 					r && r.removeAttribute('style');
 				});
 		});
-	var x_,
-		D_,
+	var D_,
 		C_,
 		w_,
 		O_,
@@ -4493,6 +4492,7 @@
 		j_,
 		T_,
 		U_,
+		R_,
 		ap,
 		sp = g(() => {
 			'use strict';
@@ -4506,10 +4506,10 @@
 			Zn();
 			Ds();
 			ws();
-			(x_ = (e, r, n) => {
+			(D_ = (e, r, n) => {
 				if (!e) return;
 				let o = E('link', {
-					id: ''.concat(v).concat(n != null ? n : '', '-custom-css'),
+					id: ''.concat(f).concat(n != null ? n : '', '-custom-css'),
 					rel: 'stylesheet',
 					type: 'text/css',
 					media: 'all',
@@ -4517,14 +4517,14 @@
 				});
 				r ? r.appendChild(o) : document.head.appendChild(o);
 			}),
-				(D_ = (e) => {
+				(C_ = (e) => {
 					let n = ('host' in e ? e.host : e).getBoundingClientRect(),
 						o = { y: window.innerHeight, x: window.innerWidth },
 						s = { y: o.y / 2, x: o.x / 4 };
 					return n.top < o.y + window.scrollY + s.y && n.left < o.x + window.scrollX + s.x;
 				}),
-				(C_ = (e, r) => {
-					if (D_(r)) e();
+				(w_ = (e, r) => {
+					if (C_(r)) e();
 					else {
 						let n = { rootMargin: '50px', threshold: 0.001 },
 							o = (u, d) => {
@@ -4535,7 +4535,7 @@
 						new IntersectionObserver(o, n).observe(r);
 					}
 				}),
-				(w_ = (e, r) => {
+				(O_ = (e, r) => {
 					let n = new Fs(
 						r,
 						j,
@@ -4545,7 +4545,7 @@
 						() => {},
 					);
 				}),
-				(O_ = {
+				(L_ = {
 					'team-standings': 'vendor/team/standings/3ISBEIR2.js',
 					'team-squad': 'vendor/team/squad/ZKU24KOZ.js',
 					'team-statistics': 'vendor/team/statistics/LGAQ5EMP.js',
@@ -4553,32 +4553,32 @@
 					'team-liveticker': 'vendor/team/liveticker/APECZKVH.js',
 					'match-liveticker': 'vendor/match/liveticker/SZ77N3L6.js',
 				}),
-				(L_ = (e, r, n, o, s) => {
+				(S_ = (e, r, n, o, s) => {
 					let u = r === 0,
 						d = E('section', {
 							id: ''.concat(q, '-').concat(r),
 							name: e,
 							class: ''.concat(q, ' ').concat(u ? j : ''),
 						}),
-						c = O_[e];
+						c = L_[e];
 					if (!c) throw new Error('Unknown widget view '.concat(e));
-					let f = () => {
+					let v = () => {
 						let p = np('Daten werden geladen...');
-						d.appendChild(p), T_('https://widget-api.fupa.net/'.concat(c), e, d, o, s);
+						d.appendChild(p), U_('https://widget-api.fupa.net/'.concat(c), e, d, o, s);
 					};
-					return u ? C_(f, n) : w_(f, d), d;
+					return u ? w_(v, n) : O_(v, d), d;
 				}),
-				(S_ = (e) => {
+				(q_ = (e) => {
 					let r = window.getComputedStyle(e);
 					return r.display === 'none' || r.visibility !== 'visible' ? !1 : r.opacity >= '0.1';
 				}),
-				(q_ = () => {
-					let e = document.querySelectorAll('.'.concat(v, 'widget-footer'));
-					return Array.from(e).every((r) => S_(r));
+				(j_ = () => {
+					let e = document.querySelectorAll('.'.concat(f, 'widget-footer'));
+					return Array.from(e).every((r) => q_(r));
 				}),
-				(j_ = (e, r, n, o) => {
+				(T_ = (e, r, n, o) => {
 					if (!r) return;
-					let s = o ? ''.concat(v).concat(o) : ''.concat(v, 'wrapper'),
+					let s = o ? ''.concat(f).concat(o) : ''.concat(f, 'wrapper'),
 						u = E('article', { id: s, class: s }),
 						d = e.views.length > 1 ? op(e, r) : null;
 					d && u.appendChild(d);
@@ -4590,18 +4590,18 @@
 						),
 					);
 					e.views.forEach((p, _) => {
-						let y = L_(p, _, r, n, o);
+						let y = S_(p, _, r, n, o);
 						c.appendChild(y);
 					}),
 						u.appendChild(c);
-					let f = Yc();
-					if ((u.appendChild(f), r.appendChild(u), Zc(r, f, e.entity, e.type, o), !q_()))
+					let v = Yc();
+					if ((u.appendChild(v), r.appendChild(u), Zc(r, v, e.entity, e.type, o), !j_()))
 						throw new U();
 				}),
-				(T_ = (e, r, n, o, s) => {
+				(U_ = (e, r, n, o, s) => {
 					let u = E('script', {
 						id: ''
-							.concat(v)
+							.concat(f)
 							.concat(r, '-view-script')
 							.concat(s ? '-'.concat(s) : ''),
 						type: 'text/javascript',
@@ -4610,7 +4610,7 @@
 					});
 					n.appendChild(u);
 				}),
-				(U_ = (e) => {
+				(R_ = (e) => {
 					if (!Object.keys(Nn).includes(e)) throw new Error('Unexpected Entity-Type: '.concat(e));
 					return 'Dem Widget ist kein '
 						.concat(Nn[e], ' zugeordnet. Füge dem Widget im Konfigurator ein ')
@@ -4620,40 +4620,40 @@
 					var u;
 					if (!r) throw new Error('No rootId was provided.');
 					if (!e.entity) {
-						let d = U_(e.type);
+						let d = R_(e.type);
 						throw new Error(d);
 					}
 					let o = Us(r),
 						s = (u = o.shadowRoot) != null ? u : o;
-					e.customCss && x_(e.customCss, s, n), j_(e, s, r, n);
+					e.customCss && D_(e.customCss, s, n), T_(e, s, r, n);
 				});
 		});
-	var R_,
+	var F_,
 		up,
 		lp = g(() => {
 			'use strict';
 			T();
 			L();
 			z();
-			(R_ = (e = 'Es ist ein unbekannter Fehler aufgetreten') => {
+			(F_ = (e = 'Es ist ein unbekannter Fehler aufgetreten') => {
 				let r = E('div', {
-						id: ''.concat(v, 'widget-error'),
-						class: ''.concat(v, 'widget-placeholder-container'),
+						id: ''.concat(f, 'widget-error'),
+						class: ''.concat(f, 'widget-placeholder-container'),
 					}),
-					n = E('div', { class: ''.concat(v, 'widget-placeholder-message') });
+					n = E('div', { class: ''.concat(f, 'widget-placeholder-message') });
 				return n.appendChild(C('Fehler (FuPa-Widget): '.concat(e))), r.appendChild(n), r;
 			}),
-				(up = R_);
+				(up = F_);
 		});
 	var cp,
 		dp = g(() => {
 			cp = 'https://widget-api.fupa.net/vendor/RFKJXDEJ.css';
 		});
 	var pp,
-		A_,
-		vp,
 		W_,
+		vp,
 		I_,
+		k_,
 		fp,
 		mp,
 		bp,
@@ -4678,7 +4678,7 @@
 					);
 				return r;
 			}),
-				(A_ = (e, r) => {
+				(W_ = (e, r) => {
 					var s;
 					let n = (s = e.shadowRoot) != null ? s : e,
 						o = up(r);
@@ -4688,19 +4688,19 @@
 					w() ||
 						((e.style.height = '232px'), (e.style.display = 'grid'), (e.style.alignItems = 'end'));
 				}),
-				(W_ = (e) => {
+				(I_ = (e) => {
 					let r = document.querySelectorAll('[id^="'.concat(e, '"]'));
 					r && r.forEach((n) => n.removeAttribute('style'));
 				}),
-				(I_ = (e) => {
+				(k_ = (e) => {
 					var n;
 					let r = (n = e.shadowRoot) != null ? n : e;
 					for (; r.firstChild; ) r.firstChild.remove();
 				}),
 				(fp = (e, r) => {
-					I_(e);
+					k_(e);
 					let n = r ? r.message : 'Es ist ein unbekannter Fehler aufgetreten.';
-					A_(e, n);
+					W_(e, n);
 				}),
 				(mp = () =>
 					E('link', {
@@ -4713,7 +4713,7 @@
 					})),
 				(bp = (e, r) => {
 					e.forEach((n) => {
-						W_(n), rp(r(n)), ip(r(n)), Kc(r(n));
+						I_(n), rp(r(n)), ip(r(n)), Kc(r(n));
 					});
 				}),
 				(Ep = (e) => {
@@ -4732,7 +4732,7 @@
 		L();
 		sp();
 		_p();
-		var k_ = (e) =>
+		var N_ = (e) =>
 				re($n, null, function* () {
 					var n;
 					let r = yield fetch('https://widget-api.fupa.net/v1/widgets/'.concat(e));
@@ -4748,7 +4748,7 @@
 							)
 						: new Error(r.statusText);
 				}),
-			N_ = () => {
+			hp = () => {
 				let e = document.querySelectorAll('[id^="'.concat(Gn, '"]'));
 				return Array.from(e);
 			},
@@ -4770,31 +4770,25 @@
 						),
 					);
 			},
-			V_ = (e, r) => !!e.querySelector('#'.concat(v).concat(r)),
-			G_ = (e) => {
-				let r = (s) => {
-						Array.from(s.removedNodes).forEach((d) => {
-							if (d instanceof HTMLElement && d.id.startsWith(Gn)) {
-								const index = e.indexOf(d.id);
-								if (index >= 0) {
-									e.splice(index, 1);
-								}
-							}
-						});
-
-						Array.from(s.addedNodes).forEach((d) => {
-							if (d instanceof HTMLElement && d.id.startsWith(Gn)) {
-								let c = e.indexOf(d.id) >= 0;
-								hp(d, c);
+			V_ = (e, r) => !!e.querySelector('#'.concat(f).concat(r)),
+			G_ = () => {
+				let e = (o) => {
+						Array.from(o.addedNodes).forEach((u) => {
+							if (u instanceof HTMLElement && u.id.startsWith(Gn)) {
+								let c =
+									hp()
+										.map((v) => v.id)
+										.filter((v) => v === u.id).length > 1;
+								yp(u, c);
 							}
 						});
 					},
-					n = (s) => {
-						s.forEach((u) => r(u));
+					r = (o) => {
+						o.forEach((s) => e(s));
 					};
-				new MutationObserver(n).observe(document, {
-					childList: true,
-					subtree: true,
+				new MutationObserver(r).observe(document, {
+					childList: !0,
+					subtree: !0,
 					attributes: !1,
 					characterData: !1,
 				});
@@ -4804,16 +4798,16 @@
 					if (window.FuPaWidgetIsCalled) return;
 					window.FuPaWidgetIsCalled = !0;
 					let e = z_(),
-						r = N_(),
+						r = hp(),
 						n = r.map((o) => o.id);
-					G_(n),
+					G_(),
 						(e.onload = () => bp(n, pp)),
 						r.forEach((o, s) => {
 							let u = n.indexOf(o.id) !== s;
-							hp(o, u);
+							yp(o, u);
 						});
 				}),
-			hp = (e, r) =>
+			yp = (e, r) =>
 				re($n, null, function* () {
 					let n = e.id,
 						o = H_(n);
@@ -4821,7 +4815,7 @@
 						vp(e);
 						try {
 							$_(r, o);
-							let s = yield k_(o);
+							let s = yield N_(o);
 							ap(s, n, o);
 						} catch (s) {
 							fp(e, s);
