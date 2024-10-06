@@ -8,9 +8,7 @@
 	/**
 	 * Header image of post.
 	 */
-	export let headerImage:
-		| StrapiImage
-		| undefined = undefined;
+	export let headerImage: StrapiImage | undefined = undefined;
 
 	/**
 	 * Title of post
@@ -51,37 +49,47 @@
 				{@html content}
 			{/if}
 		</Content>
-		<div class="divider" />
+		<div class="divider"></div>
 		<Content>
 			<table class="border-separate border-spacing-y-2">
-				{#if publishedAt}
-					<tr>
-						<td><img class="icon icon-event" alt="Veröffentlicht" src={event} width="25" height="25"/></td>
-						<td class="px-2"
-							>{new Intl.DateTimeFormat('de-DE', {
-								dateStyle: 'long',
-								timeStyle: 'short',
-							}).format(new Date(publishedAt))}</td
-						>
-					</tr>
-				{/if}
-				{#if updatedAt}
-					<tr>
-						<td><img class="icon icon-event" alt="Updated" src={event} /></td>
-						<td class="px-2"
-							>{new Intl.DateTimeFormat('de-DE', {
-								dateStyle: 'long',
-								timeStyle: 'short',
-							}).format(new Date(updatedAt))}</td
-						>
-					</tr>
-				{/if}
-				{#if author}
-					<tr>
-						<td><img class="icon icon-autor" alt="Autor" src={person} /></td>
-						<td class="px-2">{author}</td>
-					</tr>
-				{/if}
+				<tbody>
+					{#if publishedAt}
+						<tr>
+							<td
+								><img
+									class="icon icon-event"
+									alt="Veröffentlicht"
+									src={event}
+									width="25"
+									height="25"
+								/></td
+							>
+							<td class="px-2"
+								>{new Intl.DateTimeFormat('de-DE', {
+									dateStyle: 'long',
+									timeStyle: 'short',
+								}).format(new Date(publishedAt))}</td
+							>
+						</tr>
+					{/if}
+					{#if updatedAt}
+						<tr>
+							<td><img class="icon icon-event" alt="Updated" src={event} /></td>
+							<td class="px-2"
+								>{new Intl.DateTimeFormat('de-DE', {
+									dateStyle: 'long',
+									timeStyle: 'short',
+								}).format(new Date(updatedAt))}</td
+							>
+						</tr>
+					{/if}
+					{#if author}
+						<tr>
+							<td><img class="icon icon-autor" alt="Autor" src={person} /></td>
+							<td class="px-2">{author}</td>
+						</tr>
+					{/if}
+				</tbody>
 			</table>
 		</Content>
 	</Card>

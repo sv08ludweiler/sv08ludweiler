@@ -63,44 +63,46 @@
 			<h3 class="mt-0">{title}</h3>
 
 			<table class="-my-2 border-separate border-spacing-y-2">
-				{#if publishedAt && !updatedAt}
-					<tr>
-						<td
-							><img
-								class="icon icon-event h-[0.875rem] w-[0.875rem] text-xs"
-								height="25"
-								width="25"
-								alt="Veröffentlicht"
-								src={event}
-							/></td
-						>
-						<td class="px-2 text-sm"
-							>{new Intl.DateTimeFormat('de-DE', {
-								dateStyle: 'long',
-								timeStyle: 'short',
-							}).format(new Date(publishedAt))}</td
-						>
-					</tr>
-				{/if}
-				{#if updatedAt}
-					<tr>
-						<td
-							><img
-								class="icon icon-event h-[0.875rem] w-[0.875rem]"
-								height="25"
-								width="25"
-								alt="Updated"
-								src={event}
-							/></td
-						>
-						<td class="px-2 text-sm"
-							>{new Intl.DateTimeFormat('de-DE', {
-								dateStyle: 'long',
-								timeStyle: 'short',
-							}).format(new Date(updatedAt))}</td
-						>
-					</tr>
-				{/if}
+				<tbody>
+					{#if publishedAt && !updatedAt}
+						<tr>
+							<td
+								><img
+									class="icon icon-event h-[0.875rem] w-[0.875rem] text-xs"
+									height="25"
+									width="25"
+									alt="Veröffentlicht"
+									src={event}
+								/></td
+							>
+							<td class="px-2 text-sm"
+								>{new Intl.DateTimeFormat('de-DE', {
+									dateStyle: 'long',
+									timeStyle: 'short',
+								}).format(new Date(publishedAt))}</td
+							>
+						</tr>
+					{/if}
+					{#if updatedAt}
+						<tr>
+							<td
+								><img
+									class="icon icon-event h-[0.875rem] w-[0.875rem]"
+									height="25"
+									width="25"
+									alt="Updated"
+									src={event}
+								/></td
+							>
+							<td class="px-2 text-sm"
+								>{new Intl.DateTimeFormat('de-DE', {
+									dateStyle: 'long',
+									timeStyle: 'short',
+								}).format(new Date(updatedAt))}</td
+							>
+						</tr>
+					{/if}
+				</tbody>
 			</table>
 
 			{#if previewText}

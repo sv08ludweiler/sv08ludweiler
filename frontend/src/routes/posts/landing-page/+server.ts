@@ -4,6 +4,7 @@ import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import qs from 'qs';
 import { compile } from 'mdsvex';
+import type { ApiNewsData, ApiNewsResponse } from '../../../types/landing-page.types';
 
 export const GET: RequestHandler = async ({ fetch }) => {
 	const truncate = (str: string, len: number) =>
@@ -21,7 +22,9 @@ export const GET: RequestHandler = async ({ fetch }) => {
 		},
 		populate: {
 			teams: {
-				populate: ['slug', 'age_group', 'divisions'],
+				fields: ['slug'],
+				populate: ['age_group', 'divisions'],
+				// 	populate: ['slug', 'age_group', 'divisions'],
 			},
 			header_image: {
 				populate: '*',
@@ -37,17 +40,15 @@ export const GET: RequestHandler = async ({ fetch }) => {
 			},
 		},
 	);
-	const posts = await postsRequest.json();
+	const posts = (await postsRequest.json()) as ApiNewsResponse;
 
 	if (posts.data) {
 		for (const post of posts.data) {
-			if (post?.attributes?.content) {
-				post.attributes.htmlContent = await compile(post.attributes.content);
-				post.attributes.previewText =
+			if (post?.content) {
+				post.htmlContent = await compile(post.content);
+				post.previewText =
 					truncate(
-						post.attributes.htmlContent.code
-							.replace(/<img[^>]*>/g, '')
-							.replace(/<video[^>]*>/g, ''),
+						post.htmlContent.code.replace(/<img[^>]*>/g, '').replace(/<video[^>]*>/g, ''),
 						250,
 					) + '...';
 			}
@@ -55,6 +56,6 @@ export const GET: RequestHandler = async ({ fetch }) => {
 
 		return json(posts);
 	} else {
-		return json([]);
+		return json({ data: [] } as ApiNewsResponse);
 	}
 };

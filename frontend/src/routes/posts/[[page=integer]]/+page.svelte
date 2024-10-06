@@ -4,13 +4,13 @@
 	import PostColumns from '$lib/components/PostColumns.svelte';
 	import Button, { Label } from '@smui/button';
 	import type { PageData } from './$types';
+	
 	export let data: PageData;
-
 </script>
 
 <svelte:head>
-  <title>SV 08 Ludweiler - Beiträge Übersicht</title>
-  <meta name="description" content="Übersicht über alle Newsartikel" />
+	<title>SV 08 Ludweiler - Beiträge Übersicht</title>
+	<meta name="description" content="Übersicht über alle Newsartikel" />
 </svelte:head>
 
 {#if data.posts.data}
@@ -24,7 +24,7 @@
 	{@const pagination = data.posts.meta.pagination}
 
 	<div class="my-5 flex items-center justify-center gap-3">
-			<Button
+		<Button
 			on:click={() => goto(`/posts/${(Number($page.params.page) || 1) - 1}`)}
 			aria-label="Vorherige Seite"
 			disabled={pagination.page < pagination.pageCount}>Vorherige</Button

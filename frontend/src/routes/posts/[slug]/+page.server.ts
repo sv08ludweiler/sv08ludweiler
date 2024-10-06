@@ -2,6 +2,7 @@ import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
 import { compile } from 'mdsvex';
 import qs from 'qs';
+import type { ApiAuthor, ApiPost } from '../../../types/post.types';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ params }) => {
@@ -19,7 +20,7 @@ export const load = (async ({ params }) => {
 		},
 	);
 
-	const posts = await(
+	const posts = await (
 		await fetch(`${env.FRONTEND_STRAPI_HOST}/api/posts?${query}`, {
 			headers: {
 				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
@@ -33,11 +34,11 @@ export const load = (async ({ params }) => {
 		});
 	}
 
-	const post = posts.data[0];
+	const post = posts.data[0] as ApiPost & { author: ApiAuthor };
 
-	let content;
-	if (post?.attributes?.content) {
-		content = await compile(post.attributes.content);
+	let content = { code: '' };
+	if (post?.content) {
+		content = await compile(post.content);
 	}
 	return {
 		post,

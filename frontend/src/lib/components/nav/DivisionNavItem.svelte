@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { AgeGroup, Team } from '$lib/types/strapi.types';
+	import type { ApiAgeGroup, ApiTeamNoRelations } from '../../../types/ui-types';
 
 	export let title: string;
 
@@ -10,37 +10,39 @@
 	 */
 	export let groupByAge = false;
 
-	export let teams: Array<Team> = [];
+	export let teams: Array<ApiTeamNoRelations> = [];
 
 	/**
 	 * Age Groups filter
 	 */
-	export let ageGroups: Array<AgeGroup> = [];
+	export let ageGroups: Array<ApiAgeGroup> = [];
 
-	let filteredTeams: Array<Team> = [];
+	let filteredTeams: Array<ApiTeamNoRelations> = [];
 
 	$: {
 		filteredTeams = teams.filter((team) => {
 			if (ageGroups && ageGroups.length) {
-				return ageGroups.some(
-					(ageGroup) => ageGroup.attributes.slug === team.attributes.age_group.data.attributes.slug,
-				);
+				return ageGroups.some((ageGroup) => ageGroup.slug === team.age_group.slug);
 			}
 
 			return true;
 		});
 	}
 
-	let groupedTeamsByAge = new Map<AgeGroup['attributes']['slug'], Array<Team>>();
-	let availableAgeGroups = new Map<AgeGroup['attributes']['slug'], AgeGroup>();
+	let groupedTeamsByAge = new Map<ApiAgeGroup['slug'], Array<ApiTeamNoRelations>>();
+	let availableAgeGroups = new Map<ApiAgeGroup['slug'], ApiAgeGroup>();
 
 	$: if (groupByAge) {
-		const groups = new Map<AgeGroup['attributes']['slug'], AgeGroup>();
-		const groupedTeams = new Map<AgeGroup['attributes']['slug'], Array<Team>>();
+		const groups = new Map<ApiAgeGroup['slug'], ApiAgeGroup>();
+		const groupedTeams = new Map<ApiAgeGroup['slug'], Array<ApiTeamNoRelations>>();
 
 		for (const team of teams) {
-			const ageGroupOfTeam = team.attributes.age_group.data;
-			const groupSlug = ageGroupOfTeam.attributes.slug;
+			const ageGroupOfTeam = team.age_group;
+
+			if (!team.age_group) {
+				continue;
+			}
+			const groupSlug = ageGroupOfTeam.slug;
 			groups.set(groupSlug, ageGroupOfTeam);
 
 			if (groupedTeams.has(groupSlug)) {
@@ -63,17 +65,17 @@
 
 {#if filteredTeams.length === 1}
 	{#each filteredTeams as team}
-		<li
-			class={mobile
-				? 'flex w-full flex-col items-start p-4'
-				: 'nav-menu inline-flex h-full items-center justify-center'}
-		>
-			<a
-				class="menu-item w-full"
-				href={`/teams/${slug}/${team.attributes.age_group.data.attributes.slug}/${team.attributes.slug}`}
-				>{title}</a
+		{#if team.age_group}
+			<li
+				class={mobile
+					? 'flex w-full flex-col items-start p-4'
+					: 'nav-menu inline-flex h-full items-center justify-center'}
 			>
-		</li>
+				<a class="menu-item w-full" href={`/teams/${slug}/${team.age_group.slug}/${team.slug}`}
+					>{title}</a
+				>
+			</li>
+		{/if}
 	{/each}
 {:else if filteredTeams.length > 1}
 	<li
@@ -85,7 +87,7 @@
 		<ol class={!mobile ? 'nav-menu-flyout flyout -z-10' : 'flex w-full flex-col'}>
 			{#if groupByAge}
 				<li>
-					<!-- <div>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</div> -->
+					<!-- <div>{ageGroup.alternativeName || ageGroup.name}</div> -->
 					{#each [...groupedTeamsByAge] as [groupSlug, teams]}
 						{@const currentAgeGroup = availableAgeGroups.get(groupSlug)}
 
@@ -94,8 +96,8 @@
 								<li class="nav-menu inline-flex min-h-[2rem] w-full items-center">
 									<a
 										class="h-full w-full whitespace-nowrap p-4"
-										href={`/teams/${slug}/${team.attributes.age_group.data.attributes.slug}/${team.attributes.slug}`}
-										>{team.attributes.display_name || team.attributes.name}</a
+										href={`/teams/${slug}/${team.age_group.slug}/${team.slug}`}
+										>{team.display_name || team.name}</a
 									>
 								</li>
 							{/each}
@@ -104,13 +106,15 @@
 				</li>
 			{:else}
 				{#each filteredTeams as team}
-					<li class="nav-menu inline-flex min-h-[2rem] items-center">
-						<a
-							class="h-full w-full whitespace-nowrap p-4"
-							href={`/teams/${slug}/${team.attributes.age_group.data.attributes.slug}/${team.attributes.slug}`}
-							>{team.attributes.display_name || team.attributes.name}</a
-						>
-					</li>
+					{#if team.age_group}
+						<li class="nav-menu inline-flex min-h-[2rem] items-center">
+							<a
+								class="h-full w-full whitespace-nowrap p-4"
+								href={`/teams/${slug}/${team.age_group.slug}/${team.slug}`}
+								>{team.display_name || team.name}</a
+							>
+						</li>
+					{/if}
 				{/each}
 			{/if}
 		</ol>

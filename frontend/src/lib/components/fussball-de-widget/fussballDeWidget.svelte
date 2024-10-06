@@ -22,7 +22,7 @@
 </script>
 
 <div class="fussball-de-widget">
-	<div {id} />
+	<div {id}></div>
 </div>
 
 <style>
