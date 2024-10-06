@@ -12,11 +12,12 @@
 
 	import NavBar from '$lib/components/nav/NavBar.svelte';
 	import { onMount } from 'svelte';
+	import { dev } from '$app/environment';
 
 	export let data: LayoutData;
 
 	onMount(async () => {
-		if (pwaInfo) {
+		if (!dev && pwaInfo) {
 			const { registerSW } = await import('virtual:pwa-register');
 			registerSW({
 				immediate: true,
@@ -66,13 +67,9 @@
 		</section>
 		<section class="flex min-h-[100px] items-center justify-center bg-green-600 p-8">
 			<div class="flex flex-wrap items-center justify-center gap-4" aria-label="Partner">
-				{#if data?.supporter?.attributes?.items}
-					{#each data?.supporter?.attributes?.items as item}
-						<SocialMediaLink
-							title={item.title}
-							href={item?.link}
-							icon={item?.image?.data?.attributes}
-						/>
+				{#if data?.supporter?.items}
+					{#each data?.supporter?.items as item}
+						<SocialMediaLink title={item.title} href={item?.link} icon={item?.image} />
 					{/each}
 				{/if}
 			</div>
@@ -80,13 +77,9 @@
 		<section class="flex min-h-[100px] items-center justify-center bg-green-700 py-8">
 			<!-- <div class="p-4 md:container md:mx-auto">Social Media</div> -->
 			<div class="flex items-center justify-center gap-4" aria-label="Social Media">
-				{#if data?.socialMedia?.attributes?.items}
-					{#each data?.socialMedia?.attributes?.items as item}
-						<SocialMediaLink
-							title={item.name}
-							href={item?.link}
-							icon={item?.icon?.data?.attributes}
-						/>
+				{#if data?.socialMedia?.items}
+					{#each data?.socialMedia?.items as item}
+						<SocialMediaLink title={item.name} href={item?.link} icon={item?.icon} />
 					{/each}
 				{/if}
 			</div>

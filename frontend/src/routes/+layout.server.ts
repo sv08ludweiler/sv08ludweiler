@@ -2,6 +2,9 @@ import { env } from '$env/dynamic/private';
 import { env as envPublic } from '$env/dynamic/public';
 import qs from 'qs';
 import type { LayoutServerLoad } from './$types';
+import type { ApiMainMenuData, ApiMainMenuResponse } from '../types/ui-types';
+import type { ApiSupporterData } from '../types/supporters.types';
+import type { ApiSocialMediaData } from '../types/social-media.types';
 
 // prerender all
 // export const prerender = 'auto';
@@ -17,51 +20,58 @@ export const load = (async ({ fetch }) => {
 						'navigation.team-navigation-item': {
 							fields: ['title', 'group_by_age_group'],
 							populate: {
+								// age_groups: '*',
 								division: {
-									fields: ['age_groups', 'teams', 'slug'],
+									// populate: ['teams', 'age_groups'],
 									populate: {
 										teams: {
-											populate: ['age_group'],
+											populate: {
+												// divisions: true,
+												age_group: true,
+											},
 											sort: ['display_name:asc', 'name:asc'],
-											publicationState: 'live',
-											groupBy: 'age_group.slug',
+											// groupBy: 'age_group.slug',
 										},
-										// age_groups: true,
+										age_groups: {
+											populate: true,
+										},
 									},
 								},
-								age_groups: true,
+								age_groups: {
+									populate: true,
+								},
 							},
 						},
 						'navigation.page-nested-navigation-item': {
 							populate: {
 								page: {
 									populate: '*',
-									publicationState: 'live',
+									// publicationState: 'live',
 								},
 								children: {
 									populate: '*',
-									publicationState: 'live',
+									// publicationState: 'live',
 								},
 							},
 						},
 						'navigation.external-navigation-item': {
 							populate: '*',
-							filters: {
-								publishedAt: {
-									$null: false,
-								},
-							},
+							// filters: {
+							// 	publishedAt: {
+							// 		$null: false,
+							// 	},
+							// },
 						},
 						'navigation.page-navigation-item': {
 							populate: '*',
-							filters: {
-								publishedAt: {
-									$null: false,
-								},
-							},
+							// filters: {
+							// 	publishedAt: {
+							// 		$null: false,
+							// 	},
+							// },
 						},
+						// },
 					},
-					// }
 				},
 			},
 		},
@@ -116,14 +126,14 @@ export const load = (async ({ fetch }) => {
 		supporterPromise,
 	]);
 
-	const mainMenu = await mainMenuRequest.json();
+	const mainMenu = (await mainMenuRequest.json()) as ApiMainMenuResponse;
 
 	const supporter = await supporterRequest.json();
 	const socialMedia = await socialMediaRequest.json();
 
 	return {
-		mainMenu: mainMenu.data,
-		supporter: supporter.data,
-		socialMedia: socialMedia.data,
+		mainMenu: mainMenu.data as ApiMainMenuData,
+		supporter: supporter.data as ApiSupporterData,
+		socialMedia: socialMedia.data as ApiSocialMediaData,
 	};
 }) satisfies LayoutServerLoad;

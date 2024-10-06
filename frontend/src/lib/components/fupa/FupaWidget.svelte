@@ -1,5 +1,6 @@
 <script lang="ts" context="module">
 	const loadScript = async () => {
+		// @ts-expect-error ignore
 		import('./widget.js');
 	};
 	if (browser) {

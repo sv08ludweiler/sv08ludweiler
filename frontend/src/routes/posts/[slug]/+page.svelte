@@ -6,18 +6,14 @@
 </script>
 
 <svelte:head>
-  <title>SV 08 Ludweiler - News: {data.post.attributes.title}</title>
-  <meta name="description" content={data.post.attributes.title} />
+	<title>SV 08 Ludweiler - News: {data.post.title}</title>
+	<meta name="description" content={data.post.title} />
 </svelte:head>
 
 <ContentCardView
-	headerImage={data.post.attributes?.header_image?.data?.attributes}
-	title={data.post.attributes.title}
+	headerImage={data.post?.header_image}
+	title={data.post.title}
 	content={data.content ? data.content.code : ''}
-	author={data.post?.attributes?.author?.data
-		? data.post?.attributes?.author.data.attributes.firstname +
-		  ' ' +
-		  data.post?.attributes?.author.data.attributes.name
-		: ''}
-	publishedAt={data.post.attributes.publishedAt}
+	author={data.post?.author ? data.post?.author.firstname + ' ' + data.post?.author.name : ''}
+	publishedAt={data.post.publishedAt}
 />

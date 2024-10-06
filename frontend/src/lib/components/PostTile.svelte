@@ -8,6 +8,8 @@
 	import TeamChip from './TeamChip.svelte';
 	import type { StrapiImage } from '$lib/types/strapi.types';
 	import { generateImageSize, generateImageSrcSet } from '$lib/utils';
+	import type { ApiTeam } from '../../types/team.types';
+	import type { ApiPost } from '../../types/post.types';
 
 	/**
 	 * Title of post
@@ -42,7 +44,7 @@
 	/**
 	 * category of post.
 	 */
-	export let teams: Array<any> = [];
+	export let teams: ApiPost['teams'] = [];
 
 	export let showTeamCategory = true;
 
@@ -54,39 +56,38 @@
 
 	$: if (showTeamCategory) {
 		for (const team of teams) {
-			const divisions = team.attributes.divisions.data;
+			const divisions = team.divisions;
 
 			if (!divisions) {
 				continue;
 			}
 
 			for (const division of divisions) {
-				const divisionName = division.attributes.name;
+				const divisionName = division.name;
 
 				let divisionMap: Map<string, Set<string>> | undefined;
 				if (teamsCategory.has(divisionName)) {
 					divisionMap = teamsCategory.get(divisionName);
 				}
 
-				const ageGroup = team?.attributes?.age_group?.data;
+				const ageGroup = team?.age_group;
 
 				if (!ageGroup) {
 					continue;
 				}
 
-				const ageGroupKey: string =
-					ageGroup?.attributes.alternativeName || ageGroup?.attributes.name;
+				const ageGroupKey: string = ageGroup?.alternativeName || ageGroup?.name;
 
 				if (divisionMap) {
 					let ageMap: Set<string> | undefined;
 					if (divisionMap.has(ageGroupKey)) {
 						ageMap = divisionMap.get(ageGroupKey);
-						ageMap?.add(team.attributes.display_name);
+						ageMap?.add(team.display_name);
 					} else {
-						divisionMap.set(ageGroupKey, new Set<string>([team.attributes.display_name]));
+						divisionMap.set(ageGroupKey, new Set<string>([team.display_name]));
 					}
 				} else {
-					const teamSet: Set<string> = new Set<string>([team.attributes.display_name]);
+					const teamSet: Set<string> = new Set<string>([team.display_name]);
 					const ageGroupMap: Map<string, Set<string>> = new Map<string, Set<string>>();
 					ageGroupMap.set(ageGroupKey, teamSet);
 					teamsCategory.set(divisionName, ageGroupMap);
@@ -128,44 +129,46 @@
 			{/if}
 
 			<table class="-my-2 border-separate border-spacing-y-2">
-				{#if publishedAt && !updatedAt}
-					<tr>
-						<td
-							><img
-								class="icon icon-event h-[0.875rem] w-[0.875rem] text-xs"
-								height="25"
-								width="25"
-								alt="Veröffentlicht"
-								src={event}
-							/></td
-						>
-						<td class="px-2 text-sm"
-							>{new Intl.DateTimeFormat('de-DE', {
-								dateStyle: 'long',
-								timeStyle: 'short',
-							}).format(new Date(publishedAt))}</td
-						>
-					</tr>
-				{/if}
-				{#if updatedAt}
-					<tr>
-						<td
-							><img
-								class="icon icon-event h-[0.875rem] w-[0.875rem]"
-								height="25"
-								width="25"
-								alt="Updated"
-								src={event}
-							/></td
-						>
-						<td class="px-2 text-sm"
-							>{new Intl.DateTimeFormat('de-DE', {
-								dateStyle: 'long',
-								timeStyle: 'short',
-							}).format(new Date(updatedAt))}</td
-						>
-					</tr>
-				{/if}
+				<tbody>
+					{#if publishedAt && !updatedAt}
+						<tr>
+							<td
+								><img
+									class="icon icon-event h-[0.875rem] w-[0.875rem] text-xs"
+									height="25"
+									width="25"
+									alt="Veröffentlicht"
+									src={event}
+								/></td
+							>
+							<td class="px-2 text-sm"
+								>{new Intl.DateTimeFormat('de-DE', {
+									dateStyle: 'long',
+									timeStyle: 'short',
+								}).format(new Date(publishedAt))}</td
+							>
+						</tr>
+					{/if}
+					{#if updatedAt}
+						<tr>
+							<td
+								><img
+									class="icon icon-event h-[0.875rem] w-[0.875rem]"
+									height="25"
+									width="25"
+									alt="Updated"
+									src={event}
+								/></td
+							>
+							<td class="px-2 text-sm"
+								>{new Intl.DateTimeFormat('de-DE', {
+									dateStyle: 'long',
+									timeStyle: 'short',
+								}).format(new Date(updatedAt))}</td
+							>
+						</tr>
+					{/if}
+				</tbody>
 			</table>
 
 			{#if previewText}

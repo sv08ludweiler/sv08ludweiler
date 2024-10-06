@@ -20,7 +20,7 @@
 	<meta name="description" content="Homepage des Fußballverein SV 08 Ludweiler" />
 </svelte:head>
 
-{#if data.news || data?.landingPage?.data?.attributes?.Vereinsspielplan || data.newspaper?.meta?.pagination?.total}
+{#if data.news || data?.landingPage?.Vereinsspielplan || data.newspaper?.meta?.pagination?.total}
 	<div class="submenu fixed z-10 w-full bg-green-700 text-white" bind:this={submenu}>
 		<ul
 			class="flex h-full flex-row items-center overflow-hidden overflow-x-auto px-4 md:container md:mx-auto"
@@ -31,13 +31,12 @@
 			{#if data.newspaper?.meta?.pagination?.total}
 				<li class="nav-menu h-full"><a class="menu-item" href="#newspaper">Stadionheft</a></li>
 			{/if}
-			{#if data?.landingPage?.data?.attributes?.Vereinsspielplan}
+			{#if data?.landingPage?.Vereinsspielplan}
 				<li class="nav-menu h-full">
 					<a
 						class="menu-item"
-						href={`#${data.landingPage.data.attributes.Vereinsspielplan.title
-							.trim()
-							.replace(' ', '-')}`}>{data.landingPage.data.attributes.Vereinsspielplan.title}</a
+						href={`#${data.landingPage.Vereinsspielplan.title.trim().replace(' ', '-')}`}
+						>{data.landingPage.Vereinsspielplan.title}</a
 					>
 				</li>
 			{/if}
@@ -53,9 +52,9 @@
 		sizes="min(1500px, 100vw)"
 	/>
 
-	{#if data.landingPage?.data?.attributes?.headline_widgets.length}
+	{#if data.landingPage?.headline_widgets?.length}
 		<section class="m-auto -mt-10 mb-10 flex max-w-screen-xl flex-wrap justify-center gap-5 px-5">
-			{#each data.landingPage.data.attributes.headline_widgets as widget}
+			{#each data.landingPage.headline_widgets as widget}
 				<FupaWidget widgetId={widget.widget_id}></FupaWidget>
 			{/each}
 		</section>
@@ -63,13 +62,9 @@
 
 	<section class="my-5 px-4">
 		<div class="flex flex-wrap items-center justify-center gap-4" aria-label="Partner">
-			{#if data?.supporter?.attributes?.items}
-				{#each data?.supporter?.attributes?.items as item}
-					<SocialMediaLink
-						title={item.title}
-						href={item?.link}
-						icon={item?.image?.data?.attributes}
-					/>
+			{#if data?.supporter?.items}
+				{#each data?.supporter?.items as item}
+					<SocialMediaLink title={item.title} href={item?.link} icon={item?.image} />
 				{/each}
 			{/if}
 		</div>
@@ -78,27 +73,27 @@
 	{#if data.news}
 		<section class="mb-10 flex-auto px-4 md:container md:mx-auto">
 			<h2 id="news">Aktuelles</h2>
-			<PostColumns posts={data.news.data} meta={data.news.meta} />
+			<PostColumns posts={data.news.data} meta={data.news?.meta} />
 		</section>
 	{/if}
 
-	{#if data.newspaper?.data}
+	{#if data.newspaper.data}
 		<section class="mb-10 flex-auto px-4 md:container md:mx-auto">
 			<h2 id="newspaper">Stadionheft</h2>
 			<div class="mb-5">
 				<div class="news columns-1 gap-4 md:columns-2">
-					{#each data.newspaper?.data as newspaper}
+					{#each data.newspaper.data as newspaper}
 						<div class="mb-4 break-inside-avoid">
 							<NewspaperTile
-								title={newspaper.attributes.title}
-								headerImage={newspaper.attributes?.header_image?.data?.attributes}
-								href={`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}${newspaper?.attributes?.file?.data?.attributes?.url}`}
+								title={newspaper.title}
+								headerImage={newspaper.header_image}
+								href={`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}${newspaper?.file?.url}`}
 							></NewspaperTile>
 						</div>
 					{/each}
 				</div>
 
-				{#if data.newspaper?.meta && data.newspaper?.meta.pagination.pageCount > 1}
+				{#if data.newspaper?.meta && data.newspaper?.meta?.pagination && data.newspaper?.meta?.pagination.pageCount > 1}
 					<div class="my-6 flex flex-auto justify-center px-4 md:container md:mx-auto">
 						<!-- TODO replace with anchor -->
 						<Button type="button" variant="raised" on:click={() => goto('./newspaper')}
@@ -111,20 +106,20 @@
 	{/if}
 
 	<section class="mb-10 flex-auto px-4 md:container md:mx-auto">
-		{#if data?.landingPage?.data?.attributes?.Vereinsspielplan}
-			<h2 id={data.landingPage.data.attributes.Vereinsspielplan.title.trim().replace(' ', '-')}>
-				{data.landingPage.data.attributes.Vereinsspielplan.title}
+		{#if data?.landingPage?.Vereinsspielplan}
+			<h2 id={data.landingPage.Vereinsspielplan.title.trim().replace(' ', '-')}>
+				{data.landingPage.Vereinsspielplan.title}
 			</h2>
 
-			{#if data.landingPage.data.attributes.Vereinsspielplan.type && data.landingPage.data.attributes.Vereinsspielplan.type !== 'old'}
+			{#if data.landingPage.Vereinsspielplan.type && data.landingPage.Vereinsspielplan.type !== 'old'}
 				<FussballDeWidget2024
-					widgetId={data.landingPage.data.attributes.Vereinsspielplan.widgetid}
-					widgetType={data.landingPage.data.attributes.Vereinsspielplan.type}
-					title={data.landingPage.data.attributes.Vereinsspielplan.title}
+					widgetId={data.landingPage.Vereinsspielplan.widgetid}
+					widgetType={data.landingPage.Vereinsspielplan.type}
+					title={data.landingPage.Vereinsspielplan.title}
 				/>
 			{:else}
-				{#key data.landingPage.data.attributes.Vereinsspielplan.widgetid}
-					<FussballDeWidget widgetId={data.landingPage.data.attributes.Vereinsspielplan.widgetid} />
+				{#key data.landingPage.Vereinsspielplan.widgetid}
+					<FussballDeWidget widgetId={data.landingPage.Vereinsspielplan.widgetid} />
 				{/key}
 			{/if}
 		{/if}

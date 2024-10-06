@@ -6,7 +6,6 @@
 	import NewspaperTile from '$lib/components/NewspaperTile.svelte';
 	import { env as envPublic } from '$env/dynamic/public';
 
-
 	export let data: PageData;
 </script>
 
@@ -25,9 +24,9 @@
 				{#each data.newspaper?.data as newspaper}
 					<div class="mb-4 break-inside-avoid">
 						<NewspaperTile
-							title={newspaper.attributes.title}
-							headerImage={newspaper.attributes?.header_image?.data?.attributes}
-							href={`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}${newspaper?.attributes?.file?.data?.attributes?.url}`}
+							title={newspaper.title}
+							headerImage={newspaper?.header_image}
+							href={`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}${newspaper?.file?.url}`}
 						></NewspaperTile>
 					</div>
 				{/each}

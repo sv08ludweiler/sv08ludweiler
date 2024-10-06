@@ -4,6 +4,7 @@ import { error } from '@sveltejs/kit';
 import { compile } from 'mdsvex';
 import qs from 'qs';
 import type { PageServerLoad } from './$types';
+import type { ApiAuthor, ApiPost } from '../../../types/post.types';
 
 export const load = (async ({ fetch, params }) => {
 	const query = qs.stringify(
@@ -22,7 +23,7 @@ export const load = (async ({ fetch, params }) => {
 		},
 	);
 
-	const pages = await(
+	const pages = await (
 		await fetch(`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}/api/pages?${query}`, {
 			headers: {
 				Authorization: `bearer ${env.STRAPI_API_TOKEN}`,
@@ -42,11 +43,13 @@ export const load = (async ({ fetch, params }) => {
 		});
 	}
 
-	const page = pages?.data[0];
+	const page = pages?.data[0] as ApiPost & { author: ApiAuthor };
 
-	let content;
-	if (page?.attributes?.content) {
-		content = await compile(page.attributes.content);
+	let content = {
+		code: '',
+	};
+	if (page?.content) {
+		content = await compile(page.content);
 	}
 
 	return {

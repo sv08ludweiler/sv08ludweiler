@@ -8,41 +8,49 @@
 	import Trainer from '$lib/components/Trainer.svelte';
 	import FussballDeWidget2024 from '$lib/components/fussball-de-widget/FussballDeWidget2024.svelte';
 	import FussballDeWidget from '$lib/components/fussball-de-widget/FussballDeWidget.svelte';
+	import type {
+		ApiTeam,
+		ApiTrainer,
+		ApiTraining,
+		ApiWidgetFupaNextGame,
+		ApiWidgetFussballDe,
+	} from '../../../../../types/team.types';
+	import type { ApiAgeGroup, ApiDivision } from '../../../../../types/ui-types';
 
 	export let data: PageData;
 
-	let team;
+	let team: ApiTeam;
 
 	let headerImage: StrapiImage;
 
-	let trainings; //Array
+	let trainings: Array<ApiTraining>;
 
-	let trainers; // Array
+	let trainers: Array<ApiTrainer>;
 
-	let supervisors; // Array
+	let supervisors: Array<ApiTrainer>;
 
-	let ageGroup;
+	let ageGroup: ApiAgeGroup;
 
-	let divisions; // Array
+	let divisions: Array<ApiDivision>;
 
-	let widgetFussballDe;
+	let widgetFussballDe: Array<ApiWidgetFussballDe>;
 
-	let nextGameWidget: { widget_id: string; name: string } | null;
+	let nextGameWidget: ApiWidgetFupaNextGame | undefined;
 
 	$: {
 		team = data.team;
 
-		headerImage = data.team.header_image?.data?.attributes;
+		headerImage = data.team.header_image;
 
-		trainings = data.team?.training; //Array
+		trainings = data.team?.training;
 
-		trainers = data.team.trainers?.data; // Array
+		trainers = data.team.trainers;
 
-		supervisors = data.team.supervisors?.data; // Array
+		supervisors = data.team.supervisors;
 
-		ageGroup = data.team.age_group?.data;
+		ageGroup = data.team.age_group;
 
-		divisions = data.team.divisions?.data; // Array
+		divisions = data.team.divisions;
 
 		widgetFussballDe = data?.team?.widgetFussballDe;
 
@@ -55,24 +63,20 @@
 	let hasSubmenu = false;
 
 	$: {
-		hasSubmenu = data.posts.data.length || !!widgetFussballDe;
+		hasSubmenu = !!data.posts.data.length || !!widgetFussballDe;
 	}
 </script>
 
 <svelte:head>
 	<title
-		>SV 08 Ludweiler - {ageGroup
-			? ageGroup.attributes.alternativeName || ageGroup.attributes.name
-			: ''}
-		{divisions ? divisions[0].attributes?.name : ''}
+		>SV 08 Ludweiler - {ageGroup ? ageGroup.alternativeName || ageGroup.name : ''}
+		{divisions ? divisions[0]?.name : ''}
 		{team.display_name}</title
 	>
 	<meta
 		name="description"
-		content="{ageGroup
-			? ageGroup.attributes.alternativeName || ageGroup.attributes.name
-			: ''} {divisions
-			? divisions[0].attributes?.name
+		content="{ageGroup ? ageGroup.alternativeName || ageGroup.name : ''} {divisions
+			? divisions[0]?.name
 			: ''} {team.display_name} des SV 08 Ludweiler"
 	/>
 </svelte:head>
@@ -106,11 +110,11 @@
 		<div class="info-grid p-4 md:container md:mx-auto">
 			<div class="g-headline">
 				<h2 class="target m-0" id="infos">
-					<!-- {#if ageGroup.attributes}
-						<span>{ageGroup.attributes.alternativeName || ageGroup.attributes.name}</span>
+					<!-- {#if ageGroup}
+						<span>{ageGroup.alternativeName || ageGroup.name}</span>
 					{/if}
-					{#if divisions?.length && divisions[0].attributes.name !== ageGroup.attributes.alternativeName}
-						<span>{divisions[0].attributes.name}</span>
+					{#if divisions?.length && divisions[0].name !== ageGroup.alternativeName}
+						<span>{divisions[0].name}</span>
 					{/if} -->
 					<span>{team.display_name}</span>
 				</h2>
@@ -128,10 +132,10 @@
 						<ul>
 							<li>
 								<Trainer
-									firstName={trainer.attributes.first_name}
-									lastName={trainer.attributes.last_name}
-									phone={trainer.attributes.phone_public && trainer.attributes.phone}
-									email={trainer.attributes.mail_public && trainer.attributes.email}
+									firstName={trainer.first_name}
+									lastName={trainer.last_name}
+									phone={trainer.phone_public && trainer.phone}
+									email={trainer.mail_public && trainer.email}
 								></Trainer>
 							</li>
 						</ul>
@@ -144,10 +148,10 @@
 						<ul>
 							<li>
 								<Trainer
-									firstName={supervisor.attributes.first_name}
-									lastName={supervisor.attributes.last_name}
-									phone={supervisor.attributes.phone}
-									email={supervisor.attributes.email}
+									firstName={supervisor.first_name}
+									lastName={supervisor.last_name}
+									phone={supervisor.phone}
+									email={supervisor.email}
 								></Trainer>
 							</li>
 						</ul>

@@ -1,9 +1,10 @@
 import { env } from '$env/dynamic/private';
 import { env as envPublic } from '$env/dynamic/public';
 import { json } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
-import qs from 'qs';
 import { compile } from 'mdsvex';
+import qs from 'qs';
+import type { ApiPostResponse } from '../../../../../../types/post.types';
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ fetch, params }) => {
 	const truncate = (str: string, len: number) =>
@@ -23,7 +24,8 @@ export const GET: RequestHandler = async ({ fetch, params }) => {
 		sort: ['updatedAt:desc', 'publishedAt:desc', 'createdAt:desc'],
 		populate: {
 			teams: {
-				populate: ['slug'],
+				// fields: ['slug'],
+				populate: '*',
 			},
 			header_image: {
 				populate: '*',
@@ -39,14 +41,14 @@ export const GET: RequestHandler = async ({ fetch, params }) => {
 			},
 		},
 	);
-	const posts = await postsRequest.json();
+	const posts = (await postsRequest.json()) as ApiPostResponse;
 
 	for (const post of posts.data) {
-		if (post?.attributes?.content) {
-			post.attributes.htmlContent = await compile(post.attributes.content);
-			post.attributes.previewText =
+		if (post?.content) {
+			post.htmlContent = await compile(post.content);
+			post.previewText =
 				truncate(
-					post.attributes.htmlContent.code.replace(/<img[^>]*>/g, '').replace(/<video[^>]*>/g, ''),
+					post.htmlContent.code.replace(/<img[^>]*>/g, '').replace(/<video[^>]*>/g, ''),
 					250,
 				) + '...';
 		}

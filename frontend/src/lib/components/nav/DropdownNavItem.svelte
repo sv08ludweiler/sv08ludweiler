@@ -1,26 +1,11 @@
 <script lang="ts">
+	import type { ApiNavigationItem } from '../../../types/ui-types';
+
 	export let title: string;
 
 	export let href: string;
 
-	export let children: Array<{
-		id: number;
-		title: string;
-		page: {
-			data: {
-				attributes: {
-					title: string;
-					slug: string;
-					content: string;
-					page: string;
-					createdAt: string;
-					updatedAt: string;
-					publishedAt: string;
-					locale: string;
-				};
-			};
-		};
-	}> = [];
+	export let children: Array<ApiNavigationItem> = [];
 
 	let focusIn = false;
 
@@ -52,11 +37,9 @@
 		class:open={focusIn || mobile}
 	>
 		{#each children as child}
-			{#if child?.page?.data}
+			{#if child?.page}
 				<li class="inline-flex min-h-[2rem] items-center">
-					<a class="h-full w-full p-4" href={`/page/${child.page.data.attributes.slug}`}
-						>{child.title}</a
-					>
+					<a class="h-full w-full p-4" href={`/page/${child.page.slug}`}>{child.title}</a>
 				</li>
 			{/if}
 		{/each}

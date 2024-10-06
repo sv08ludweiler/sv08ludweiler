@@ -6,11 +6,12 @@
 	import SimpleNavItem from '$lib/components/nav/SimpleNavItem.svelte';
 	import Ripple from '@smui/ripple';
 	import { onDestroy, onMount } from 'svelte';
+	import type { ApiMainMenuData } from '../../../types/ui-types';
 
 	/**
 	 * main menu cms data
 	 */
-	export let mainMenu;
+	export let mainMenu: ApiMainMenuData;
 
 	let sidebarDialog: HTMLDialogElement;
 
@@ -33,8 +34,8 @@
 
 	onMount(() => {
 		if (sidebarDialog) {
-			sidebarDialog.addEventListener('click', (event) => {
-				if (event.target?.nodeName === 'DIALOG') {
+			sidebarDialog.addEventListener('click', (event: Event) => {
+				if ((event.target as HTMLDialogElement)?.nodeName === 'DIALOG') {
 					sidebarDialog.close('dismiss');
 				}
 			});
@@ -76,31 +77,26 @@
 			<span class="md:hidden lg:inline" aria-hidden="true">SV 08 Ludweiler</span>
 		</a>
 		<ul class="hidden h-full flex-row flex-wrap justify-center md:flex">
-			{#if mainMenu?.attributes?.entries}
-				{#each mainMenu?.attributes?.entries as navItem}
+			{#if mainMenu.entries}
+				{#each mainMenu?.entries as navItem}
 					{#if navItem.__component === 'navigation.external-navigation-item'}
 						<SimpleNavItem title={navItem.title} href={navItem.link} external={true} />
 					{:else if navItem.__component === 'navigation.page-nested-navigation-item'}
 						<DropdownNavItem
-							title={navItem.page?.page?.data?.attributes?.title || navItem.page.title}
-							href={navItem.page?.page?.data?.attributes?.slug
-								? `/page/${navItem.page?.page?.data?.attributes?.slug}`
-								: ''}
+							title={navItem.page?.title || navItem.page.title}
+							href={navItem.page?.page?.slug ? `/page/${navItem.page?.page?.slug}` : ''}
 							children={navItem.children}
 						/>
 					{:else if navItem.__component === 'navigation.team-navigation-item'}
 						<DivisionNavItem
 							title={navItem.title}
-							slug={navItem.division.data.attributes.slug}
-							teams={navItem.division.data.attributes.teams.data}
-							ageGroups={navItem.age_groups?.data}
+							slug={navItem.division.slug}
+							teams={navItem.division.teams}
+							ageGroups={navItem.age_groups}
 							groupByAge={navItem.group_by_age_group}
 						/>
 					{:else if navItem.__component === 'navigation.page-navigation-item'}
-						<SimpleNavItem
-							title={navItem.title}
-							href={`/page/${navItem.page.data.attributes.slug}`}
-						/>
+						<SimpleNavItem title={navItem.title} href={`/page/${navItem.page.slug}`} />
 					{/if}
 				{/each}
 			{/if}
@@ -144,8 +140,8 @@
 			<span class="md:hidden lg:inline" aria-hidden="true">SV 08 Ludweiler</span>
 		</a>
 		<ul class="flex w-full flex-col">
-			{#if mainMenu?.attributes?.entries}
-				{#each mainMenu?.attributes?.entries as navItem}
+			{#if mainMenu?.entries}
+				{#each mainMenu?.entries as navItem}
 					{#if navItem.__component === 'navigation.external-navigation-item'}
 						<SimpleNavItem
 							title={navItem.title}
@@ -156,25 +152,23 @@
 					{:else if navItem.__component === 'navigation.page-nested-navigation-item'}
 						<DropdownNavItem
 							mobile={true}
-							title={navItem.page?.page?.data?.attributes?.title || navItem.page.title}
-							href={navItem.page?.page?.data?.attributes?.slug
-								? `/page/${navItem.page?.page?.data?.attributes?.slug}`
-								: ''}
+							title={navItem.page?.page?.title || navItem.page.title}
+							href={navItem.page?.page?.slug ? `/page/${navItem.page?.page?.slug}` : ''}
 							children={navItem.children}
 						/>
 					{:else if navItem.__component === 'navigation.team-navigation-item'}
 						<DivisionNavItem
 							mobile={true}
 							title={navItem.title}
-							slug={navItem.division.data.attributes.slug}
-							teams={navItem.division.data.attributes.teams.data}
-							ageGroups={navItem.age_groups?.data}
+							slug={navItem.division.slug}
+							teams={navItem.division.teams}
+							ageGroups={navItem.age_groups}
 						/>
 					{:else if navItem.__component === 'navigation.page-navigation-item'}
 						<SimpleNavItem
 							mobile={true}
 							title={navItem.title}
-							href={`/page/${navItem.page.data.attributes.slug}`}
+							href={`/page/${navItem.page.slug}`}
 						/>
 					{/if}
 				{/each}

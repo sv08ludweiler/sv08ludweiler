@@ -1,39 +1,38 @@
 {
-	"name": "cms",
-	"private": "true",
-	"version": "0.1.0",
-	"description": "A Strapi application",
-	"scripts": {
-		"test": "echo 'test'",
-		"develop": "strapi develop",
-		"start": "strapi start",
-		"start:live": "strapi start --mode ",
-		"start-docker-db": "ENV_PATH=.env.dev strapi start",
-		"build": "strapi build",
-		"strapi": "strapi",
-		"generate-typings": "strapi ts:generate-types --debug"
-	},
-	"dependencies": {
-		"@strapi/plugin-documentation": "4.25.13",
-		"@strapi/plugin-i18n": "4.25.9",
-		"@strapi/plugin-users-permissions": "4.25.13",
-		"@strapi/strapi": "4.25.13",
-		"better-sqlite3": "11.3.0",
-		"pg": "8.13.0",
-		"react": "18.3.1",
-		"react-dom": "18.3.1",
-		"react-router-dom": "5.3.4",
-		"styled-components": "5.3.3"
-	},
-	"author": {
-		"name": "A Strapi developer"
-	},
-	"strapi": {
-		"uuid": "3dff209c-8613-4b67-83c5-f64f0c350495"
-	},
-	"engines": {
-		"node": ">=14.19.1 <=18.x.x",
-		"npm": ">=6.0.0"
-	},
-	"license": "MIT"
+  "name": "cms",
+  "private": "true",
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "test": "echo 'test'",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "start:live": "strapi start --mode ",
+    "start-docker-db": "ENV_PATH=.env.dev strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "generate-typings": "strapi ts:generate-types --debug"
+  },
+  "dependencies": {
+    "@strapi/plugin-documentation": "5.6.0",
+    "@strapi/plugin-users-permissions": "5.6.0",
+    "@strapi/strapi": "5.6.0",
+    "better-sqlite3": "11.7.0",
+    "pg": "8.13.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.28.0",
+    "styled-components": "^6.1.13"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "3dff209c-8613-4b67-83c5-f64f0c350495"
+  },
+  "engines": {
+    "node": ">=18.x.x <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
 }

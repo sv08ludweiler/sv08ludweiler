@@ -6,13 +6,13 @@
 </script>
 
 <svelte:head>
-  <title>SV 08 Ludweiler - {data.page.attributes.title}</title>
-  <meta name="description" content={data.page.attributes.title} />
+	<title>SV 08 Ludweiler - {data.page.title}</title>
+	<meta name="description" content={data.page.title} />
 </svelte:head>
 
 <ContentCardView
-	headerImage={data.page.attributes?.header_image?.data?.attributes}
-	title={data.page.attributes.title}
+	headerImage={data.page?.header_image}
+	title={data.page.title}
 	content={data.content ? data.content.code : ''}
-	publishedAt={data.page.attributes.updatedAt}
+	publishedAt={data.page.updatedAt}
 />
