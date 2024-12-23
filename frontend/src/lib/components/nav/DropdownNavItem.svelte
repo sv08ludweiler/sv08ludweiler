@@ -1,35 +1,45 @@
 <script lang="ts">
 	import type { ApiNavigationItem } from '../../../types/ui-types';
 
-	export let title: string;
 
-	export let href: string;
 
-	export let children: Array<ApiNavigationItem> = [];
 
-	let focusIn = false;
+	let focusIn = $state(false);
 
 	function openMenu() {
 		focusIn = !focusIn;
 	}
 
-	/**
+	
+	interface Props {
+		title: string;
+		href: string;
+		children?: Array<ApiNavigationItem>;
+		/**
 	 * Whether mobile styling is active.
 	 */
-	export let mobile = false;
+		mobile?: boolean;
+	}
+
+	let {
+		title,
+		href,
+		children = [],
+		mobile = false
+	}: Props = $props();
 </script>
 
 <li
 	class={mobile
 		? 'flex flex-col items-start p-4'
 		: 'nav-menu inline-flex h-full items-center justify-center'}
-	on:focusin={() => (focusIn = true)}
-	on:focusout={() => (focusIn = false)}
+	onfocusin={() => (focusIn = true)}
+	onfocusout={() => (focusIn = false)}
 >
 	{#if href}
 		<a {href} class="menu-item" aria-expanded={focusIn}>{title} </a>
 	{:else}
-		<button class="menu-item" on:click={openMenu} aria-expanded="false">{title}</button>
+		<button class="menu-item" onclick={openMenu} aria-expanded="false">{title}</button>
 	{/if}
 
 	<ul

@@ -1,66 +1,77 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import type { ApiAgeGroup, ApiTeamNoRelations } from '../../../types/ui-types';
+	import { untrack } from 'svelte';
 
-	export let title: string;
+	let groupedTeamsByAge = $state(new Map<ApiAgeGroup['slug'], Array<ApiTeamNoRelations>>());
+	let availableAgeGroups = $state(new Map<ApiAgeGroup['slug'], ApiAgeGroup>());
 
-	export let slug: string;
+	interface Props {
+		title: string;
+		slug: string;
+		/**
+		 * Whether nav items are grouped by age_group
+		 */
+		groupByAge?: boolean;
+		teams?: Array<ApiTeamNoRelations>;
+		/**
+		 * Age Groups filter
+		 */
+		ageGroups?: Array<ApiAgeGroup>;
+		/**
+		 * Whether mobile styling is active.
+		 */
+		mobile?: boolean;
+	}
 
-	/**
-	 * Whether nav items are grouped by age_group
-	 */
-	export let groupByAge = false;
+	let {
+		title,
+		slug,
+		groupByAge = false,
+		teams = [],
+		ageGroups = [],
+		mobile = false,
+	}: Props = $props();
 
-	export let teams: Array<ApiTeamNoRelations> = [];
-
-	/**
-	 * Age Groups filter
-	 */
-	export let ageGroups: Array<ApiAgeGroup> = [];
-
-	let filteredTeams: Array<ApiTeamNoRelations> = [];
-
-	$: {
-		filteredTeams = teams.filter((team) => {
+	let filteredTeams: Array<ApiTeamNoRelations> = $derived.by(() => {
+		return teams.filter((team) => {
 			if (ageGroups && ageGroups.length) {
 				return ageGroups.some((ageGroup) => ageGroup.slug === team.age_group.slug);
 			}
 
 			return true;
 		});
-	}
+	});
 
-	let groupedTeamsByAge = new Map<ApiAgeGroup['slug'], Array<ApiTeamNoRelations>>();
-	let availableAgeGroups = new Map<ApiAgeGroup['slug'], ApiAgeGroup>();
+	// $effect(() => {
+	if (groupByAge) {
+		untrack(() => {
+			const groups = new Map<ApiAgeGroup['slug'], ApiAgeGroup>();
+			const groupedTeams = new Map<ApiAgeGroup['slug'], Array<ApiTeamNoRelations>>();
 
-	$: if (groupByAge) {
-		const groups = new Map<ApiAgeGroup['slug'], ApiAgeGroup>();
-		const groupedTeams = new Map<ApiAgeGroup['slug'], Array<ApiTeamNoRelations>>();
+			for (const team of teams) {
+				const ageGroupOfTeam = team.age_group;
 
-		for (const team of teams) {
-			const ageGroupOfTeam = team.age_group;
+				if (!team.age_group) {
+					continue;
+				}
+				const groupSlug = ageGroupOfTeam.slug;
+				groups.set(groupSlug, ageGroupOfTeam);
 
-			if (!team.age_group) {
-				continue;
+				if (groupedTeams.has(groupSlug)) {
+					const a = groupedTeams.get(groupSlug);
+					a?.push(team);
+				} else {
+					groupedTeams.set(groupSlug, [team]);
+				}
 			}
-			const groupSlug = ageGroupOfTeam.slug;
-			groups.set(groupSlug, ageGroupOfTeam);
 
-			if (groupedTeams.has(groupSlug)) {
-				const a = groupedTeams.get(groupSlug);
-				a?.push(team);
-			} else {
-				groupedTeams.set(groupSlug, [team]);
-			}
-		}
-
-		availableAgeGroups = groups;
-		groupedTeamsByAge = groupedTeams;
+			availableAgeGroups = groups;
+			groupedTeamsByAge = groupedTeams;
+		});
 	}
-
-	/**
-	 * Whether mobile styling is active.
-	 */
-	export let mobile = false;
+	// });
 </script>
 
 {#if filteredTeams.length === 1}

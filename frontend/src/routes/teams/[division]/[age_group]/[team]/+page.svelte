@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import PostColumns from '$lib/components/PostColumns.svelte';
 	import TrainingList from '$lib/components/TrainingList.svelte';
@@ -7,7 +9,6 @@
 	import type { PageData } from './$types';
 	import Trainer from '$lib/components/Trainer.svelte';
 	import FussballDeWidget2024 from '$lib/components/fussball-de-widget/FussballDeWidget2024.svelte';
-	import FussballDeWidget from '$lib/components/fussball-de-widget/FussballDeWidget.svelte';
 	import type {
 		ApiTeam,
 		ApiTrainer,
@@ -16,55 +17,36 @@
 		ApiWidgetFussballDe,
 	} from '../../../../../types/team.types';
 	import type { ApiAgeGroup, ApiDivision } from '../../../../../types/ui-types';
+	import FussballDeWidget from '$lib/components/fussball-de-widget/FussballDeWidget.svelte';
 
-	export let data: PageData;
-
-	let team: ApiTeam;
-
-	let headerImage: StrapiImage;
-
-	let trainings: Array<ApiTraining>;
-
-	let trainers: Array<ApiTrainer>;
-
-	let supervisors: Array<ApiTrainer>;
-
-	let ageGroup: ApiAgeGroup;
-
-	let divisions: Array<ApiDivision>;
-
-	let widgetFussballDe: Array<ApiWidgetFussballDe>;
-
-	let nextGameWidget: ApiWidgetFupaNextGame | undefined;
-
-	$: {
-		team = data.team;
-
-		headerImage = data.team.header_image;
-
-		trainings = data.team?.training;
-
-		trainers = data.team.trainers;
-
-		supervisors = data.team.supervisors;
-
-		ageGroup = data.team.age_group;
-
-		divisions = data.team.divisions;
-
-		widgetFussballDe = data?.team?.widgetFussballDe;
-
-		nextGameWidget = data.team.fupa_widget_next_game;
+	interface Props {
+		data: PageData;
 	}
+
+	let { data }: Props = $props();
+
+	let team: ApiTeam = $derived(data.team);
+
+	let headerImage: StrapiImage = $derived(data.team.header_image);
+
+	let trainings: Array<ApiTraining> = $derived(data.team?.training);
+
+	let trainers: Array<ApiTrainer> = $derived(data.team.trainers);
+
+	let supervisors: Array<ApiTrainer> = $derived(data.team.supervisors);
+
+	let ageGroup: ApiAgeGroup = $derived(data.team.age_group);
+
+	let divisions: Array<ApiDivision> = $derived(data.team.divisions);
+
+	let widgetFussballDe: Array<ApiWidgetFussballDe> = $derived(data?.team?.widgetFussballDe);
+
+	let nextGameWidget: ApiWidgetFupaNextGame | undefined = $derived(data.team.fupa_widget_next_game);
 
 	/**
 	 * Whether there is more content than info
 	 */
-	let hasSubmenu = false;
-
-	$: {
-		hasSubmenu = !!data.posts.data.length || !!widgetFussballDe;
-	}
+	let hasSubmenu = $derived(!!data.posts.data.length || !!widgetFussballDe);
 </script>
 
 <svelte:head>

@@ -1,14 +1,15 @@
 <script lang="ts">
-	export let title: string;
+	interface Props {
+		title: string;
+		href: string;
+		external?: boolean;
+		/**
+		 * Whether mobile styling is active.
+		 */
+		mobile?: boolean;
+	}
 
-	export let href: string;
-
-	export let external = false;
-
-	/**
-	 * Whether mobile styling is active.
-	 */
-	export let mobile = false;
+	let { title, href, external = false, mobile = false }: Props = $props();
 </script>
 
 <li class={mobile ? 'w-full p-4' : 'nav-menu inline-flex h-full items-center justify-center'}>

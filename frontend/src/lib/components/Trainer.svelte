@@ -1,13 +1,22 @@
 <script lang="ts">
 	import ObfuscationLink from './ObfuscationLink.svelte';
 
-	export let firstName: string;
 
-	export let lastName: string;
 
-	export let phone = '';
 
-	export let email = '';
+	interface Props {
+		firstName: string;
+		lastName: string;
+		phone?: string;
+		email?: string;
+	}
+
+	let {
+		firstName,
+		lastName,
+		phone = '',
+		email = ''
+	}: Props = $props();
 </script>
 
 <div>

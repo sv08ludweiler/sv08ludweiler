@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { beforeNavigate, pushState, replaceState } from '$app/navigation';
+	import { beforeNavigate, pushState } from '$app/navigation';
 	import { page } from '$app/stores';
 	import DivisionNavItem from '$lib/components/nav/DivisionNavItem.svelte';
 	import DropdownNavItem from '$lib/components/nav/DropdownNavItem.svelte';
@@ -8,21 +8,27 @@
 	import { onDestroy, onMount } from 'svelte';
 	import type { ApiMainMenuData } from '../../../types/ui-types';
 
-	/**
-	 * main menu cms data
-	 */
-	export let mainMenu: ApiMainMenuData;
+	interface Props {
+		/**
+		 * main menu cms data
+		 */
+		mainMenu: ApiMainMenuData;
+	}
 
-	let sidebarDialog: HTMLDialogElement;
+	let { mainMenu }: Props = $props();
+
+	let sidebarDialog: HTMLDialogElement | undefined = $state();
 
 	const toggleMenu = () => {
-		if (sidebarDialog.open) {
-			sidebarDialog.close();
-		} else {
-			sidebarDialog.showModal();
-			pushState('', {
-				showModal: true,
-			});
+		if (sidebarDialog) {
+			if (sidebarDialog.open) {
+				sidebarDialog.close();
+			} else {
+				sidebarDialog.showModal();
+				pushState('', {
+					showModal: true,
+				});
+			}
 		}
 	};
 
@@ -36,7 +42,7 @@
 		if (sidebarDialog) {
 			sidebarDialog.addEventListener('click', (event: Event) => {
 				if ((event.target as HTMLDialogElement)?.nodeName === 'DIALOG') {
-					sidebarDialog.close('dismiss');
+					sidebarDialog && sidebarDialog.close('dismiss');
 				}
 			});
 		}
@@ -47,10 +53,10 @@
 	});
 
 	beforeNavigate(() => {
-		sidebarDialog.close();
+		sidebarDialog && sidebarDialog.close();
 	});
 
-	function onCloseDialog(event: Event & { currentTarget: EventTarget & HTMLDialogElement }) {
+	function onCloseDialog() {
 		if ($page.state.showModal) {
 			history.back();
 		}
@@ -104,7 +110,7 @@
 
 		<button
 			class="h-full p-3 md:hidden"
-			on:click={toggleMenu}
+			onclick={toggleMenu}
 			aria-label="Menü öffnen/schließen"
 			use:Ripple={{ surface: true }}
 		>
@@ -122,7 +128,7 @@
 	</nav>
 </header>
 
-<dialog class="sidebar shadow-xl" bind:this={sidebarDialog} on:close={onCloseDialog}>
+<dialog class="sidebar shadow-xl" bind:this={sidebarDialog} onclose={onCloseDialog}>
 	<div class="flex h-full w-full flex-col items-start">
 		<a
 			href="/"

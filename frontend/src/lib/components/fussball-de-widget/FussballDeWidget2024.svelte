@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	function generateSecureRandomId(length: number) {
 		const randomValues = new Uint32Array(length);
 
@@ -23,17 +23,22 @@
 </script>
 
 <script lang="ts">
-	export let title = '';
-	/**
+	
+
+	interface Props {
+		title?: string;
+		/**
 	 * Fussball.de widget id.
 	 */
-	export let widgetId: string;
+		widgetId: string;
+		widgetType?: string;
+	}
 
-	export let widgetType = 'competition';
+	let { title = '', widgetId, widgetType = 'competition' }: Props = $props();
 
 	const iframeName = `${generateSecureRandomId(4)}_fussballde_widget-${widgetId}`;
 
-	let iframeHeight = 'auto';
+	let iframeHeight = $state('auto');
 
 	/**
 	 * Listen for height of iframe
@@ -45,7 +50,7 @@
 		}
 	};
 
-	let wait = false;
+	let wait = $state(false);
 
 	setTimeout(() => {
 		//workaround to draw iframe in correct height when reloading whole page
@@ -53,7 +58,7 @@
 	});
 </script>
 
-<svelte:window on:message={onMessage} />
+<svelte:window onmessage={onMessage} />
 
 <!-- workaround to draw iframe in correct height when reloading whole page -->
 {#if wait}

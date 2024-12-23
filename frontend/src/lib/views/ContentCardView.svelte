@@ -5,35 +5,41 @@
 	import type { StrapiImage } from '$lib/types/strapi.types';
 	import Card, { Content } from '@smui/card';
 
-	/**
-	 * Header image of post.
-	 */
-	export let headerImage: StrapiImage | undefined = undefined;
+	interface Props {
+		/**
+		 * Header image of post.
+		 */
+		headerImage?: StrapiImage | undefined;
+		/**
+		 * Title of post
+		 */
+		title: string;
+		/**
+		 * Content of post
+		 */
+		content?: string;
+		/**
+		 * Author of post
+		 */
+		author?: string;
+		/**
+		 * Publish date of post.
+		 */
+		publishedAt?: string;
+		/**
+		 * Update date of post.
+		 */
+		updatedAt?: string;
+	}
 
-	/**
-	 * Title of post
-	 */
-	export let title: string;
-
-	/**
-	 * Content of post
-	 */
-	export let content = '';
-
-	/**
-	 * Author of post
-	 */
-	export let author = '';
-
-	/**
-	 * Publish date of post.
-	 */
-	export let publishedAt = '';
-
-	/**
-	 * Update date of post.
-	 */
-	export let updatedAt = '';
+	let {
+		headerImage = undefined,
+		title,
+		content = '',
+		author = '',
+		publishedAt = '',
+		updatedAt = '',
+	}: Props = $props();
 </script>
 
 <PageHeader image={headerImage}></PageHeader>
