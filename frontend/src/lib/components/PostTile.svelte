@@ -1,52 +1,58 @@
 <script lang="ts">
+	
+	import { goto } from '$app/navigation';
 	import { env } from '$env/dynamic/public';
 	import event from '$lib/assets/icons/event.svg';
-	import Card, { Content } from '@smui/card';
-	import Button, { Label } from '@smui/button';
-	import { goto } from '$app/navigation';
-	import Ripple from '@smui/ripple';
-	import TeamChip from './TeamChip.svelte';
 	import type { StrapiImage } from '$lib/types/strapi.types';
 	import { generateImageSize, generateImageSrcSet } from '$lib/utils';
-	import type { ApiTeam } from '../../types/team.types';
+	import Button, { Label } from '@smui/button';
+	import Card, { Content } from '@smui/card';
+	import Ripple from '@smui/ripple';
 	import type { ApiPost } from '../../types/post.types';
+	import TeamChip from './TeamChip.svelte';
 
-	/**
-	 * Title of post
-	 */
-	export let title: string;
+	interface Props {
+		/**
+		 * Title of post
+		 */
+		title: string;
+		/**
+		 * Content of post
+		 */
+		previewText?: string;
+		/**
+		 * Link to post
+		 */
+		href: string;
+		/**
+		 * Header image of post.
+		 */
+		headerImage?: StrapiImage | undefined;
+		/**
+		 * Publish date of post.
+		 */
+		publishedAt?: string;
+		/**
+		 * Update date of post.
+		 */
+		updatedAt?: string;
+		/**
+		 * category of post.
+		 */
+		teams?: ApiPost['teams'];
+		showTeamCategory?: boolean;
+	}
 
-	/**
-	 * Content of post
-	 */
-	export let previewText = '';
-
-	/**
-	 * Link to post
-	 */
-	export let href: string;
-
-	/**
-	 * Header image of post.
-	 */
-	export let headerImage: StrapiImage | undefined = undefined;
-
-	/**
-	 * Publish date of post.
-	 */
-	export let publishedAt = '';
-
-	/**
-	 * Update date of post.
-	 */
-	export let updatedAt = '';
-
-	/**
-	 * category of post.
-	 */
-	export let teams: ApiPost['teams'] = [];
-
-	export let showTeamCategory = true;
+	let {
+		title,
+		previewText = '',
+		href,
+		headerImage = undefined,
+		publishedAt = '',
+		updatedAt = '',
+		teams = [],
+		showTeamCategory = true,
+	}: Props = $props();
 
 	// division -> age group -> [teams]
 	let teamsCategory: Map<string, Map<string, Set<string>>> = new Map<
@@ -54,47 +60,47 @@
 		Map<string, Set<string>>
 	>();
 
-	$: if (showTeamCategory) {
-		for (const team of teams) {
-			const divisions = team.divisions;
+		if (showTeamCategory) {
+			for (const team of teams) {
+				const divisions = team.divisions;
 
-			if (!divisions) {
-				continue;
-			}
-
-			for (const division of divisions) {
-				const divisionName = division.name;
-
-				let divisionMap: Map<string, Set<string>> | undefined;
-				if (teamsCategory.has(divisionName)) {
-					divisionMap = teamsCategory.get(divisionName);
-				}
-
-				const ageGroup = team?.age_group;
-
-				if (!ageGroup) {
+				if (!divisions) {
 					continue;
 				}
 
-				const ageGroupKey: string = ageGroup?.alternativeName || ageGroup?.name;
+				for (const division of divisions) {
+					const divisionName = division.name;
 
-				if (divisionMap) {
-					let ageMap: Set<string> | undefined;
-					if (divisionMap.has(ageGroupKey)) {
-						ageMap = divisionMap.get(ageGroupKey);
-						ageMap?.add(team.display_name);
-					} else {
-						divisionMap.set(ageGroupKey, new Set<string>([team.display_name]));
+					let divisionMap: Map<string, Set<string>> | undefined;
+					if (teamsCategory.has(divisionName)) {
+						divisionMap = teamsCategory.get(divisionName);
 					}
-				} else {
-					const teamSet: Set<string> = new Set<string>([team.display_name]);
-					const ageGroupMap: Map<string, Set<string>> = new Map<string, Set<string>>();
-					ageGroupMap.set(ageGroupKey, teamSet);
-					teamsCategory.set(divisionName, ageGroupMap);
+
+					const ageGroup = team?.age_group;
+
+					if (!ageGroup) {
+						continue;
+					}
+
+					const ageGroupKey: string = ageGroup?.alternativeName || ageGroup?.name;
+
+					if (divisionMap) {
+						let ageMap: Set<string> | undefined;
+						if (divisionMap.has(ageGroupKey)) {
+							ageMap = divisionMap.get(ageGroupKey);
+							ageMap?.add(team.display_name);
+						} else {
+							divisionMap.set(ageGroupKey, new Set<string>([team.display_name]));
+						}
+					} else {
+						const teamSet: Set<string> = new Set<string>([team.display_name]);
+						const ageGroupMap: Map<string, Set<string>> = new Map<string, Set<string>>();
+						ageGroupMap.set(ageGroupKey, teamSet);
+						teamsCategory.set(divisionName, ageGroupMap);
+					}
 				}
 			}
 		}
-	}
 </script>
 
 <a
@@ -176,7 +182,7 @@
 			{/if}
 
 			<Button
-				on:click={(event) => {
+				onclick={(event: MouseEvent) => {
 					event.preventDefault();
 					goto(href);
 				}}

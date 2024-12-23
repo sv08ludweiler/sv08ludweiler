@@ -2,17 +2,23 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 
-	/**
-	 * Unique id of element wrapper.
-	 */
-	export let id: string = browser
-		? `fussball-de-id_${Date.now()}${Math.floor(Math.random() * 100)}`
-		: crypto.randomUUID();
+	interface Props {
+		/**
+		 * Unique id of element wrapper.
+		 */
+		id?: string;
+		/**
+		 * Fussball.de widget id.
+		 */
+		widgetId: string;
+	}
 
-	/**
-	 * Fussball.de widget id.
-	 */
-	export let widgetId: string;
+	let {
+		id = browser
+			? `fussball-de-id_${Date.now()}${Math.floor(Math.random() * 100)}`
+			: crypto.randomUUID(),
+		widgetId,
+	}: Props = $props();
 
 	onMount(() => {
 		// es-lint-ignore @typescript-eslint/ban-ts-comment

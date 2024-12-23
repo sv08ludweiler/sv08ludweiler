@@ -7,35 +7,41 @@
 	import Card, { Content } from '@smui/card';
 	import Ripple from '@smui/ripple';
 
-	/**
-	 * Title of post
-	 */
-	export let title: string;
+	interface Props {
+		/**
+		 * Title of post
+		 */
+		title: string;
+		/**
+		 * Content of post
+		 */
+		previewText?: string;
+		/**
+		 * Link to post
+		 */
+		href: string;
+		/**
+		 * Header image of post.
+		 */
+		headerImage?: StrapiImage | undefined;
+		/**
+		 * Publish date of post.
+		 */
+		publishedAt?: string;
+		/**
+		 * Update date of post.
+		 */
+		updatedAt?: string;
+	}
 
-	/**
-	 * Content of post
-	 */
-	export let previewText = '';
-
-	/**
-	 * Link to post
-	 */
-	export let href: string;
-
-	/**
-	 * Header image of post.
-	 */
-	export let headerImage: StrapiImage | undefined = undefined;
-
-	/**
-	 * Publish date of post.
-	 */
-	export let publishedAt = '';
-
-	/**
-	 * Update date of post.
-	 */
-	export let updatedAt = '';
+	let {
+		title,
+		previewText = '',
+		href,
+		headerImage = undefined,
+		publishedAt = '',
+		updatedAt = '',
+	}: Props = $props();
 </script>
 
 <a
@@ -112,7 +118,7 @@
 			{/if}
 
 			<Button
-				on:click={(event) => {
+				onclick={(event: MouseEvent) => {
 					event.preventDefault();
 					window.open(href, '_blank');
 				}}

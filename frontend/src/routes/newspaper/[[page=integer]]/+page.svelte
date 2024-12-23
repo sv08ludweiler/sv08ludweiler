@@ -6,7 +6,11 @@
 	import NewspaperTile from '$lib/components/NewspaperTile.svelte';
 	import { env as envPublic } from '$env/dynamic/public';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 </script>
 
 <svelte:head>
@@ -40,7 +44,7 @@
 
 	<div class="my-5 flex items-center justify-center gap-3">
 		<Button
-			on:click={() => goto(`/newspaper/${(Number($page.params.page) || 1) - 1}`)}
+			onclick={() => goto(`/newspaper/${(Number($page.params.page) || 1) - 1}`)}
 			aria-label="Vorherige Seite"
 			disabled={pagination.page <= pagination.pageCount}>Vorherige</Button
 		>
@@ -55,7 +59,7 @@
 		{/each}
 
 		<Button
-			on:click={() => goto(`/newspaper/${(Number($page.params.page) || 1) + 1}`)}
+			onclick={() => goto(`/newspaper/${(Number($page.params.page) || 1) + 1}`)}
 			aria-label="Nächste Seite"
 			disabled={pagination.page >= pagination.pageCount}>Nächste</Button
 		>

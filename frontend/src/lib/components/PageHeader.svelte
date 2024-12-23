@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { pushState, replaceState } from '$app/navigation';
+	import { pushState } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { env } from '$env/dynamic/public';
 	import type { StrapiImage } from '$lib/types/strapi.types';
@@ -7,28 +7,25 @@
 	import Button from '@smui/button';
 	import { onDestroy } from 'svelte';
 
-	/**
-	 * Image of header
-	 */
-	export let image: StrapiImage | undefined = undefined;
-
-	/**
-	 * Header max height
-	 */
-	export let maxHeight = true;
-
-	let dialog: HTMLDialogElement;
-
-	$: if (dialog) {
-		dialog.addEventListener('close', () => {
-			open = false;
-		});
+	interface Props {
+		/**
+		 * Image of header
+		 */
+		image?: StrapiImage | undefined;
+		/**
+		 * Header max height
+		 */
+		maxHeight?: boolean;
 	}
 
-	let open = false;
+	let { image = undefined, maxHeight = true }: Props = $props();
+
+	let dialog: HTMLDialogElement | undefined = $state();
+
+	let open = $state(false);
 
 	const showImage = () => {
-		dialog.showModal();
+		dialog && dialog.showModal();
 		open = true;
 		pushState('', {
 			showModal: true,
@@ -55,6 +52,9 @@
 	};
 
 	function onCloseDialog(event: Event & { currentTarget: EventTarget & HTMLDialogElement }) {
+		open = false;
+		console.log('onclose dialog');
+
 		if ($page.state.showModal) {
 			history.back();
 		}
@@ -63,7 +63,7 @@
 
 {#if image}
 	{#if maxHeight}
-		<button class="placeholder max-height w-full overflow-hidden bg-green-600" on:click={showImage}>
+		<button class="placeholder max-height w-full overflow-hidden bg-green-600" onclick={showImage}>
 			<img
 				height={image.height}
 				width={image.width}
@@ -76,7 +76,7 @@
 			/>
 		</button>
 	{:else}
-		<button class="placeholder w-full overflow-hidden bg-green-600" on:click={showImage}>
+		<button class="placeholder w-full overflow-hidden bg-green-600" onclick={showImage}>
 			<img
 				class="w-full"
 				height={image.height}
@@ -90,13 +90,13 @@
 			/>
 		</button>
 	{/if}
-	<dialog bind:this={dialog} on:close={onCloseDialog}>
+	<dialog bind:this={dialog} onclose={onCloseDialog}>
 		<div class="flex flex-col">
 			<div class="flex justify-end">
 				<Button
 					aria-label="schließen"
-					on:click={() => {
-						dialog.close();
+					onclick={() => {
+						dialog && dialog.close();
 					}}>&#x2715;</Button
 				>
 			</div>
@@ -121,10 +121,10 @@
 		</div>
 	</dialog>
 {:else}
-	<div class="placeholder h-72 w-full bg-green-600" />
+	<div class="placeholder h-72 w-full bg-green-600"></div>
 {/if}
 
-<svelte:window on:click={closeDialog} />
+<svelte:window onclick={closeDialog} />
 
 <style lang="scss">
 	.max-height {

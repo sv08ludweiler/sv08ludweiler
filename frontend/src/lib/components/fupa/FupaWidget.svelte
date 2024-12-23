@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	const loadScript = async () => {
 		// @ts-expect-error ignore
 		import('./widget.js');
@@ -13,9 +13,13 @@
 	import { beforeNavigate } from '$app/navigation';
 	import Card from '@smui/card';
 
-	export let widgetId: string | undefined;
+	interface Props {
+		widgetId: string | undefined;
+	}
 
-	let widgetContainer: HTMLDivElement;
+	let { widgetId = $bindable() }: Props = $props();
+
+	let widgetContainer: HTMLDivElement | undefined = $state();
 
 	beforeNavigate(({ from, to }) => {
 		if (JSON.stringify(from) !== JSON.stringify(to)) {

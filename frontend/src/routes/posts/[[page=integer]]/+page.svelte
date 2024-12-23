@@ -4,8 +4,12 @@
 	import PostColumns from '$lib/components/PostColumns.svelte';
 	import Button, { Label } from '@smui/button';
 	import type { PageData } from './$types';
-	
-	export let data: PageData;
+
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 </script>
 
 <svelte:head>
@@ -25,7 +29,9 @@
 
 	<div class="my-5 flex items-center justify-center gap-3">
 		<Button
-			on:click={() => goto(`/posts/${(Number($page.params.page) || 1) - 1}`)}
+			onclick={() => {
+				void goto(`/posts/${(Number($page.params.page) || 1) - 1}`);
+			}}
 			aria-label="Vorherige Seite"
 			disabled={pagination.page < pagination.pageCount}>Vorherige</Button
 		>
@@ -40,7 +46,9 @@
 		{/each}
 
 		<Button
-			on:click={() => goto(`/posts/${(Number($page.params.page) || 1) + 1}`)}
+			onclick={() => {
+				void goto(`/posts/${(Number($page.params.page) || 1) + 1}`);
+			}}
 			aria-label="Nächste Seite"
 			disabled={pagination.page >= pagination.pageCount}>Nächste</Button
 		>

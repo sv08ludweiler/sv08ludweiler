@@ -2,20 +2,27 @@
 	import { env } from '$env/dynamic/public';
 	import type { StrapiImage } from '$lib/types/strapi.types';
 
-	/**
+	
+
+	
+
+	
+	interface Props {
+		/**
 	 * Title of social media.
 	 */
-	export let title: string;
-
-	/**
+		title: string;
+		/**
 	 * External link of social media.
 	 */
-	export let href = '';
-
-	/**
+		href?: string;
+		/**
 	 * Icon url.
 	 */
-	export let icon: StrapiImage;
+		icon: StrapiImage;
+	}
+
+	let { title, href = '', icon }: Props = $props();
 </script>
 
 <a {href} {title} aria-label={title} target="_blank">

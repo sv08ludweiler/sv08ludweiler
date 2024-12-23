@@ -14,7 +14,12 @@
 	import { onMount } from 'svelte';
 	import { dev } from '$app/environment';
 
-	export let data: LayoutData;
+	interface Props {
+		data: LayoutData;
+		children?: import('svelte').Snippet;
+	}
+
+	let { data, children }: Props = $props();
 
 	onMount(async () => {
 		if (!dev && pwaInfo) {
@@ -36,7 +41,7 @@
 		}
 	});
 
-	$: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
+	let webManifestLink = $derived(pwaInfo ? pwaInfo.webManifest.linkTag : '');
 </script>
 
 <svelte:head>
@@ -47,7 +52,7 @@
 	<NavBar mainMenu={data?.mainMenu}></NavBar>
 
 	<main class="flex-auto">
-		<slot />
+		{@render children?.()}
 	</main>
 
 	<footer class="bg-green-500 text-white">

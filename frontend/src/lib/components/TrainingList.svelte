@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 
-	export let trainings: Array<{ day: string; start: string; end?: string; location?: string }>;
+	interface Props {
+		trainings: Array<{ day: string; start: string; end?: string; location?: string }>;
+	}
+
+	let { trainings }: Props = $props();
 
 	function formatToDate(input: string): string {
 		const date = new Date(input);

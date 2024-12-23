@@ -4,11 +4,13 @@
 	import Button from '@smui/button';
 	import type { ApiMeta, ApiPost } from '../../types/post.types';
 
-	export let posts: Array<ApiPost> = [];
+	interface Props {
+		posts?: Array<ApiPost>;
+		meta?: ApiMeta | undefined;
+		showTeamCategory?: boolean;
+	}
 
-	export let meta: ApiMeta | undefined = undefined;
-
-	export let showTeamCategory = true;
+	let { posts = [], meta = undefined, showTeamCategory = true }: Props = $props();
 </script>
 
 <div class="mb-5">
@@ -32,7 +34,7 @@
 	{#if meta && meta.pagination && meta.pagination.pageCount > 1}
 		<div class="my-6 flex flex-auto justify-center px-4 md:container md:mx-auto">
 			<!-- TODO replace with anchor -->
-			<Button type="button" variant="raised" on:click={() => goto('./posts')}>Zu allen News</Button>
+			<Button type="button" variant="raised" onclick={() => goto('./posts')}>Zu allen News</Button>
 		</div>
 	{/if}
 </div>

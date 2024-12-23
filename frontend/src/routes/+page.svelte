@@ -10,9 +10,13 @@
 	import Button from '@smui/button';
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	let submenu: HTMLDivElement;
+	let { data }: Props = $props();
+
+	let submenu: HTMLDivElement | undefined = $state();
 </script>
 
 <svelte:head>
@@ -96,7 +100,7 @@
 				{#if data.newspaper?.meta && data.newspaper?.meta?.pagination && data.newspaper?.meta?.pagination.pageCount > 1}
 					<div class="my-6 flex flex-auto justify-center px-4 md:container md:mx-auto">
 						<!-- TODO replace with anchor -->
-						<Button type="button" variant="raised" on:click={() => goto('./newspaper')}
+						<Button type="button" variant="raised" onclick={() => goto('./newspaper')}
 							>Zu allen Ausgaben</Button
 						>
 					</div>

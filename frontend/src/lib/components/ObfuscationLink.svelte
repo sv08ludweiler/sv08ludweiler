@@ -1,9 +1,14 @@
 <script lang="ts">
-	export let target = '';
 
-	export let prefix: 'mailto' | 'tel' | '' = '';
+	interface Props {
+		target?: string;
+		prefix?: 'mailto' | 'tel' | '';
+		children?: import('svelte').Snippet;
+	}
 
-	let unveil = false;
+	let { target = '', prefix = '', children }: Props = $props();
+
+	let unveil = $state(false);
 
 	const show = () => {
 		unveil = true;
@@ -28,16 +33,16 @@
 	};
 </script>
 
-<!-- svelte-ignore a11y-missing-attribute -->
-<!-- svelte-ignore a11y-no-redundant-roles -->
+<!-- svelte-ignore a11y_missing_attribute -->
+<!-- svelte-ignore a11y_no_redundant_roles -->
 <a
 	role="link"
-	on:keypress={onKeyPress}
+	onkeypress={onKeyPress}
 	tabindex="0"
-	on:click={() => {
+	onclick={() => {
 		show();
 	}}
-	><span class="slot"><slot /></span>{#if unveil}<span class="target"
+	><span class="slot">{@render children?.()}</span>{#if unveil}<span class="target"
 			>{reverseString(target)} :
 		</span>{/if}</a
 >
