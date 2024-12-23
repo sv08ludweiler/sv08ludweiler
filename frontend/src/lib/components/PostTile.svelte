@@ -9,6 +9,7 @@
 	import Ripple from '@smui/ripple';
 	import type { ApiPost } from '../../types/post.types';
 	import TeamChip from './TeamChip.svelte';
+	import { SvelteMap } from 'svelte/reactivity';
 
 	interface Props {
 		/**
@@ -54,12 +55,12 @@
 	}: Props = $props();
 
 	// division -> age group -> [teams]
-	let teamsCategory: Map<string, Map<string, Set<string>>> = new Map<
+	let teamsCategory: Map<string, Map<string, Set<string>>> = new SvelteMap<
 		string,
 		Map<string, Set<string>>
 	>();
 
-	if (showTeamCategory) {
+	const generateTeamTiles = () => {
 		for (const team of teams) {
 			const divisions = team.divisions;
 
@@ -99,6 +100,10 @@
 				}
 			}
 		}
+	};
+
+	if (showTeamCategory) {
+		generateTeamTiles();
 	}
 </script>
 

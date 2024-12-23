@@ -23,7 +23,7 @@ export const GET: RequestHandler = async ({ fetch }) => {
 		},
 		populate: {
 			teams: {
-				fields: ['slug'],
+				fields: ['slug', 'display_name'],
 				populate: ['age_group', 'divisions'],
 				// 	populate: ['slug', 'age_group', 'divisions'],
 			},
