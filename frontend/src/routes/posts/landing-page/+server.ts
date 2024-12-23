@@ -5,6 +5,7 @@ import type { RequestHandler } from './$types';
 import qs from 'qs';
 import { compile } from 'mdsvex';
 import type { ApiNewsData, ApiNewsResponse } from '../../../types/landing-page.types';
+import { removeImgVideoHeadingsFromHtmlText, removeTagsFromHtmlText } from '$lib/utils';
 
 export const GET: RequestHandler = async ({ fetch }) => {
 	const truncate = (str: string, len: number) =>
@@ -48,7 +49,8 @@ export const GET: RequestHandler = async ({ fetch }) => {
 				post.htmlContent = await compile(post.content);
 				post.previewText =
 					truncate(
-						post.htmlContent.code.replace(/<img[^>]*>/g, '').replace(/<video[^>]*>/g, ''),
+						removeTagsFromHtmlText(removeImgVideoHeadingsFromHtmlText(post.htmlContent.code)),
+
 						250,
 					) + '...';
 			}

@@ -1,5 +1,4 @@
 <script lang="ts">
-	
 	import { goto } from '$app/navigation';
 	import { env } from '$env/dynamic/public';
 	import event from '$lib/assets/icons/event.svg';
@@ -60,47 +59,47 @@
 		Map<string, Set<string>>
 	>();
 
-		if (showTeamCategory) {
-			for (const team of teams) {
-				const divisions = team.divisions;
+	if (showTeamCategory) {
+		for (const team of teams) {
+			const divisions = team.divisions;
 
-				if (!divisions) {
+			if (!divisions) {
+				continue;
+			}
+
+			for (const division of divisions) {
+				const divisionName = division.name;
+
+				let divisionMap: Map<string, Set<string>> | undefined;
+				if (teamsCategory.has(divisionName)) {
+					divisionMap = teamsCategory.get(divisionName);
+				}
+
+				const ageGroup = team?.age_group;
+
+				if (!ageGroup) {
 					continue;
 				}
 
-				for (const division of divisions) {
-					const divisionName = division.name;
+				const ageGroupKey: string = ageGroup?.alternativeName || ageGroup?.name;
 
-					let divisionMap: Map<string, Set<string>> | undefined;
-					if (teamsCategory.has(divisionName)) {
-						divisionMap = teamsCategory.get(divisionName);
-					}
-
-					const ageGroup = team?.age_group;
-
-					if (!ageGroup) {
-						continue;
-					}
-
-					const ageGroupKey: string = ageGroup?.alternativeName || ageGroup?.name;
-
-					if (divisionMap) {
-						let ageMap: Set<string> | undefined;
-						if (divisionMap.has(ageGroupKey)) {
-							ageMap = divisionMap.get(ageGroupKey);
-							ageMap?.add(team.display_name);
-						} else {
-							divisionMap.set(ageGroupKey, new Set<string>([team.display_name]));
-						}
+				if (divisionMap) {
+					let ageMap: Set<string> | undefined;
+					if (divisionMap.has(ageGroupKey)) {
+						ageMap = divisionMap.get(ageGroupKey);
+						ageMap?.add(team.display_name);
 					} else {
-						const teamSet: Set<string> = new Set<string>([team.display_name]);
-						const ageGroupMap: Map<string, Set<string>> = new Map<string, Set<string>>();
-						ageGroupMap.set(ageGroupKey, teamSet);
-						teamsCategory.set(divisionName, ageGroupMap);
+						divisionMap.set(ageGroupKey, new Set<string>([team.display_name]));
 					}
+				} else {
+					const teamSet: Set<string> = new Set<string>([team.display_name]);
+					const ageGroupMap: Map<string, Set<string>> = new Map<string, Set<string>>();
+					ageGroupMap.set(ageGroupKey, teamSet);
+					teamsCategory.set(divisionName, ageGroupMap);
 				}
 			}
 		}
+	}
 </script>
 
 <a
@@ -178,7 +177,9 @@
 			</table>
 
 			{#if previewText}
-				<p>{@html previewText}</p>
+				<p>
+					{@html previewText}
+				</p>
 			{/if}
 
 			<Button
