@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { beforeNavigate, pushState } from '$app/navigation';
-	import { page } from '$app/stores';
+	import { afterNavigate, beforeNavigate, onNavigate, pushState } from '$app/navigation';
+	import { page } from '$app/state';
 	import DivisionNavItem from '$lib/components/nav/DivisionNavItem.svelte';
 	import DropdownNavItem from '$lib/components/nav/DropdownNavItem.svelte';
 	import SimpleNavItem from '$lib/components/nav/SimpleNavItem.svelte';
 	import Ripple from '@smui/ripple';
-	import { onDestroy, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import type { ApiMainMenuData } from '../../../types/ui-types';
 
 	interface Props {
@@ -32,12 +32,6 @@
 		}
 	};
 
-	const pageSubscription = page.subscribe((page) => {
-		if (!page.state.showModal) {
-			sidebarDialog && sidebarDialog.close();
-		}
-	});
-
 	onMount(() => {
 		if (sidebarDialog) {
 			sidebarDialog.addEventListener('click', (event: Event) => {
@@ -48,16 +42,13 @@
 		}
 	});
 
-	onDestroy(() => {
-		pageSubscription();
-	});
-
-	beforeNavigate(() => {
+	onNavigate(() => {
+		// close navigation when navigating
 		sidebarDialog && sidebarDialog.close();
 	});
 
 	function onCloseDialog() {
-		if ($page.state.showModal) {
+		if (page.state.showModal) {
 			history.back();
 		}
 	}
