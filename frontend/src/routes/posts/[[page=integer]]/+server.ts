@@ -4,6 +4,7 @@ import { json, type RequestHandler } from '@sveltejs/kit';
 import { compile } from 'mdsvex';
 import qs from 'qs';
 import type { ApiPostResponse } from '../../../types/post.types';
+import { removeImgVideoHeadingsFromHtmlText, removeTagsFromHtmlText } from '$lib/utils';
 
 export const GET: RequestHandler = async ({ fetch, url }) => {
 	const page = Number(url.searchParams.get('page') ?? '0');
@@ -43,7 +44,7 @@ export const GET: RequestHandler = async ({ fetch, url }) => {
 			post.htmlContent = await compile(post.content);
 			post.previewText =
 				truncate(
-					post.htmlContent.code.replace(/<img[^>]*>/g, '').replace(/<video[^>]*>/g, ''),
+					removeTagsFromHtmlText(removeImgVideoHeadingsFromHtmlText(post.htmlContent.code)),
 					250,
 				) + '...';
 		}

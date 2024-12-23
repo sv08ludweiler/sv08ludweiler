@@ -29,3 +29,12 @@ export const generateImageSize = (image: StrapiImage): string | undefined => {
 
 	return undefined;
 };
+
+export const removeImgVideoHeadingsFromHtmlText = (str: string) =>
+	str
+		.replace(/<img[^>]*>/g, '')
+		.replace(/<video[^>]*>/g, '')
+		.replace(/<h[^>]*>.*<\/h[^>]*>/g, '');
+
+export const removeTagsFromHtmlText = (str: string) =>
+	str.replaceAll(/<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g, '');
