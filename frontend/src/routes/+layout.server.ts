@@ -25,6 +25,11 @@ export const load = (async ({ fetch }) => {
 									// populate: ['teams', 'age_groups'],
 									populate: {
 										teams: {
+											filters: {
+												publishedAt: {
+													$notNull: true,
+												},
+											},
 											populate: {
 												// divisions: true,
 												age_group: true,
@@ -46,30 +51,36 @@ export const load = (async ({ fetch }) => {
 							populate: {
 								page: {
 									populate: '*',
-									// publicationState: 'live',
+									// filters: {
+									// 	publishedAt: {
+									// 		$notNull: true,
+									// 	},
+									// },
 								},
 								children: {
-									populate: '*',
-									// publicationState: 'live',
+									populate: {
+										page: {
+											filters: {
+												publishedAt: {
+													$notNull: true,
+												},
+											},
+										},
+									},
 								},
 							},
 						},
 						'navigation.external-navigation-item': {
 							populate: '*',
-							// filters: {
-							// 	publishedAt: {
-							// 		$null: false,
-							// 	},
-							// },
 						},
-						'navigation.page-navigation-item': {
-							populate: '*',
-							// filters: {
-							// 	publishedAt: {
-							// 		$null: false,
-							// 	},
-							// },
-						},
+						// 'navigation.page-navigation-item': {
+						// 	// populate: '*',
+						// 	// filters: {
+						// 	// 	publishedAt: {
+						// 	// 		$null: false,
+						// 	// 	},
+						// 	// },
+						// },
 						// },
 					},
 				},
