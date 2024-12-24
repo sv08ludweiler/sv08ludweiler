@@ -74,3 +74,14 @@ dialog::backdrop {
 	backdrop-filter: blur(3px);
 	background: rgba(0, 0, 0, 0.4);
 }
+
+
+::view-transition-old(header-img),
+::view-transition-new(header-img) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-image-pair(header-img) {
+  isolation: none;
+}
