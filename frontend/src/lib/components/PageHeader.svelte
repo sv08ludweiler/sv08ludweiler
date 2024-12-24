@@ -138,4 +138,8 @@
 	dialog {
 		border-radius: 4px;
 	}
+
+	.placeholder {
+		view-transition-name: header-img;
+	}
 </style>

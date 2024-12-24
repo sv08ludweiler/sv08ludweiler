@@ -44,7 +44,7 @@
 
 <PageHeader image={headerImage}></PageHeader>
 
-<div class="-mt-36 flex-auto p-4 md:container md:mx-auto">
+<div class="card-content -mt-36 flex-auto p-4 md:container md:mx-auto">
 	<Card variant="raised" class="overflow-hidden">
 		<Content
 			><h2 class="mt-0">
@@ -111,5 +111,9 @@
 
 	.icon {
 		height: 1.6rem;
+	}
+
+	.card-content {
+		view-transition-name: card-content;
 	}
 </style>

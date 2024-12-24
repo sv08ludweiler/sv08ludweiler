@@ -13,6 +13,7 @@
 	import NavBar from '$lib/components/nav/NavBar.svelte';
 	import { onMount } from 'svelte';
 	import { dev } from '$app/environment';
+	import { onNavigate } from '$app/navigation';
 
 	interface Props {
 		data: LayoutData;
@@ -20,6 +21,20 @@
 	}
 
 	let { data, children }: Props = $props();
+
+	/**
+	 * Start view transition on navigate
+	 */
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 
 	onMount(async () => {
 		if (!dev && pwaInfo) {

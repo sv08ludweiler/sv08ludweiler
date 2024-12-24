@@ -105,16 +105,38 @@
 	if (showTeamCategory) {
 		generateTeamTiles();
 	}
+
+	let headerImageContainer: HTMLDivElement | undefined = $state();
+
+	/**
+	 * Apply view transition names before navigating to card content
+	 * @param event
+	 */
+	function onClickCard(event: MouseEvent & { currentTarget: EventTarget & HTMLAnchorElement }) {
+		if (headerImageContainer) {
+			headerImageContainer.style.viewTransitionName = 'header-img';
+		}
+		const cardContent = event.currentTarget.querySelector<HTMLDivElement>('.card-content');
+
+		if (cardContent) {
+			cardContent.style.viewTransitionName = 'card-content';
+			cardContent.style.zIndex = '100';
+		}
+	}
 </script>
 
 <a
 	class="flex flex-auto p-[1px] drop-shadow-sm transition-all hover:drop-shadow-xl focus:drop-shadow-xl"
 	{href}
 	use:Ripple={{ surface: true, color: 'primary' }}
+	onclick={onClickCard}
 >
 	<Card class="flex flex-auto overflow-hidden">
 		{#if headerImage}
-			<div class="aspect-video h-60 w-full overflow-hidden">
+			<div
+				class="header-img aspect-video h-60 w-full overflow-hidden"
+				bind:this={headerImageContainer}
+			>
 				<img
 					class="h-full w-full object-cover"
 					src={env.PUBLIC_FRONTEND_STRAPI_HOST + headerImage.formats.medium.url}
@@ -127,7 +149,7 @@
 				/>
 			</div>
 		{/if}
-		<Content class="flex-auto">
+		<Content class="card-content flex-auto">
 			<h3 class="mt-0">{title}</h3>
 
 			{#if showTeamCategory}
