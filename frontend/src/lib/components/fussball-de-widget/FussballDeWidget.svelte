@@ -21,9 +21,11 @@
 	}: Props = $props();
 
 	onMount(() => {
-		// es-lint-ignore @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		new fussballdeWidgetAPI().showWidget(id, widgetId);
+		setTimeout(() => {
+			// es-lint-ignore @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			new fussballdeWidgetAPI().showWidget(id, widgetId);
+		});
 	});
 </script>
 
