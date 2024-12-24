@@ -17,7 +17,7 @@ export const GET: RequestHandler = async ({ fetch, url }) => {
 			pageSize: 5,
 			page: page || 1,
 		},
-		sort: ['updatedAt:desc', 'publishedAt:desc', 'createdAt:desc'],
+		sort: [/*'updatedAt:desc', 'publishedAt:desc',*/ 'createdAt:desc'],
 		populate: {
 			teams: {
 				fields: ['slug'],
