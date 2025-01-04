@@ -41,6 +41,10 @@
 
 <style lang="scss">
 	:global(.hostcard) {
+		height: 185.5px;
+		overflow: hidden;
+		text-emphasis: center;
+
 		:global(div) {
 			width: 100%;
 		}
