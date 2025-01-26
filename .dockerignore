@@ -18,7 +18,10 @@ build-static
 .env.*
 **.env**
 **/node_modules/**
+**/node_modules
 
 frontend/node_modules
 frontend/build-node
 frontend/build-static
+
+cms/public/uploads
