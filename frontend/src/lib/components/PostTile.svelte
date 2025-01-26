@@ -123,10 +123,6 @@
 			cardContent.style.zIndex = '100';
 		}
 	}
-
-	$effect(() => {
-		console.log('headerImage', headerImage);
-	});
 </script>
 
 <a

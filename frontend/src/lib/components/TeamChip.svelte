@@ -25,7 +25,8 @@
 	</div>
 </div>
 
-<style>
+<style  lang="scss">
+	@reference "tailwindcss/theme";
 	.division,
 	.age-group {
 		position: relative;

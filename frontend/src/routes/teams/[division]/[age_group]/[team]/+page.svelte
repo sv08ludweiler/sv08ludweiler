@@ -186,6 +186,7 @@
 </div>
 
 <style lang="scss">
+	@reference "tailwindcss/theme";
 	.submenu {
 		height: var(--submenu-height);
 	}

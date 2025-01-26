@@ -1,3 +1,5 @@
+@reference "tailwindcss/theme";
+
 html {
 	scroll-behavior: smooth;
 }
@@ -75,13 +77,12 @@ dialog::backdrop {
 	background: rgba(0, 0, 0, 0.4);
 }
 
-
 ::view-transition-old(header-img),
 ::view-transition-new(header-img) {
-  animation: none;
-  mix-blend-mode: normal;
+	animation: none;
+	mix-blend-mode: normal;
 }
 
 ::view-transition-image-pair(header-img) {
-  isolation: none;
+	isolation: none;
 }
