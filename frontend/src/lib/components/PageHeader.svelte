@@ -68,7 +68,7 @@
 				height={image.height}
 				width={image.width}
 				class="h-full w-full object-cover"
-				src={env.PUBLIC_FRONTEND_STRAPI_HOST + image.formats.small.url}
+				src={env.PUBLIC_FRONTEND_STRAPI_HOST + image.formats.small?.url}
 				srcset={generateImageSrcSet(image)}
 				sizes={generateImageSize(image)}
 				alt={image.alternativeText}
@@ -81,7 +81,7 @@
 				class="w-full"
 				height={image.height}
 				width={image.width}
-				src={env.PUBLIC_FRONTEND_STRAPI_HOST + image.url}
+				src={env.PUBLIC_FRONTEND_STRAPI_HOST + image?.url}
 				srcset={generateImageSrcSet(image)}
 				sizes={generateImageSize(image)}
 				alt={image.alternativeText}

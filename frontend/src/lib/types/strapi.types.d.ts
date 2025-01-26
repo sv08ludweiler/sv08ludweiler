@@ -15,10 +15,10 @@ export interface StrapiImage extends StrapiImageFormat {
 	caption: string;
 	createdAt: string;
 	formats: {
-		large: StrapiImageFormat;
-		small: StrapiImageFormat;
-		medium: StrapiImageFormat;
-		thumbnail: StrapiImageFormat;
+		large?: StrapiImageFormat;
+		small?: StrapiImageFormat;
+		medium?: StrapiImageFormat;
+		thumbnail?: StrapiImageFormat;
 	};
 	previewUrl: string;
 	provider: string;
@@ -26,28 +26,3 @@ export interface StrapiImage extends StrapiImageFormat {
 	createdAt: string;
 	updatedAt: string;
 }
-
-// export interface AgeGroup {
-// 	id: number;
-// 	attributes: {
-// 		name: string;
-
-// 		slug: string;
-// 		alternativeName: string;
-// 		createdAt: string;
-// 		updatedAt: string;
-// 		publishedAt: string;
-// 	};
-// }
-
-// export interface Team {
-// 	id: number;
-// 	attributes: {
-// 		name: string;
-// 		display_name: string;
-// 		slug: string;
-// 		age_group: {
-// 			data: AgeGroup;
-// 		};
-// 	};
-// }

@@ -123,6 +123,10 @@
 			cardContent.style.zIndex = '100';
 		}
 	}
+
+	$effect(() => {
+		console.log('headerImage', headerImage);
+	});
 </script>
 
 <a
@@ -139,11 +143,11 @@
 			>
 				<img
 					class="h-full w-full object-cover"
-					src={env.PUBLIC_FRONTEND_STRAPI_HOST + headerImage.formats.medium.url}
+					src={env.PUBLIC_FRONTEND_STRAPI_HOST + headerImage.formats.medium?.url}
 					srcset={generateImageSrcSet(headerImage)}
 					sizes={generateImageSize(headerImage)}
-					width={headerImage.formats.medium.width}
-					height={headerImage.formats.medium.height}
+					width={headerImage.formats.medium?.width}
+					height={headerImage.formats.medium?.height}
 					alt={headerImage.alternativeText || title}
 					loading="lazy"
 				/>
