@@ -14,9 +14,9 @@
     "generate-typings": "strapi ts:generate-types --debug"
   },
   "dependencies": {
-    "@strapi/plugin-documentation": "5.8.1",
-    "@strapi/plugin-users-permissions": "5.8.1",
-    "@strapi/strapi": "5.8.1",
+    "@strapi/plugin-documentation": "5.9.0",
+    "@strapi/plugin-users-permissions": "5.9.0",
+    "@strapi/strapi": "5.9.0",
     "better-sqlite3": "11.8.1",
     "pg": "8.13.1",
     "react": "18.3.1",
