@@ -90,9 +90,26 @@
 			/>
 		</button>
 	{/if}
-	<dialog bind:this={dialog} onclose={onCloseDialog}>
-		<div class="flex flex-col">
-			<div class="flex justify-end">
+
+	<dialog bind:this={dialog} onclose={onCloseDialog} class="relative overflow-hidden">
+		{#if open}
+			<div class="flex-auto overflow-auto">
+				<img
+					class="w-full"
+					height={image.height}
+					width={image.width}
+					src={env.PUBLIC_FRONTEND_STRAPI_HOST + image.url}
+					srcset={generateImageSrcSet(image)}
+					sizes={generateImageSize(image)}
+					alt={image.alternativeText}
+				/>
+				{#if image.caption}
+					<div class="p-2">
+						{image.caption}
+					</div>
+				{/if}
+			</div>
+			<div class="absolute top-0 right-0">
 				<Button
 					aria-label="schließen"
 					onclick={() => {
@@ -100,25 +117,7 @@
 					}}>&#x2715;</Button
 				>
 			</div>
-			<div class="flex-auto">
-				{#if open}
-					<img
-						class="w-full"
-						height={image.height}
-						width={image.width}
-						src={env.PUBLIC_FRONTEND_STRAPI_HOST + image.url}
-						srcset={generateImageSrcSet(image)}
-						sizes={generateImageSize(image)}
-						alt={image.alternativeText}
-					/>
-				{/if}
-				{#if image.caption}
-					<div class="p-2">
-						{image.caption}
-					</div>
-				{/if}
-			</div>
-		</div>
+		{/if}
 	</dialog>
 {:else}
 	<div class="placeholder h-72 w-full bg-green-600"></div>

@@ -14,11 +14,11 @@
     "generate-typings": "strapi ts:generate-types --debug"
   },
   "dependencies": {
-    "@strapi/plugin-documentation": "5.9.0",
-    "@strapi/plugin-users-permissions": "5.9.0",
-    "@strapi/strapi": "5.9.0",
-    "better-sqlite3": "11.8.1",
-    "pg": "8.13.1",
+    "@strapi/plugin-documentation": "5.11.3",
+    "@strapi/plugin-users-permissions": "5.11.3",
+    "@strapi/strapi": "5.11.3",
+    "better-sqlite3": "11.9.1",
+    "pg": "8.14.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-router-dom": "6.28.0",
