@@ -1,9 +1,10 @@
 import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
-import { compile } from 'mdsvex';
 import qs from 'qs';
 import type { ApiAuthor, ApiPost } from '../../../types/post.types';
 import type { PageServerLoad } from './$types';
+import { marked } from 'marked';
+import DOMPurify from 'isomorphic-dompurify';
 
 export const load = (async ({ params }) => {
 	const query = qs.stringify(
@@ -36,9 +37,10 @@ export const load = (async ({ params }) => {
 
 	const post = posts.data[0] as ApiPost & { author: ApiAuthor };
 
-	let content = { code: '' };
+	let content = '';
 	if (post?.content) {
-		content = await compile(post.content);
+		const parsed = await marked.parse(post.content);
+		content = DOMPurify.sanitize(parsed);
 	}
 	return {
 		post,

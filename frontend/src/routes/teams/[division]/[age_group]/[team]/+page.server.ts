@@ -1,11 +1,12 @@
 import { env } from '$env/dynamic/private';
 import { env as envPublic } from '$env/dynamic/public';
 import { error } from '@sveltejs/kit';
-import { compile } from 'mdsvex';
 import qs from 'qs';
 import type { ApiPostResponse } from '../../../../../types/post.types';
 import type { ApiTeam } from '../../../../../types/team.types';
 import type { PageServerLoad } from './$types';
+import { marked } from 'marked';
+import DOMPurify from 'isomorphic-dompurify';
 
 export const load = (async ({ fetch, params }) => {
 	const teamQuery = qs.stringify({
@@ -25,17 +26,14 @@ export const load = (async ({ fetch, params }) => {
 
 	const team = (await request.json()) as { data: Array<ApiTeam> };
 
-
-
 	if (!team?.data?.length) {
 		throw error(404, 'Team not found');
 	}
 
-	let teamContent = {
-		code: '',
-	};
+	let teamContent = '';
 	if (team.data[0].content) {
-		teamContent = await compile(team.data[0].content);
+		const parsed = await marked.parse(team.data[0].content);
+		teamContent = DOMPurify.sanitize(parsed);
 	}
 
 	const postsRequest = await fetch(

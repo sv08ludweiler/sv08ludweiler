@@ -17,7 +17,7 @@
 <ContentCardView
 	headerImage={data.post?.header_image}
 	title={data.post.title}
-	content={data.content ? data.content.code : ''}
+	content={data.content ? data.content : ''}
 	author={data.post?.author ? data.post?.author.firstname + ' ' + data.post?.author.name : ''}
 	publishedAt={data.post.publishedAt}
 />

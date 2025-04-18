@@ -62,7 +62,8 @@
 		"@tailwindcss/vite": "4.1.4"
 	},
 	"dependencies": {
-		"mdsvex": "0.12.3"
+		"isomorphic-dompurify": "2.23.0",
+		"marked": "15.0.8"
 	},
 	"type": "module"
 }

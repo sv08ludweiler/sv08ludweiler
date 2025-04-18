@@ -106,7 +106,7 @@
 			</div>
 			<div class="g-info">
 				{#if data.teamContent}
-					{@html data.teamContent.code}
+					{@html data.teamContent}
 				{/if}
 				{#if trainers?.length}
 					<h3>Trainer</h3>

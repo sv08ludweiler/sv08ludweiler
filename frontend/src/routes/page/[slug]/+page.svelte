@@ -17,6 +17,6 @@
 <ContentCardView
 	headerImage={data.page?.header_image}
 	title={data.page.title}
-	content={data.content ? data.content.code : ''}
+	content={data.content}
 	publishedAt={data.page.updatedAt}
 />

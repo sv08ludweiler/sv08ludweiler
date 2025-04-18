@@ -1,10 +1,11 @@
 import { env } from '$env/dynamic/private';
 import { env as envPublic } from '$env/dynamic/public';
 import { json, type RequestHandler } from '@sveltejs/kit';
-import { compile } from 'mdsvex';
 import qs from 'qs';
 import type { ApiPostResponse } from '../../../types/post.types';
 import { removeImgVideoHeadingsFromHtmlText, removeTagsFromHtmlText } from '$lib/utils';
+import DOMPurify from 'isomorphic-dompurify';
+import { marked } from 'marked';
 
 export const GET: RequestHandler = async ({ fetch, url }) => {
 	const page = Number(url.searchParams.get('page') ?? '0');
@@ -41,7 +42,9 @@ export const GET: RequestHandler = async ({ fetch, url }) => {
 
 	for (const post of posts.data) {
 		if (post?.content) {
-			post.htmlContent = await compile(post.content);
+			const parsed = await marked.parse(post.content);
+			post.htmlContent = DOMPurify.sanitize(parsed);
+
 			post.previewText =
 				truncate(
 					removeTagsFromHtmlText(removeImgVideoHeadingsFromHtmlText(post.htmlContent.code)),

@@ -1,11 +1,12 @@
 import { env } from '$env/dynamic/private';
 import { env as envPublic } from '$env/dynamic/public';
 import { json } from '@sveltejs/kit';
-import { compile } from 'mdsvex';
 import qs from 'qs';
 import type { ApiPostResponse } from '../../../../../../types/post.types';
 import type { RequestHandler } from './$types';
 import { removeImgVideoHeadingsFromHtmlText, removeTagsFromHtmlText } from '$lib/utils';
+import DOMPurify from 'isomorphic-dompurify';
+import { marked } from 'marked';
 
 export const GET: RequestHandler = async ({ fetch, params }) => {
 	const truncate = (str: string, len: number) =>
@@ -46,10 +47,12 @@ export const GET: RequestHandler = async ({ fetch, params }) => {
 
 	for (const post of posts.data) {
 		if (post?.content) {
-			post.htmlContent = await compile(post.content);
+			const parsed = await marked.parse(post.content);
+			post.htmlContent = DOMPurify.sanitize(parsed);
+
 			post.previewText =
 				truncate(
-					removeTagsFromHtmlText(removeImgVideoHeadingsFromHtmlText(post.htmlContent.code)),
+					removeTagsFromHtmlText(removeImgVideoHeadingsFromHtmlText(post.htmlContent)),
 					250,
 				) + '...';
 		}

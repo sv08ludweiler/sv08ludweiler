@@ -34,7 +34,7 @@ export interface ApiPost {
 	header_image?: StrapiImage;
 
 	// additional (generated dynamically)
-	htmlContent: { code: string };
+	htmlContent: string;
 	previewText: string;
 }
 
