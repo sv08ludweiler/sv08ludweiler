@@ -24,29 +24,31 @@
 	<meta name="description" content="Homepage des Fußballverein SV 08 Ludweiler" />
 </svelte:head>
 
-{#if data.news || data?.landingPage?.Vereinsspielplan || data.newspaper?.meta?.pagination?.total}
-	<div class="submenu fixed z-10 w-full bg-green-700 text-white" bind:this={submenu}>
-		<ul
-			class="flex h-full flex-row items-center overflow-hidden overflow-x-auto px-4 md:container md:mx-auto"
-		>
-			{#if data.news}
-				<li class="nav-menu h-full"><a class="menu-item" href="#news">Aktuelles</a></li>
-			{/if}
-			{#if data.newspaper?.meta?.pagination?.total}
+<div class="submenu fixed z-10 w-full bg-green-700 text-white" bind:this={submenu}>
+	<ul
+		class="flex h-full flex-row items-center overflow-hidden overflow-x-auto px-4 md:container md:mx-auto"
+	>
+		{#await data.news then news}
+			<li class="nav-menu h-full"><a class="menu-item" href="#news">Aktuelles</a></li>
+		{/await}
+		{#await data.newspaper then newspaper}
+			{#if newspaper?.meta?.pagination?.total}
 				<li class="nav-menu h-full"><a class="menu-item" href="#newspaper">Stadionheft</a></li>
 			{/if}
-			{#if data?.landingPage?.Vereinsspielplan}
+		{/await}
+		{#await data.landingPage then landingPage}
+			{#if landingPage.data?.Vereinsspielplan}
 				<li class="nav-menu h-full">
 					<a
 						class="menu-item"
-						href={`#${data.landingPage.Vereinsspielplan.title.trim().replace(' ', '-')}`}
-						>{data.landingPage.Vereinsspielplan.title}</a
+						href={`#${landingPage.data.Vereinsspielplan.title.trim().replace(' ', '-')}`}
+						>{landingPage.data.Vereinsspielplan.title}</a
 					>
 				</li>
 			{/if}
-		</ul>
-	</div>
-{/if}
+		{/await}
+	</ul>
+</div>
 
 <div class="page-content" class:has-submenu={submenu !== null}>
 	<enhanced:img
@@ -56,13 +58,15 @@
 		sizes="min(1500px, 100vw)"
 	/>
 
-	{#if data.landingPage?.headline_widgets?.length}
-		<section class="m-auto -mt-10 mb-10 flex max-w-screen-xl flex-wrap justify-center gap-5 px-5">
-			{#each data.landingPage.headline_widgets as widget}
-				<FupaWidget widgetId={widget.widget_id}></FupaWidget>
-			{/each}
-		</section>
-	{/if}
+	{#await data.landingPage then landingPage}
+		{#if landingPage.data.headline_widgets?.length}
+			<section class="m-auto -mt-10 mb-10 flex max-w-screen-xl flex-wrap justify-center gap-5 px-5">
+				{#each landingPage.data.headline_widgets as widget}
+					<FupaWidget widgetId={widget.widget_id}></FupaWidget>
+				{/each}
+			</section>
+		{/if}
+	{/await}
 
 	<section class="my-5 px-4">
 		<div class="flex flex-wrap items-center justify-center gap-4" aria-label="Partner">
@@ -74,19 +78,21 @@
 		</div>
 	</section>
 
-	{#if data.news}
-		<section class="mb-10 flex-auto px-4 md:container md:mx-auto">
-			<h2 id="news">Aktuelles</h2>
-			<PostColumns posts={data.news.data} meta={data.news?.meta} />
-		</section>
-	{/if}
+	{#await data.news then news}
+		{#if news.data}
+			<section class="mb-10 flex-auto px-4 md:container md:mx-auto">
+				<h2 id="news">Aktuelles</h2>
+				<PostColumns posts={news.data} meta={news?.meta} />
+			</section>
+		{/if}
+	{/await}
 
-	{#if data.newspaper.data}
+	{#await data.newspaper then news}
 		<section class="mb-10 flex-auto px-4 md:container md:mx-auto">
 			<h2 id="newspaper">Stadionheft</h2>
 			<div class="mb-5">
 				<div class="news columns-1 gap-4 md:columns-2">
-					{#each data.newspaper.data as newspaper}
+					{#each news.data as newspaper}
 						<div class="mb-4 break-inside-avoid">
 							<NewspaperTile
 								title={newspaper.title}
@@ -97,7 +103,7 @@
 					{/each}
 				</div>
 
-				{#if data.newspaper?.meta && data.newspaper?.meta?.pagination && data.newspaper?.meta?.pagination.pageCount > 1}
+				{#if news?.meta && news?.meta?.pagination && news?.meta?.pagination.pageCount > 1}
 					<div class="my-6 flex flex-auto justify-center px-4 md:container md:mx-auto">
 						<!-- TODO replace with anchor -->
 						<Button type="button" variant="raised" onclick={() => goto('./newspaper')}
@@ -107,27 +113,29 @@
 				{/if}
 			</div>
 		</section>
-	{/if}
+	{/await}
 
-	<section class="mb-10 flex-auto px-4 md:container md:mx-auto">
-		{#if data?.landingPage?.Vereinsspielplan}
-			<h2 id={data.landingPage.Vereinsspielplan.title.trim().replace(' ', '-')}>
-				{data.landingPage.Vereinsspielplan.title}
-			</h2>
+	{#await data.landingPage then landingPage}
+		<section class="mb-10 flex-auto px-4 md:container md:mx-auto">
+			{#if landingPage.data?.Vereinsspielplan}
+				<h2 id={landingPage.data.Vereinsspielplan.title.trim().replace(' ', '-')}>
+					{landingPage.data.Vereinsspielplan.title}
+				</h2>
 
-			{#if data.landingPage.Vereinsspielplan.type && data.landingPage.Vereinsspielplan.type !== 'old'}
-				<FussballDeWidget2024
-					widgetId={data.landingPage.Vereinsspielplan.widgetid}
-					widgetType={data.landingPage.Vereinsspielplan.type}
-					title={data.landingPage.Vereinsspielplan.title}
-				/>
-			{:else}
-				{#key data.landingPage.Vereinsspielplan.widgetid}
-					<FussballDeWidget widgetId={data.landingPage.Vereinsspielplan.widgetid} />
-				{/key}
+				{#if landingPage.data.Vereinsspielplan.type && landingPage.data.Vereinsspielplan.type !== 'old'}
+					<FussballDeWidget2024
+						widgetId={landingPage.data.Vereinsspielplan.widgetid}
+						widgetType={landingPage.data.Vereinsspielplan.type}
+						title={landingPage.data.Vereinsspielplan.title}
+					/>
+				{:else}
+					{#key landingPage.data.Vereinsspielplan.widgetid}
+						<FussballDeWidget widgetId={landingPage.data.Vereinsspielplan.widgetid} />
+					{/key}
+				{/if}
 			{/if}
-		{/if}
-	</section>
+		</section>
+	{/await}
 </div>
 
 <style lang="scss">
