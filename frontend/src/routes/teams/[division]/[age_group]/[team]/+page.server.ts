@@ -7,6 +7,7 @@ import type { ApiTeam } from '../../../../../types/team.types';
 import type { PageServerLoad } from './$types';
 import { marked } from 'marked';
 import DOMPurify from 'isomorphic-dompurify';
+import { fetchJson } from '$lib/utils';
 
 export const load = (async ({ fetch, params }) => {
 	const teamQuery = qs.stringify({
@@ -36,15 +37,14 @@ export const load = (async ({ fetch, params }) => {
 		teamContent = DOMPurify.sanitize(parsed);
 	}
 
-	const postsRequest = await fetch(
+	const postsRequest = fetchJson<ApiPostResponse>(
+		fetch,
 		`/teams/${params.division}/${params.age_group}/${params.team}/posts`,
 	);
-
-	const posts = (await postsRequest.json()) as ApiPostResponse;
 
 	return {
 		team: team.data[0],
 		teamContent,
-		posts,
+		posts: postsRequest,
 	};
 }) satisfies PageServerLoad;

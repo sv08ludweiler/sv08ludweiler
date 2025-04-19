@@ -11,6 +11,7 @@
 		"build:vercel": "ADAPTER=vercel vite build",
 		"build:static": "ADAPTER=static vite build",
 		"preview": "vite preview",
+		"preview-server": "vite preview --mode server --host",
 		"run:node-env": "node -r dotenv/config build-node",
 		"run:node-sv08ludweiler.de": "node -r dotenv/config build-node dotenv_config_path=.env.server.local",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -19,8 +20,8 @@
 		"lint": "prettier . --check . && eslint .",
 		"format": "prettier --write .",
 		"prepare": "npm run smui-theme-light && npm run smui-theme-dark",
-		"smui-theme-light": "smui-theme compile static/smui.css -i src/theme",
-		"smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark",
+		"smui-theme-light": "smui-theme compile src/smui.css -i src/theme",
+		"smui-theme-dark": "smui-theme compile src/smui-dark.css -i src/theme/dark",
 		"sveltekit:sync": "svelte-kit sync",
 		"pwa:generate:assets": "pwa-assets-generator --preset minimal ./src/lib/assets/wappen.png -m"
 	},

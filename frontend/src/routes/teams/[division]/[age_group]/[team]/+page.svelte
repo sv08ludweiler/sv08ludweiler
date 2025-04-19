@@ -1,14 +1,12 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import PostColumns from '$lib/components/PostColumns.svelte';
+	import Trainer from '$lib/components/Trainer.svelte';
 	import TrainingList from '$lib/components/TrainingList.svelte';
 	import FupaWidget from '$lib/components/fupa/FupaWidget.svelte';
-	import type { StrapiImage } from '$lib/types/strapi.types';
-	import type { PageData } from './$types';
-	import Trainer from '$lib/components/Trainer.svelte';
+	import FussballDeWidget from '$lib/components/fussball-de-widget/FussballDeWidget.svelte';
 	import FussballDeWidget2024 from '$lib/components/fussball-de-widget/FussballDeWidget2024.svelte';
+	import type { StrapiImage } from '$lib/types/strapi.types';
 	import type {
 		ApiTeam,
 		ApiTrainer,
@@ -17,7 +15,7 @@
 		ApiWidgetFussballDe,
 	} from '../../../../../types/team.types';
 	import type { ApiAgeGroup, ApiDivision } from '../../../../../types/ui-types';
-	import FussballDeWidget from '$lib/components/fussball-de-widget/FussballDeWidget.svelte';
+	import type { PageData } from './$types';
 
 	interface Props {
 		data: PageData;
@@ -43,10 +41,16 @@
 
 	let nextGameWidget: ApiWidgetFupaNextGame | undefined = $derived(data.team.fupa_widget_next_game);
 
+	let hasPosts = $state(false);
+
+	data.posts.then((posts) => {
+		hasPosts = !!posts.data.length;
+	});
+
 	/**
 	 * Whether there is more content than info
 	 */
-	let hasSubmenu = $derived(!!data.posts.data.length || !!widgetFussballDe);
+	let hasSubmenu = $derived(hasPosts || !!widgetFussballDe);
 </script>
 
 <svelte:head>
@@ -69,9 +73,11 @@
 			class="flex h-full flex-row items-center gap-3 overflow-hidden overflow-x-auto px-4 md:container md:mx-auto"
 		>
 			<li class="nav-menu h-full"><a class="menu-item" href="#infos">Infos</a></li>
-			{#if data.posts.data.length}
-				<li class="nav-menu h-full"><a class="menu-item" href="#news">Aktuelles</a></li>
-			{/if}
+			{#await data.posts then posts}
+				{#if posts.data.length}
+					<li class="nav-menu h-full"><a class="menu-item" href="#news">Aktuelles</a></li>
+				{/if}
+			{/await}
 			{#if widgetFussballDe}
 				{#each widgetFussballDe as widget}
 					<li class="nav-menu h-full">
@@ -153,14 +159,16 @@
 		</div>
 	</section>
 
-	{#if data.posts.data.length}
-		<section>
-			<div class="flex-auto p-4 md:container md:mx-auto">
-				<h2 id="news">Aktuelles</h2>
-				<PostColumns posts={data.posts.data} meta={data.posts.meta} showTeamCategory={false} />
-			</div>
-		</section>
-	{/if}
+	{#await data.posts then posts}
+		{#if posts.data.length}
+			<section>
+				<div class="flex-auto p-4 md:container md:mx-auto">
+					<h2 id="news">Aktuelles</h2>
+					<PostColumns posts={posts.data} meta={posts.meta} showTeamCategory={false} />
+				</div>
+			</section>
+		{/if}
+	{/await}
 
 	{#if widgetFussballDe}
 		{#each widgetFussballDe as widget}

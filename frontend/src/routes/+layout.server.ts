@@ -5,6 +5,7 @@ import type { LayoutServerLoad } from './$types';
 import type { ApiMainMenuData, ApiMainMenuResponse } from '../types/ui-types';
 import type { ApiSupporterData } from '../types/supporters.types';
 import type { ApiSocialMediaData } from '../types/social-media.types';
+import { fetchJson } from '$lib/utils';
 
 // prerender all
 // export const prerender = 'auto';
@@ -106,7 +107,9 @@ export const load = (async ({ fetch }) => {
 			},
 		},
 	});
-	const socialMediaPromise = fetch(
+
+	const socialMediaPromise = fetchJson<{ data: ApiSocialMediaData }>(
+		fetch,
 		`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}/api/footer-social-media?${socialMediaQuery}`,
 		{
 			headers: {
@@ -122,7 +125,9 @@ export const load = (async ({ fetch }) => {
 			},
 		},
 	});
-	const supporterPromise = fetch(
+
+	const supporterPromise = fetchJson<{ data: ApiSupporterData }>(
+		fetch,
 		`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}/api/supporter?${supporterQuery}`,
 		{
 			headers: {
@@ -131,20 +136,13 @@ export const load = (async ({ fetch }) => {
 		},
 	);
 
-	const [mainMenuRequest, socialMediaRequest, supporterRequest] = await Promise.all([
-		mainMenuPromise,
-		socialMediaPromise,
-		supporterPromise,
-	]);
+	const [mainMenuRequest] = await Promise.all([mainMenuPromise]);
 
 	const mainMenu = (await mainMenuRequest.json()) as ApiMainMenuResponse;
 
-	const supporter = await supporterRequest.json();
-	const socialMedia = await socialMediaRequest.json();
-
 	return {
 		mainMenu: mainMenu.data as ApiMainMenuData,
-		supporter: supporter.data as ApiSupporterData,
-		socialMedia: socialMedia.data as ApiSocialMediaData,
+		supporter: supporterPromise,
+		socialMedia: socialMediaPromise,
 	};
 }) satisfies LayoutServerLoad;

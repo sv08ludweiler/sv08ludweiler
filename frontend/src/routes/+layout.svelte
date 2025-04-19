@@ -7,7 +7,7 @@
 	import '../app.css';
 	import '../global.css';
 	import '../root-styles.css';
-	// import '../../static/smui.css'; // imported in app.html
+	import '../smui.css';
 	import type { LayoutData } from './$types';
 
 	import NavBar from '$lib/components/nav/NavBar.svelte';
@@ -76,7 +76,7 @@
 				<source srcset={wappenWebP} type="image/webp" />
 				<source srcset={wappen} type="image/png" />
 				<img
-					class="wappen ml-auto mr-auto"
+					class="wappen mr-auto ml-auto"
 					srcset={wappen}
 					alt="Wappen"
 					width="545"
@@ -87,21 +87,21 @@
 		</section>
 		<section class="flex min-h-[100px] items-center justify-center bg-green-600 p-8">
 			<div class="flex flex-wrap items-center justify-center gap-4" aria-label="Partner">
-				{#if data?.supporter?.items}
-					{#each data?.supporter?.items as item}
+				{#await data.supporter then supporter}
+					{#each supporter.data?.items as item}
 						<SocialMediaLink title={item.title} href={item?.link} icon={item?.image} />
 					{/each}
-				{/if}
+				{/await}
 			</div>
 		</section>
 		<section class="flex min-h-[100px] items-center justify-center bg-green-700 py-8">
 			<!-- <div class="p-4 md:container md:mx-auto">Social Media</div> -->
 			<div class="flex items-center justify-center gap-4" aria-label="Social Media">
-				{#if data?.socialMedia?.items}
-					{#each data?.socialMedia?.items as item}
+				{#await data.socialMedia then socialMedia}
+					{#each socialMedia.data?.items as item}
 						<SocialMediaLink title={item.name} href={item?.link} icon={item?.icon} />
 					{/each}
-				{/if}
+				{/await}
 			</div>
 		</section>
 	</footer>

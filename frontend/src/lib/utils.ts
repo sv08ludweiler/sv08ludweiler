@@ -38,3 +38,15 @@ export const removeImgVideoHeadingsFromHtmlText = (str: string) =>
 
 export const removeTagsFromHtmlText = (str: string) =>
 	str.replaceAll(/<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g, '');
+
+export const fetchJson = async <T>(
+	fetch: typeof window.fetch,
+	input: string | URL | globalThis.Request,
+	init?: RequestInit,
+) => {
+	return fetch(input, init)
+		.then((res) => res.json() as T)
+		.catch((r) => {
+			throw r;
+		});
+};

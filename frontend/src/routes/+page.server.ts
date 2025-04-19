@@ -1,4 +1,5 @@
 import { env } from '$env/dynamic/private';
+import { fetchJson } from '$lib/utils';
 import type { ApiNewsResponse } from '../types/landing-page.types';
 import type { ApiPostsLandingPage } from '../types/ui-types';
 import type { PageServerLoad } from './$types';
@@ -11,18 +12,6 @@ export interface StrapiResponse<T> extends Response {
 export interface JsonResponse<T> extends Response {
 	Response: T;
 }
-
-const fetchJson = async <T>(
-	fetch: typeof window.fetch,
-	input: string | URL | globalThis.Request,
-	init?: RequestInit,
-) => {
-	return fetch(input, init)
-		.then((res) => res.json() as T)
-		.catch((r) => {
-			throw r;
-		});
-};
 
 export const load = (async ({ fetch }) => {
 	const landingPagePromise = fetchJson<ApiPostsLandingPage>(
