@@ -4,11 +4,13 @@
  */
 import documentation from "@strapi/plugin-documentation/strapi-admin";
 import usersPermissions from "@strapi/plugin-users-permissions/strapi-admin";
+import strapiCache from "strapi-cache/strapi-admin";
 import { renderAdmin } from "@strapi/strapi/admin";
 
 renderAdmin(document.getElementById("strapi"), {
   plugins: {
     documentation: documentation,
     "users-permissions": usersPermissions,
+    "strapi-cache": strapiCache,
   },
 });
