@@ -1,11 +1,11 @@
 import { env } from '$env/dynamic/private';
 import { env as envPublic } from '$env/dynamic/public';
-import qs from 'qs';
-import type { LayoutServerLoad } from './$types';
-import type { ApiMainMenuData, ApiMainMenuResponse } from '../types/ui-types';
-import type { ApiSupporterData } from '../types/supporters.types';
-import type { ApiSocialMediaData } from '../types/social-media.types';
 import { fetchJson } from '$lib/utils';
+import qs from 'qs';
+import type { ApiSocialMediaData } from '../types/social-media.types';
+import type { ApiSupporterData } from '../types/supporters.types';
+import type { ApiMainMenuResponse } from '../types/ui-types';
+import type { LayoutServerLoad } from './$types';
 
 // prerender all
 // export const prerender = 'auto';
@@ -91,7 +91,8 @@ export const load = (async ({ fetch }) => {
 			encodeValuesOnly: true, // prettify URL
 		},
 	);
-	const mainMenuPromise = fetch(
+	const mainMenuPromise = fetchJson<ApiMainMenuResponse>(
+		fetch,
 		`${envPublic.PUBLIC_FRONTEND_STRAPI_HOST}/api/main-menu?${menuQuery}`,
 		{
 			headers: {
@@ -136,12 +137,8 @@ export const load = (async ({ fetch }) => {
 		},
 	);
 
-	const [mainMenuRequest] = await Promise.all([mainMenuPromise]);
-
-	const mainMenu = (await mainMenuRequest.json()) as ApiMainMenuResponse;
-
 	return {
-		mainMenu: mainMenu.data as ApiMainMenuData,
+		mainMenu: mainMenuPromise,
 		supporter: supporterPromise,
 		socialMedia: socialMediaPromise,
 	};

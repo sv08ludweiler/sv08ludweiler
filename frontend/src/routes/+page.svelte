@@ -70,11 +70,13 @@
 
 	<section class="my-5 px-4">
 		<div class="flex flex-wrap items-center justify-center gap-4" aria-label="Partner">
-			{#if data?.supporter?.items}
-				{#each data?.supporter?.items as item}
+			{#await data.supporter}
+				<div></div>
+			{:then supporter}
+				{#each supporter.data?.items as item}
 					<SocialMediaLink title={item.title} href={item?.link} icon={item?.image} />
 				{/each}
-			{/if}
+			{/await}
 		</div>
 	</section>
 

@@ -63,7 +63,13 @@
 
 {#if image}
 	{#if maxHeight}
-		<button class="placeholder max-height w-full overflow-hidden bg-green-600" onclick={showImage}>
+		<button
+			class="placeholder max-height w-full overflow-hidden bg-green-600"
+			onclick={showImage}
+			aria-label={image.alternativeText
+				? `Titelbild "${image.alternativeText}"`
+				: 'Titelbild vergrößern'}
+		>
 			<img
 				height={image.height}
 				width={image.width}
@@ -71,7 +77,7 @@
 				src={env.PUBLIC_FRONTEND_STRAPI_HOST + image.formats.small?.url}
 				srcset={generateImageSrcSet(image)}
 				sizes={generateImageSize(image)}
-				alt={image.alternativeText}
+				alt={image.alternativeText || image.caption || 'Titelbild'}
 				loading="eager"
 			/>
 		</button>

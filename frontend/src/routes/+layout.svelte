@@ -64,7 +64,11 @@
 </svelte:head>
 
 <div class="flex h-full w-full flex-col">
-	<NavBar mainMenu={data?.mainMenu}></NavBar>
+	{#await data.mainMenu}
+		<div class="fixed z-50 flex h-[75px] w-full bg-green-800"></div>
+	{:then mainMenu}
+		<NavBar mainMenu={mainMenu.data}></NavBar>
+	{/await}
 
 	<main class="flex-auto">
 		{@render children?.()}
