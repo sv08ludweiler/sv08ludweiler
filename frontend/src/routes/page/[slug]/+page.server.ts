@@ -47,9 +47,16 @@ export const load = (async ({ fetch, params }) => {
 	const page = pages?.data[0] as ApiPost & { author: ApiAuthor };
 
 	let content = '';
+
+	console.log('test', page.content);
+
 	if (page?.content) {
 		const parsed = await marked.parse(page.content);
-		content = DOMPurify.sanitize(parsed);
+		content = DOMPurify.sanitize(parsed, {
+			// allow mailto via javascript on contacts page
+			ALLOWED_URI_REGEXP:
+				/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp|xxx|javascript:location='mailto):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i,
+		});
 	}
 
 	return {

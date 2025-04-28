@@ -34,7 +34,11 @@ export const load = (async ({ fetch, params }) => {
 	let teamContent = '';
 	if (team.data[0].content) {
 		const parsed = await marked.parse(team.data[0].content);
-		teamContent = DOMPurify.sanitize(parsed);
+		teamContent = DOMPurify.sanitize(parsed, {
+			// allow mailto via javascript for trainer's email address
+			ALLOWED_URI_REGEXP:
+				/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp|xxx|javascript:location='mailto):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i,
+		});
 	}
 
 	const postsRequest = fetchJson<ApiPostResponse>(
