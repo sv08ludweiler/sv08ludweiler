@@ -79,7 +79,7 @@
 				{/if}
 			{/await}
 			{#if widgetFussballDe}
-				{#each widgetFussballDe as widget}
+				{#each widgetFussballDe as widget (widget.id)}
 					<li class="nav-menu h-full">
 						<a class="menu-item" href={`#${widget.title.trim().replace(' ', '-')}`}
 							>{widget.title}</a
@@ -91,7 +91,7 @@
 	</div>
 {/if}
 
-<div class="page-content" class:has-submenu={hasSubmenu}>
+<div class="page-content mx-auto 2xl:container" class:has-submenu={hasSubmenu}>
 	<PageHeader image={headerImage} maxHeight={true}></PageHeader>
 
 	<section>
@@ -116,7 +116,7 @@
 				{/if}
 				{#if trainers?.length}
 					<h3>Trainer</h3>
-					{#each trainers as trainer}
+					{#each trainers as trainer (trainer.id)}
 						<ul>
 							<li>
 								<Trainer
@@ -132,7 +132,7 @@
 
 				{#if supervisors?.length}
 					<h3>Betreuer</h3>
-					{#each supervisors as supervisor}
+					{#each supervisors as supervisor (supervisor.id)}
 						<ul>
 							<li>
 								<Trainer
@@ -171,7 +171,7 @@
 	{/await}
 
 	{#if widgetFussballDe}
-		{#each widgetFussballDe as widget}
+		{#each widgetFussballDe as widget (widget.id)}
 			<section>
 				<div class="flex-auto py-4 md:container md:mx-auto">
 					<h2 id={widget.title.trim().replace(' ', '-')}>{widget.title}</h2>

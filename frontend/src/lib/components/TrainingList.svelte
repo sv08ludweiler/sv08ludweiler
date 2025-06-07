@@ -19,7 +19,7 @@
 
 <table>
 	<tbody>
-		{#each trainings as training}
+		{#each trainings as training,i (i)}
 			<tr>
 				<th class="pr-2 text-left">
 					{training.day}:

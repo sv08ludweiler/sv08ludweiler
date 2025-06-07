@@ -53,7 +53,6 @@
 
 	function onCloseDialog(event: Event & { currentTarget: EventTarget & HTMLDialogElement }) {
 		open = false;
-		console.log('onclose dialog');
 
 		if ($page.state.showModal) {
 			history.back();
@@ -64,7 +63,7 @@
 {#if image}
 	{#if maxHeight}
 		<button
-			class="placeholder max-height w-full overflow-hidden bg-green-600"
+			class="placeholder max-height w-full overflow-hidden rounded-b-md bg-green-600"
 			onclick={showImage}
 			aria-label={image.alternativeText
 				? `Titelbild "${image.alternativeText}"`
@@ -73,16 +72,20 @@
 			<img
 				height={image.height}
 				width={image.width}
-				class="h-full w-full object-cover"
+				class="h-full w-full rounded-b-md object-cover"
 				src={env.PUBLIC_FRONTEND_STRAPI_HOST + image.formats.small?.url}
 				srcset={generateImageSrcSet(image)}
 				sizes={generateImageSize(image)}
 				alt={image.alternativeText || image.caption || 'Titelbild'}
 				loading="eager"
+				fetchpriority="high"
 			/>
 		</button>
 	{:else}
-		<button class="placeholder w-full overflow-hidden bg-green-600" onclick={showImage}>
+		<button
+			class="placeholder w-full overflow-hidden rounded-b-md bg-green-600"
+			onclick={showImage}
+		>
 			<img
 				class="w-full"
 				height={image.height}
@@ -93,6 +96,7 @@
 				alt={image.alternativeText}
 				draggable="false"
 				loading="eager"
+				fetchpriority="high"
 			/>
 		</button>
 	{/if}
@@ -108,6 +112,8 @@
 					srcset={generateImageSrcSet(image)}
 					sizes={generateImageSize(image)}
 					alt={image.alternativeText}
+					fetchpriority="high"
+					loading="eager"
 				/>
 				{#if image.caption}
 					<div class="p-2">
@@ -126,7 +132,7 @@
 		{/if}
 	</dialog>
 {:else}
-	<div class="placeholder h-72 w-full bg-green-600"></div>
+	<div class="placeholder h-72 w-full rounded-b-md bg-green-600"></div>
 {/if}
 
 <svelte:window onclick={closeDialog} />

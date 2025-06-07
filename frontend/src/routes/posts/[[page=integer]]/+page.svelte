@@ -36,7 +36,7 @@
 			disabled={pagination.page < pagination.pageCount}>Vorherige</Button
 		>
 
-		{#each Array(pagination.pageCount) as _, i}
+		{#each Array(pagination.pageCount) as _, i (i)}
 			{@const pageIndex = i + 1}
 			<Button
 				href={`/posts/${pageIndex}`}

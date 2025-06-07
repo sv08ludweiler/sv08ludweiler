@@ -1,19 +1,19 @@
 <script lang="ts">
+	import { dev } from '$app/environment';
+	import { onNavigate } from '$app/navigation';
 	import wappen from '$lib/assets/wappen.png';
 	import wappenWebP from '$lib/assets/wappen.webp';
+	import Skeleton from '$lib/components/skeleton/Skeleton.svelte';
 	import SocialMediaLink from '$lib/components/SocialMediaLink.svelte';
+	import { onMount } from 'svelte';
 	import { pwaInfo } from 'virtual:pwa-info';
+	import type { LayoutData } from './$types';
 
 	import '../app.css';
 	import '../global.css';
 	import '../root-styles.css';
 	import '../smui.css';
-	import type { LayoutData } from './$types';
-
 	import NavBar from '$lib/components/nav/NavBar.svelte';
-	import { onMount } from 'svelte';
-	import { dev } from '$app/environment';
-	import { onNavigate } from '$app/navigation';
 
 	interface Props {
 		data: LayoutData;
@@ -91,8 +91,12 @@
 		</section>
 		<section class="flex min-h-[100px] items-center justify-center bg-green-600 p-8">
 			<div class="flex flex-wrap items-center justify-center gap-4" aria-label="Partner">
-				{#await data.supporter then supporter}
-					{#each supporter.data?.items as item}
+				{#await data.supporter}
+					<Skeleton />
+					<Skeleton />
+					<Skeleton />
+				{:then supporter}
+					{#each supporter.data?.items as item (item.id)}
 						<SocialMediaLink title={item.title} href={item?.link} icon={item?.image} />
 					{/each}
 				{/await}
@@ -101,8 +105,10 @@
 		<section class="flex min-h-[100px] items-center justify-center bg-green-700 py-8">
 			<!-- <div class="p-4 md:container md:mx-auto">Social Media</div> -->
 			<div class="flex items-center justify-center gap-4" aria-label="Social Media">
-				{#await data.socialMedia then socialMedia}
-					{#each socialMedia.data?.items as item}
+				{#await data.socialMedia}
+					<Skeleton /><Skeleton /><Skeleton />
+				{:then socialMedia}
+					{#each socialMedia.data?.items as item (item.id)}
 						<SocialMediaLink title={item.name} href={item?.link} icon={item?.icon} />
 					{/each}
 				{/await}

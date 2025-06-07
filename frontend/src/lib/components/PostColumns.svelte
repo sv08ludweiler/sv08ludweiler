@@ -15,7 +15,7 @@
 
 <div class="mb-5">
 	<div class="news columns-1 gap-4 md:columns-2">
-		{#each posts as news}
+		{#each posts as news, index (news.id)}
 			<div class="mb-4 break-inside-avoid">
 				<PostTile
 					href={`/posts/${news.slug}`}
@@ -26,6 +26,7 @@
 					headerImage={news?.header_image}
 					teams={news?.teams}
 					{showTeamCategory}
+					loading={index <= 1 ? 'eager' : 'lazy'}
 				/>
 			</div>
 		{/each}

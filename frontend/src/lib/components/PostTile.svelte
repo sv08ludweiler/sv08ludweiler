@@ -40,7 +40,14 @@
 		 * category of post.
 		 */
 		teams?: ApiPost['teams'];
+		/**
+		 * Whether show team category
+		 */
 		showTeamCategory?: boolean;
+		/**
+		 * Whether loading image lazyly
+		 */
+		loading: 'lazy' | 'eager';
 	}
 
 	let {
@@ -52,6 +59,7 @@
 		updatedAt = '',
 		teams = [],
 		showTeamCategory = true,
+		loading = 'lazy',
 	}: Props = $props();
 
 	// division -> age group -> [teams]
@@ -145,7 +153,7 @@
 					width={headerImage.formats.medium?.width}
 					height={headerImage.formats.medium?.height}
 					alt={headerImage.alternativeText || title}
-					loading="lazy"
+					{loading}
 				/>
 			</div>
 		{/if}
@@ -153,9 +161,9 @@
 			<h3 class="mt-0">{title}</h3>
 
 			{#if showTeamCategory}
-				{#each teamsCategory as [division, ageTeamsMap]}
-					{#each ageTeamsMap as [ageGroup, teamsNames]}
-						<TeamChip class="mt-0" teams={Array.from(teamsNames)} {division} {ageGroup} />
+				{#each teamsCategory as [division, ageTeamsMap] (division)}
+					{#each ageTeamsMap as [ageGroup, teamsNames] (ageGroup)}
+						<TeamChip classModifer="mt-0" teams={Array.from(teamsNames)} {division} {ageGroup} />
 					{/each}
 				{/each}
 			{/if}

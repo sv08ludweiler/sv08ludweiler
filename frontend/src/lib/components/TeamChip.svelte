@@ -1,12 +1,16 @@
-<!-- @migration-task Error while migrating Svelte code: $$props is used together with named props in a way that cannot be automatically migrated. -->
 <script lang="ts">
-	export let division = '';
-	export let ageGroup = '';
-	export let teams: Array<string> = [];
+	interface Props {
+		division?: string;
+		ageGroup?: string;
+		teams?: Array<string>;
+		classModifer?: string;
+	}
+
+	let { division = '', ageGroup = '', teams = [], classModifer = '' }: Props = $props();
 </script>
 
 <div
-	class={`my-2 inline-flex gap-4 rounded-full border border-gray-300 px-2 py-1 text-green-700 ${$$props.class}`}
+	class={`my-2 inline-flex gap-4 rounded-full border border-gray-300 px-2 py-1 text-green-700 ${classModifer}`}
 >
 	{#if division}
 		<div class="division">{division}</div>
@@ -17,7 +21,7 @@
 	{/if}
 
 	<div class="flex flex-row flex-wrap">
-		{#each teams as team, i}
+		{#each teams as team, i (i)}
 			<div>
 				{team}{#if i < teams.length - 1},&nbsp;{/if}
 			</div>
@@ -25,7 +29,7 @@
 	</div>
 </div>
 
-<style  lang="scss">
+<style lang="scss">
 	@reference "tailwindcss/theme";
 	.division,
 	.age-group {

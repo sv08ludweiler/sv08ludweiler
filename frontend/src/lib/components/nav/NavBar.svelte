@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { beforeNavigate } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import type { ApiMainMenuData } from '../../../types/ui-types';
 	import DivisionNavItem from '$lib/components/nav/DivisionNavItem.svelte';
 	import DropdownNavItem from '$lib/components/nav/DropdownNavItem.svelte';
 	import SimpleNavItem from '$lib/components/nav/SimpleNavItem.svelte';
 	import Ripple from '@smui/ripple';
-	import { onMount } from 'svelte';
-	import type { ApiMainMenuData } from '../../../types/ui-types';
 
 	interface Props {
 		/**
@@ -50,7 +50,7 @@
 <header class="fixed z-50 flex h-[75px] w-full items-center bg-green-800 text-white drop-shadow-lg">
 	<nav
 		aria-label="Main Navigation"
-		class="flex h-full w-full flex-row flex-wrap items-center justify-between bg-green-800 px-4 pr-0 xl:container md:mx-auto"
+		class="flex h-full w-full flex-row flex-wrap items-center justify-between bg-green-800 px-4 pr-0 md:mx-auto xl:container"
 	>
 		<a
 			href="/"

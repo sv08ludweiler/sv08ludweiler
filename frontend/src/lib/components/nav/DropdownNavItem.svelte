@@ -46,7 +46,7 @@
 		class={mobile ? 'flex w-full flex-col' : 'flyout nav-menu-flyout -z-10'}
 		class:open={focusIn || mobile}
 	>
-		{#each children as child}
+		{#each children as child (child.id)}
 			{#if child?.page}
 				<li class="inline-flex min-h-[2rem] items-center">
 					<a class="h-full w-full p-4" href={`/page/${child.page.slug}`}>{child.title}</a>

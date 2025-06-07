@@ -75,7 +75,7 @@
 </script>
 
 {#if filteredTeams.length === 1}
-	{#each filteredTeams as team}
+	{#each filteredTeams as team (team.id)}
 		{#if team.age_group}
 			<li
 				class={mobile
@@ -99,14 +99,14 @@
 			{#if groupByAge}
 				<li>
 					<!-- <div>{ageGroup.alternativeName || ageGroup.name}</div> -->
-					{#each [...groupedTeamsByAge] as [groupSlug, teams]}
-						{@const currentAgeGroup = availableAgeGroups.get(groupSlug)}
+					{#each [...groupedTeamsByAge] as [groupSlug, teams] (groupSlug)}
+						<!-- {@const currentAgeGroup = availableAgeGroups.get(groupSlug)} -->
 
 						<ol class="team-age-grid grid">
-							{#each teams as team}
+							{#each teams as team (team.id)}
 								<li class="nav-menu inline-flex min-h-[2rem] w-full items-center">
 									<a
-										class="h-full w-full whitespace-nowrap p-4"
+										class="h-full w-full p-4 whitespace-nowrap"
 										href={`/teams/${slug}/${team.age_group.slug}/${team.slug}`}
 										>{team.display_name || team.name}</a
 									>
@@ -116,11 +116,11 @@
 					{/each}
 				</li>
 			{:else}
-				{#each filteredTeams as team}
+				{#each filteredTeams as team (team.id)}
 					{#if team.age_group}
 						<li class="nav-menu inline-flex min-h-[2rem] items-center">
 							<a
-								class="h-full w-full whitespace-nowrap p-4"
+								class="h-full w-full p-4 whitespace-nowrap"
 								href={`/teams/${slug}/${team.age_group.slug}/${team.slug}`}
 								>{team.display_name || team.name}</a
 							>

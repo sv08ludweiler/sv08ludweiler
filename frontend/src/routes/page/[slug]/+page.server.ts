@@ -48,8 +48,6 @@ export const load = (async ({ fetch, params }) => {
 
 	let content = '';
 
-	console.log('test', page.content);
-
 	if (page?.content) {
 		const parsed = await marked.parse(page.content);
 		content = DOMPurify.sanitize(parsed, {

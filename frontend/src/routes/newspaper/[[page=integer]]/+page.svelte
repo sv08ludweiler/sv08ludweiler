@@ -25,7 +25,7 @@
 		<h2 id="news">Beiträge</h2>
 		<div class="mb-5">
 			<div class="news columns-1 gap-4 md:columns-2">
-				{#each data.newspaper?.data as newspaper}
+				{#each data.newspaper?.data as newspaper (newspaper.id)}
 					<div class="mb-4 break-inside-avoid">
 						<NewspaperTile
 							title={newspaper.title}
@@ -49,7 +49,7 @@
 			disabled={pagination.page <= pagination.pageCount}>Vorherige</Button
 		>
 
-		{#each Array(pagination.pageCount) as _, i}
+		{#each Array(pagination.pageCount) as _, i (i)}
 			{@const pageIndex = i + 1}
 			<Button
 				href={`/newspaper/${pageIndex}`}

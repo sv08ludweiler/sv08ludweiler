@@ -5,6 +5,7 @@ export const generateImageSrcSet = (image: StrapiImage): string | undefined => {
 	if (image.formats) {
 		return (
 			Object.values(image.formats)
+				.sort((a, b) => b.width - a.width)
 				.map((value) => `${env.PUBLIC_FRONTEND_STRAPI_HOST + value.url} ${value.width}w`)
 				.join(', ') +
 			// add original image
@@ -16,18 +17,17 @@ export const generateImageSrcSet = (image: StrapiImage): string | undefined => {
 
 export const generateImageSize = (image: StrapiImage): string | undefined => {
 	if (image.formats) {
-		// return (
-		// 	Object.values(image.formats)
-		// 		.map((value) => `(max-width: ${Number(value.width) + 100}px) ${value.width}px`)
-		// 		.join(', ') +
-		// 	// add original image
-		// 	`, 1500px`
-		// );
-
-		return '(max-width: 400px) 245px, (max-width: 600px) 500px, (max-width: 1000px) 750px, (max-width: 1300px) 1000px, 1300px';
+		return (
+			Object.values(image.formats)
+				.sort((a, b) => a.width - b.width)
+				.map((value) => `(max-width: ${Number(value.width) + 100}px) ${value.width}px`)
+				.join(', ') +
+			// add original image
+			`, ${image.width}px`
+		);
 	}
-
 	return undefined;
+	// return '(max-width: 400px) 245px, (max-width: 768px) 640px, (max-width: 800px) 768px, (max-width: 1200px) 1024px, (max-width: 1500px) 1280px, 1536px';
 };
 
 export const removeImgVideoHeadingsFromHtmlText = (str: string) =>
