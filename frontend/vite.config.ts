@@ -2,15 +2,15 @@ import { SvelteKitPWA } from '@vite-pwa/sveltekit';
 import { enhancedImages } from '@sveltejs/enhanced-img';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
-import tailwindcss from "@tailwindcss/vite";
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
 	server: {
 		port: 5200,
 	},
 	plugins: [
-		sveltekit(),
 		enhancedImages(),
+		sveltekit(),
 		SvelteKitPWA({
 			devOptions: {
 				enabled: true,
@@ -46,7 +46,7 @@ export default defineConfig({
 				],
 			},
 		}),
-		tailwindcss()
+		tailwindcss(),
 	],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}'],
