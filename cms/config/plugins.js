@@ -20,15 +20,20 @@ module.exports = ({ env }) => ({
 		config: {
 			provider: 'nodemailer',
 			providerOptions: {
-				logger: true,
-				debug: true,
-				host: env('SMTP_HOST'),
-				port: env('SMTP_PORT'),
+				// logger: true,
+				// debug: true,
+				host: env('SMTP_HOST', 'host.docker.internal'),
+				port: env('SMTP_PORT', 465),
+				name: env('NODEMAILER_HOSTNAME', 'localhost'),
 				secure: true,
 				auth: {
 					user: env('SMTP_USERNAME'),
 					pass: env('SMTP_PASSWORD'),
 				},
+				// tls: {
+				// servername: env('NODEMAILER_TLS_SERVERNAME', ''),
+				// 	// rejectUnauthorized: env.bool('SMTP_TLS_REJECT_UNAUTHORIZED', true),
+				// },
 			},
 			settings: {
 				defaultFrom: env('SMTP_USERNAME'),
