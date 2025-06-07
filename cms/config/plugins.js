@@ -16,7 +16,26 @@ module.exports = ({ env }) => ({
 			},
 		},
 	},
-
+	email: {
+		config: {
+			provider: 'nodemailer',
+			providerOptions: {
+				logger: true,
+				debug: true,
+				host: env('SMTP_HOST'),
+				port: env('SMTP_PORT'),
+				secure: true,
+				auth: {
+					user: env('SMTP_USERNAME'),
+					pass: env('SMTP_PASSWORD'),
+				},
+			},
+			settings: {
+				defaultFrom: env('SMTP_USERNAME'),
+				defaultReplyTo: env('MAIL_DEFAULT_REPLY'),
+			},
+		},
+	},
 	'strapi-cache': {
 		enabled: true,
 		config: {
