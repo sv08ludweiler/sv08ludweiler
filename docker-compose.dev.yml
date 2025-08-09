@@ -40,32 +40,32 @@ services:
     networks:
       - ludweiler
 
-  sveltekit-node:
-    container_name: sv08ludweiler-sveltekit-node
-    image: sv08ludweiler-sveltekit-node
-    restart: unless-stopped
-    tty: true
-    env_file:
-      - .env
-    environment:
-      # overwrite 1337 in env file
-      - PORT=3000
-    ports:
-      - 1338:3000
-    depends_on:
-      - strapi
-    networks:
-      - ludweiler
-    # entrypoint: [ "node", "-r", "dotenv/config", "build-node" ]
-    build:
-      context: .
-      dockerfile: Dockerfile.server.prod
-      target: sveltekit-node
-      args:
-        - NODE_ENV=${NODE_ENV}
-        - FRONTEND_STRAPI_HOST=${FRONTEND_STRAPI_HOST}
-        - PUBLIC_FRONTEND_STRAPI_HOST=${PUBLIC_FRONTEND_STRAPI_HOST}
-        - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
+  # sveltekit-node:
+  #   container_name: sv08ludweiler-sveltekit-node
+  #   image: sv08ludweiler-sveltekit-node
+  #   restart: unless-stopped
+  #   tty: true
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     # overwrite 1337 in env file
+  #     - PORT=3000
+  #   ports:
+  #     - 1338:3000
+  #   depends_on:
+  #     - strapi
+  #   networks:
+  #     - ludweiler
+  #   # entrypoint: [ "node", "-r", "dotenv/config", "build-node" ]
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.server.prod
+  #     target: sveltekit-node
+  #     args:
+  #       - NODE_ENV=${NODE_ENV}
+  #       - FRONTEND_STRAPI_HOST=${FRONTEND_STRAPI_HOST}
+  #       - PUBLIC_FRONTEND_STRAPI_HOST=${PUBLIC_FRONTEND_STRAPI_HOST}
+  #       - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
 
   # sveltekit:
   #   container_name: sv08ludweiler-sveltekit

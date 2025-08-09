@@ -9,7 +9,7 @@ export default defineConfig({
 		port: 5200,
 	},
 	plugins: [
-		enhancedImages(),
+		enhancedImages(), // must come before the SvelteKit plugin
 		sveltekit(),
 		SvelteKitPWA({
 			devOptions: {
@@ -50,12 +50,5 @@ export default defineConfig({
 	],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}'],
-	},
-	css: {
-		preprocessorOptions: {
-			scss: {
-				api: 'modern-compiler',
-			},
-		},
 	},
 });
